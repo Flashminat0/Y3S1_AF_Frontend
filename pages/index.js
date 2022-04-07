@@ -13,6 +13,10 @@ export default function Home() {
           <a>b</a>
         </Link>
       </li>
+        <h1 className="text-3xl font-bold underline text-lg bg-red-100 text-red-500">
+            Hello world!
+        </h1>
+
     </ul>
   )
 }
