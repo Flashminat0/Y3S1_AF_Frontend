@@ -9,6 +9,7 @@
     "axios": "^0.26.1",
     "cross-env": "^7.0.2",
     "express": "^4.17.3",
+    "firebase": "^9.6.10",
     "http-proxy-middleware": "^2.0.4",
     "next": "latest",
     "react": "^18.0.0",
