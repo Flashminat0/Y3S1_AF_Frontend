@@ -10,6 +10,7 @@ const FileUploadTest = () => {
 
         uploadBytes(fileRef, file).then((snapshot) => {
             console.log('Uploaded a blob or file!');
+            console.log(snapshot);
         });
 
     }
