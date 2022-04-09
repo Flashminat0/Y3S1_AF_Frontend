@@ -7,7 +7,7 @@ const FileUploadTest = () => {
     const uploadFile = (e) => {
         const file = e.target.files[0];
         const storageRef = getStorage(firebaseApp);
-        const fileRef = ref(storageRef, file.name);
+        const fileRef = ref(storageRef, `images/${Date.now()}-${file.name}`);
 
         uploadBytes(fileRef, file).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
