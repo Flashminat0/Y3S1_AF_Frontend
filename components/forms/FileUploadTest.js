@@ -1,18 +1,20 @@
 import React from 'react';
-import {getStorage, ref , uploadBytes} from "firebase/storage";
+import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {firebaseApp} from "../../firebase/base";
 
 const FileUploadTest = () => {
+
     const uploadFile = (e) => {
         const file = e.target.files[0];
         const storageRef = getStorage(firebaseApp);
         const fileRef = ref(storageRef, file.name);
 
         uploadBytes(fileRef, file).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
-            console.log(snapshot);
+            getDownloadURL(snapshot.ref).then((url) => {
+                console.log(url);
+                return url;
+            });
         });
-
     }
 
     return (

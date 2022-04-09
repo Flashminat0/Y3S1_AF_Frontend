@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
 
 export const firebaseApp = initializeApp({
     "projectId": "y3s1-sliit-af",
