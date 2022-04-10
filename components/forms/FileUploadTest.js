@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {getStorage, ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import {firebaseApp} from "../../firebase/base";
 
 const FileUploadTest = () => {
+
+    const [showImage, setShowImage] = useState(false);
+    const [imageUrl, setImageUrl] = useState('');
 
     const uploadFile = (e) => {
         const file = e.target.files[0];
@@ -11,11 +14,12 @@ const FileUploadTest = () => {
 
         uploadBytes(fileRef, file).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-                console.log(url);
+                setImageUrl(url);
                 return url;
             });
         });
     }
+
 
     return (
         <div>
@@ -24,6 +28,8 @@ const FileUploadTest = () => {
                 <input type="file" name="file" onChange={uploadFile}/>
                 <button type={`submit`}>Upload</button>
             </form>
+            <button onClick={() => setShowImage(!showImage)}>Show Image</button>
+            {showImage && <img src={imageUrl} alt=""/>}
         </div>
     );
 };
