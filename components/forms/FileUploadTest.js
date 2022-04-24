@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {getStorage, ref, uploadBytes, getDownloadURL , deleteObject} from "firebase/storage";
+import {getStorage, ref, uploadBytes, getDownloadURL, deleteObject} from "firebase/storage";
 import {firebaseApp} from "../../firebase/base";
 import axios from "axios";
 
 const FileUploadTest = () => {
 
     const [showImage, setShowImage] = useState(false);
-    const [imageUrl, setImageUrl] = useState('');
     const [image, setImage] = useState({
         name: '',
         url: ''
@@ -22,14 +21,10 @@ const FileUploadTest = () => {
 
         uploadBytes(fileRef, file).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-
                 setImage({
                     name: fileName,
                     url: url
                 });
-
-
-                return url;
             });
         });
     }
@@ -67,6 +62,7 @@ const FileUploadTest = () => {
                 <button onClick={uploadUriToDatabase}>Upload</button>
             </form>
             <button onClick={() => setShowImage(!showImage)}>Show Image</button>
+            <button onClick={deleteFileFromRef}>DELETE Image</button>
             {showImage && <img src={image.url} alt=""/>}
         </div>
     );
