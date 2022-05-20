@@ -1,3 +1,4 @@
 export default function B() {
-  return <div>b</div>
+    return <div>b</div>
 }
+  
