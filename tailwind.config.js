@@ -10,6 +10,9 @@ module.exports = {
             sans: ["Signika", "sans-serif"],
         }
     },
+    corePlugins: {
+        preflight: false,
+    },
     plugins: [
         require('@tailwindcss/aspect-ratio'),
     ],
