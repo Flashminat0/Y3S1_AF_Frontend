@@ -5,10 +5,12 @@ import {CssBaseline} from '@mui/material';
 
 const MyApp = ({Component, pageProps}) => {
     return (
-        <StyledEngineProvider injectFirst>
-            <CssBaseline/>
-            <Component {...pageProps} />
-        </StyledEngineProvider>
+        <React.StrictMode>
+            <StyledEngineProvider injectFirst>
+                <CssBaseline/>
+                <Component {...pageProps} />
+            </StyledEngineProvider>
+        </React.StrictMode>
     );
 };
 
