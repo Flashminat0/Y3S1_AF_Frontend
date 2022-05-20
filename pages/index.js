@@ -1,12 +1,18 @@
 import Link from 'next/link'
 import FileUploadTest from "../components/forms/FileUploadTest";
 import LoginWIthMicrosoft from "../components/forms/auth/LoginWIthMicrosoft";
+import Header from "../components/common/header";
+import {useDocumentTitle} from '@mantine/hooks';
 
 export default function Home() {
+    useDocumentTitle("Home");
+
+
     return (
-        <ul>
+        <div className={``}>
+            <Header/>
             <li>
-                <Link href="/b" as="/a">
+                <Link href="/b  " as="/a">
                     <a>a</a>
                 </Link>
             </li>
@@ -20,6 +26,6 @@ export default function Home() {
             </h1>
             {/*<FileUploadTest/>*/}
             <LoginWIthMicrosoft/>
-        </ul>
+        </div>
     )
 }

@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {OAuthProvider, getAuth, signInWithPopup, signOut} from "firebase/auth";
 import axios from "axios";
-
+import {useLocalStorage} from '@mantine/hooks';
 
 const LoginWIthMicrosoft = () => {
     const [profileData, setProfileData] = useState({});
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {}
+    });
 
 
     // set up the provider for the login
@@ -18,11 +22,7 @@ const LoginWIthMicrosoft = () => {
     });
     provider.addScope('profile');
 
-    //TODO Later
-    // provider.addScope('mail.read');
-    // provider.addScope('calendars.read');
-
-
+    //auth object
     const auth = getAuth();
 
     // sign in with popup
@@ -37,7 +37,8 @@ const LoginWIthMicrosoft = () => {
                 const accessToken = credential.accessToken;
                 const idToken = credential.idToken;
 
-                //try me/messages
+                setCredentials(credential);
+
                 // Get the user's profile data from the Google API
                 axios.get('https://graph.microsoft.com/v1.0/me', {
                     headers: {
@@ -58,6 +59,7 @@ const LoginWIthMicrosoft = () => {
 
     const getMicrosoftRedirectResult = () => {
         console.log(profileData);
+        console.log(credentials);
     }
 
     const signOutFromMicrosoft = () => {
@@ -68,9 +70,6 @@ const LoginWIthMicrosoft = () => {
         });
     }
 
-    useEffect(() => {
-        console.log(auth);
-    }, [auth]);
 
     return (
         <div className={`grid place-content-center`}>
