@@ -8,7 +8,9 @@ const MyApp = ({Component, pageProps}) => {
         <React.StrictMode>
             <StyledEngineProvider injectFirst>
                 <CssBaseline/>
-                <Component {...pageProps} />
+                <div className={`font-sans`}>
+                    <Component {...pageProps} />
+                </div>
             </StyledEngineProvider>
         </React.StrictMode>
     );
