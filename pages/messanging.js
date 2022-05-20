@@ -11,16 +11,16 @@ import {
     HiUserGroup,
     HiX,
 } from 'react-icons/hi'
-import {Avatar} from "@mui/material";
+import {GiDevilMask, GiBadGnome} from 'react-icons/gi'
+
+
+import {Avatar, Divider} from "@mui/material";
 import Image from "next/image";
 
 const navigation = [
-    {name: 'Dashboard', href: '#', icon: HiHome, current: true},
-    {name: 'Calendar', href: '#', icon: HiCalendar, current: false},
-    {name: 'Teams', href: '#', icon: HiUserGroup, current: false},
-    {name: 'Directory', href: '#', icon: HiSearchCircle, current: false},
-    {name: 'Announcements', href: '#', icon: HiSpeakerphone, current: false},
-    {name: 'Office Map', href: '#', icon: HiMap, current: false},
+    {name: 'Supervisors', href: '#', icon: GiDevilMask, current: true},
+    {name: 'Co-Supervisors', href: '#', icon: GiBadGnome, current: false},
+    {name: 'Team', href: '#', icon: HiUserGroup, current: false},
 ]
 
 function classNames(...classes) {
@@ -88,26 +88,30 @@ export default function Messanging() {
                                             </div>
                                             <nav aria-label="Sidebar" className="mt-5">
                                                 <div className="px-2 space-y-1">
-                                                    {navigation.map((item) => (
-                                                        <a
-                                                            key={item.name}
-                                                            href={item.href}
-                                                            className={classNames(
-                                                                item.current
-                                                                    ? 'bg-gray-100 text-gray-900'
-                                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                                'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline'
-                                                            )}
-                                                        >
-                                                            <item.icon
+                                                    {navigation.map((item, index) => (
+                                                        <>
+                                                            <a
+                                                                key={item.name}
+                                                                href={item.href}
                                                                 className={classNames(
-                                                                    item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                                                                    'mr-4 h-6 w-6'
+                                                                    item.current
+                                                                        ? 'bg-gray-100 text-gray-900'
+                                                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                    'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline'
                                                                 )}
-                                                                aria-hidden="true"
-                                                            />
-                                                            {item.name}
-                                                        </a>
+                                                            >
+                                                                <item.icon
+                                                                    className={classNames(
+                                                                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                                        'mr-4 h-6 w-6'
+                                                                    )}
+                                                                    aria-hidden="true"
+                                                                />
+                                                                {item.name}
+                                                            </a>
+                                                            {index === 1 && <Divider variant="fullWidth"/>}
+                                                        </>
+
                                                     ))}
                                                 </div>
                                             </nav>
@@ -120,8 +124,10 @@ export default function Messanging() {
                                                                 src="https://image.shutterstock.com/image-photo/happy-dude-striped-top-glasses-260nw-1153500823.jpg"/>
                                                     </div>
                                                     <div className="ml-3">
-                                                        <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                                                        <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                                                        <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom
+                                                            Cook</p>
+                                                        <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View
+                                                            profile</p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -151,8 +157,12 @@ export default function Messanging() {
                                 </div>
                                 <nav className="mt-5 flex-1" aria-label="Sidebar">
                                     <div className="px-2 space-y-1">
-                                        {navigation.map((item) => (
-                                            <a
+                                        <div>
+                                            asjbdaksd
+                                        </div>
+                                        {navigation.map((item,index) => (
+                                            <>
+                                                <a
                                                 key={item.name}
                                                 href={item.href}
                                                 className={classNames(
@@ -171,6 +181,8 @@ export default function Messanging() {
                                                 />
                                                 {item.name}
                                             </a>
+                                                {index === 1 && <Divider variant="fullWidth"/>}
+                                            </>
                                         ))}
                                     </div>
                                 </nav>
