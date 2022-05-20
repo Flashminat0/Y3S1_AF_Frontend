@@ -9,7 +9,7 @@ export default function Home() {
 
 
     return (
-        <div className={``}>
+        <div className={`font-sans`}>
             <Header/>
             <li>
                 <Link href="/b  " as="/a">

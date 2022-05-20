@@ -1,9 +1,15 @@
+import React from 'react';
 import '../styles/globals.css'
+import {StyledEngineProvider} from '@mui/material/styles';
+import {CssBaseline} from '@mui/material';
 
-export default function MyApp({Component, pageProps}) {
+const MyApp = ({Component, pageProps}) => {
     return (
-        <div className={`font-sans`}>
+        <StyledEngineProvider injectFirst>
+            <CssBaseline/>
             <Component {...pageProps} />
-        </div>
-    )
-}
+        </StyledEngineProvider>
+    );
+};
+
+export default MyApp;
