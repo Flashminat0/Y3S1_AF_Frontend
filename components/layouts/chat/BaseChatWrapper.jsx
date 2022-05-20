@@ -12,23 +12,25 @@ import {
     HiX,
 } from 'react-icons/hi'
 import {GiDevilMask, GiBadGnome} from 'react-icons/gi'
-
-
-import {Avatar, Divider} from "@mui/material";
+import {Divider} from "@mui/material";
 import Image from "next/image";
+import {useRouter} from "next/router";
 
 const navigation = [
-    {name: 'Supervisors', href: '#', icon: GiDevilMask, current: true},
-    {name: 'Co-Supervisors', href: '#', icon: GiBadGnome, current: false},
-    {name: 'Team', href: '#', icon: HiUserGroup, current: false},
+    {name: 'Supervisors', href: 'supervisors', icon: GiDevilMask, approved: false, selected: false},
+    {name: 'Co-Supervisors', href: 'co-supervisors', icon: GiBadGnome, approved: true, selected: false},
+    {name: 'Team', href: 'team', icon: HiUserGroup, approved: false, selected: false},
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Chat() {
+
+const BaseChatWrapper = ({children, selectedPageIndex}) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+
+    const router = useRouter()
 
     return (
         <div className="h-screen overflow-hidden">
@@ -92,48 +94,58 @@ export default function Chat() {
                                                 <nav aria-label="Sidebar" className="mt-5">
                                                     <div className="px-2 space-y-1">
                                                         {navigation.map((item, index) => (
-                                                            <>
-                                                                <a
-                                                                    key={item.name}
-                                                                    href={item.href}
+                                                            <div key={item.name}>
+                                                                <span
+                                                                    onClick={async () => {
+                                                                        await router.push(`/chat/${item.href}`)
+                                                                    }}
                                                                     className={classNames(
-                                                                        item.current
-                                                                            ? 'bg-gray-100 text-gray-900'
+                                                                        selectedPageIndex === index
+                                                                            ? 'bg-gray-100 text-gray-900 font-normal '
                                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline'
+                                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                                     )}
                                                                 >
                                                                     <item.icon
                                                                         className={classNames(
-                                                                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                                                                            'mr-4 h-6 w-6'
+                                                                            selectedPageIndex === index ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                                            'mr-4 h-8 w-8'
                                                                         )}
                                                                         aria-hidden="true"
                                                                     />
                                                                     {item.name}
-                                                                </a>
-                                                                {index === 1 && <Divider variant="fullWidth"/>}
-                                                            </>
+                                                                </span>
+                                                                {index === 1 &&
+                                                                    <Divider className={`pt-2`} variant="fullWidth"/>}
+                                                            </div>
 
                                                         ))}
                                                     </div>
                                                 </nav>
                                             </div>
-                                            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-                                                <a href="#" className="flex-shrink-0 group block no-underline">
-                                                    <div className="flex items-center">
-                                                        <div>
-                                                            <Avatar alt="Remy Sharp"
-                                                                    src="https://image.shutterstock.com/image-photo/happy-dude-striped-top-glasses-260nw-1153500823.jpg"/>
+                                            <div
+                                                className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
+                                                <span className="flex-shrink-0 w-full group block no-underline">
+                                                    <div className="grid grid-cols-3">
+                                                        <div className={`relative left-4`}>
+                                                            <span className="inline-block relative">
+                                                                <img
+                                                                    className="h-12 w-12 rounded-full"
+                                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                                    alt=""
+                                                                />
+                                                                <span
+                                                                    className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
+                                                            </span>
                                                         </div>
-                                                        <div className="ml-3">
-                                                            <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom
-                                                                Cook</p>
-                                                            <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View
-                                                                profile</p>
+                                                        <div className="ml-3 relative col-span-2 bottom-1 right-4">
+                                                            <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
+                                                                Tom Cook</p>
+                                                            <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
+                                                                View profile</p>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </span>
                                             </div>
                                         </Dialog.Panel>
                                     </motion.div>
@@ -161,50 +173,56 @@ export default function Chat() {
                                     <nav className="mt-5 flex-1" aria-label="Sidebar">
                                         <div className="px-2 space-y-1">
                                             {navigation.map((item, index) => (
-                                                <>
-                                                    <a
-                                                        key={item.name}
-                                                        href={item.href}
+                                                <div key={item.name}>
+                                                    <span
+                                                        onClick={async () => {
+                                                            await router.push(`/chat/${item.href}`)
+                                                        }}
                                                         className={classNames(
-                                                            item.current
-                                                                ? 'bg-gray-100 text-gray-900'
+                                                            selectedPageIndex === index
+                                                                ? 'bg-gray-100 text-gray-900 font-normal'
                                                                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                            'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline'
+                                                            'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                         )}
                                                     >
                                                         <item.icon
                                                             className={classNames(
-                                                                item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                                                                'mr-4 h-6 w-6'
+                                                                selectedPageIndex === index ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                                'mr-4 h-8 w-8'
                                                             )}
                                                             aria-hidden="true"
                                                         />
                                                         {item.name}
-                                                    </a>
-                                                    {index === 1 && <Divider variant="fullWidth"/>}
-                                                </>
+                                                    </span>
+                                                    {index === 1 && <Divider variant="fullWidth" className={`pt-2`}/>}
+                                                </div>
 
                                             ))}
                                         </div>
                                     </nav>
                                 </div>
-                                <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-                                    <a href="#" className="flex-shrink-0 w-full group block">
-                                        <div className="flex items-center">
-                                            <div className="flex items-center">
-                                                <div>
-                                                    <Avatar alt="Remy Sharp"
-                                                            src="https://image.shutterstock.com/image-photo/happy-dude-striped-top-glasses-260nw-1153500823.jpg"/>
-                                                </div>
-                                                <div className="ml-3">
-                                                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom
-                                                        Cook</p>
-                                                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View
-                                                        profile</p>
-                                                </div>
+                                <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
+                                    <span className="flex-shrink-0 w-full group block no-underline">
+                                        <div className="grid grid-cols-3">
+                                            <div className={`relative left-2`}>
+                                                <span className="inline-block relative">
+                                               <img
+                                                   className="h-12 w-12 rounded-full"
+                                                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                   alt=""
+                                               />
+                                               <span
+                                                   className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
+                                                </span>
+                                            </div>
+                                            <div className="ml-3 relative col-span-2 bottom-1 right-2">
+                                                <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
+                                                    Tom Cook</p>
+                                                <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
+                                                    View profile</p>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +254,7 @@ export default function Chat() {
                             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                 {/* Start main area*/}
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg"/>
+                                    {children}
                                 </div>
                                 {/* End main area */}
                             </main>
@@ -253,5 +271,9 @@ export default function Chat() {
                 </div>
             </>
         </div>
-    )
-}
+    );
+};
+
+export default BaseChatWrapper;
+
+
