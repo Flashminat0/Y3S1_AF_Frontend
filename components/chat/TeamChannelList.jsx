@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Messaging = () => {
+const TeamChannelList = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const Messaging = () => {
     );
 };
 
-export default Messaging;
+export default TeamChannelList;
