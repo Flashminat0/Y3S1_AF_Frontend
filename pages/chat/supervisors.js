@@ -9,6 +9,9 @@ const Supervisors = () => {
 
     return (
         <BaseChatWrapper selectedPageIndex={0}>
+            <div className={`flex`}>
+                <SupervisorChatListSideBar/>
+            </div>
         </BaseChatWrapper>
     );
 };
