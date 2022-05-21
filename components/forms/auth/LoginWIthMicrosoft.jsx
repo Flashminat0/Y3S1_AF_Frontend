@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {OAuthProvider, getAuth, signInWithPopup, signOut} from "firebase/auth";
 import axios from "axios";
 import {useLocalStorage} from '@mantine/hooks';
+import {Button} from "@mui/material";
 
 const LoginWIthMicrosoft = () => {
     const [profileData, setProfileData] = useState({});
@@ -73,15 +74,17 @@ const LoginWIthMicrosoft = () => {
 
     return (
         <div className={`grid place-content-center`}>
-            <button className={`bg-blue-200 p-4`} onClick={signInWithMicrosoft}>
-                Sign in with Microsoft
-            </button>
-            <button className={`bg-green-500 p-4`} onClick={getMicrosoftRedirectResult}>
-                get details on login
-            </button>
-            <button className={`bg-red-500 p-4`} onClick={signOutFromMicrosoft}>
-                logout
-            </button>
+            <Button
+                color={'secondary'} variant="outlined" onClick={signInWithMicrosoft}
+                    startIcon={<svg className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 48 48" width="2.25rem" height="2.25rem">
+                        <path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"/>
+                        <path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"/>
+                        <path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"/>
+                        <path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"/>
+                    </svg>
+                    }>Sign in with Microsoft
+            </Button>
         </div>
     );
 };
