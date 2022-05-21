@@ -1,4 +1,9 @@
+import CommonModal from "../components/modals/CommonModal";
+
 export default function B() {
-    return <div>b</div>
+    return <div>
+        <CommonModal/>
+
+    </div>
 }
-  
+

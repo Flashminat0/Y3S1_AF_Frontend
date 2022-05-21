@@ -38,8 +38,7 @@ const BaseChatWrapper = ({children, selectedPageIndex}) => {
                                 open={sidebarOpen} className="relative z-40 lg:hidden"
                                 onClose={(x) => {
                                     setSidebarOpen(false)
-                                }
-                                }>
+                                }}>
                                 <motion.div
                                     initial={{opacity: 0}}
                                     animate={{opacity: 1}}
