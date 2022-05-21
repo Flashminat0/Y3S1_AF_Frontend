@@ -24,7 +24,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold underline text-lg bg-red-100 text-red-500">
                 Hello world!
             </h1>
-            {/*<FileUploadTest/>*/}
+            <FileUploadTest/>
             <LoginWIthMicrosoft/>
         </div>
     )
