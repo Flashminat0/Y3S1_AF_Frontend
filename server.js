@@ -13,7 +13,7 @@ app.prepare()
         server.use(
             "/api",
             createProxyMiddleware({
-                target: `${process.env.HEROKU_BACKEND_URL || "http://localhost:8000"}`,
+                target: `${process.env.BACKEND_SERVER_URL || "http://localhost:8000"}`,
                 changeOrigin: true,
             }),
         );
