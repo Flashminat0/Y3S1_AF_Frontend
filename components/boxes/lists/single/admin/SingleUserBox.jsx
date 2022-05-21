@@ -1,24 +1,27 @@
 import React from 'react';
-import {FiChevronDown} from 'react-icons/fi';
-import {Fragment} from 'react'
-import {Popover, Transition} from '@headlessui/react'
-import {AiFillDelete} from "react-icons/ai";
-import {BsFillEyeFill} from 'react-icons/bs';
 import {MdGroup} from "react-icons/md";
+import {Popover, Transition} from "@headlessui/react";
+import {FiChevronDown} from "react-icons/fi";
+import {Fragment} from "react";
+import {BsFillEyeFill} from "react-icons/bs";
+import {AiFillDelete} from "react-icons/ai";
 
-
-const abilities = [{id: 1, name: "View Group", icon: BsFillEyeFill}, {id: 2, name: "Delete Group", icon: AiFillDelete}];
+const abilities = [{id: 1, name: "View User Profile", icon: BsFillEyeFill}, {
+    id: 2,
+    name: "Delete User",
+    icon: AiFillDelete
+}];
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, currentNo}) => {
+const SingleUserBox = ({userName, userRegNo, userRole}) => {
     return (
         <div className={"mx-10 my-5 px-4 py-1.5 rounded-lg shadow-md bg-gray-50"}>
             <div className={"flex flex-row justify-between"}>
                 <div className={"flex flex-row gap-3 items-center"}>
-                    <div className={"text-xl font-semibold uppercase"}>{groupName}</div>
+                    <div className={"text-xl font-semibold uppercase"}>{userName}</div>
                     <MdGroup className={"w-5 h-5"}/>
                 </div>
                 <div>
@@ -63,17 +66,21 @@ const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, curren
                     </Popover>
                 </div>
             </div>
-            <div className={"flex flex-row justify-between items-center"}>
-                <div className={"flex flex-row gap-2 items-center"}>
-                    <div className={"font-medium text-blue-900"}>Group Leader:</div>
-                    <div className={"text-sm text-gray-500"}>{groupLeader}</div>
-                    <div className={"text-sm text-gray-500"}>({groupLeaderRegNo})</div>
-                </div>
-                <div className={"px-3 py-0.5 rounded-xl bg-indigo-100 hover:bg-indigo-200 font-medium"}><span
-                    className={"text-gray-500"}>{currentNo}</span>/{maxNo}</div>
+            <div className={"flex flex-row gap-2 items-center"}>
+                <div className={"font-medium text-blue-900"}>User Details:</div>
+                <div className={"text-sm text-gray-500"}>{userRegNo}</div>
+                {userRole === 'student' && <>
+                    <div className={"text-xs text-blue-500 px-3 py-1 rounded-lg bg-blue-200"}>{userRole}</div>
+                </>} {userRole === 'supervisor' && <>
+                <div className={"text-xs text-red-500 px-3 py-1 rounded-lg bg-red-200"}>{userRole}</div>
+            </>}{userRole === 'co-supervisor' && <>
+                <div className={"text-xs text-green-500 px-3 py-1 rounded-lg bg-green-200"}>{userRole}</div>
+            </>}{userRole === 'panel-member' && <>
+                <div className={"text-xs text-orange-500 px-3 py-1 rounded-lg bg-orange-200"}>{userRole}</div>
+            </>}
             </div>
         </div>
     );
 };
 
-export default SingleGroupBox;
+export default SingleUserBox;

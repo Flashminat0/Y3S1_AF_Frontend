@@ -48,7 +48,7 @@ const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, curren
                                                 className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
                                                 {abilities.map((ability) => (
                                                     <div
-                                                        className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-200">
+                                                        className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100">
                                                         <div>{ability.name}</div>
                                                         <ability.icon className={"w-5 h-5"}/>
                                                     </div>
