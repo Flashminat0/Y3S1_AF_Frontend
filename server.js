@@ -10,7 +10,7 @@ app.prepare()
     .then(() => {
         const server = express();
 
-        const serverUrl =  process.env.LOCAL_SERVER_URL || "https://research-sliit-system.herokuapp.com/api/";
+        const serverUrl =  process.env.LOCAL_SERVER_URL || "https://research-sliit-system.herokuapp.com/api/api/";
 
         server.use(
             "/api",
