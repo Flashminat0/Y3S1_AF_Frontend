@@ -2,11 +2,12 @@ import React from 'react';
 import {FiChevronDown} from 'react-icons/fi';
 import {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
-import {BiArrowFromLeft} from "react-icons/bi";
+import {AiFillDelete} from "react-icons/ai";
+import {BsFillEyeFill} from 'react-icons/bs';
 import {MdGroup} from "react-icons/md";
 
 
-const abilities = [{id: 1, name: "Request to be a member", icon: BiArrowFromLeft}];
+const abilities = [{id: 1, name: "View Group", icon: BsFillEyeFill}, {id: 2, name: "Delete Group", icon: AiFillDelete}];
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -48,8 +49,8 @@ const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, curren
                                                 className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
                                                 {abilities.map((ability) => (
                                                     <div
-                                                        className="inline-flex gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-200">
-                                                        {ability.name}
+                                                        className="flex flex-row gap-5 justify-between items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-200">
+                                                        <div>{ability.name}</div>
                                                         <ability.icon className={"w-5 h-5"}/>
                                                     </div>
                                                 ))}
