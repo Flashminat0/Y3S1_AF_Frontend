@@ -48,7 +48,7 @@ const LoginWIthMicrosoft = () => {
                 }).then(async data => {
 
                     // Save the user's profile data to the database
-                    await axios.post('/api/register', {
+                    await axios.post('https://research-sliit-system.herokuapp.com/register', {
                         name: data.displayName,
                         userId: data.id,
                     }).then(res => {
