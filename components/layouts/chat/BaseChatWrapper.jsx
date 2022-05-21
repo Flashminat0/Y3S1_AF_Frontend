@@ -1,17 +1,8 @@
 import React, {useState} from 'react';
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from "framer-motion"
-import {
-    HiCalendar,
-    HiHome,
-    HiMap,
-    HiMenu,
-    HiSearchCircle,
-    HiSpeakerphone,
-    HiUserGroup,
-    HiX,
-} from 'react-icons/hi'
-import {GiDevilMask, GiBadGnome} from 'react-icons/gi'
+import {HiMenu, HiUserGroup, HiX,} from 'react-icons/hi'
+import {GiBadGnome, GiDevilMask} from 'react-icons/gi'
 import {Divider} from "@mui/material";
 import Image from "next/image";
 import {useRouter} from "next/router";
