@@ -13,7 +13,7 @@ app.prepare()
         server.use(
             "/api",
             createProxyMiddleware({
-                target: `https://research-sliit-system-2.herokuapp.com`,
+                target: `https://research-sliit-system.herokuapp.com`,
                 changeOrigin: true,
             }),
         );
