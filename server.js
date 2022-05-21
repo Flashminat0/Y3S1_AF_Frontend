@@ -10,15 +10,17 @@ app.prepare()
     .then(() => {
         const server = express();
 
+        const serverUrl =  process.env.LOCAL_SERVER_URL || "https://research-sliit-system.herokuapp.com/";
+
         server.use(
             "/api",
             createProxyMiddleware({
-                target: `https://research-sliit-system.herokuapp.com`,
+                target: serverUrl,
                 changeOrigin: true,
             }),
         );
 
-
+        // apply proxy in dev mode
         server.all("*", (req, res) => {
             return handle(req, res);
         });

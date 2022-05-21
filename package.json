@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "dev:development": "env-cmd -f .env.dev npm start",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js"
   },
