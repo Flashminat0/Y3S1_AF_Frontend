@@ -13,12 +13,12 @@ app.prepare()
         server.use(
             "/api",
             createProxyMiddleware({
-                target: `https://research-sliit-system.herokuapp.com`,
+                target: "http://localhost:8000",
                 changeOrigin: true,
             }),
         );
 
-
+        // apply proxy in dev mode
         server.all("*", (req, res) => {
             return handle(req, res);
         });
