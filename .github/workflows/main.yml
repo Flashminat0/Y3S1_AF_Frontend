@@ -13,5 +13,5 @@ jobs:
       - uses: CDNievas/heroku-action@v1.0 # This is the action
         with:
           heroku_email: "minato.paypal.sl@gmail.com"
-          heroku_api_key: "6d558e11-91ec-4669-bfbf-4909d45bbdab"
-          heroku_app_name: "sliit-reserch-system-frontend"
+          heroku_api_key: "5f88f528-b6d4-4f1b-8da0-1bbc983cfed5"
+          heroku_app_name: "sliit-research-system-frontend"
