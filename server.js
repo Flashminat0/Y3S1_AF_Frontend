@@ -13,12 +13,12 @@ app.prepare()
         server.use(
             "/api",
             createProxyMiddleware({
-                target: "http://localhost:8000",
+                target: `${process.env.REACT_APP_BASE_URL}`,
                 changeOrigin: true,
             }),
         );
 
-        // apply proxy in dev mode
+
         server.all("*", (req, res) => {
             return handle(req, res);
         });
