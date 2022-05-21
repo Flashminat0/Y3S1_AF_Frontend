@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dialog} from "@headlessui/react";
 import {AnimatePresence, motion} from "framer-motion";
 import {AiOutlineClose} from "react-icons/ai";
 import Button from "@mui/material/Button";
-
-const CommonModal = () => {
-    const [openModal, setOpenModal] = useState(true);
+const CommonModal = ({view}) => {
+    const [openModal, setOpenModal] = useState(view);
+    
+useEffect(()=>{ 
+    setOpenModal(view) 
+},[view])
 
     return (
         <div className={`font-sans`}>
