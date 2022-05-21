@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Dialog} from "@headlessui/react";
 import {AnimatePresence, motion} from "framer-motion";
 import {AiOutlineClose} from "react-icons/ai";
+import Button from "@mui/material/Button";
 
 const CommonModal = () => {
     const [openModal, setOpenModal] = useState(true);
@@ -46,12 +47,17 @@ const CommonModal = () => {
                                         className={`mb-2`}
                                     >
                                         <span
-                                            className="flex justify-end text-xl font-medium leading-5 mr-2 cursor-pointer text-red-500"
+                                            className="flex justify-end"
                                             onClick={() => {
                                                 setOpenModal(false);
                                             }}>
-                                            Close
+                                              <Button
+                                                  color={'error'}
+                                                  onClick={() => {
+                                                      setOpenModal(false);
+                                                  }} variant="text">Close</Button>
                                         </span>
+
                                         <p className={"flex justify-center text-3xl font-medium mt-5 pt-2"}>
                                             Topic here
                                         </p>
