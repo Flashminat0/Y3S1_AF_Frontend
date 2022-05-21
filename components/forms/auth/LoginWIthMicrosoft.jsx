@@ -93,7 +93,7 @@ const LoginWIthMicrosoft = () => {
                 :
                 <Button color={"primary"} variant="outlined" onClick={() => {
                     signOut(auth).then(() => {
-                        setCredentials({});
+                        setCredentials(prevState => {});
                     })
                 }}>Sign out</Button>}
 
