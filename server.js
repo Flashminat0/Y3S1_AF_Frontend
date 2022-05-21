@@ -13,7 +13,7 @@ app.prepare()
         server.use(
             "/api",
             createProxyMiddleware({
-                target: `${process.env.REACT_APP_BASE_URL}`,
+                target: `${process.env.BACKEND_SERVER_URL}`,
                 changeOrigin: true,
             }),
         );
