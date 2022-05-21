@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import GroupSearchWrapper from "../../../layouts/user/group/GroupSearchWrapper";
+import GroupSearchWrapper from "../../../../layouts/user/group/student/GroupSearchWrapper";
 import SingleGroupBox from "./SingleGroupBox";
 
 const studentGroupsStaticData = [{
@@ -29,7 +29,7 @@ const studentGroupsStaticData = [{
 }
 ];
 
-const B = () => {
+const GroupsList = () => {
     const [studentGroups, setStudentGroups] = useState(studentGroupsStaticData);
 
     return (
@@ -45,4 +45,4 @@ const B = () => {
     );
 };
 
-export default B;
+export default GroupsList;
