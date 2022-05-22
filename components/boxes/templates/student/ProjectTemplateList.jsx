@@ -31,7 +31,7 @@ const templateFileStaticList = [{id: 1, fileName: "nut", fileSize: "31KB", updat
     fileName: "flame",
     fileSize: "927KB",
     updatedAt: "2022-05-01",
-    fileType: "pdf"
+    fileType: "xlsx"
 }, {id: 11, fileName: "afraid", fileSize: "363KB", updatedAt: "2022-06-15", fileType: "docx"},];
 
 const ProjectTemplateList = () => {
@@ -40,10 +40,12 @@ const ProjectTemplateList = () => {
     return (
         <div>
             <ProjectTemplatesWrapper>
-                {templateFileList.map((projectTemp , index) => (
-                    <ProjectTemplateBox key={index} fileName={projectTemp.fileName} fileSize={projectTemp.fileSize}
-                                        updatedAt={projectTemp.updatedAt} fileType={projectTemp.fileType}/>
-                ))}
+                <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5"}>
+                    {templateFileList.map((projectTemp , index) => (
+                        <ProjectTemplateBox key={index} fileName={projectTemp.fileName} fileSize={projectTemp.fileSize}
+                                            updatedAt={projectTemp.updatedAt} fileType={projectTemp.fileType}/>
+                    ))}
+                </div>
             </ProjectTemplatesWrapper>
         </div>
     );
