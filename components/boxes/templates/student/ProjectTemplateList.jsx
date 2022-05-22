@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ProjectTemplatesWrapper from '../../../layouts/projects-templates/student/ProjectTemplatesWrapper'
 import ProjectTemplateBox from './ProjectTemplateBox'
+import DownloadFileWrapper from '../../../layouts/download-files/DownloadFileWrapper'
 
 const templateFileStaticList = [
     {
@@ -89,7 +89,10 @@ const ProjectTemplateList = () => {
 
     return (
         <div>
-            <ProjectTemplatesWrapper>
+            <DownloadFileWrapper
+                topicName={'Project Templates'}
+                btnName={'Download Templates'}
+            >
                 <div
                     className={
                         'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
@@ -105,7 +108,7 @@ const ProjectTemplateList = () => {
                         />
                     ))}
                 </div>
-            </ProjectTemplatesWrapper>
+            </DownloadFileWrapper>
         </div>
     )
 }

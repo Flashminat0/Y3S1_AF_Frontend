@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FinalizeGroupWrapper from '../../../../layouts/finalize-group/student/FinalizeGroupWrapper'
+import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGroupWrapper'
 import SingleRequestBox from './SingleRequestBox'
 
 const requestUsersStaticData = [
@@ -47,14 +47,16 @@ const RequestList = () => {
     return (
         <div>
             <FinalizeGroupWrapper>
-                {requestList.map((request, index) => (
-                    <SingleRequestBox
-                        key={index}
-                        userName={request.userName}
-                        userRegNo={request.userRegNo}
-                        acceptedStatus={request.acceptedStatus}
-                    />
-                ))}
+                <div>
+                    {requestList.map((request, index) => (
+                        <SingleRequestBox
+                            key={index}
+                            userName={request.userName}
+                            userRegNo={request.userRegNo}
+                            acceptedStatus={request.acceptedStatus}
+                        />
+                    ))}
+                </div>
             </FinalizeGroupWrapper>
         </div>
     )

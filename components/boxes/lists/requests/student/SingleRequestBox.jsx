@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
-import { Button } from '@mui/material'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
+import RedShortButton from '../../../../buttons/short-button/RedShortButton'
+import GreenShortButton from '../../../../buttons/short-button/GreenShortButton'
 
 const SingleRequestBox = ({ userName, userRegNo, acceptedStatus }) => {
     const [changeStatus, setChangeStatus] = useState(acceptedStatus)
+
+    const acceptingRequest = () => {
+        setChangeStatus(true)
+    }
 
     return (
         <div
@@ -28,34 +33,16 @@ const SingleRequestBox = ({ userName, userRegNo, acceptedStatus }) => {
                 </div>
                 {changeStatus === true ? (
                     <>
-                        <Button
-                            className={'h-8'}
-                            color={'error'}
-                            variant="outlined"
-                        >
-                            Remove
-                        </Button>
+                        <RedShortButton btnName={'Remove'} />
                     </>
                 ) : (
                     <>
                         <div className={'flex flex-row gap-2'}>
-                            <Button
-                                className={'h-8'}
-                                color={'success'}
-                                variant="outlined"
-                                onClick={() => {
-                                    setChangeStatus(true)
-                                }}
-                            >
-                                Accept
-                            </Button>
-                            <Button
-                                className={'h-8'}
-                                color={'error'}
-                                variant="outlined"
-                            >
-                                Reject
-                            </Button>
+                            <GreenShortButton
+                                btnName={'Accept'}
+                                btnFunction={acceptingRequest}
+                            />
+                            <RedShortButton btnName={'Reject'} />
                         </div>
                     </>
                 )}
