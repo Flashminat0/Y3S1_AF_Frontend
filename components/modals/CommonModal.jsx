@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Dialog} from "@headlessui/react";
-import {AnimatePresence, motion} from "framer-motion";
-import {AiOutlineClose} from "react-icons/ai";
-import Button from "@mui/material/Button";
-const CommonModal = ({view}) => {
-    const [openModal, setOpenModal] = useState(view);
-    
-useEffect(()=>{ 
-    setOpenModal(view) 
-},[view])
+import React, { useEffect, useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { AiOutlineClose } from 'react-icons/ai'
+import Button from '@mui/material/Button'
+const CommonModal = ({ view }) => {
+    const [openModal, setOpenModal] = useState(view)
+
+    useEffect(() => {
+        setOpenModal(view)
+    }, [view])
 
     return (
         <div className={`font-sans`}>
@@ -25,15 +25,18 @@ useEffect(()=>{
                         }}
                         exit={{
                             opacity: 0,
-                            transition: {duration: 0.4}
+                            transition: { duration: 0.4 },
                         }}
                     >
-                        <div className={"fixed inset-0 overflow-y-auto font-susty"}>
-                            <div
-                                className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
+                        <div
+                            className={
+                                'fixed inset-0 overflow-y-auto font-susty'
+                            }
+                        >
+                            <div className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{scale: 0.8, opacity: 0}}
+                                    initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
@@ -44,24 +47,31 @@ useEffect(()=>{
                                         opacity: 0,
                                         duration: 0.2,
                                     }}
-                                    className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                                    <Dialog.Title
-                                        as="h3"
-                                        className={`mb-2`}
-                                    >
+                                    className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                                >
+                                    <Dialog.Title as="h3" className={`mb-2`}>
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false);
-                                            }}>
-                                              <Button
-                                                  color={'error'}
-                                                  onClick={() => {
-                                                      setOpenModal(false);
-                                                  }} variant="text">Close</Button>
+                                                setOpenModal(false)
+                                            }}
+                                        >
+                                            <Button
+                                                color={'error'}
+                                                onClick={() => {
+                                                    setOpenModal(false)
+                                                }}
+                                                variant="text"
+                                            >
+                                                Close
+                                            </Button>
                                         </span>
 
-                                        <p className={"flex justify-center text-3xl font-medium mt-5 pt-2"}>
+                                        <p
+                                            className={
+                                                'flex justify-center text-3xl font-medium mt-5 pt-2'
+                                            }
+                                        >
                                             Topic here
                                         </p>
                                     </Dialog.Title>
@@ -78,9 +88,8 @@ useEffect(()=>{
                     </Dialog>
                 )}
             </AnimatePresence>
-
         </div>
-    );
-};
+    )
+}
 
-export default CommonModal;
+export default CommonModal

@@ -23,7 +23,7 @@ const SupervisorApproval = ({status}) => {
                                     {status === 'pending' && 'Pending Approval by a Supervisor'}
                                 </p>
                                 <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                                              {status === 'approved' && 'You can continue to work'}
+                                    {status === 'approved' && 'You can continue to work'}
                                     {status === 'rejected' && 'Please select a different topic'}
                                     {status === 'pending' && 'Talk to your Supervisor for approval'}
                                 </h1>
