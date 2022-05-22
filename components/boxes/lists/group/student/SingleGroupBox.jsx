@@ -1,9 +1,9 @@
 import React from 'react';
 import {FiChevronDown} from 'react-icons/fi';
-import {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
 import {BiArrowFromLeft} from "react-icons/bi";
 import {MdGroup} from "react-icons/md";
+import {AnimatePresence, motion} from "framer-motion";
 
 
 const abilities = [{id: 1, name: "Request to be a member", icon: BiArrowFromLeft}];
@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, currentNo}) => {
     return (
-        <div className={"mx-10 my-5 px-4 py-1.5 rounded-lg shadow-md bg-gray-50"}>
+        <div className={"mx-2 lg:mx-10 my-4 px-4 py-1.5 rounded-lg shadow-md bg-gray-50"}>
             <div className={"flex flex-row justify-between"}>
                 <div className={"flex flex-row gap-3 items-center"}>
                     <div className={"text-xl font-semibold uppercase"}>{groupName}</div>
@@ -31,32 +31,30 @@ const SingleGroupBox = ({groupName, groupLeader, groupLeaderRegNo, maxNo, curren
                                 >
                                     <FiChevronDown className={"w-12 h-12 hover:text-gray-500"}/>
                                 </Popover.Button>
-                                <Transition
-                                    as={Fragment}
-                                    enter="transition ease-out duration-200"
-                                    enterFrom="opacity-0 translate-y-1"
-                                    enterTo="opacity-100 translate-y-0"
-                                    leave="transition ease-in duration-150"
-                                    leaveFrom="opacity-100 translate-y-0"
-                                    leaveTo="opacity-0 translate-y-1"
-                                >
+                                <AnimatePresence>
                                     <Popover.Panel
                                         className="absolute z-10 right-1/2 transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
-                                        <div
-                                            className="rounded-lg shadow-lg ring-1 ring-opacity-5 overflow-hidden">
+                                        <motion.div
+                                            initial={{opacity: 0, scale: 0.7}}
+                                            animate={{opacity: 1, scale: 1}}
+                                        >
                                             <div
-                                                className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
-                                                {abilities.map((ability) => (
-                                                    <div
-                                                        className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100">
-                                                        <div>{ability.name}</div>
-                                                        <ability.icon className={"w-5 h-5"}/>
-                                                    </div>
-                                                ))}
+                                                className="rounded-lg shadow-lg ring-1 ring-opacity-5 overflow-hidden">
+                                                <div
+                                                    className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
+                                                    {abilities.map((ability, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100">
+                                                            <div>{ability.name}</div>
+                                                            <ability.icon className={"w-5 h-5"}/>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </Popover.Panel>
-                                </Transition>
+                                </AnimatePresence>
                             </>
                         )}
                     </Popover>
