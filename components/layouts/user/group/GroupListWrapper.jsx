@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const GroupListWrapper = ({children}) => {
-    return (
-        <div className={"px-6 py-6 grid grid-cols-1 gap-3"}>
-            {children}
-        </div>
-    );
+const GroupListWrapper = ({ children }) => {
+  return <div className={"px-6 py-6 grid grid-cols-1 gap-3"}>{children}</div>;
 };
 
 export default GroupListWrapper;
