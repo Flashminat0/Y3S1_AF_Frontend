@@ -2,6 +2,7 @@ import React from 'react';
 import UserProfileWrapper from "../../../layouts/user/user-profile/common/UserProfileWrapper";
 
 const userDetails = [{
+    id: 1,
     url: "https://www.bobbin.lk/wp-content/uploads/2019/02/person2.jpg",
     username: "Esther Felicies",
     userRegNo: "IT20796734",
@@ -12,8 +13,8 @@ const StudentProfile = () => {
     return (
         <div className={"px-4 py-3 bg-gray-50"}>
             <UserProfileWrapper>
-                {userDetails.map((user)=>(
-                    <div className={"flex flex-col"}>
+                {userDetails.map((user,index)=>(
+                    <div key={index} className={"flex flex-col"}>
                         <div className={"flex flex-row justify-between items-baseline"}>
                             <img src={user.url} alt={""} width={"250px"} height={"250px"} className={"ml-20 rounded-full shadow-lg outline outline-gray-200"}/>
                             <div className={"px-3 py-2 shadow-md text-3xl font-semibold text-blue-800 mr-40 bg-blue-50"}>{user.username}</div>
