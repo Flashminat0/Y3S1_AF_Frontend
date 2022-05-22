@@ -1,4 +1,5 @@
 import React from 'react'
+import {motion} from "framer-motion";
 
 const TeamMembersList = ({memberList}) => {
     return (
@@ -6,8 +7,11 @@ const TeamMembersList = ({memberList}) => {
             <div className="ml-4 -mt-2">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">Team members</h3>
             </div>
-            {memberList.map((person) => (
-                <div key={person._id} className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg">
+            {memberList.map((person, index) => (
+                <motion.div
+                    whileHover={{scale: 1.01}}
+                    key={person._id}
+                     className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg">
                     <div className={`grid place-content-center col-span-2 `}>
                         {person.image ?
                             <img className="h-14 w-14 rounded-full place-content-center" src={person.image}
@@ -22,7 +26,7 @@ const TeamMembersList = ({memberList}) => {
                         <p className="text-base font-medium text-gray-900">{person.name}</p>
                         <p className="text-sm text-gray-500">{person.email}</p>
                     </div>
-                </div>
+                </motion.div>
             ))}
         </div>
     )
