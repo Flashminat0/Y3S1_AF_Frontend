@@ -245,38 +245,47 @@ const BaseChatWrapper = ({
                                         <div className="px-2 space-y-1">
                                             {navigation.map((item, index) => (
                                                 <div key={index}>
-                                                    <span
-                                                        onClick={async () => {
-                                                            await router.push(
-                                                                `/chat/${item.href}`
-                                                            )
+                                                    <motion.div
+                                                        whileHover={{
+                                                            scale: 1.03,
                                                         }}
-                                                        className={classNames(
-                                                            selectedPageIndex ===
-                                                                index
-                                                                ? 'bg-gray-100 text-gray-900 font-normal'
-                                                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                            'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
-                                                        )}
+                                                        whileTap={{
+                                                            scale: 0.97,
+                                                        }}
                                                     >
-                                                        <item.icon
+                                                        <span
+                                                            onClick={async () => {
+                                                                await router.push(
+                                                                    `/chat/${item.href}`
+                                                                )
+                                                            }}
                                                             className={classNames(
                                                                 selectedPageIndex ===
                                                                     index
-                                                                    ? 'text-gray-500'
-                                                                    : 'text-gray-400 group-hover:text-gray-500',
-                                                                'mr-4 h-8 w-8'
+                                                                    ? 'bg-gray-100 text-gray-900 font-normal'
+                                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                             )}
-                                                            aria-hidden="true"
-                                                        />
-                                                        {item.name}
-                                                    </span>
-                                                    {index === 1 && (
-                                                        <Divider
-                                                            variant="fullWidth"
-                                                            className={`pt-2`}
-                                                        />
-                                                    )}
+                                                        >
+                                                            <item.icon
+                                                                className={classNames(
+                                                                    selectedPageIndex ===
+                                                                        index
+                                                                        ? 'text-gray-500'
+                                                                        : 'text-gray-400 group-hover:text-gray-500',
+                                                                    'mr-4 h-8 w-8'
+                                                                )}
+                                                                aria-hidden="true"
+                                                            />
+                                                            {item.name}
+                                                        </span>
+                                                        {index === 1 && (
+                                                            <Divider
+                                                                variant="fullWidth"
+                                                                className={`pt-2`}
+                                                            />
+                                                        )}
+                                                    </motion.div>
                                                 </div>
                                             ))}
                                         </div>
