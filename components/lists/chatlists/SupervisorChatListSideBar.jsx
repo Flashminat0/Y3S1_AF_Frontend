@@ -26,7 +26,7 @@ const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
                     >
                     <span className="inline-block relative">
                         <img
-                            className="h-12 w-12 rounded-md"
+                            className="h-5 w-5 sm:h-12 sm:w-12 rounded-md"
                             src={singleSupervisor.imageUrl}
                             alt=""
                         />
