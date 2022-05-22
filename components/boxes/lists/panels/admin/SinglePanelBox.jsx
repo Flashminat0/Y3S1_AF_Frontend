@@ -1,6 +1,6 @@
 import React from 'react';
 import {BsFileEarmarkPerson} from "react-icons/bs";
-import {Button} from "@mui/material";
+import RedShortButton from "../../../../buttons/short-button/RedShortButton";
 
 const SinglePanelBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
@@ -16,8 +16,7 @@ const SinglePanelBox = ({panelMemberName, panelMemberRegNo}) => {
                         <div className={"text-sm text-gray-500"}>- {panelMemberRegNo}</div>
                     </div>
                 </div>
-                <Button className={"h-8"} color={"error"}
-                        variant="outlined">Remove</Button>
+                <RedShortButton btnName={"Remove"}/>
             </div>
         </div>
     );

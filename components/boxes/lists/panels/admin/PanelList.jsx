@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import AllocatePanelWrapper from "../../../../layouts/allocate-panel/admin/AllocatePanelWrapper";
+import AllocatePanelWrapper from "../../../../layouts/allocate-panel/AllocatePanelWrapper";
 import SinglePanelBox from "./SinglePanelBox";
 
 const panelMemberStaticData = [{
@@ -26,10 +26,12 @@ const PanelList = () => {
     return (
         <div>
             <AllocatePanelWrapper>
-                {panelList.map((panel, index) => (
-                    <SinglePanelBox key={index} panelMemberName={panel.panelMemberName}
-                                    panelMemberRegNo={panel.panelMemberRegNo}/>
-                ))}
+                <div>
+                    {panelList.map((panel, index) => (
+                        <SinglePanelBox key={index} panelMemberName={panel.panelMemberName}
+                                        panelMemberRegNo={panel.panelMemberRegNo}/>
+                    ))}
+                </div>
             </AllocatePanelWrapper>
         </div>
     );

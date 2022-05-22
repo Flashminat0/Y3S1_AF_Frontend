@@ -1,13 +1,11 @@
 import React from 'react';
-import {Button} from "@mui/material";
 import {BsPersonBoundingBox} from 'react-icons/bs';
+import GreenFullButton from "../../buttons/full-button/GreenFullButton";
 
 const FinalizeGroupWrapper = ({children}) => {
     return (
-        <div className={"px-6 py-6"}>
-            <Button className={"mb-2 text-lg"} fullWidth={true} color={"success"} variant="outlined">Finalize
-                Group</Button>
-            <hr/>
+        <div className={"px-6 py-6 grid grid-cols-1 gap-3"}>
+            <GreenFullButton btnName={"Finalize Group"}/>
             <div className={"px-3 py-2 mt-5 bg-gray-100 shadow rounded-lg"}>
                 <div className={"flex flex-row justify-between items-center"}>
                     <div className={"flex flex-col gap-1"}>
