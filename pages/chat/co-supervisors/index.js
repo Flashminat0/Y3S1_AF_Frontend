@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import BaseChatWrapper from "../../../components/layouts/chat/BaseChatWrapper";
 import {useDocumentTitle} from "@mantine/hooks";
 import CoSupervisorChatListSideBar from "../../../components/lists/chatlists/CoSupervisorChatListSideBar";
+import SupervisorApproval from "../../../components/approvals/SupervisorApproval";
+import CoSuperVisorApproval from "../../../components/approvals/CoSuperVisorApproval";
 
 const static_co_supervisors = [
     {
@@ -32,12 +34,12 @@ const CoSupervisors = () => {
 
     return (
         <BaseChatWrapper selectedPageIndex={1} hoveringUserId={hoveringUsrId}>
-            <div className={`flex`}>
+            <div className={`flex h-full w-max`}>
                 <CoSupervisorChatListSideBar
                     onUserHover={onUserHover}
-                    static_co_supervisors={static_co_supervisors}/>
-                select a chat Co-Supervisors
+                    coSupervisorsList={static_co_supervisors}/>
             </div>
+            <CoSuperVisorApproval status={`approved`}/>
 
         </BaseChatWrapper>
     );

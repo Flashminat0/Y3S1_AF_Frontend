@@ -3,7 +3,7 @@ import OkIcon from "./visuals/OkIcon";
 import CrossIcon from "./visuals/CrossIcon";
 import OngoingIcon from "./visuals/OngoingIcon";
 
-const SupervisorApproval = ({status}) => {
+const  CoSupervisorApproval = ({status}) => {
     return (
         <div className={`grow h-full w-max`}>
             <>
@@ -18,14 +18,14 @@ const SupervisorApproval = ({status}) => {
                         <div className="py-16">
                             <div className="text-center">
                                 <p className="text-sm font-semibold text-indigo-600 uppercase tracking-wide">
-                                    {status === 'approved' && 'Approved by a Supervisor'}
-                                    {status === 'rejected' && 'Rejected by Supervisors'}
-                                    {status === 'pending' && 'Pending Approval by a Supervisor'}
+                                    {status === 'approved' && 'Approved by a Co-Supervisor'}
+                                    {status === 'rejected' && 'Rejected by Co-Supervisors'}
+                                    {status === 'pending' && 'Pending Approval by a Co-Supervisor'}
                                 </p>
                                 <h1 className="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
                                     {status === 'approved' && 'You can continue to work'}
                                     {status === 'rejected' && 'Please select a different topic'}
-                                    {status === 'pending' && 'Talk to your Supervisor for approval'}
+                                    {status === 'pending' && 'Talk to your Co-Supervisor for approval'}
                                 </h1>
                                 <p className="mt-2 text-base text-gray-500">
                                     {status === 'approved' && 'Good luck! from SLIIT'}
@@ -40,4 +40,4 @@ const SupervisorApproval = ({status}) => {
     );
 };
 
-export default SupervisorApproval;
+export default CoSupervisorApproval;

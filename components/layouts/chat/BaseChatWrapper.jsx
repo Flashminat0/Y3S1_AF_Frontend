@@ -84,7 +84,7 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID , ho
                                                 <nav aria-label="Sidebar" className="mt-5">
                                                     <div className="px-2 space-y-1">
                                                         {navigation.map((item, index) => (
-                                                            <div key={item.name}>
+                                                            <div key={index}>
                                                                 <motion.div
                                                                     whileHover={{scale: 1.05}}
                                                                     whileTap={{scale: 0.95}}
@@ -168,7 +168,7 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID , ho
                                     <nav className="mt-5 flex-1" aria-label="Sidebar">
                                         <div className="px-2 space-y-1">
                                             {navigation.map((item, index) => (
-                                                <div key={item.name}>
+                                                <div key={index}>
                                                     <span
                                                         onClick={async () => {
                                                             await router.push(`/chat/${item.href}`)
@@ -249,7 +249,7 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID , ho
                             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                 {/* Start main area*/}
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg">
+                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg w-full flex">
                                         {children}
                                     </div>
                                 </div>
