@@ -10,6 +10,7 @@ const CommonChatListSideBarWrapper = ({children}) => {
                     animate={{scale: 1, opacity: 1, x: 0}}
                     transition={{duration: 0.5}}
                     whileHover={{scale: 1.1}}
+                    exit={{opacity: 0, x: -100}}
                 >
                     <div className="flex flex-col w-20 rounded-3xl shadow-lg ">
                         <div

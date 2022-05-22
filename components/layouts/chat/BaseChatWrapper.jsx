@@ -18,7 +18,7 @@ function classNames(...classes) {
 }
 
 
-const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID}) => {
+const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID , hoveringUserId}) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const router = useRouter()
@@ -245,7 +245,7 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID}) =>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex-1 relative z-0 flex overflow-hidden">
+                        <div className="flex-1 relative z-0 flex overflow-hidden ">
                             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                 {/* Start main area*/}
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
@@ -263,6 +263,9 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID}) =>
                                     <div className="h-full border-2 border-gray-200 border-dashed rounded-lg">
                                         {selectedType}
                                         {dataID}
+                                        {hoveringUserId && <div>
+                                            {hoveringUserId}
+                                        </div>}
                                     </div>
                                 </div>
                                 {/* End secondary column */}
