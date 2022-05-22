@@ -85,6 +85,10 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID}) =>
                                                     <div className="px-2 space-y-1">
                                                         {navigation.map((item, index) => (
                                                             <div key={item.name}>
+                                                                <motion.div
+                                                                    whileHover={{scale: 1.05}}
+                                                                    whileTap={{scale: 0.95}}
+                                                                >
                                                                 <span
                                                                     onClick={async () => {
                                                                         await router.push(`/chat/${item.href}`)
@@ -105,10 +109,11 @@ const BaseChatWrapper = ({children, selectedPageIndex, selectedType, dataID}) =>
                                                                     />
                                                                     {item.name}
                                                                 </span>
-                                                                {index === 1 &&
-                                                                    <Divider className={`pt-2`} variant="fullWidth"/>}
+                                                                    {index === 1 &&
+                                                                        <Divider className={`pt-2`}
+                                                                                 variant="fullWidth"/>}
+                                                                </motion.div>
                                                             </div>
-
                                                         ))}
                                                     </div>
                                                 </nav>
