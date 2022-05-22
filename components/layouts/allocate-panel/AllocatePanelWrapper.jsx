@@ -1,13 +1,12 @@
 import React from 'react';
-import {Button} from "@mui/material";
 import {MdGroups} from "react-icons/md";
+import GreenFullButton from "../../buttons/full-button/GreenFullButton";
+import RedFullButton from "../../buttons/full-button/RedFullButton";
 
 const AllocatePanelWrapper = ({children}) => {
     return (
-        <div className={"px-6 py-6"}>
-            <Button className={"mb-2 text-lg"} fullWidth={true} color={"success"} variant="outlined">Allocate
-                Panel</Button>
-            <hr/>
+        <div className={"px-6 py-6 grid grid-cols-1 gap-3"}>
+            <GreenFullButton btnName={"Allocate Panel"}/>
             <div className={"px-3 py-2 my-5 bg-gray-100 shadow rounded-lg"}>
                 <div className={"flex flex-row justify-between items-center"}>
                     <div className={"flex flex-col gap-4"}>
@@ -42,8 +41,7 @@ const AllocatePanelWrapper = ({children}) => {
                 </div>
             </div>
             {children}
-            <Button className={"mb-2 text-lg"} fullWidth={true} color={"error"} variant="outlined">Remove
-                Group</Button>
+            <RedFullButton btnName={"Remove Group"}/>
         </div>
     );
 };
