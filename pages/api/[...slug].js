@@ -1,7 +1,7 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const proxy = createProxyMiddleware({
-    target: "https://research-sliit-system.herokuapp.com/",
+    target: "https://research-sliit-system.herokuapp.com/api/",
     secure: false,
     pathRewrite: { "^/api/": "" }, // remove `/api/` prefix
 });
