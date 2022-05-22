@@ -19,9 +19,7 @@ const AdminDashboard = () => {
     });
   }, []);
 
-  return <div>{
-     <UserTable users={userData} /> 
-     }</div>;
+  return <div>{<UserTable users={userData} />}</div>;
 };
 
 export default AdminDashboard;

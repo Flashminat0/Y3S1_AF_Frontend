@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import DropDown from "../../common/table/dropdown";
-import Modal from '../../modals/admin/adminModal'
+import Modal from "../../modals/admin/adminModal";
 
 const userTable = ({ users = [] }) => {
   const [userRole, setRole] = useState("");
-  const [open,setOpen] = useState(true);
-
+  const [open, setOpen] = useState(true);
 
   return (
     <div>
-      <Modal view={false}/>
+      <Modal view={false} />
       <div>
         <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
           <div className="py-8">
@@ -45,21 +44,21 @@ const userTable = ({ users = [] }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    
-                  {users.map((user, index) => (
+                    {users.map((user, index) => (
                       <tr key={index}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">
                               <a href="#" className="block relative">
-                                {user.image && <>
-                                  <img
-                                  alt="profil"
-                                  src={user.image.url}
-                                  className="mx-auto object-cover rounded-full h-10 w-10 "
-                                />
-                                </>}
-                                
+                                {user.image && (
+                                  <>
+                                    <img
+                                      alt="profil"
+                                      src={user.image.url}
+                                      className="mx-auto object-cover rounded-full h-10 w-10 "
+                                    />
+                                  </>
+                                )}
                               </a>
                             </div>
                             <div className="ml-3">
