@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 const SingleUserBox = ({userName, userRegNo, userRole}) => {
     return (
-        <div className={"mx-10 my-5 px-4 py-1.5 rounded-lg shadow-md bg-gray-50"}>
+        <div className={"mx-2 lg:mx-10 my-4 px-4 py-1.5 rounded-lg shadow-md bg-gray-50"}>
             <div className={"flex flex-row justify-between"}>
                 <div className={"flex flex-row gap-3 items-center"}>
                     <div className={"text-xl font-semibold uppercase"}>{userName}</div>

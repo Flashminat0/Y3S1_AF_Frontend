@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import UserSearchWrapper from "../../../../layouts/user/single/admin/UserSearchWrapper";
 import SingleUserBox from "./SingleUserBox";
+import GroupListWrapper from "../../../../layouts/user/group/GroupListWrapper";
+import SearchBar from "../../../../searchbar/SearchBar";
 
 const userStaticData = [
     {
@@ -35,16 +36,21 @@ const userStaticData = [
         userRole: "panel-member"
     },];
 
+const placeholder = "User Search";
+
 const UserList = () => {
     const [userSets, setUserSets] = useState(userStaticData);
 
     return (
         <div>
-            <UserSearchWrapper>
-                {userSets.map((user,index)=>(
-                    <SingleUserBox key={index} userName={user.userName} userRegNo={user.userRegNo} userRole={user.userRole}/>
-                ))}
-            </UserSearchWrapper>
+            <GroupListWrapper>
+                <SearchBar placeholder={placeholder}/>
+                <div>
+                    {userSets.map((user,index)=>(
+                        <SingleUserBox key={index} userName={user.userName} userRegNo={user.userRegNo} userRole={user.userRole}/>
+                    ))}
+                </div>
+            </GroupListWrapper>
         </div>
     );
 };
