@@ -12,9 +12,9 @@ const TeamMembersList = ({memberList}) => {
                     whileHover={{scale: 1.01}}
                     key={person._id}
                      className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg">
-                    <div className={`grid place-content-center col-span-2 `}>
+                    <div className={`grid place-content-center col-span-2`}>
                         {person.image ?
-                            <img className="h-14 w-14 rounded-full place-content-center" src={person.image}
+                            <img className="h-14 w-14 rounded-full place-content-center bg-gray-500 p-0.5" src={person.image}
                                  alt=""/> :
                             <div className="h-14 w-14 rounded-full bg-blue-300 grid place-items-center">
                                 <span
