@@ -16,16 +16,14 @@ const theme = createTheme({
 
 const MyApp = ({Component, pageProps}) => {
     return (
-        <React.StrictMode>
-            <StyledEngineProvider injectFirst>
-                <CssBaseline/>
-                <ThemeProvider theme={theme}>
-                    <div className={`font-sans`}>
-                        <Component {...pageProps} />
-                    </div>
-                </ThemeProvider>
-            </StyledEngineProvider>
-        </React.StrictMode>
+        <StyledEngineProvider injectFirst>
+            <CssBaseline/>
+            <ThemeProvider theme={theme}>
+                <div className={`font-sans`}>
+                    <Component {...pageProps} />
+                </div>
+            </ThemeProvider>
+        </StyledEngineProvider>
     );
 };
 
