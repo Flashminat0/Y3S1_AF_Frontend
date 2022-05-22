@@ -10,6 +10,12 @@ const LoginWIthMicrosoft = () => {
         defaultValue: {}
     });
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        if (Object.keys(credentials).length > 0) {
+            setIsLoggedIn(true);
+        }
+    }, [credentials]);
 
     // set up the provider for the login
     const provider = new OAuthProvider('microsoft.com');
@@ -73,6 +79,14 @@ const LoginWIthMicrosoft = () => {
             });
     }
 
+    const signOutWithMicrosoft = () => {
+        signOut(auth).then(() => {
+            setCredentials(prevState => {
+            });
+            setIsLoggedIn(false);
+        })
+    }
+
     const microsoftIcon =
         <svg className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 48 48" width="2.25rem" height="2.25rem">
@@ -84,20 +98,18 @@ const LoginWIthMicrosoft = () => {
 
     return (
         <div className={`grid place-content-center`}>
-            {!Object.keys(credentials).length > 0 ?
+            {!isLoggedIn ?
                 <Button
                     color={'secondary'} variant="outlined" onClick={signInWithMicrosoft}
                     startIcon={microsoftIcon}>
                     Sign in with Microsoft
                 </Button>
                 :
-                <Button color={"primary"} variant="outlined" onClick={() => {
-                    signOut(auth).then(() => {
-                        setCredentials(prevState => {});
-                    })
-                }}>Sign out</Button>}
-
-
+                <Button color={"primary"} variant="outlined"
+                        onClick={signOutWithMicrosoft}>
+                    Sign out
+                </Button>
+            }
         </div>
     );
 };

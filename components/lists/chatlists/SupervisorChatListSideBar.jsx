@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useRouter} from "next/router";
+import CommonChatListSideBarWrapper from "../../layouts/chat/CommonChatListSideBarWrapper";
 
 const supervisorsStaticData = [
     {
@@ -35,40 +36,30 @@ const SupervisorChatListSideBar = () => {
     const router = useRouter();
 
     return (
-        <div className={`absolute`}>
-            <div className="pt-5 h-[90vh] grid place-items-center ">
-                <div className="flex flex-col w-20 rounded-3xl shadow-lg">
-                    <div className="flex-1 flex flex-col min-h-0 overflow-y-auto bg-gray-300 rounded-3xl">
-                        <div className="flex-1">
-                            <nav aria-label="Sidebar" className="py-6 flex flex-col items-center space-y-3 h-max ">
-                                {supervisors.map((singleSupervisor, index) => (
-                                    <span
-                                        key={index}
-                                        onClick={async () => {
-                                            await router.push(`/chat/supervisors/${singleSupervisor.id}`)
-                                        }}
-                                        // href={SingleSupervisor.href}
-                                        className="flex items-center p-3 pb-1 rounded-lg text-indigo-200 hover:bg-gray-200 mx-2"
-                                    >
-                                    <span className="inline-block relative">
-                                        <img
-                                            className="h-12 w-12 rounded-md"
-                                            src={singleSupervisor.imageUrl}
-                                            alt=""
-                                        />
-                                        <span
-                                            className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 block border-2 border-white rounded-full">
-                                            <span className="block h-3 w-3 rounded-full bg-green-400"/>
-                                        </span>
-                                    </span>
-                                </span>
-                                ))}
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CommonChatListSideBarWrapper>
+            {supervisors.map((singleSupervisor, index) => (
+                <span
+                    key={index}
+                    onClick={async () => {
+                        await router.push(`/chat/supervisors/${singleSupervisor.id}`)
+                    }}
+                    // href={SingleSupervisor.href}
+                    className="flex items-center p-3 pb-1 rounded-lg text-indigo-200 hover:bg-gray-200 mx-2"
+                >
+                    <span className="inline-block relative">
+                        <img
+                            className="h-12 w-12 rounded-md"
+                            src={singleSupervisor.imageUrl}
+                            alt=""
+                        />
+                        <span
+                            className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 block border-2 border-white rounded-full">
+                            <span className="block h-3 w-3 rounded-full bg-green-400"/>
+                        </span>
+                    </span>
+                </span>
+            ))}
+        </CommonChatListSideBarWrapper>
     );
 };
 
