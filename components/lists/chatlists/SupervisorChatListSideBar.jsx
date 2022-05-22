@@ -3,8 +3,8 @@ import {useRouter} from "next/router";
 import CommonChatListSideBarWrapper from "../../layouts/chat/CommonChatListSideBarWrapper";
 import {motion} from "framer-motion";
 
-const SupervisorChatListSideBar = ({supervisorsStaticData, onUserHover}) => {
-    const [supervisors, setSupervisors] = useState(supervisorsStaticData);
+const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
+    const [supervisors, setSupervisors] = useState(supervisorsList);
 
     const router = useRouter();
 
@@ -12,10 +12,11 @@ const SupervisorChatListSideBar = ({supervisorsStaticData, onUserHover}) => {
         <CommonChatListSideBarWrapper>
             {supervisors.map((singleSupervisor, index) => (
                 <motion.div
+                    key={index}
                     whileHover={{scale: 1.1}}
                     whileTap={{scale: 0.9}}>
                     <span
-                        key={index}
+                        onMouseLeave={() => onUserHover('')}
                         onMouseEnter={() => onUserHover(singleSupervisor._id)}
                         onClick={async () => {
                             await router.push(`/chat/supervisors/${singleSupervisor._id}`)

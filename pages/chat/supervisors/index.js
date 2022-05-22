@@ -45,9 +45,9 @@ const Supervisors = () => {
             <div className={`flex h-full w-max`}>
                 <SupervisorChatListSideBar
                     onUserHover={onUserHover}
-                    supervisorsStaticData={supervisorsStaticData}/>
-               <SupervisorApproval/>
+                    supervisorsList={supervisorsStaticData}/>
             </div>
+            <SupervisorApproval status={'pending'}/>
         </BaseChatWrapper>
     );
 };
