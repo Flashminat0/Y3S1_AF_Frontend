@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {motion} from "framer-motion"
 import CommonChatListSideBarWrapper from "../../layouts/chat/CommonChatListSideBarWrapper";
 
-const CoSupervisorChatListSideBar = () => {
+const CoSupervisorChatListSideBar = ({static_co_supervisors, onUserHover}) => {
     const [co_supervisors, setCo_supervisors] = useState(static_co_supervisors);
 
     const router = useRouter();
@@ -15,8 +15,9 @@ const CoSupervisorChatListSideBar = () => {
                     whileTap={{scale: 0.9}}>
                     <span
                         key={index}
+                        onMouseEnter={() => onUserHover(SingleCoSupervisor._id)}
                         onClick={async () => {
-                            await router.push(`/chat/co-supervisors/${SingleCoSupervisor.id}`)
+                            await router.push(`/chat/co-supervisors/${SingleCoSupervisor._id}`)
                         }}
                         // href={SingleSupervisor.href}
                         className="flex items-center p-3 pb-1 rounded-lg text-indigo-200 hover:bg-gray-200 mx-2"
@@ -42,21 +43,5 @@ const CoSupervisorChatListSideBar = () => {
 export default CoSupervisorChatListSideBar;
 
 
-const static_co_supervisors = [
-    {
-        id: "1a6b3ab9-604c-4229-adfa-8af8fbd7559e",
-        name: 'slide first',
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-    },
-    {
-        id: "7a80dd42-13a2-465f-a176-345bd87a91d9",
-        name: 'look deepen',
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-    },
-    {
-        id: "a6256bcc-72d3-40eb-ad84-852d754a3525",
-        name: 'body scent',
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-    },
-]
+
 
