@@ -9,9 +9,9 @@ const TeamMembersList = ({ memberList }) => {
                     Team members
                 </h3>
             </div>
-            {memberList.map((person, index) => (
+            {memberList.map((person) => (
                 <motion.div
-                    whileHover={{ scale: 1.01 }}
+                    whileHover={{ scale: 1.05 }}
                     key={person._id}
                     className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg"
                 >
