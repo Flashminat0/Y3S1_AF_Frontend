@@ -351,8 +351,8 @@ const BaseChatWrapper = ({
                         <div className="flex-1 relative z-0 flex overflow-hidden ">
                             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                 {/* Start main area*/}
-                                <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg w-full flex">
+                                <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 overflow-y-hidden">
+                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg w-full flex  ">
                                         {children}
                                     </div>
                                 </div>
