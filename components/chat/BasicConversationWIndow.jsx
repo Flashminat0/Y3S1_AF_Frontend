@@ -3,7 +3,7 @@ import {Input} from "@mui/material";
 import SenderBubble from "./SenderBubble";
 import ReceivedBubble from "./RecivedBubble";
 
-const BasicConversationWindow = ({receiver}) => {
+const BasicConversationWindow = ({receiver , status}) => {
     const myRef = useRef(null)
 
     const [userProfile, setUserProfile] = useState(receiver)
