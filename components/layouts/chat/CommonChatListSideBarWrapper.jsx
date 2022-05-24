@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 const CommonChatListSideBarWrapper = ({ children }) => {
     return (
         <div className={`absolute`}>
-            <div className="pt-5 h-[90vh] grid place-items-center ">
+            <div className="pt-5 h-[90vh] grid place-items-center hidden sm:inline-flex">
                 <motion.div
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ scale: 1, opacity: 1, x: 0 }}
@@ -25,6 +25,21 @@ const CommonChatListSideBarWrapper = ({ children }) => {
                         </div>
                     </div>
                 </motion.div>
+            </div>
+            <div className={`pt-5 h-[90vh] grid place-items-end inline-flex sm:hidden`}>
+                <div className={`grid place-items-center w-full`}>
+                    <motion.div
+                        initial={{opacity: 0, x: -100}}
+                        animate={{scale: 1, opacity: 1, x: 0}}
+                        transition={{duration: 0.5}}
+                        whileHover={{scale: 1.1}}
+                        exit={{opacity: 0, x: -100}}
+                    >
+                        <div className="flex flex-row w-max rounded-3xl shadow-lg ">
+                            {children}
+                        </div>
+                    </motion.div>
+                </div>
             </div>
         </div>
     )
