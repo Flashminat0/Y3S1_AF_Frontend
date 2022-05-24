@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '@mui/material'
+import {Button} from '@mui/material'
 
-const GreenShortButton = ({ btnName, btnFunction }) => {
+const GreenShortButton = ({btnName, btnFunction}) => {
     return (
         <div>
             <Button

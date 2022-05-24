@@ -41,15 +41,17 @@ const supervisorsStaticData = [
 const Supervisors = () => {
     useDocumentTitle('Supervisors Chat Screen')
     const [hoveringUsrId, setHoveringUsrId] = useState('')
-    const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200);
-
+    const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
 
     const onUserHover = (id) => {
         setHoveringUsrId(id)
     }
 
     return (
-        <BaseChatWrapper selectedPageIndex={0} hoveringUserId={debouncedHoveringUsrId}>
+        <BaseChatWrapper
+            selectedPageIndex={0}
+            hoveringUserId={debouncedHoveringUsrId}
+        >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
                     <SupervisorChatListSideBar
@@ -58,7 +60,7 @@ const Supervisors = () => {
                     />
                 </AnimatePresence>
             </div>
-            <SupervisorApproval status={'pending'}/>
+            <SupervisorApproval status={'pending'} />
         </BaseChatWrapper>
     )
 }

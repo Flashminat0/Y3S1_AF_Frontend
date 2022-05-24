@@ -1,7 +1,7 @@
 import React from 'react'
-import { MdDownload } from 'react-icons/md'
+import {MdDownload} from 'react-icons/md'
 
-const ProjectTemplateBox = ({ fileName, fileSize, updatedAt, fileType }) => {
+const ProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => {
     const pdf = (
         <svg
             xmlns="http://www.w3.org/2000/svg"

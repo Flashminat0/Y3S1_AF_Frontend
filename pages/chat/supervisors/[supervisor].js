@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, {useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
 import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
-import BasicConversationWindow from "../../../components/chat/BasicConversationWIndow";
+import BasicConversationWindow from '../../../components/chat/BasicConversationWIndow'
 
 const Supervisor = () => {
     const router = useRouter()
-    const { supervisor } = router.query
+    const {supervisor} = router.query
 
     return (
         <BaseChatWrapper
@@ -13,7 +13,7 @@ const Supervisor = () => {
             selectedType={'Supervisor'}
             dataID={supervisor}
         >
-            <BasicConversationWindow/>
+            <BasicConversationWindow />
             {supervisor}
         </BaseChatWrapper>
     )

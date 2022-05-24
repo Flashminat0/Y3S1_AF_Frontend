@@ -1,8 +1,8 @@
 import React from 'react'
-import { FiSearch } from 'react-icons/fi'
-import { OutlinedInput } from '@mui/material'
+import {FiSearch} from 'react-icons/fi'
+import {OutlinedInput} from '@mui/material'
 
-const SearchBar = ({ placeholder }) => {
+const SearchBar = ({placeholder}) => {
     return (
         <div>
             <OutlinedInput

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '@mui/material'
+import {Button} from '@mui/material'
 
-const RedShortButton = ({ btnName }) => {
+const RedShortButton = ({btnName}) => {
     return (
         <div>
             <Button className={'h-8'} color={'error'} variant="outlined">

@@ -1,8 +1,8 @@
 import React from 'react'
-import { BsFileEarmarkPerson } from 'react-icons/bs'
+import {BsFileEarmarkPerson} from 'react-icons/bs'
 import RedShortButton from '../../../../buttons/short-button/RedShortButton'
 
-const SinglePanelBox = ({ panelMemberName, panelMemberRegNo }) => {
+const SinglePanelBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
         <div
             className={'mx-10 my-5 px-4 py-1.5 rounded-lg shadow-md bg-gray-50'}

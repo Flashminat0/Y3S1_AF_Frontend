@@ -8,8 +8,10 @@ export default (req, res) =>
             'https://research-sliit-system.herokuapp.com/api'
         }`,
         // In addition, you can use the `pathRewrite` option provided by `next-http-proxy`
-        pathRewrite: [{
-            patternStr: '^/api/',
-            replaceStr: ''
-        }],
+        pathRewrite: [
+            {
+                patternStr: '^/api/',
+                replaceStr: '',
+            },
+        ],
     })

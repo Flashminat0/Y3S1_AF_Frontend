@@ -2,7 +2,7 @@ import Link from 'next/link'
 import FileUploadTest from '../components/forms/FileUploadTest'
 import LoginWIthMicrosoft from '../components/forms/auth/LoginWIthMicrosoft'
 import Header from '../components/common/header'
-import { useDocumentTitle } from '@mantine/hooks'
+import {useDocumentTitle} from '@mantine/hooks'
 import Button from '@mui/material/Button'
 import axios from 'axios'
 

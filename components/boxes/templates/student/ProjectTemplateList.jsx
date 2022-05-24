@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import ProjectTemplateBox from './ProjectTemplateBox'
 import DownloadFileWrapper from '../../../layouts/download-files/DownloadFileWrapper'
 

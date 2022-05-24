@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import {
     getStorage,
     ref,
@@ -6,7 +6,7 @@ import {
     getDownloadURL,
     deleteObject,
 } from 'firebase/storage'
-import { firebaseApp } from '../../firebase/base'
+import {firebaseApp} from '../../firebase/base'
 import axios from 'axios'
 
 const FileUploadTest = () => {

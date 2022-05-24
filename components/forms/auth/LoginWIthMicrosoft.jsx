@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { OAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import React, {useEffect, useState} from 'react'
+import {OAuthProvider, getAuth, signInWithPopup, signOut} from 'firebase/auth'
 import axios from 'axios'
-import { useLocalStorage } from '@mantine/hooks'
-import { Button } from '@mui/material'
+import {useLocalStorage} from '@mantine/hooks'
+import {Button} from '@mui/material'
 
 const LoginWIthMicrosoft = () => {
     const [credentials, setCredentials] = useLocalStorage({

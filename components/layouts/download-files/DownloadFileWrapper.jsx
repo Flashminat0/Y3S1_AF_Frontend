@@ -1,7 +1,7 @@
 import React from 'react'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
 
-const DownloadFileWrapper = ({ children, topicName, btnName }) => {
+const DownloadFileWrapper = ({children, topicName, btnName}) => {
     return (
         <div className={'px-6 py-6'}>
             <div

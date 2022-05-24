@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import BaseChatWrapper from '../../components/layouts/chat/BaseChatWrapper'
-import { useDocumentTitle } from '@mantine/hooks'
+import {useDocumentTitle} from '@mantine/hooks'
 import TeamMembersList from '../../components/panels/chat/TeamMembersList'
 
 const Team = () => {
