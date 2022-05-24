@@ -1,6 +1,7 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
+import BasicConversationWindow from "../../../components/chat/BasicConversationWIndow";
 
 const CoSupervisors = () => {
     const router = useRouter()
@@ -12,7 +13,7 @@ const CoSupervisors = () => {
             selectedType={'Co-Supervisor'}
             dataID={co_supervisor}
         >
-            {co_supervisor}
+            <BasicConversationWindow receiver={co_supervisor}/>
         </BaseChatWrapper>
     )
 }
