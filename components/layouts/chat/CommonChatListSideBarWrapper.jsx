@@ -13,8 +13,7 @@ const CommonChatListSideBarWrapper = ({children}) => {
                     exit={{opacity: 0, x: -100}}
                 >
                     <div className="flex flex-col w-20 rounded-3xl shadow-lg ">
-                        <div
-                            className="flex-1 flex flex-col min-h-0 overflow-y-auto bg-gray-300 rounded-3xl overflow-x-hidden">
+                        <div className="flex-1 flex flex-col min-h-0 overflow-y-auto bg-gray-300 rounded-3xl overflow-x-hidden">
                             <div className="flex-1">
                                 <nav
                                     aria-label="Sidebar"
@@ -36,11 +35,10 @@ const CommonChatListSideBarWrapper = ({children}) => {
                         animate={{scale: 1, opacity: 1, y: -40}}
                         transition={{duration: 0.5}}
                         whileHover={{scale: 1.1}}
-                        exit={{opacity: 0,}}
+                        exit={{opacity: 0}}
                     >
                         <div className={`relative flex justify-center `}>
-                            <div
-                                className="flex flex-row  w-max rounded-3xl shadow-lg bg-gray-300 overflow-x-clip">
+                            <div className="flex flex-row  w-max rounded-3xl shadow-lg bg-gray-300 overflow-x-clip">
                                 {children}
                             </div>
                         </div>

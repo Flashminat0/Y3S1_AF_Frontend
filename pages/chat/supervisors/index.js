@@ -4,7 +4,7 @@ import {useDebouncedValue, useDocumentTitle} from '@mantine/hooks'
 import SupervisorChatListSideBar from '../../../components/lists/chatlists/SupervisorChatListSideBar'
 import SupervisorApproval from '../../../components/approvals/SupervisorApproval'
 import {AnimatePresence} from 'framer-motion'
-import Confetti from "../../../components/approvals/Confetti";
+import Confetti from '../../../components/approvals/Confetti'
 
 const supervisorsStaticData = [
     {
@@ -43,7 +43,7 @@ const Supervisors = () => {
     useDocumentTitle('Supervisors Chat Screen')
 
     // pending , approved, rejected
-    const [status, setStatus] = useState('pending');
+    const [status, setStatus] = useState('pending')
 
     const [hoveringUsrId, setHoveringUsrId] = useState('')
     const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
@@ -66,7 +66,7 @@ const Supervisors = () => {
                 </AnimatePresence>
             </div>
             <SupervisorApproval status={status} />
-            {status === 'approved' && <Confetti/>}
+            {status === 'approved' && <Confetti />}
         </BaseChatWrapper>
     )
 }
