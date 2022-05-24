@@ -16,6 +16,7 @@ const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
                     whileTap={{scale: 0.9}}
                 >
                     <span
+                        onMouseLeave={() => onUserHover('')}
                         onMouseEnter={() => onUserHover(SingleCoSupervisor._id)}
                         onClick={async () => {
                             await router.push(

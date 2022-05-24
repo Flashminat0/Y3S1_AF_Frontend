@@ -1,7 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Input} from '@mui/material'
+import {Input, InputAdornment} from '@mui/material'
 import SenderBubble from './SenderBubble'
 import ReceivedBubble from './RecivedBubble'
+import {FiPaperclip} from 'react-icons/fi'
+import {RiSendPlane2Fill} from 'react-icons/ri'
+
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -11,6 +14,28 @@ const BasicConversationWindow = ({receiver, status}) => {
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
     }, [])
+
+    const AttachmentsIcon = () => {
+        return (
+            <InputAdornment position={"start"}>
+                <label
+                    htmlFor="file-upload"
+                    className="cursor-pointer"
+                >
+                    <FiPaperclip className={`text-indigo-500 text-xl hover:shadow-lg`}/>
+                    <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                </label>
+            </InputAdornment>
+        );
+    };
+
+    const SendIcon = () => {
+        return (
+            <InputAdornment position={"end"}>
+                <RiSendPlane2Fill className={`text-indigo-500 text-xl`}/>
+            </InputAdornment>
+        )
+    }
 
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -38,20 +63,23 @@ const BasicConversationWindow = ({receiver, status}) => {
                 </div>
             </div>
             <div className="flex-1 flex flex-col space-y-4 p-3 overflow-y-auto">
-                <ReceivedBubble />
-                <ReceivedBubble />
-                <ReceivedBubble />
-                <SenderBubble />
-                <SenderBubble />
-                <ReceivedBubble />
-                <SenderBubble />
-                <SenderBubble />
+                <ReceivedBubble/>
+                <ReceivedBubble/>
+                <ReceivedBubble/>
+                <SenderBubble/>
+                <SenderBubble/>
+                <ReceivedBubble/>
+                <SenderBubble/>
+                <SenderBubble/>
 
                 <div ref={myRef}></div>
             </div>
             <Input
-                className="flex-none w-full p-3 m-3 lg:m-0"
+                startAdornment={<AttachmentsIcon/>}
+                endAdornment={<SendIcon/>}
+                className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
+                autoFocus={true}
             />
         </div>
     )
