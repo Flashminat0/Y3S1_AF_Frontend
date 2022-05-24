@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import CommonModal from '../modals/CommonModal'
 
 const AllocatePanel = () => {

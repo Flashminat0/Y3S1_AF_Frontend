@@ -1,10 +1,10 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
 
 const CoSupervisors = () => {
     const router = useRouter()
-    const { co_supervisor } = router.query
+    const {co_supervisor} = router.query
 
     return (
         <BaseChatWrapper

@@ -1,8 +1,8 @@
 import React from 'react'
-import { BsPersonBoundingBox } from 'react-icons/bs'
+import {BsPersonBoundingBox} from 'react-icons/bs'
 import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 
-const FinalizeGroupWrapper = ({ children }) => {
+const FinalizeGroupWrapper = ({children}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
             <GreenFullButton btnName={'Finalize Group'} />

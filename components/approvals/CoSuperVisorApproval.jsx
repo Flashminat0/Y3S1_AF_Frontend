@@ -3,7 +3,7 @@ import OkIcon from './visuals/OkIcon'
 import CrossIcon from './visuals/CrossIcon'
 import OngoingIcon from './visuals/OngoingIcon'
 
-const CoSupervisorApproval = ({ status }) => {
+const CoSupervisorApproval = ({status}) => {
     return (
         <div className={`grow h-full w-max`}>
             <>

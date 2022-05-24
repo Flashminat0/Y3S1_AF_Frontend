@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from '@mui/material'
+import {Button} from '@mui/material'
 
-const UserProfileWrapper = ({ children }) => {
+const UserProfileWrapper = ({children}) => {
     return (
         <div className={'px-6 py-6'}>
             {children}

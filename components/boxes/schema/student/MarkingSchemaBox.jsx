@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { MdDownload } from 'react-icons/md'
+import React, {useState} from 'react'
+import {MdDownload} from 'react-icons/md'
 import DownloadFileWrapper from '../../../layouts/download-files/DownloadFileWrapper'
 
 const markingSchemaFileStaticList = [

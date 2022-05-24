@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
-import { useDocumentTitle } from '@mantine/hooks'
+import {useDocumentTitle} from '@mantine/hooks'
 import CoSupervisorChatListSideBar from '../../../components/lists/chatlists/CoSupervisorChatListSideBar'
-import SupervisorApproval from '../../../components/approvals/SupervisorApproval'
 import CoSuperVisorApproval from '../../../components/approvals/CoSuperVisorApproval'
+import {AnimatePresence} from 'framer-motion'
+import {useDebouncedValue} from '@mantine/hooks'
 
 const static_co_supervisors = [
     {
@@ -30,18 +31,24 @@ const CoSupervisors = () => {
     useDocumentTitle('Co-Supervisors Chat Screen')
 
     const [hoveringUsrId, setHoveringUsrId] = useState('')
+    const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
 
     const onUserHover = (id) => {
         setHoveringUsrId(id)
     }
 
     return (
-        <BaseChatWrapper selectedPageIndex={1} hoveringUserId={hoveringUsrId}>
+        <BaseChatWrapper
+            selectedPageIndex={1}
+            hoveringUserId={debouncedHoveringUsrId}
+        >
             <div className={`flex h-full w-max`}>
-                <CoSupervisorChatListSideBar
-                    onUserHover={onUserHover}
-                    coSupervisorsList={static_co_supervisors}
-                />
+                <AnimatePresence>
+                    <CoSupervisorChatListSideBar
+                        onUserHover={onUserHover}
+                        coSupervisorsList={static_co_supervisors}
+                    />
+                </AnimatePresence>
             </div>
             <CoSuperVisorApproval status={`approved`} />
         </BaseChatWrapper>

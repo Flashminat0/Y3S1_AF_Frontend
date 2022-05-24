@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import {initializeApp} from 'firebase/app'
 
 export const firebaseApp = initializeApp({
     projectId: 'y3s1-sliit-af',

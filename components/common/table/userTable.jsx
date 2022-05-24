@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import DropDown from '../../common/table/dropdown'
 import Modal from '../../modals/admin/adminModal'
 
-const userTable = ({ users = [] }) => {
+const userTable = ({users = []}) => {
     const [userRole, setRole] = useState('')
     const [open, setOpen] = useState(true)
 

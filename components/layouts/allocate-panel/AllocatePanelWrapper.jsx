@@ -1,9 +1,9 @@
 import React from 'react'
-import { MdGroups } from 'react-icons/md'
+import {MdGroups} from 'react-icons/md'
 import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 import RedFullButton from '../../buttons/full-button/RedFullButton'
 
-const AllocatePanelWrapper = ({ children }) => {
+const AllocatePanelWrapper = ({children}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
             <GreenFullButton btnName={'Allocate Panel'} />

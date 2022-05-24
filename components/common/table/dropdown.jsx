@@ -1,6 +1,6 @@
 import React from 'react'
 
-const dropdown = ({ role, setRole }) => {
+const dropdown = ({role, setRole}) => {
     const type = [
         'admin',
         'Studnet',

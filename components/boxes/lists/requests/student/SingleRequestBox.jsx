@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { BsBoxArrowInLeft } from 'react-icons/bs'
+import React, {useState} from 'react'
+import {BsBoxArrowInLeft} from 'react-icons/bs'
 import RedShortButton from '../../../../buttons/short-button/RedShortButton'
 import GreenShortButton from '../../../../buttons/short-button/GreenShortButton'
 
-const SingleRequestBox = ({ userName, userRegNo, acceptedStatus }) => {
+const SingleRequestBox = ({userName, userRegNo, acceptedStatus}) => {
     const [changeStatus, setChangeStatus] = useState(acceptedStatus)
 
     const acceptingRequest = () => {

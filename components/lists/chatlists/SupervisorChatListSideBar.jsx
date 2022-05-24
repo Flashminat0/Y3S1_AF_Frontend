@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/router'
+import React, {useState} from 'react'
+import {useRouter} from 'next/router'
 import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideBarWrapper'
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
 
-const SupervisorChatListSideBar = ({ supervisorsList, onUserHover }) => {
+const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
     const [supervisors, setSupervisors] = useState(supervisorsList)
 
     const router = useRouter()
@@ -13,8 +13,8 @@ const SupervisorChatListSideBar = ({ supervisorsList, onUserHover }) => {
             {supervisors.map((singleSupervisor, index) => (
                 <motion.div
                     key={index}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
                 >
                     <span
                         onMouseLeave={() => onUserHover('')}

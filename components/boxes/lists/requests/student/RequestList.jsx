@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGroupWrapper'
 import SingleRequestBox from './SingleRequestBox'
 

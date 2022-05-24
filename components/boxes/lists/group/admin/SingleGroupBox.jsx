@@ -1,14 +1,14 @@
 import React from 'react'
-import { FiChevronDown } from 'react-icons/fi'
-import { Popover, Transition } from '@headlessui/react'
-import { AiFillDelete } from 'react-icons/ai'
-import { BsFillEyeFill } from 'react-icons/bs'
-import { MdGroup } from 'react-icons/md'
-import { AnimatePresence, motion } from 'framer-motion'
+import {FiChevronDown} from 'react-icons/fi'
+import {Popover, Transition} from '@headlessui/react'
+import {AiFillDelete} from 'react-icons/ai'
+import {BsFillEyeFill} from 'react-icons/bs'
+import {MdGroup} from 'react-icons/md'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const abilities = [
-    { id: 1, name: 'View Group', icon: BsFillEyeFill },
-    { id: 2, name: 'Delete Group', icon: AiFillDelete },
+    {id: 1, name: 'View Group', icon: BsFillEyeFill},
+    {id: 2, name: 'Delete Group', icon: AiFillDelete},
 ]
 
 function classNames(...classes) {
@@ -37,7 +37,7 @@ const SingleGroupBox = ({
                 </div>
                 <div>
                     <Popover className="relative">
-                        {({ open }) => (
+                        {({open}) => (
                             <>
                                 <Popover.Button
                                     className={classNames(
@@ -55,8 +55,8 @@ const SingleGroupBox = ({
                                 <AnimatePresence>
                                     <Popover.Panel className="absolute z-10 right-1/2 transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.7 }}
-                                            animate={{ opacity: 1, scale: 1 }}
+                                            initial={{opacity: 0, scale: 0.7}}
+                                            animate={{opacity: 1, scale: 1}}
                                         >
                                             <div className="rounded-lg shadow-lg ring-1 ring-opacity-5 overflow-hidden">
                                                 <div className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">

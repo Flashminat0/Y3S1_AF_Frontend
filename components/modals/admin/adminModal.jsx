@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { AiOutlineClose } from 'react-icons/ai'
+import React, {useEffect, useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {AnimatePresence, motion} from 'framer-motion'
+import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const adminModal = ({ view, children }) => {
+const adminModal = ({view, children}) => {
     const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const adminModal = ({ view, children }) => {
                         }}
                         exit={{
                             opacity: 0,
-                            transition: { duration: 0.4 },
+                            transition: {duration: 0.4},
                         }}
                     >
                         <div
@@ -36,7 +36,7 @@ const adminModal = ({ view, children }) => {
                             <div className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    initial={{scale: 0.8, opacity: 0}}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,

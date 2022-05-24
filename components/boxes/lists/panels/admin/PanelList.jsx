@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import AllocatePanelWrapper from '../../../../layouts/allocate-panel/AllocatePanelWrapper'
 import SinglePanelBox from './SinglePanelBox'
 

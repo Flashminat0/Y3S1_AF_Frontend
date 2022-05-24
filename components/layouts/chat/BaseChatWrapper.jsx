@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { HiMenu, HiUserGroup, HiX } from 'react-icons/hi'
-import { GiBadGnome, GiDevilMask } from 'react-icons/gi'
-import { Divider } from '@mui/material'
+import React, {useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {AnimatePresence, motion} from 'framer-motion'
+import {HiMenu, HiUserGroup, HiX} from 'react-icons/hi'
+import {GiBadGnome, GiDevilMask} from 'react-icons/gi'
+import {Divider} from '@mui/material'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 
 const navigation = [
     {
@@ -53,8 +53,8 @@ const BaseChatWrapper = ({
                     <AnimatePresence>
                         {sidebarOpen && (
                             <motion.div
-                                animate={{ scale: 2 }}
-                                transition={{ duration: 3 }}
+                                animate={{scale: 2}}
+                                transition={{duration: 3}}
                             >
                                 <Dialog
                                     static
@@ -66,25 +66,25 @@ const BaseChatWrapper = ({
                                     }}
                                 >
                                     <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
+                                        initial={{opacity: 0}}
+                                        animate={{opacity: 1}}
+                                        exit={{opacity: 0}}
                                     >
                                         <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
                                     </motion.div>
 
                                     <div className="fixed inset-0 flex z-40 ">
                                         <motion.div
-                                            initial={{ opacity: 0, x: -200 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -300 }}
+                                            initial={{opacity: 0, x: -200}}
+                                            animate={{opacity: 1, x: 0}}
+                                            exit={{opacity: 0, x: -300}}
                                         >
                                             <Dialog.Panel className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{ delay: 0.3 }}
+                                                    initial={{opacity: 0}}
+                                                    animate={{opacity: 1}}
+                                                    exit={{opacity: 0}}
+                                                    transition={{delay: 0.3}}
                                                 >
                                                     <div className="absolute top-0 right-0 -mr-12 pt-2">
                                                         <button
