@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import BaseChatWrapper from '../../components/layouts/chat/BaseChatWrapper'
 import {useDocumentTitle} from '@mantine/hooks'
 import TeamMembersList from '../../components/panels/chat/TeamMembersList'
+import BasicConversationWindow from '../../components/chat/BasicConversationWIndow'
 
 const Team = () => {
     useDocumentTitle('Team Chat Screen')
@@ -13,7 +14,7 @@ const Team = () => {
             selectedPageIndex={2}
             hoveringUserId={<TeamMembersList memberList={memberList} />}
         >
-            Team
+            <BasicConversationWindow receiver={'Team'} />
         </BaseChatWrapper>
     )
 }

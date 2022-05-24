@@ -5,6 +5,7 @@ import CoSupervisorChatListSideBar from '../../../components/lists/chatlists/CoS
 import CoSuperVisorApproval from '../../../components/approvals/CoSuperVisorApproval'
 import {AnimatePresence} from 'framer-motion'
 import {useDebouncedValue} from '@mantine/hooks'
+import Confetti from '../../../components/approvals/Confetti'
 
 const static_co_supervisors = [
     {
@@ -30,6 +31,9 @@ const static_co_supervisors = [
 const CoSupervisors = () => {
     useDocumentTitle('Co-Supervisors Chat Screen')
 
+    // pending , approved, rejected
+    const [status, setStatus] = useState('approved')
+
     const [hoveringUsrId, setHoveringUsrId] = useState('')
     const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
 
@@ -42,7 +46,7 @@ const CoSupervisors = () => {
             selectedPageIndex={1}
             hoveringUserId={debouncedHoveringUsrId}
         >
-            <div className={`flex h-full w-max`}>
+            <div className={`flex h-full w-max `}>
                 <AnimatePresence>
                     <CoSupervisorChatListSideBar
                         onUserHover={onUserHover}
@@ -50,7 +54,8 @@ const CoSupervisors = () => {
                     />
                 </AnimatePresence>
             </div>
-            <CoSuperVisorApproval status={`approved`} />
+            <CoSuperVisorApproval status={status} />
+            {status === 'approved' && <Confetti />}
         </BaseChatWrapper>
     )
 }

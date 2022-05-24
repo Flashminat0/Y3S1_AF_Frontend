@@ -13,8 +13,7 @@ const Supervisor = () => {
             selectedType={'Supervisor'}
             dataID={supervisor}
         >
-            <BasicConversationWindow />
-            {supervisor}
+            <BasicConversationWindow receiver={supervisor} />
         </BaseChatWrapper>
     )
 }
