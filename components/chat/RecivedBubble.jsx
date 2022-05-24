@@ -1,15 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 const ReceivedBubble = ({content}) => {
     return (
         <div className="flex items-end">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
                 <div>
-                                    <span
-                                        className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
-                                        Can be verified on any platform using
-                                        docker
-                                    </span>
+                    <span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
+                        Can be verified on any platform using docker
+                    </span>
                 </div>
             </div>
             <img
@@ -18,7 +16,7 @@ const ReceivedBubble = ({content}) => {
                 className="w-6 h-6 rounded-full order-1"
             />
         </div>
-    );
-};
+    )
+}
 
-export default ReceivedBubble;
+export default ReceivedBubble

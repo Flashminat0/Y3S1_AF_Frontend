@@ -1,17 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Input} from "@mui/material";
-import SenderBubble from "./SenderBubble";
-import ReceivedBubble from "./RecivedBubble";
+import {Input} from '@mui/material'
+import SenderBubble from './SenderBubble'
+import ReceivedBubble from './RecivedBubble'
 
-const BasicConversationWindow = ({receiver , status}) => {
+const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
 
     const [userProfile, setUserProfile] = useState(receiver)
 
-
     useEffect(() => {
-        myRef.current.scrollIntoView({ block: 'end',  behavior: 'smooth' })
-    }, []);
+        myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
+    }, [])
 
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -38,21 +37,22 @@ const BasicConversationWindow = ({receiver , status}) => {
                     </div>
                 </div>
             </div>
-            <div
-                className="flex-1 flex flex-col space-y-4 p-3 overflow-y-auto"
-            >
-                <ReceivedBubble/>
-                <ReceivedBubble/>
-                <ReceivedBubble/>
-                <SenderBubble/>
-                <SenderBubble/>
-                <ReceivedBubble/>
-                <SenderBubble/>
-                <SenderBubble/>
+            <div className="flex-1 flex flex-col space-y-4 p-3 overflow-y-auto">
+                <ReceivedBubble />
+                <ReceivedBubble />
+                <ReceivedBubble />
+                <SenderBubble />
+                <SenderBubble />
+                <ReceivedBubble />
+                <SenderBubble />
+                <SenderBubble />
 
                 <div ref={myRef}></div>
             </div>
-            <Input className="flex-none w-full p-3 m-3 lg:m-0" placeholder="Type a message..."/>
+            <Input
+                className="flex-none w-full p-3 m-3 lg:m-0"
+                placeholder="Type a message..."
+            />
         </div>
     )
 }
