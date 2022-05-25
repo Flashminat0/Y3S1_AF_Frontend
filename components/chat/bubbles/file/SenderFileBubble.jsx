@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SenderFileBubble = ({content, isForApproval}) => {
     return (
@@ -16,7 +16,7 @@ const SenderFileBubble = ({content, isForApproval}) => {
                 className="w-8 h-8 rounded-full order-2"
             />
         </div>
-    );
-};
+    )
+}
 
-export default SenderFileBubble;
+export default SenderFileBubble

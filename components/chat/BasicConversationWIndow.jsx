@@ -4,8 +4,7 @@ import SenderTextBubble from './bubbles/text/SenderTextBubble'
 import ReceivedBubble from './bubbles/text/RecivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
-import SenderFileBubble from "./bubbles/file/SenderFileBubble";
-
+import SenderFileBubble from './bubbles/file/SenderFileBubble'
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -18,34 +17,40 @@ const BasicConversationWindow = ({receiver, status}) => {
 
     const AttachmentsIcon = () => {
         return (
-            <InputAdornment position={"start"}>
-                <label
-                    htmlFor="file-upload"
-                    className="cursor-pointer"
-                >
-                    <FiPaperclip className={`text-indigo-500 text-xl hover:shadow-lg`}/>
-                    <input id="file-upload" name="file-upload" type="file" className="sr-only"/>
+            <InputAdornment position={'start'}>
+                <label htmlFor="file-upload" className="cursor-pointer">
+                    <FiPaperclip
+                        className={`text-indigo-500 text-xl hover:shadow-lg`}
+                    />
+                    <input
+                        id="file-upload"
+                        name="file-upload"
+                        type="file"
+                        className="sr-only"
+                    />
                 </label>
-            </InputAdornment>
-        );
-    };
-
-    const SendIcon = () => {
-        return (
-            <InputAdornment position={"end"}>
-                <RiSendPlane2Fill className={`text-indigo-500 text-xl cursor-pointer`}/>
             </InputAdornment>
         )
     }
 
-    const [messageArray, setMessageArray] = useState([]);
+    const SendIcon = () => {
+        return (
+            <InputAdornment position={'end'}>
+                <RiSendPlane2Fill
+                    className={`text-indigo-500 text-xl cursor-pointer`}
+                />
+            </InputAdornment>
+        )
+    }
+
+    const [messageArray, setMessageArray] = useState([])
     useEffect(() => {
         setMessageArray(() => {
             return fakeMessages.map((message) => {
                 return {...message, isOpened: false}
             })
         })
-    }, [messageArray]);
+    }, [messageArray])
 
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -76,7 +81,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                 {messageArray.map((singleMessage, index) => {
                     return (
                         <div key={singleMessage.id}>
-                            {singleMessage.sender === "Me" ? (
+                            {singleMessage.sender === 'Me' ? (
                                 <SenderTextBubble
                                     message={singleMessage.message}
                                     sender={singleMessage.sender}
@@ -95,8 +100,8 @@ const BasicConversationWindow = ({receiver, status}) => {
                 <div ref={myRef}></div>
             </div>
             <Input
-                startAdornment={<AttachmentsIcon/>}
-                endAdornment={<SendIcon/>}
+                startAdornment={<AttachmentsIcon />}
+                endAdornment={<SendIcon />}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
@@ -107,14 +112,53 @@ const BasicConversationWindow = ({receiver, status}) => {
 
 export default BasicConversationWindow
 
-
 const fakeMessages = [
-    {id: 1, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
-    {id: 2, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
-    {id: 3, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
-    {id: 4, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
-    {id: 5, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
-    {id: 6, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
-    {id: 7, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
-    {id: 8, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
+    {
+        id: 1,
+        sender: 'Me',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 2,
+        sender: 'NotMe',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 3,
+        sender: 'Me',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 4,
+        sender: 'NotMe',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 5,
+        sender: 'NotMe',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 6,
+        sender: 'Me',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 7,
+        sender: 'Me',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
+    {
+        id: 8,
+        sender: 'NotMe',
+        message: 'This is a sample message 1',
+        time: new Date(),
+    },
 ]
