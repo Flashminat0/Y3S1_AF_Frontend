@@ -13,7 +13,7 @@ const TeamMembersList = ({memberList}) => {
                 <motion.div
                     whileHover={{scale: 1.05}}
                     key={person._id}
-                    className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg"
+                    className="grid grid-cols-5 place-items-center bg-gray-200 rounded-2xl gap-3 mx-4 shadow-lg cursor-pointer"
                 >
                     <div className={`grid place-content-center col-span-2`}>
                         {person.image ? (
@@ -34,10 +34,10 @@ const TeamMembersList = ({memberList}) => {
                         )}
                     </div>
                     <div className="ml-3 col-span-2">
-                        <p className="text-base font-medium text-gray-900">
+                        <p className="text-base font-medium text-gray-900 leading-none">
                             {person.name}
                         </p>
-                        <p className="text-sm text-gray-500">{person.email}</p>
+                        <p className="text-sm text-gray-500 leading-none">{person.email}</p>
                     </div>
                 </motion.div>
             ))}
