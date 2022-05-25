@@ -1,9 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Input, InputAdornment} from '@mui/material'
-import SenderBubble from './SenderBubble'
-import ReceivedBubble from './RecivedBubble'
+import {Divider, Input, InputAdornment} from '@mui/material'
+import SenderTextBubble from './bubbles/text/SenderTextBubble'
+import ReceivedBubble from './bubbles/text/RecivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
+import SenderFileBubble from "./bubbles/file/SenderFileBubble";
 
 
 const BasicConversationWindow = ({receiver, status}) => {
@@ -32,7 +33,7 @@ const BasicConversationWindow = ({receiver, status}) => {
     const SendIcon = () => {
         return (
             <InputAdornment position={"end"}>
-                <RiSendPlane2Fill className={`text-indigo-500 text-xl`}/>
+                <RiSendPlane2Fill className={`text-indigo-500 text-xl cursor-pointer`}/>
             </InputAdornment>
         )
     }
@@ -66,11 +67,13 @@ const BasicConversationWindow = ({receiver, status}) => {
                 <ReceivedBubble/>
                 <ReceivedBubble/>
                 <ReceivedBubble/>
-                <SenderBubble/>
-                <SenderBubble/>
+                <SenderTextBubble/>
+                <SenderTextBubble/>
+                <Divider/>
+                <SenderFileBubble/>
                 <ReceivedBubble/>
-                <SenderBubble/>
-                <SenderBubble/>
+                <SenderTextBubble/>
+                <SenderTextBubble/>
 
                 <div ref={myRef}></div>
             </div>
