@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
+import StudentModalButtonWrapper from "../../../../layouts/student/StudentModalButtonWrapper";
 
 const studentGroupsStaticData = [
     {
@@ -42,24 +43,31 @@ const placeholder = 'Group Search'
 
 const GroupsList = () => {
     const [studentGroups, setStudentGroups] = useState(studentGroupsStaticData)
+    const [openModal, setOpenModal] = useState(false);
+
+    const openCreateGroupModal= ()=>{
+        setOpenModal(true);
+    }
 
     return (
         <div>
-            <GroupListWrapper>
-                <SearchBar placeholder={placeholder} />
-                <div>
-                    {studentGroups.map((studentGroup, index) => (
-                        <SingleGroupBox
-                            key={index}
-                            groupName={studentGroup.groupName}
-                            groupLeader={studentGroup.groupLeader}
-                            groupLeaderRegNo={studentGroup.groupLeaderRegNo}
-                            maxNo={studentGroup.maxNo}
-                            currentNo={studentGroup.currentNo}
-                        />
-                    ))}
-                </div>
-            </GroupListWrapper>
+            <StudentModalButtonWrapper btnName={"Create Group"} btnFunction={openCreateGroupModal}>
+                <GroupListWrapper>
+                    <SearchBar placeholder={placeholder}/>
+                    <div>
+                        {studentGroups.map((studentGroup, index) => (
+                            <SingleGroupBox
+                                key={index}
+                                groupName={studentGroup.groupName}
+                                groupLeader={studentGroup.groupLeader}
+                                groupLeaderRegNo={studentGroup.groupLeaderRegNo}
+                                maxNo={studentGroup.maxNo}
+                                currentNo={studentGroup.currentNo}
+                            />
+                        ))}
+                    </div>
+                </GroupListWrapper>
+            </StudentModalButtonWrapper>
         </div>
     )
 }
