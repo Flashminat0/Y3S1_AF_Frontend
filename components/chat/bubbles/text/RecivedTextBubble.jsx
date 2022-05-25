@@ -3,7 +3,7 @@ import {BsChevronDown} from "react-icons/bs";
 import {Disclosure} from "@headlessui/react";
 import {Button} from "@mui/material";
 
-const ReceivedBubble = ({content}) => {
+const ReceivedBubble = ({message, sender, isOpened}) => {
     return (
         <div className="flex items-end">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
