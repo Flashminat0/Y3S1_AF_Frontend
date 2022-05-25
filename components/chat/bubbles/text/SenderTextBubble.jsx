@@ -3,7 +3,7 @@ import {Disclosure} from '@headlessui/react'
 import {BsChevronDown} from 'react-icons/bs'
 import {Button} from "@mui/material";
 
-const SenderTextBubble = ({content}) => {
+const SenderTextBubble = ({message, sender, isOpened}) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -25,15 +25,14 @@ const SenderTextBubble = ({content}) => {
                                     <Button color={'primary'} variant={"outlined"}>Edit</Button>
                                     <Button color={'error'} variant={"outlined"}>Delete</Button>
                                     <span className={`col-span-2`}>
-                                    <Button className={`bg-indigo-600 hover:bg-indigo-700`}  fullWidth={true} variant={"contained"}>Ask for Approval</Button>
+                                    <Button className={`bg-indigo-600 hover:bg-indigo-700`} fullWidth={true}
+                                            variant={"contained"}>Ask for Approval</Button>
                                     </span>
                                 </Disclosure.Panel>
                             </>
                         )}
                     </Disclosure>
-
                 </div>
-
             </div>
             <img
                 src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"

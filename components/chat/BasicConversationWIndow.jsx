@@ -24,7 +24,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                     className="cursor-pointer"
                 >
                     <FiPaperclip className={`text-indigo-500 text-xl hover:shadow-lg`}/>
-                    <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                    <input id="file-upload" name="file-upload" type="file" className="sr-only"/>
                 </label>
             </InputAdornment>
         );
@@ -37,6 +37,15 @@ const BasicConversationWindow = ({receiver, status}) => {
             </InputAdornment>
         )
     }
+
+    const [messageArray, setMessageArray] = useState([]);
+    useEffect(() => {
+        setMessageArray(() => {
+            return fakeMessages.map((message) => {
+                return {...message, isOpened: false}
+            })
+        })
+    }, [messageArray]);
 
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -64,17 +73,25 @@ const BasicConversationWindow = ({receiver, status}) => {
                 </div>
             </div>
             <div className="flex-1 flex flex-col space-y-4 p-3 overflow-y-auto">
-                <ReceivedBubble/>
-                <ReceivedBubble/>
-                <ReceivedBubble/>
-                <SenderTextBubble/>
-                <SenderTextBubble/>
-                <Divider/>
-                <SenderFileBubble/>
-                <ReceivedBubble/>
-                <SenderTextBubble/>
-                <SenderTextBubble/>
-
+                {messageArray.map((singleMessage, index) => {
+                    return (
+                        <div key={singleMessage.id}>
+                            {singleMessage.sender === "Me" ? (
+                                <SenderTextBubble
+                                    message={singleMessage.message}
+                                    sender={singleMessage.sender}
+                                    isOpened={singleMessage.isOpened}
+                                />
+                            ) : (
+                                <ReceivedBubble
+                                    message={singleMessage.message}
+                                    sender={singleMessage.sender}
+                                    isOpened={singleMessage.isOpened}
+                                />
+                            )}
+                        </div>
+                    )
+                })}
                 <div ref={myRef}></div>
             </div>
             <Input
@@ -89,3 +106,15 @@ const BasicConversationWindow = ({receiver, status}) => {
 }
 
 export default BasicConversationWindow
+
+
+const fakeMessages = [
+    {id: 1, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
+    {id: 2, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
+    {id: 3, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
+    {id: 4, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
+    {id: 5, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
+    {id: 6, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
+    {id: 7, sender: 'Me', message: 'This is a sample message 1', time: new Date()},
+    {id: 8, sender: 'NotMe', message: 'This is a sample message 1', time: new Date()},
+]
