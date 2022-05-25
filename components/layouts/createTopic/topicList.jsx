@@ -1,7 +1,7 @@
-import React from 'react';
-import CreateTopicWrapper from './createTopicWrapper';
-import AddedTopicBox from './addedTopicBox';
-import { useState } from 'react';
+import React from 'react'
+import CreateTopicWrapper from './createTopicWrapper'
+import AddedTopicBox from './addedTopicBox'
+import {useState} from 'react'
 
 //static data list
 const TopicListData = [
@@ -13,11 +13,11 @@ const TopicListData = [
         Tname: 'Taxi Mnagement system',
         GroupID: '2',
     },
-];
+]
 
 const TopicList = () => {
-    const [TopicName, setTopicName] = useState(TopicListData);
-    const [GrpID, setGrpID] = useState(TopicListData);
+    const [TopicName, setTopicName] = useState(TopicListData)
+    const [GrpID, setGrpID] = useState(TopicListData)
     return (
         <div>
             <CreateTopicWrapper>
@@ -29,7 +29,7 @@ const TopicList = () => {
                 ))}
             </CreateTopicWrapper>
         </div>
-    );
-};
+    )
+}
 
-export default TopicList;
+export default TopicList

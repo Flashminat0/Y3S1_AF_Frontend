@@ -1,7 +1,7 @@
-import React from 'react';
-import { Button } from '@mui/material';
+import React from 'react'
+import {Button} from '@mui/material'
 
-const CreateTopicWrapper = ({ children }) => {
+const CreateTopicWrapper = ({children}) => {
     return (
         <div>
             <div className="mb-5 flex justify-center text-3xl font-semibold uppercase">
@@ -38,6 +38,6 @@ const CreateTopicWrapper = ({ children }) => {
             <hr />
             {children}
         </div>
-    );
-};
-export default CreateTopicWrapper;
+    )
+}
+export default CreateTopicWrapper

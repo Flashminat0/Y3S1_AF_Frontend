@@ -1,8 +1,8 @@
-import React from 'react';
-import SubmitTopicWrapper from '../../components/layouts/submitTopic/submitTopicWrapper';
+import React from 'react'
+import SubmitTopicWrapper from '../../components/layouts/submitTopic/submitTopicWrapper'
 
 const topic = () => {
-    return <SubmitTopicWrapper />;
-};
+    return <SubmitTopicWrapper />
+}
 
-export default topic;
+export default topic
