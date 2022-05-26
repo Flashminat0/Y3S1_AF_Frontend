@@ -5,15 +5,13 @@ import Button from '@mui/material/Button'
 import {Input, InputAdornment} from "@mui/material";
 import {RiSendPlane2Fill} from "react-icons/ri";
 
-const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHandler}) => {
-
-    const [editingMessage, setEditingMessage] = useState(message);
+const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHandler, editMessageHandler , editMessageValueHandler}) => {
 
     const SendIcon = () => {
         return (<InputAdornment position={'end'}>
             <RiSendPlane2Fill
-                // onClick={sendNewMessage}
-                className={`${editingMessage.toString().trim().length > 0 ? 'text-indigo-500 cursor-pointer' : 'text-gray-500 '} text-xl hover:shadow-lg`}
+                onClick={(x)=>{editMessageHandler(messageId)}}
+                className={`${message.toString().trim().length > 0 ? 'text-indigo-500 cursor-pointer' : 'text-gray-500 '} text-xl hover:shadow-lg`}
             />
         </InputAdornment>)
     }
@@ -84,10 +82,10 @@ const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHa
                                                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                                                 placeholder="Type a message..."
                                                 autoFocus={true}
-                                                onChange={(e) => setEditingMessage(e.target.value)}
+                                                onChange={(e) => editMessageValueHandler(e.target.value)}
                                                 onKeyDown={(e) => {
                                                     if (e.key === 'Enter') {
-                                                        // sendNewMessage()
+                                                        editMessageHandler(messageId)
                                                     }
                                                 }}
                                             />

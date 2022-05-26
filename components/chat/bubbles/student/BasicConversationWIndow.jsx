@@ -6,10 +6,9 @@ import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from "./file/ReceivedFileBubble";
-import {randomId } from '@mantine/hooks';
+import {randomId} from '@mantine/hooks';
 import {LoadingAnimation, NotOkAnimation, OkAnimation} from "../../../assets/animations";
 import EditTextMessageModal from "./EditTextMessageModal";
-
 
 
 const BasicConversationWindow = ({receiver, status}) => {
@@ -51,7 +50,6 @@ const BasicConversationWindow = ({receiver, status}) => {
             />
         </InputAdornment>)
     }
-
 
 
     useEffect(() => {
@@ -121,10 +119,30 @@ const BasicConversationWindow = ({receiver, status}) => {
         setElevateEditState(true)
     }
 
+    const editMessageValueHandler = (value) => {
+        setEditMessage(value)
+    }
+
     const editMessageModalCloseHandler = () => {
         setElevateEditState(false)
         setEditMessage('')
         setEditMessageId('')
+    }
+
+    const editMessageHandler = (id) => {
+        setMessageArray(() => {
+            return messageArray.map((message) => {
+                if (message.id === id) {
+                    if (message.id.toString().includes('-edited')) {
+                        return {...message, message: editMessage}
+                    } else {
+                        return {...message, id: id + '-edited', message: editMessage}
+                    }
+                }
+                return message
+            })
+        })
+        editMessageModalCloseHandler()
     }
 
     return (<div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -208,7 +226,9 @@ const BasicConversationWindow = ({receiver, status}) => {
                     </div>)
             })}
             <div ref={myRef}></div>
-            <EditTextMessageModal view={elevateEditState} message={editMessage} messageId={editMessageId} editMessageModalCloseHandler={editMessageModalCloseHandler}/>
+            <EditTextMessageModal view={elevateEditState} message={editMessage} messageId={editMessageId}
+                                  editMessageModalCloseHandler={editMessageModalCloseHandler}
+                                  editMessageHandler={editMessageHandler} editMessageValueHandler={editMessageValueHandler}/>
         </div>
         <Input
             value={nowMessage}
