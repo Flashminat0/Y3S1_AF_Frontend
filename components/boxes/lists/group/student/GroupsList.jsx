@@ -3,6 +3,7 @@ import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
 import StudentModalButtonWrapper from "../../../../layouts/student/StudentModalButtonWrapper";
+import CreateGroupModal from "../../../../modals/student/CreateGroupModal";
 
 const studentGroupsStaticData = [
     {
@@ -52,12 +53,13 @@ const GroupsList = () => {
     return (
         <div>
             <StudentModalButtonWrapper btnName={"Create Group"} btnFunction={openCreateGroupModal}>
+                <CreateGroupModal openModal={openModal} setOpenModal={setOpenModal}/>
                 <GroupListWrapper>
                     <SearchBar placeholder={placeholder}/>
                     <div>
-                        {studentGroups.map((studentGroup, index) => (
+                        {studentGroups.map((studentGroup) => (
                             <SingleGroupBox
-                                key={index}
+                                key={studentGroup.id}
                                 groupName={studentGroup.groupName}
                                 groupLeader={studentGroup.groupLeader}
                                 groupLeaderRegNo={studentGroup.groupLeaderRegNo}
