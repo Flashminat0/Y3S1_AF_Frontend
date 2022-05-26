@@ -43,7 +43,7 @@ const BasicConversationWindow = ({receiver, status}) => {
         return (<InputAdornment position={'end'}>
             <RiSendPlane2Fill
                 onClick={sendNewMessage}
-                className={`text-indigo-500 text-xl cursor-pointer`}
+                className={`${nowMessage.toString().trim().length > 0 ? 'text-indigo-500 cursor-pointer' : 'text-gray-500 '} text-xl hover:shadow-lg`}
             />
         </InputAdornment>)
     }
@@ -60,6 +60,10 @@ const BasicConversationWindow = ({receiver, status}) => {
 
     const [nowMessage, setNowMessage] = useState('');
     const sendNewMessage = () => {
+        if (!nowMessage.toString().trim().length > 0) {
+            return
+        }
+
         setMessageArray(() => {
             return messageArray.concat([{
                 id: randomId(),
