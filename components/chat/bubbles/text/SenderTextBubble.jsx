@@ -4,7 +4,14 @@ import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Button} from '@mui/material'
 
 //we are sending this message
-const SenderTextBubble = ({id, message, approvedState, requestingForApproval , deleteMessage}) => {
+const SenderTextBubble = ({
+                              id,
+                              message,
+                              approvedState,
+                              requestingForApproval,
+                              deleteMessage,
+                              requestForApprovalHandler
+                          }) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -36,20 +43,37 @@ const SenderTextBubble = ({id, message, approvedState, requestingForApproval , d
                                         Edit
                                     </Button>
                                     <Button
-                                        onClick={()=>{deleteMessage(id)}}
+                                        onClick={() => {
+                                            deleteMessage(id)
+                                        }}
                                         color={'error'}
                                         variant={'outlined'}
                                     >
                                         Delete
                                     </Button>
                                     <span className={`col-span-2`}>
-                                        <Button
-                                            className={`bg-indigo-600 hover:bg-indigo-700`}
-                                            fullWidth={true}
-                                            variant={'contained'}
-                                        >
-                                            Ask for Approval
-                                        </Button>
+                                        {approvedState === null ? <>
+                                            <Button
+                                                disabled={requestingForApproval}
+                                                className={`bg-indigo-600 hover:bg-indigo-700`}
+                                                fullWidth={true}
+                                                variant={'contained'}
+                                                onClick={() => {
+                                                    requestForApprovalHandler(id)
+                                                }}
+                                            >
+                                                {requestingForApproval ? 'Requesting for approval' : 'Ask for Approval'}
+                                            </Button>
+                                        </> : <>
+                                            <Button
+                                                className={`${approvedState ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}`}
+                                                fullWidth={true}
+                                                variant={'contained'}
+                                            >
+                                                {approvedState ? 'Approved' : 'Rejected'}
+                                            </Button>
+                                        </>}
+
                                     </span>
                                 </Disclosure.Panel>
                             </>

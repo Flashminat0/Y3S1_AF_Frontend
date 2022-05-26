@@ -10,6 +10,7 @@ module.exports = {
             sans: ['Signika', 'sans-serif'],
         },
     },
+    // darkMode: true,
     corePlugins: {
         preflight: false,
     },

@@ -74,7 +74,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                 type: 'text',
                 time: new Date().toLocaleTimeString(),
                 requestingForApproval: false,
-                approvedState: false
+                approvedState: null
             }])
         })
 
@@ -94,6 +94,17 @@ const BasicConversationWindow = ({receiver, status}) => {
         setMessageArray(() => {
             return messageArray.filter((message) => message.id !== id)
 
+        })
+    }
+
+    const requestForApproval = (id) => {
+        setMessageArray(() => {
+            return messageArray.map((message) => {
+                if (message.id === id) {
+                    return {...message, requestingForApproval: true}
+                }
+                return message
+            })
         })
     }
 
@@ -140,6 +151,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         requestingForApproval={singleMessage.requestingForApproval}
                                         approvedState={singleMessage.approvedState}
                                         deleteMessage={deleteMessage}
+                                        requestForApprovalHandler={requestForApproval}
                                     />
                                 ) : (
                                     <SenderFileBubble
@@ -209,7 +221,7 @@ const fakeMessages = [{
     type: 'text',
     time: new Date(),
     requestingForApproval: false,
-    approvedState: false
+    approvedState: true
 }, {
     id: 3,
     sender: 'Me',
@@ -227,14 +239,14 @@ const fakeMessages = [{
     }, type: 'file',
     time: new Date(),
     requestingForApproval: true,
-    approvedState: false
+    approvedState: true
 }, {
     id: 5,
     sender: 'NotMe',
     message: 'even 9c760f50-798d-4119-9a5e-b0694af64e27 straight away',
     type: 'text',
     time: new Date(),
-    requestingForApproval: true,
+    requestingForApproval: false,
     approvedState: false
 }, {
     id: 6,
@@ -243,7 +255,7 @@ const fakeMessages = [{
     type: 'text',
     time: new Date(),
     requestingForApproval: true,
-    approvedState: false
+    approvedState: true
 }, {
     id: 7,
     sender: 'Me',
@@ -253,8 +265,8 @@ const fakeMessages = [{
     },
     type: 'file',
     time: new Date(),
-    requestingForApproval: true,
-    approvedState: false
+    requestingForApproval: false,
+    approvedState: true
 }, {
     id: 8,
     sender: 'NotMe',
@@ -262,7 +274,7 @@ const fakeMessages = [{
     type: 'text',
     time: new Date(),
     requestingForApproval: true,
-    approvedState: false
+    approvedState: true
 }, {
     id: 9,
     sender: 'NotMe',
@@ -277,6 +289,6 @@ const fakeMessages = [{
     message: '👍',
     type: 'text',
     time: new Date(),
-    requestingForApproval: true,
-    approvedState: false
+    requestingForApproval: false,
+    approvedState: true
 },]
