@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {BsUiChecks} from 'react-icons/bs';
 import {RiGroup2Fill} from 'react-icons/ri';
-import {HiX} from "react-icons/hi";
+import {HiMenu, HiX} from "react-icons/hi";
 import {MdTopic} from 'react-icons/md';
 import {CgTemplate} from 'react-icons/cg';
 import {IoIosPaper} from 'react-icons/io';
@@ -338,6 +338,19 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                     />
                                 </div>
                                 <div>
+                                    <button
+                                        type="button"
+                                        className="border-none h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900"
+                                        onClick={() => setSidebarOpen(true)}
+                                    >
+                                        <span className="sr-only">
+                                            Open sidebar
+                                        </span>
+                                        <HiMenu
+                                            className="h-6 w-6"
+                                            aria-hidden="true"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                         </div>

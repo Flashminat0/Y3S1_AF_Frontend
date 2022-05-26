@@ -5,7 +5,7 @@ const BlueShortButton = ({btnName, btnFunction}) => {
     return (
         <div>
             <Button
-                className={'h-8'}
+                className={'h-8 text-sm lg:text-base'}
                 color={'primary'}
                 variant="outlined"
                 onClick={() => {

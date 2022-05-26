@@ -29,7 +29,7 @@ const FinalizeGroupWrapper = ({children}) => {
                     </div>
                     <div className={'pr-8'}>
                         <BsPersonBoundingBox
-                            className={'w-24 h-24 text-gray-600'}
+                            className={'w-20 h-20 lg:w-24 lg:h-24 text-gray-600'}
                         />
                     </div>
                 </div>

@@ -17,13 +17,12 @@ const SingleGroupBox = ({
     groupName,
     groupLeader,
     groupLeaderRegNo,
-    maxNo,
     currentNo,
 }) => {
     return (
         <div
             className={
-                'mx-2 lg:mx-10 my-4 px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
+                'mx-0 lg:mx-10 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
             }
         >
             <div className={'flex flex-row justify-between'}>
@@ -51,7 +50,7 @@ const SingleGroupBox = ({
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel className="absolute z-10 right-1/2 transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}
@@ -88,21 +87,21 @@ const SingleGroupBox = ({
                 </div>
             </div>
             <div className={'flex flex-row justify-between items-center'}>
-                <div className={'flex flex-row gap-2 items-center'}>
-                    <div className={'font-medium text-blue-900'}>
+                <div className={'flex flex-row gap-0.5 lg:gap-2 items-center'}>
+                    <div className={'text-sm sm:text-base font-medium text-blue-900'}>
                         Group Leader:
                     </div>
-                    <div className={'text-sm text-gray-500'}>{groupLeader}</div>
-                    <div className={'text-sm text-gray-500'}>
+                    <div className={'text-xs sm:text-sm text-gray-500'}>{groupLeader}</div>
+                    <div className={'text-xs sm:text-sm text-gray-500'}>
                         ({groupLeaderRegNo})
                     </div>
                 </div>
                 <div
                     className={
-                        'px-3 py-0.5 rounded-xl bg-indigo-100 hover:bg-indigo-200 font-medium'
+                        'px-2.5 py-0.5 text-sm rounded-xl bg-indigo-100 hover:bg-indigo-200 font-medium'
                     }
                 >
-                    <span className={'text-gray-500'}>{currentNo}</span>/{maxNo}
+                    <span className={'text-sm text-gray-500'}>{currentNo}</span>/4
                 </div>
             </div>
         </div>
