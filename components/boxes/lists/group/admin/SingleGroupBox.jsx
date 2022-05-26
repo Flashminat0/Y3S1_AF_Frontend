@@ -90,10 +90,16 @@ const SingleGroupBox = ({
             </div>
             <div className={'flex flex-row justify-between items-center'}>
                 <div className={'flex flex-row gap-2 items-center'}>
-                    <div className={'text-sm sm:text-base font-medium text-blue-900'}>
+                    <div
+                        className={
+                            'text-sm sm:text-base font-medium text-blue-900'
+                        }
+                    >
                         Group Leader:
                     </div>
-                    <div className={'text-xs sm:text-sm text-gray-500'}>{groupLeader}</div>
+                    <div className={'text-xs sm:text-sm text-gray-500'}>
+                        {groupLeader}
+                    </div>
                     <div className={'text-xs sm:text-sm text-gray-500'}>
                         ({groupLeaderRegNo})
                     </div>
@@ -103,7 +109,8 @@ const SingleGroupBox = ({
                         'px-2.5 py-0.5 text-sm rounded-xl bg-indigo-100 hover:bg-indigo-200 font-medium'
                     }
                 >
-                    <span className={'text-sm text-gray-500'}>{currentNo}</span>/4
+                    <span className={'text-sm text-gray-500'}>{currentNo}</span>
+                    /4
                 </div>
             </div>
         </div>

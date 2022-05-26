@@ -1,12 +1,8 @@
-import React from 'react';
-import StudentSideBarWrapper from "../../../components/layouts/student/StudentSideBarWrapper";
+import React from 'react'
+import StudentSideBarWrapper from '../../../components/layouts/student/StudentSideBarWrapper'
 
 const Index = () => {
-    return (
-        <StudentSideBarWrapper selectedPageIndex={4}>
+    return <StudentSideBarWrapper selectedPageIndex={4}></StudentSideBarWrapper>
+}
 
-        </StudentSideBarWrapper>
-    );
-};
-
-export default Index;
+export default Index

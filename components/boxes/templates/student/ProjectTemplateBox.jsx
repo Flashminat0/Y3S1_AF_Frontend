@@ -1,6 +1,13 @@
 import React from 'react'
-import {MdDownload} from 'react-icons/md';
-import {DOCXIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon} from "../../../assets/fileicons";
+import {MdDownload} from 'react-icons/md'
+import {
+    DOCXIcon,
+    PDFIcon,
+    PPTXIcon,
+    TXTIcon,
+    VideoIcon,
+    XLSXIcon,
+} from '../../../assets/fileicons'
 
 const ProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => {
     return (
@@ -9,12 +16,36 @@ const ProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => {
                 'grid grid-cols-6 items-center pl-3 gap-4 bg-gray-300 shadow rounded-lg'
             }
         >
-            {fileType === 'pdf' && <><PDFIcon/></>}
-            {(fileType === 'docx' || fileType === 'doc') && <><DOCXIcon/></>}
-            {fileType === 'mp4' && <><VideoIcon/></>}
-            {fileType === 'txt' && <><TXTIcon/></>}
-            {(fileType === 'pptx' || fileType === 'ppt') && <><PPTXIcon/></>}
-            {(fileType === 'xlsx' || fileType === 'xls') && <><XLSXIcon/></>}
+            {fileType === 'pdf' && (
+                <>
+                    <PDFIcon />
+                </>
+            )}
+            {(fileType === 'docx' || fileType === 'doc') && (
+                <>
+                    <DOCXIcon />
+                </>
+            )}
+            {fileType === 'mp4' && (
+                <>
+                    <VideoIcon />
+                </>
+            )}
+            {fileType === 'txt' && (
+                <>
+                    <TXTIcon />
+                </>
+            )}
+            {(fileType === 'pptx' || fileType === 'ppt') && (
+                <>
+                    <PPTXIcon />
+                </>
+            )}
+            {(fileType === 'xlsx' || fileType === 'xls') && (
+                <>
+                    <XLSXIcon />
+                </>
+            )}
             <div
                 className={
                     'col-span-5 px-2 py-2.5 flex flex-col gap-3 bg-gray-100'

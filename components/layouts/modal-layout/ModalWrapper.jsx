@@ -1,7 +1,7 @@
-import React from 'react';
-import {AnimatePresence, motion} from "framer-motion";
-import {Dialog} from "@headlessui/react";
-import Button from "@mui/material/Button";
+import React from 'react'
+import {AnimatePresence, motion} from 'framer-motion'
+import {Dialog} from '@headlessui/react'
+import Button from '@mui/material/Button'
 
 const ModalWrapper = ({children, openModal, setOpenModal, modalTitle}) => {
     return (
@@ -27,8 +27,7 @@ const ModalWrapper = ({children, openModal, setOpenModal, modalTitle}) => {
                                 'fixed inset-0 overflow-y-auto font-susty'
                             }
                         >
-                            <div
-                                className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
+                            <div className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
                                     initial={{scale: 0.8, opacity: 0}}
@@ -62,7 +61,11 @@ const ModalWrapper = ({children, openModal, setOpenModal, modalTitle}) => {
                                             </Button>
                                         </span>
 
-                                        <div className={'flex justify-center pb-3 text-2xl font-medium'}>
+                                        <div
+                                            className={
+                                                'flex justify-center pb-3 text-2xl font-medium'
+                                            }
+                                        >
                                             {modalTitle}
                                         </div>
                                     </Dialog.Title>
@@ -80,7 +83,7 @@ const ModalWrapper = ({children, openModal, setOpenModal, modalTitle}) => {
                 )}
             </AnimatePresence>
         </div>
-    );
-};
+    )
+}
 
-export default ModalWrapper;
+export default ModalWrapper

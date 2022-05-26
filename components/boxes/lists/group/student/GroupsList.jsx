@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
-import StudentModalButtonWrapper from "../../../../layouts/student/StudentModalButtonWrapper";
-import CreateGroupModal from "../../../../modals/student/CreateGroupModal";
+import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
+import CreateGroupModal from '../../../../modals/student/CreateGroupModal'
 
 const studentGroupsStaticData = [
     {
@@ -40,18 +40,24 @@ const placeholder = 'Group Search'
 
 const GroupsList = () => {
     const [studentGroups, setStudentGroups] = useState(studentGroupsStaticData)
-    const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
 
-    const openCreateGroupModal= ()=>{
-        setOpenModal(true);
+    const openCreateGroupModal = () => {
+        setOpenModal(true)
     }
 
     return (
         <div>
-            <StudentModalButtonWrapper btnName={"Create Group"} btnFunction={openCreateGroupModal}>
-                <CreateGroupModal openModal={openModal} setOpenModal={setOpenModal}/>
+            <StudentModalButtonWrapper
+                btnName={'Create Group'}
+                btnFunction={openCreateGroupModal}
+            >
+                <CreateGroupModal
+                    openModal={openModal}
+                    setOpenModal={setOpenModal}
+                />
                 <GroupListWrapper>
-                    <SearchBar placeholder={placeholder}/>
+                    <SearchBar placeholder={placeholder} />
                     <div>
                         {studentGroups.map((studentGroup) => (
                             <SingleGroupBox

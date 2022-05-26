@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button} from "@mui/material";
+import React from 'react'
+import {Button} from '@mui/material'
 
 const BlueShortButton = ({btnName, btnFunction}) => {
     return (
@@ -15,7 +15,7 @@ const BlueShortButton = ({btnName, btnFunction}) => {
                 {btnName}
             </Button>
         </div>
-    );
-};
+    )
+}
 
-export default BlueShortButton;
+export default BlueShortButton
