@@ -1,7 +1,7 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
-import BasicConversationWindow from '../../../components/chat/BasicConversationWIndow'
+import BasicConversationWindow from '../../../components/chat/bubbles/student/BasicConversationWIndow'
 
 const CoSupervisors = () => {
     const router = useRouter()

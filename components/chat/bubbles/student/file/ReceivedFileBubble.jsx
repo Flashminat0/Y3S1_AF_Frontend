@@ -4,7 +4,7 @@ import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Button} from '@mui/material'
 import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
-} from '../../../assets/fileicons'
+} from '../../../../assets/fileicons'
 
 
 const ReceivedFileBubble = ({file}) => {

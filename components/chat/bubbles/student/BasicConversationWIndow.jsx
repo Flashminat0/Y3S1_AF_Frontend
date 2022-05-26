@@ -1,13 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {Divider, Input, InputAdornment} from '@mui/material'
-import SenderTextBubble from './bubbles/text/SenderTextBubble'
-import ReceivedBubble from './bubbles/text/ReceivedTextBubble'
+import SenderTextBubble from './text/SenderTextBubble'
+import ReceivedBubble from './text/ReceivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
-import SenderFileBubble from './bubbles/file/SenderFileBubble'
-import ReceivedFileBubble from "./bubbles/file/ReceivedFileBubble";
+import SenderFileBubble from './file/SenderFileBubble'
+import ReceivedFileBubble from "./file/ReceivedFileBubble";
 import {randomId} from '@mantine/hooks';
-import {LoadingAnimation, NotOkAnimation, OkAnimation} from "../assets/animations";
+import {LoadingAnimation, NotOkAnimation, OkAnimation} from "../../../assets/animations";
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -68,7 +68,7 @@ const BasicConversationWindow = ({receiver, status}) => {
 
         setMessageArray(() => {
             return messageArray.concat([{
-                id: randomId(),
+                id: randomId().toString().split('-')[1],
                 sender: 'Me',
                 message: nowMessage,
                 type: 'text',
@@ -107,6 +107,10 @@ const BasicConversationWindow = ({receiver, status}) => {
             })
         })
     }
+
+    useEffect(() => {
+        console.log(messageArray);
+    }, [messageArray]);
 
     return (<div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
         <div className="flex-none sm:items-center justify-between py-1 border-b-2 border-gray-200">
