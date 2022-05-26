@@ -5,6 +5,7 @@ import ReceivedBubble from './bubbles/text/RecivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './bubbles/file/SenderFileBubble'
+import RecivedFileBubble from "./bubbles/file/RecivedFileBubble";
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -104,7 +105,10 @@ const BasicConversationWindow = ({receiver, status}) => {
                                             isOpened={singleMessage.isOpened}
                                         />
                                     ) : (
-                                        <></>
+                                        <>
+                                            <RecivedFileBubble
+                                                file={singleMessage.message}/>
+                                        </>
                                     )}
                                 </>
                             )}
@@ -114,8 +118,8 @@ const BasicConversationWindow = ({receiver, status}) => {
                 <div ref={myRef}></div>
             </div>
             <Input
-                startAdornment={<AttachmentsIcon />}
-                endAdornment={<SendIcon />}
+                startAdornment={<AttachmentsIcon/>}
+                endAdornment={<SendIcon/>}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
