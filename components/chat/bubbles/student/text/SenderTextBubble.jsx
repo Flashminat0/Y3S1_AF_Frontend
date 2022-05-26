@@ -10,7 +10,8 @@ const SenderTextBubble = ({
                               approvedState,
                               requestingForApproval,
                               deleteMessage,
-                              requestForApprovalHandler
+                              requestForApprovalHandler,
+                              editMessageHandler
                           }) => {
     return (
         <div className="flex items-end justify-end group">
@@ -39,6 +40,8 @@ const SenderTextBubble = ({
                                     <Button
                                         color={'primary'}
                                         variant={'outlined'}
+                                        onClick={() =>
+                                            editMessageHandler(id, message)}
                                     >
                                         Edit
                                     </Button>
@@ -62,7 +65,7 @@ const SenderTextBubble = ({
                                                     requestForApprovalHandler(id)
                                                 }}
                                             >
-                                                {requestingForApproval ? 'Requesting for approval' : 'Ask for Approval'}
+                                                {requestingForApproval ? 'Requested for approval' : 'Ask for Approval'}
                                             </Button>
                                         </> : <>
                                             <Button

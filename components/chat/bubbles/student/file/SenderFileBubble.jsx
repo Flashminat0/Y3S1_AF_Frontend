@@ -5,6 +5,7 @@ import {Button} from '@mui/material'
 import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../../assets/fileicons'
+import {useClipboard} from "@mantine/hooks";
 
 const SenderFileBubble = ({
                               id,
@@ -15,6 +16,8 @@ const SenderFileBubble = ({
                               requestForApprovalHandler
                           }) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
+    const clipboard = useClipboard({ timeout: 800 });
+
 
     return (<div className="flex items-end justify-end group">
         <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -81,9 +84,11 @@ const SenderFileBubble = ({
                             className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                             <Button
                                 color={'primary'}
-                                variant={'outlined'}
+                                variant={clipboard.copied ? 'contained' : 'outlined'}
+                                onClick={() => clipboard.copy(`${file.url}`)}
+
                             >
-                                Edit
+                                Copy URL
                             </Button>
                             <Button
                                 onClick={() => {
@@ -105,7 +110,7 @@ const SenderFileBubble = ({
                                                     requestForApprovalHandler(id)
                                                 }}
                                             >
-                                                {requestingForApproval ? 'Requesting for approval' : 'Ask for Approval'}
+                                                {requestingForApproval ? 'Requested for approval' : 'Ask for Approval'}
                                             </Button>
                                         </> : <>
                                             <Button

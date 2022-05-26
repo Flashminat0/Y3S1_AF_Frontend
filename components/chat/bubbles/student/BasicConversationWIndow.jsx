@@ -6,15 +6,17 @@ import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from "./file/ReceivedFileBubble";
-import {randomId} from '@mantine/hooks';
+import {randomId } from '@mantine/hooks';
 import {LoadingAnimation, NotOkAnimation, OkAnimation} from "../../../assets/animations";
+import EditTextMessageModal from "./EditTextMessageModal";
+
+
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
 
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1);
     const [messageArray, setMessageArray] = useState([])
-
     const [approvalState, setApprovalState] = useState('pending')
 
     useEffect(() => {
@@ -49,6 +51,7 @@ const BasicConversationWindow = ({receiver, status}) => {
             />
         </InputAdornment>)
     }
+
 
 
     useEffect(() => {
@@ -108,9 +111,21 @@ const BasicConversationWindow = ({receiver, status}) => {
         })
     }
 
-    useEffect(() => {
-        console.log(messageArray);
-    }, [messageArray]);
+    const [elevateEditState, setElevateEditState] = useState(false);
+    const [editMessage, setEditMessage] = useState('');
+    const [editMessageId, setEditMessageId] = useState('');
+
+    const editMessageModalOpenHandler = (id, message) => {
+        setEditMessage(message)
+        setEditMessageId(id)
+        setElevateEditState(true)
+    }
+
+    const editMessageModalCloseHandler = () => {
+        setElevateEditState(false)
+        setEditMessage('')
+        setEditMessageId('')
+    }
 
     return (<div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
         <div className="flex-none sm:items-center justify-between py-1 border-b-2 border-gray-200">
@@ -156,6 +171,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         approvedState={singleMessage.approvedState}
                                         deleteMessage={deleteMessage}
                                         requestForApprovalHandler={requestForApproval}
+                                        editMessageHandler={editMessageModalOpenHandler}
                                     />
                                 ) : (
                                     <SenderFileBubble
@@ -176,6 +192,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         message={singleMessage.message}
                                         requestingForApproval={singleMessage.requestingForApproval}
                                         approvedState={singleMessage.approvedState}
+                                        sender={singleMessage.sender}
                                     />
                                 ) : (
                                     <>
@@ -191,6 +208,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                     </div>)
             })}
             <div ref={myRef}></div>
+            <EditTextMessageModal view={elevateEditState} message={editMessage} messageId={editMessageId} editMessageModalCloseHandler={editMessageModalCloseHandler}/>
         </div>
         <Input
             value={nowMessage}
@@ -229,7 +247,7 @@ const fakeMessages = [{
     approvedState: true
 }, {
     id: 3,
-    sender: 'Me',
+    sender: 'NotMe',
     message: 'sympathy general night generous shilling suggest needle product unit holiday class respect',
     type: 'text',
     time: new Date(),
@@ -255,7 +273,7 @@ const fakeMessages = [{
     approvedState: false
 }, {
     id: 6,
-    sender: 'Me',
+    sender: 'NotMe',
     message: 'flag 51fef481-ec39-4875-940d-b99f66ee0a08 drop cousin',
     type: 'text',
     time: new Date(),
@@ -263,7 +281,7 @@ const fakeMessages = [{
     approvedState: true
 }, {
     id: 7,
-    sender: 'Me',
+    sender: 'NotMe',
     message: {
         file: 'File_for_y4s11_project_4_this_is_a_test.mp3',
         url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',

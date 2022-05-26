@@ -5,10 +5,12 @@ import {Button} from '@mui/material'
 import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../../assets/fileicons'
+import {useClipboard} from "@mantine/hooks";
 
 
 const ReceivedFileBubble = ({file}) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
+    const clipboard = useClipboard({ timeout: 800 });
 
     return (<div className="flex items-end">
         <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
@@ -74,16 +76,13 @@ const ReceivedFileBubble = ({file}) => {
                         <Disclosure.Panel
                             className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                             <Button
+                                className={'col-span-2'}
+                                fullWidth={true}
                                 color={'success'}
-                                variant={'outlined'}
+                                variant={clipboard.copied ? 'contained' : 'outlined'}
+                                onClick={() => clipboard.copy(`${file.url}`)}
                             >
-                                Approve
-                            </Button>
-                            <Button
-                                color={'error'}
-                                variant={'outlined'}
-                            >
-                                Deny
+                                {clipboard.copied ? 'Copied !' : 'Copy URL'}
                             </Button>
                         </Disclosure.Panel>
                     </>)}
