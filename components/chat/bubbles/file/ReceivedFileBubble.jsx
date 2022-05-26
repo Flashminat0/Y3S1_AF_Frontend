@@ -7,7 +7,6 @@ import {
 } from '../../../assets/fileicons'
 
 
-
 const ReceivedFileBubble = ({file}) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
 

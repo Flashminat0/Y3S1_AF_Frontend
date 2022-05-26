@@ -6,7 +6,7 @@ import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../assets/fileicons'
 
-const SenderFileBubble = ({file}) => {
+const SenderFileBubble = ({id, file, deleteMessage}) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
 
     return (<div className="flex items-end justify-end group">
@@ -79,6 +79,9 @@ const SenderFileBubble = ({file}) => {
                                 Edit
                             </Button>
                             <Button
+                                onClick={() => {
+                                    deleteMessage(id)
+                                }}
                                 color={'error'}
                                 variant={'outlined'}
                             >
