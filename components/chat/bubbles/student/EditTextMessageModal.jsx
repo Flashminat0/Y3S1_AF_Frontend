@@ -2,18 +2,32 @@ import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import Button from '@mui/material/Button'
-import {Input, InputAdornment} from "@mui/material";
-import {RiSendPlane2Fill} from "react-icons/ri";
+import {Input, InputAdornment} from '@mui/material'
+import {RiSendPlane2Fill} from 'react-icons/ri'
 
-const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHandler, editMessageHandler , editMessageValueHandler}) => {
-
+const EditTextMessageModal = ({
+    view,
+    messageId,
+    message,
+    editMessageModalCloseHandler,
+    editMessageHandler,
+    editMessageValueHandler,
+}) => {
     const SendIcon = () => {
-        return (<InputAdornment position={'end'}>
-            <RiSendPlane2Fill
-                onClick={(x)=>{editMessageHandler(messageId)}}
-                className={`${message.toString().trim().length > 0 ? 'text-indigo-500 cursor-pointer' : 'text-gray-500 '} text-xl hover:shadow-lg`}
-            />
-        </InputAdornment>)
+        return (
+            <InputAdornment position={'end'}>
+                <RiSendPlane2Fill
+                    onClick={(x) => {
+                        editMessageHandler(messageId)
+                    }}
+                    className={`${
+                        message.toString().trim().length > 0
+                            ? 'text-indigo-500 cursor-pointer'
+                            : 'text-gray-500 '
+                    } text-xl hover:shadow-lg`}
+                />
+            </InputAdornment>
+        )
     }
 
     return (
@@ -39,8 +53,7 @@ const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHa
                                 'fixed inset-0 overflow-y-auto font-sans'
                             }
                         >
-                            <div
-                                className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
+                            <div className="flex min-h-full items-center justify-center p-4 text-center bg-gray-700 bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
                                     initial={{scale: 0.8, opacity: 0}}
@@ -78,14 +91,20 @@ const EditTextMessageModal = ({view, messageId, message, editMessageModalCloseHa
                                         <div className="mb-4">
                                             <Input
                                                 value={message}
-                                                endAdornment={<SendIcon/>}
+                                                endAdornment={<SendIcon />}
                                                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                                                 placeholder="Type a message..."
                                                 autoFocus={true}
-                                                onChange={(e) => editMessageValueHandler(e.target.value)}
+                                                onChange={(e) =>
+                                                    editMessageValueHandler(
+                                                        e.target.value
+                                                    )
+                                                }
                                                 onKeyDown={(e) => {
                                                     if (e.key === 'Enter') {
-                                                        editMessageHandler(messageId)
+                                                        editMessageHandler(
+                                                            messageId
+                                                        )
                                                     }
                                                 }}
                                             />

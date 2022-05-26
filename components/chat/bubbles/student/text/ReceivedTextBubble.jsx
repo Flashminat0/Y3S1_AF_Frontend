@@ -2,11 +2,10 @@ import React from 'react'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Disclosure} from '@headlessui/react'
 import {Button} from '@mui/material'
-import { useClipboard } from '@mantine/hooks';
-
+import {useClipboard} from '@mantine/hooks'
 
 const ReceivedBubble = ({message, sender, isOpened}) => {
-    const clipboard = useClipboard({ timeout: 800 });
+    const clipboard = useClipboard({timeout: 800})
 
     return (
         <div className="flex items-end">
@@ -34,13 +33,21 @@ const ReceivedBubble = ({message, sender, isOpened}) => {
                                         className={`col-span-2`}
                                         fullWidth={true}
                                         color={'success'}
-                                        variant={clipboard.copied ? 'contained' : 'outlined'}
-                                        onClick={() => clipboard.copy(`${sender} said : ${message}`)}
-
+                                        variant={
+                                            clipboard.copied
+                                                ? 'contained'
+                                                : 'outlined'
+                                        }
+                                        onClick={() =>
+                                            clipboard.copy(
+                                                `${sender} said : ${message}`
+                                            )
+                                        }
                                     >
-                                        {clipboard.copied ? 'Copied !' : 'Copy Quote'}
+                                        {clipboard.copied
+                                            ? 'Copied !'
+                                            : 'Copy Quote'}
                                     </Button>
-
                                 </Disclosure.Panel>
                             </>
                         )}

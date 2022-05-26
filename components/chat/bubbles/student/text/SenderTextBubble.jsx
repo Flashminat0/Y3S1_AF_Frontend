@@ -5,14 +5,14 @@ import {Button} from '@mui/material'
 
 //we are sending this message
 const SenderTextBubble = ({
-                              id,
-                              message,
-                              approvedState,
-                              requestingForApproval,
-                              deleteMessage,
-                              requestForApprovalHandler,
-                              editMessageHandler
-                          }) => {
+    id,
+    message,
+    approvedState,
+    requestingForApproval,
+    deleteMessage,
+    requestForApprovalHandler,
+    editMessageHandler,
+}) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -20,13 +20,18 @@ const SenderTextBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button
-                                    className="flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75">
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
                                         {message}
-                                        <span className={`text-xs text-gray-300`}>{id.toString().includes('-edited') && <div>
-                                            (edited)
-                                        </div>}</span>
+                                        <span
+                                            className={`text-xs text-gray-300`}
+                                        >
+                                            {id
+                                                .toString()
+                                                .includes('-edited') && (
+                                                <div>(edited)</div>
+                                            )}
+                                        </span>
                                     </span>
                                     <div className={`relative bottom-1 left-2`}>
                                         <RiArrowDropDownLine
@@ -38,13 +43,13 @@ const SenderTextBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         color={'primary'}
                                         variant={'outlined'}
                                         onClick={() =>
-                                            editMessageHandler(id, message)}
+                                            editMessageHandler(id, message)
+                                        }
                                     >
                                         Edit
                                     </Button>
@@ -58,28 +63,43 @@ const SenderTextBubble = ({
                                         Delete
                                     </Button>
                                     <span className={`col-span-2`}>
-                                        {approvedState === null ? <>
-                                            <Button
-                                                disabled={requestingForApproval}
-                                                className={`bg-indigo-600 hover:bg-indigo-700`}
-                                                fullWidth={true}
-                                                variant={'contained'}
-                                                onClick={() => {
-                                                    requestForApprovalHandler(id)
-                                                }}
-                                            >
-                                                {requestingForApproval ? 'Requested for approval' : 'Ask for Approval'}
-                                            </Button>
-                                        </> : <>
-                                            <Button
-                                                className={`${approvedState ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}`}
-                                                fullWidth={true}
-                                                variant={'contained'}
-                                            >
-                                                {approvedState ? 'Approved' : 'Rejected'}
-                                            </Button>
-                                        </>}
-
+                                        {approvedState === null ? (
+                                            <>
+                                                <Button
+                                                    disabled={
+                                                        requestingForApproval
+                                                    }
+                                                    className={`bg-indigo-600 hover:bg-indigo-700`}
+                                                    fullWidth={true}
+                                                    variant={'contained'}
+                                                    onClick={() => {
+                                                        requestForApprovalHandler(
+                                                            id
+                                                        )
+                                                    }}
+                                                >
+                                                    {requestingForApproval
+                                                        ? 'Requested for approval'
+                                                        : 'Ask for Approval'}
+                                                </Button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Button
+                                                    className={`${
+                                                        approvedState
+                                                            ? 'bg-green-600 hover:bg-green-700'
+                                                            : 'bg-red-600 hover:bg-red-700'
+                                                    }`}
+                                                    fullWidth={true}
+                                                    variant={'contained'}
+                                                >
+                                                    {approvedState
+                                                        ? 'Approved'
+                                                        : 'Rejected'}
+                                                </Button>
+                                            </>
+                                        )}
                                     </span>
                                 </Disclosure.Panel>
                             </>
