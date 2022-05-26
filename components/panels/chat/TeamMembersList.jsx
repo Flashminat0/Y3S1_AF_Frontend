@@ -37,7 +37,9 @@ const TeamMembersList = ({memberList}) => {
                         <p className="text-base font-medium text-gray-900 leading-none">
                             {person.name}
                         </p>
-                        <p className="text-sm text-gray-500 leading-none">{person.email}</p>
+                        <p className="text-sm text-gray-500 leading-none">
+                            {person.email}
+                        </p>
                     </div>
                 </motion.div>
             ))}
