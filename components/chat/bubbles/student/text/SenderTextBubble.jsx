@@ -24,6 +24,9 @@ const SenderTextBubble = ({
                                     className="flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
                                         {message}
+                                        <span className={`text-xs text-gray-300`}>{id.toString().includes('-edited') && <div>
+                                            (edited)
+                                        </div>}</span>
                                     </span>
                                     <div className={`relative bottom-1 left-2`}>
                                         <RiArrowDropDownLine
