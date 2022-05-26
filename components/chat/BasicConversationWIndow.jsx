@@ -7,6 +7,7 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './bubbles/file/SenderFileBubble'
 import ReceivedFileBubble from "./bubbles/file/ReceivedFileBubble";
 import {randomId} from '@mantine/hooks';
+import {LoadingAnimation, NotOkAnimation, OkAnimation} from "../assets/animations";
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -14,6 +15,7 @@ const BasicConversationWindow = ({receiver, status}) => {
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1);
     const [messageArray, setMessageArray] = useState([])
 
+    const [approvalState, setApprovalState] = useState('pending')
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -104,18 +106,25 @@ const BasicConversationWindow = ({receiver, status}) => {
                     </h2>
                 </div>
                 <div className=" mt-4 flex md:mt-0 md:ml-4 ">
-                    <button
-                        type="button"
-                        className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Edit
-                    </button>
-                    <button
-                        type="button"
-                        className="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Publish
-                    </button>
+                    {approvalState === 'pending' &&
+                        <>
+                            Pending Approval &nbsp;&nbsp;
+                            <LoadingAnimation/>
+                        </>
+                    }
+                    {approvalState === 'approved' &&
+                        <>
+                            Topic Approved &nbsp;&nbsp;
+                            <OkAnimation/>
+                        </>
+                    }
+                    {approvalState === 'rejected' &&
+                        <>
+                            Topic Rejected &nbsp;&nbsp;
+                            <NotOkAnimation/>
+                        </>
+                    }
+
                 </div>
             </div>
         </div>

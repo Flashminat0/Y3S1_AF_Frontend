@@ -6,7 +6,7 @@ import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../assets/fileicons'
 
-const SenderFileBubble = ({id, file, deleteMessage}) => {
+const SenderFileBubble = ({id,   file, deleteMessage}) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
 
     return (<div className="flex items-end justify-end group">
