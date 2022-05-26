@@ -12,9 +12,17 @@ import {
     TXTIcon,
     VideoIcon,
     XLSXIcon,
-} from '../../../assets/fileicons'
+} from '../../../../assets/fileicons'
+import {useClipboard} from '@mantine/hooks'
 
-const SenderFileBubble = ({file}) => {
+const SenderFileBubble = ({
+    id,
+    file,
+    deleteMessage,
+    requestingForApproval,
+    approvedState,
+    requestForApprovalHandler,
+}) => {
     const fileTypes = [
         'docx',
         'pptx',
@@ -28,6 +36,7 @@ const SenderFileBubble = ({file}) => {
         'mov',
         'mp3',
     ]
+    const clipboard = useClipboard({timeout: 800})
 
     return (
         <div className="flex items-end justify-end group">
@@ -144,24 +153,64 @@ const SenderFileBubble = ({file}) => {
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         color={'primary'}
-                                        variant={'outlined'}
+                                        variant={
+                                            clipboard.copied
+                                                ? 'contained'
+                                                : 'outlined'
+                                        }
+                                        onClick={() =>
+                                            clipboard.copy(`${file.url}`)
+                                        }
                                     >
-                                        Edit
+                                        Copy URL
                                     </Button>
                                     <Button
+                                        onClick={() => {
+                                            deleteMessage(id)
+                                        }}
                                         color={'error'}
                                         variant={'outlined'}
                                     >
                                         Delete
                                     </Button>
                                     <span className={`col-span-2`}>
-                                        <Button
-                                            className={`bg-indigo-600 hover:bg-indigo-700`}
-                                            fullWidth={true}
-                                            variant={'contained'}
-                                        >
-                                            Ask for Approval
-                                        </Button>
+                                        {approvedState === null ? (
+                                            <>
+                                                <Button
+                                                    disabled={
+                                                        requestingForApproval
+                                                    }
+                                                    className={`bg-indigo-600 hover:bg-indigo-700`}
+                                                    fullWidth={true}
+                                                    variant={'contained'}
+                                                    onClick={() => {
+                                                        requestForApprovalHandler(
+                                                            id
+                                                        )
+                                                    }}
+                                                >
+                                                    {requestingForApproval
+                                                        ? 'Requested for approval'
+                                                        : 'Ask for Approval'}
+                                                </Button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Button
+                                                    className={`${
+                                                        approvedState
+                                                            ? 'bg-green-600 hover:bg-green-700'
+                                                            : 'bg-red-600 hover:bg-red-700'
+                                                    }`}
+                                                    fullWidth={true}
+                                                    variant={'contained'}
+                                                >
+                                                    {approvedState
+                                                        ? 'Approved'
+                                                        : 'Rejected'}
+                                                </Button>
+                                            </>
+                                        )}
                                     </span>
                                 </Disclosure.Panel>
                             </>

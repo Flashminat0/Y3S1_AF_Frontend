@@ -2,8 +2,11 @@ import React from 'react'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Disclosure} from '@headlessui/react'
 import {Button} from '@mui/material'
+import {useClipboard} from '@mantine/hooks'
 
 const ReceivedBubble = ({message, sender, isOpened}) => {
+    const clipboard = useClipboard({timeout: 800})
+
     return (
         <div className="flex items-end">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
@@ -27,16 +30,23 @@ const ReceivedBubble = ({message, sender, isOpened}) => {
                                 </Disclosure.Button>
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
+                                        className={`col-span-2`}
+                                        fullWidth={true}
                                         color={'success'}
-                                        variant={'outlined'}
+                                        variant={
+                                            clipboard.copied
+                                                ? 'contained'
+                                                : 'outlined'
+                                        }
+                                        onClick={() =>
+                                            clipboard.copy(
+                                                `${sender} said : ${message}`
+                                            )
+                                        }
                                     >
-                                        Approve
-                                    </Button>
-                                    <Button
-                                        color={'error'}
-                                        variant={'outlined'}
-                                    >
-                                        Deny
+                                        {clipboard.copied
+                                            ? 'Copied !'
+                                            : 'Copy Quote'}
                                     </Button>
                                 </Disclosure.Panel>
                             </>
