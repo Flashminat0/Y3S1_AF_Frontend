@@ -5,7 +5,7 @@ const GreenShortButton = ({btnName, btnFunction}) => {
     return (
         <div>
             <Button
-                className={'h-8'}
+                className={'h-8 text-sm lg:text-base'}
                 color={'success'}
                 variant="outlined"
                 onClick={() => {
