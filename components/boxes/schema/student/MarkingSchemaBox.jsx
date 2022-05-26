@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {MdDownload} from 'react-icons/md'
 import DownloadFileWrapper from '../../../layouts/download-files/DownloadFileWrapper'
+//TODO try this @Swee76
+// import {pdf} from "../../../assets/fileicons";
 
 const markingSchemaFileStaticList = [
     {

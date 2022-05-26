@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
-import {HiMenu, HiUserGroup, HiX} from 'react-icons/hi'
-import {GiBadGnome, GiDevilMask} from 'react-icons/gi'
+import {HiMenu, HiX} from 'react-icons/hi'
 import {Divider} from '@mui/material'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
@@ -11,21 +10,21 @@ const navigation = [
     {
         name: 'Supervisors',
         href: 'supervisors',
-        icon: GiDevilMask,
+        icon: 'https://img.icons8.com/ios/500/000000/futurama-professor-farnsworth.png',
         approved: false,
         selected: false,
     },
     {
         name: 'Co-Supervisors',
         href: 'co-supervisors',
-        icon: GiBadGnome,
+        icon: 'https://img.icons8.com/ios/500/000000/futurama-hermes-conrad.png',
         approved: true,
         selected: false,
     },
     {
         name: 'Team',
         href: 'team',
-        icon: HiUserGroup,
+        icon: 'https://img.icons8.com/ios/500/000000/futurama-fry.png',
         approved: false,
         selected: false,
     },
@@ -154,7 +153,10 @@ const BaseChatWrapper = ({
                                                                                     'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                                                 )}
                                                                             >
-                                                                                <item.icon
+                                                                                <img
+                                                                                    src={
+                                                                                        item.icon
+                                                                                    }
                                                                                     className={classNames(
                                                                                         selectedPageIndex ===
                                                                                             index
@@ -163,6 +165,9 @@ const BaseChatWrapper = ({
                                                                                         'mr-4 h-8 w-8'
                                                                                     )}
                                                                                     aria-hidden="true"
+                                                                                    alt={
+                                                                                        item.name
+                                                                                    }
                                                                                 />
                                                                                 {
                                                                                     item.name
@@ -267,7 +272,9 @@ const BaseChatWrapper = ({
                                                                 'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                             )}
                                                         >
-                                                            <item.icon
+                                                            <img
+                                                                src={item.icon}
+                                                                alt={item.name}
                                                                 className={classNames(
                                                                     selectedPageIndex ===
                                                                         index

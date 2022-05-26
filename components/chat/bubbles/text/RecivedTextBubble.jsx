@@ -1,5 +1,5 @@
 import React from 'react'
-import {BsChevronDown} from 'react-icons/bs'
+import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Disclosure} from '@headlessui/react'
 import {Button} from '@mui/material'
 
@@ -13,15 +13,17 @@ const ReceivedBubble = ({message, sender, isOpened}) => {
                             <>
                                 <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
-                                        Your error message says permission
-                                        denied, npm global installs must be
-                                        given root privileges.
+                                        {message}
                                     </span>
-                                    <BsChevronDown
-                                        className={`${
-                                            open ? 'rotate-180 transform' : ''
-                                        } h-7 w-7 text-gray-600`}
-                                    />
+                                    <div className={`relative bottom-1 left-2`}>
+                                        <RiArrowDropDownLine
+                                            className={`${
+                                                open
+                                                    ? 'rotate-180 transform'
+                                                    : ''
+                                            } h-7 w-7 text-gray-600 `}
+                                        />
+                                    </div>
                                 </Disclosure.Button>
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button

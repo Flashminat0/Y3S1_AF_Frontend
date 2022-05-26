@@ -50,7 +50,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                 return {...message, isOpened: false}
             })
         })
-    }, [messageArray])
+    }, [])
 
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
@@ -82,17 +82,31 @@ const BasicConversationWindow = ({receiver, status}) => {
                     return (
                         <div key={singleMessage.id}>
                             {singleMessage.sender === 'Me' ? (
-                                <SenderTextBubble
-                                    message={singleMessage.message}
-                                    sender={singleMessage.sender}
-                                    isOpened={singleMessage.isOpened}
-                                />
+                                <>
+                                    {singleMessage.type === 'text' ? (
+                                        <SenderTextBubble
+                                            message={singleMessage.message}
+                                            sender={singleMessage.sender}
+                                            isOpened={singleMessage.isOpened}
+                                        />
+                                    ) : (
+                                        <SenderFileBubble
+                                            file={singleMessage.message}
+                                        />
+                                    )}
+                                </>
                             ) : (
-                                <ReceivedBubble
-                                    message={singleMessage.message}
-                                    sender={singleMessage.sender}
-                                    isOpened={singleMessage.isOpened}
-                                />
+                                <>
+                                    {singleMessage.type === 'text' ? (
+                                        <ReceivedBubble
+                                            message={singleMessage.message}
+                                            sender={singleMessage.sender}
+                                            isOpened={singleMessage.isOpened}
+                                        />
+                                    ) : (
+                                        <></>
+                                    )}
+                                </>
                             )}
                         </div>
                     )
@@ -116,49 +130,67 @@ const fakeMessages = [
     {
         id: 1,
         sender: 'Me',
-        message: 'This is a sample message 1',
+        message: 'praise social those trouble week fail peculiar spirit mine ',
+        type: 'text',
         time: new Date(),
     },
     {
         id: 2,
         sender: 'NotMe',
-        message: 'This is a sample message 1',
+        message:
+            'group gold  mention force dozen enclose today race fat spend road',
+        type: 'text',
         time: new Date(),
     },
     {
         id: 3,
         sender: 'Me',
-        message: 'This is a sample message 1',
+        message:
+            'sympathy general night generous shilling suggest needle product unit holiday class respect',
+        type: 'text',
         time: new Date(),
     },
     {
         id: 4,
         sender: 'NotMe',
-        message: 'This is a sample message 1',
+        message: {
+            file: 'abc.pdf',
+            url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
+        },
+        type: 'file',
         time: new Date(),
     },
     {
         id: 5,
         sender: 'NotMe',
-        message: 'This is a sample message 1',
+        message: 'even 9c760f50-798d-4119-9a5e-b0694af64e27 straight away',
+        type: 'text',
         time: new Date(),
     },
     {
         id: 6,
         sender: 'Me',
-        message: 'This is a sample message 1',
+        message: 'flag 51fef481-ec39-4875-940d-b99f66ee0a08 drop cousin',
+        type: 'text',
         time: new Date(),
     },
     {
         id: 7,
         sender: 'Me',
-        message: 'This is a sample message 1',
+        message: {
+            file: 'File_for_y4s11_project_4_this_is_a_test.mp3',
+            url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
+        },
+        type: 'file',
         time: new Date(),
     },
+    {id: 8, sender: 'NotMe', message: 'Ok', type: 'text', time: new Date()},
     {
-        id: 8,
+        id: 9,
         sender: 'NotMe',
-        message: 'This is a sample message 1',
+        message: 'Approved',
+        type: 'text',
         time: new Date(),
     },
+    {id: 10, sender: 'NotMe', message: '👍', type: 'text', time: new Date()},
 ]
