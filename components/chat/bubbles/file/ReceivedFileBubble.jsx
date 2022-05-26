@@ -6,7 +6,9 @@ import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../assets/fileicons'
 
-const SenderFileBubble = ({file}) => {
+
+
+const ReceivedFileBubble = ({file}) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
 
     return (<div className="flex items-end">
@@ -73,26 +75,17 @@ const SenderFileBubble = ({file}) => {
                         <Disclosure.Panel
                             className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                             <Button
-                                color={'primary'}
+                                color={'success'}
                                 variant={'outlined'}
                             >
-                                Edit
+                                Approve
                             </Button>
                             <Button
                                 color={'error'}
                                 variant={'outlined'}
                             >
-                                Delete
+                                Deny
                             </Button>
-                            <span className={`col-span-2`}>
-                                        <Button
-                                            className={`bg-indigo-600 hover:bg-indigo-700`}
-                                            fullWidth={true}
-                                            variant={'contained'}
-                                        >
-                                            Ask for Approval
-                                        </Button>
-                                    </span>
                         </Disclosure.Panel>
                     </>)}
                 </Disclosure>
@@ -106,4 +99,4 @@ const SenderFileBubble = ({file}) => {
     </div>)
 }
 
-export default SenderFileBubble
+export default ReceivedFileBubble

@@ -1,20 +1,23 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {Divider, Input, InputAdornment} from '@mui/material'
 import SenderTextBubble from './bubbles/text/SenderTextBubble'
-import ReceivedBubble from './bubbles/text/RecivedTextBubble'
+import ReceivedBubble from './bubbles/text/ReceivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './bubbles/file/SenderFileBubble'
-import RecivedFileBubble from "./bubbles/file/RecivedFileBubble";
+import ReceivedFileBubble from "./bubbles/file/ReceivedFileBubble";
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
 
-    const [userProfile, setUserProfile] = useState(receiver)
-
+    const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1);
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
-    }, [])
+    }, [scrollToDownTrigger])
+
+    const scrollToDown = () => {
+        setScrollToDownTrigger(scrollToDownTrigger + 1)
+    }
 
     const AttachmentsIcon = () => {
         return (
@@ -38,6 +41,7 @@ const BasicConversationWindow = ({receiver, status}) => {
         return (
             <InputAdornment position={'end'}>
                 <RiSendPlane2Fill
+                    onClick={sendNewMessage}
                     className={`text-indigo-500 text-xl cursor-pointer`}
                 />
             </InputAdornment>
@@ -53,13 +57,38 @@ const BasicConversationWindow = ({receiver, status}) => {
         })
     }, [])
 
+
+    const [nowMessage, setNowMessage] = useState('');
+    const sendNewMessage = () => {
+
+        setMessageArray(() => {
+            return messageArray.concat([{
+                id: messageArray.length + 1,
+                sender: 'Me',
+                message: nowMessage,
+                type: 'text',
+                time: new Date().toLocaleTimeString(),
+            }])
+        })
+
+
+        // Cleanup
+        scrollToDown()
+        setNowMessage('')
+    }
+
+    const sendNewFileAsMessage = (file) => {
+
+    }
+
+
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
             <div className="flex-none sm:items-center justify-between py-1 border-b-2 border-gray-200">
                 <div className="flex items-center justify-between">
                     <div className="flex-1 min-w-0">
                         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                            {userProfile}
+                            {receiver}
                         </h2>
                     </div>
                     <div className=" mt-4 flex md:mt-0 md:ml-4 ">
@@ -106,7 +135,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         />
                                     ) : (
                                         <>
-                                            <RecivedFileBubble
+                                            <ReceivedFileBubble
                                                 file={singleMessage.message}/>
                                         </>
                                     )}
@@ -118,11 +147,18 @@ const BasicConversationWindow = ({receiver, status}) => {
                 <div ref={myRef}></div>
             </div>
             <Input
+                value={nowMessage}
                 startAdornment={<AttachmentsIcon/>}
                 endAdornment={<SendIcon/>}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
+                onChange={(e) => setNowMessage(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        sendNewMessage()
+                    }
+                }}
             />
         </div>
     )
