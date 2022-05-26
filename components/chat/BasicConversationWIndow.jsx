@@ -160,6 +160,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         requestingForApproval={singleMessage.requestingForApproval}
                                         approvedState={singleMessage.approvedState}
                                         deleteMessage={deleteMessage}
+                                        requestForApprovalHandler={requestForApproval}
                                     />
                                 )}
                             </>
@@ -216,7 +217,7 @@ const fakeMessages = [{
     approvedState: false
 }, {
     id: 2,
-    sender: 'NotMe',
+    sender: 'Me',
     message: 'group gold mention force dozen enclose today race fat spend road',
     type: 'text',
     time: new Date(),
@@ -232,7 +233,7 @@ const fakeMessages = [{
     approvedState: false
 }, {
     id: 4,
-    sender: 'NotMe',
+    sender: 'Me',
     message: {
         file: 'abc.pdf',
         url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
@@ -242,7 +243,7 @@ const fakeMessages = [{
     approvedState: true
 }, {
     id: 5,
-    sender: 'NotMe',
+    sender: 'Me',
     message: 'even 9c760f50-798d-4119-9a5e-b0694af64e27 straight away',
     type: 'text',
     time: new Date(),
@@ -265,11 +266,11 @@ const fakeMessages = [{
     },
     type: 'file',
     time: new Date(),
-    requestingForApproval: false,
-    approvedState: true
+    requestingForApproval: true,
+    approvedState: false
 }, {
     id: 8,
-    sender: 'NotMe',
+    sender: 'Me',
     message: 'Ok',
     type: 'text',
     time: new Date(),
@@ -277,12 +278,12 @@ const fakeMessages = [{
     approvedState: true
 }, {
     id: 9,
-    sender: 'NotMe',
+    sender: 'Me',
     message: 'Approved',
     type: 'text',
     time: new Date(),
-    requestingForApproval: true,
-    approvedState: false
+    requestingForApproval: false,
+    approvedState: null
 }, {
     id: 10,
     sender: 'NotMe',

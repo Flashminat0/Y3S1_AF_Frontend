@@ -6,7 +6,14 @@ import {
     AudioFileIcon, DOCXIcon, ImageIcon, OtherFileIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,
 } from '../../../assets/fileicons'
 
-const SenderFileBubble = ({id,   file, deleteMessage}) => {
+const SenderFileBubble = ({
+                              id,
+                              file,
+                              deleteMessage,
+                              requestingForApproval,
+                              approvedState,
+                              requestForApprovalHandler
+                          }) => {
     const fileTypes = ['docx', 'pptx', 'xlsx', 'txt', 'pdf', 'jpg', 'png', 'mp4', 'docx', 'mov', 'mp3',]
 
     return (<div className="flex items-end justify-end group">
@@ -88,13 +95,27 @@ const SenderFileBubble = ({id,   file, deleteMessage}) => {
                                 Delete
                             </Button>
                             <span className={`col-span-2`}>
-                                        <Button
-                                            className={`bg-indigo-600 hover:bg-indigo-700`}
-                                            fullWidth={true}
-                                            variant={'contained'}
-                                        >
-                                            Ask for Approval
-                                        </Button>
+                                        {approvedState === null ? <>
+                                            <Button
+                                                disabled={requestingForApproval}
+                                                className={`bg-indigo-600 hover:bg-indigo-700`}
+                                                fullWidth={true}
+                                                variant={'contained'}
+                                                onClick={() => {
+                                                    requestForApprovalHandler(id)
+                                                }}
+                                            >
+                                                {requestingForApproval ? 'Requesting for approval' : 'Ask for Approval'}
+                                            </Button>
+                                        </> : <>
+                                            <Button
+                                                className={`${approvedState ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'}`}
+                                                fullWidth={true}
+                                                variant={'contained'}
+                                            >
+                                                {approvedState ? 'Approved' : 'Rejected'}
+                                            </Button>
+                                        </>}
                                     </span>
                         </Disclosure.Panel>
                     </>)}
