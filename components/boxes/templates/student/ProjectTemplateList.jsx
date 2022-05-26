@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ProjectTemplateBox from './ProjectTemplateBox'
 import DownloadFileWrapper from '../../../layouts/download-files/DownloadFileWrapper'
+import StudentModalButtonWrapper from "../../../layouts/student/StudentModalButtonWrapper";
 
 const templateFileStaticList = [
     {
@@ -82,33 +83,35 @@ const templateFileStaticList = [
     },
 ]
 
-const ProjectTemplateList = () => {
+const ProjectTemplateList = ({navigateFunc}) => {
     const [templateFileList, setTemplateFileList] = useState(
         templateFileStaticList
     )
 
     return (
         <div>
-            <DownloadFileWrapper
-                topicName={'Project Templates'}
-                btnName={'Download Templates'}
-            >
-                <div
-                    className={
-                        'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
-                    }
+            <StudentModalButtonWrapper btnName={"Check Marking Schema"} btnFunction={navigateFunc}>
+                <DownloadFileWrapper
+                    topicName={'Project Templates'}
+                    btnName={'Download Templates'}
                 >
-                    {templateFileList.map((projectTemp, index) => (
-                        <ProjectTemplateBox
-                            key={index}
-                            fileName={projectTemp.fileName}
-                            fileSize={projectTemp.fileSize}
-                            updatedAt={projectTemp.updatedAt}
-                            fileType={projectTemp.fileType}
-                        />
-                    ))}
-                </div>
-            </DownloadFileWrapper>
+                    <div
+                        className={
+                            'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
+                        }
+                    >
+                        {templateFileList.map((projectTemp, index) => (
+                            <ProjectTemplateBox
+                                key={index}
+                                fileName={projectTemp.fileName}
+                                fileSize={projectTemp.fileSize}
+                                updatedAt={projectTemp.updatedAt}
+                                fileType={projectTemp.fileType}
+                            />
+                        ))}
+                    </div>
+                </DownloadFileWrapper>
+            </StudentModalButtonWrapper>
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGroupWrapper'
 import SingleRequestBox from './SingleRequestBox'
+import StudentModalButtonWrapper from "../../../../layouts/student/StudentModalButtonWrapper";
+import {useRouter} from "next/router";
 
 const requestUsersStaticData = [
     {
@@ -41,23 +43,25 @@ const requestUsersStaticData = [
     },
 ]
 
-const RequestList = () => {
+const RequestList = ({navigateFunc}) => {
     const [requestList, setRequestList] = useState(requestUsersStaticData)
 
     return (
         <div>
-            <FinalizeGroupWrapper>
-                <div>
-                    {requestList.map((request, index) => (
-                        <SingleRequestBox
-                            key={index}
-                            userName={request.userName}
-                            userRegNo={request.userRegNo}
-                            acceptedStatus={request.acceptedStatus}
-                        />
-                    ))}
-                </div>
-            </FinalizeGroupWrapper>
+            <StudentModalButtonWrapper btnName={"Check Group List"} btnFunction={navigateFunc}>
+                <FinalizeGroupWrapper>
+                    <div>
+                        {requestList.map((request, index) => (
+                            <SingleRequestBox
+                                key={index}
+                                userName={request.userName}
+                                userRegNo={request.userRegNo}
+                                acceptedStatus={request.acceptedStatus}
+                            />
+                        ))}
+                    </div>
+                </FinalizeGroupWrapper>
+            </StudentModalButtonWrapper>
         </div>
     )
 }

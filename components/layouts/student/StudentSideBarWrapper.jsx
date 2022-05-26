@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
-import {GiBadGnome, GiDevilMask} from "react-icons/gi";
-import {HiUserGroup, HiX} from "react-icons/hi";
+import {BsUiChecks} from 'react-icons/bs';
+import {RiGroup2Fill} from 'react-icons/ri';
+import {HiX} from "react-icons/hi";
+import {MdTopic} from 'react-icons/md';
+import {CgTemplate} from 'react-icons/cg';
+import {IoIosPaper} from 'react-icons/io';
 import {useRouter} from "next/router";
 import Image from 'next/image'
 import {AnimatePresence, motion} from "framer-motion";
@@ -10,38 +14,28 @@ import {Divider} from "@mui/material";
 const navigation = [
     {
         name: 'Group List',
-        href: 'supervisors',
-        icon: GiDevilMask,
-        approved: false,
-        selected: false,
+        href: 'group-list',
+        icon: RiGroup2Fill
     },
     {
         name: 'Finalize Group',
-        href: 'co-supervisors',
-        icon: GiBadGnome,
-        approved: true,
-        selected: false,
+        href: 'finalize-group',
+        icon: BsUiChecks
     },
     {
         name: 'Topic Submission',
-        href: 'team',
-        icon: HiUserGroup,
-        approved: false,
-        selected: false,
+        href: 'topic-submission',
+        icon: MdTopic
     },
     {
         name: 'Project Templates',
-        href: 'team',
-        icon: HiUserGroup,
-        approved: false,
-        selected: false,
+        href: 'project-templates',
+        icon: CgTemplate
     },
     {
         name: 'Marking Schema',
-        href: 'team',
-        icon: HiUserGroup,
-        approved: false,
-        selected: false,
+        href: 'marking-schema',
+        icon: IoIosPaper
     },
 ]
 
@@ -49,7 +43,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataID, hoveringUserId,}) => {
+const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const router = useRouter()
@@ -61,8 +55,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                     <AnimatePresence>
                         {sidebarOpen && (
                             <motion.div
-                                animate={{ scale: 2 }}
-                                transition={{ duration: 3 }}
+                                animate={{scale: 2}}
+                                transition={{duration: 3}}
                             >
                                 <Dialog
                                     static
@@ -74,25 +68,26 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                     }}
                                 >
                                     <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
+                                        initial={{opacity: 0}}
+                                        animate={{opacity: 1}}
+                                        exit={{opacity: 0}}
                                     >
-                                        <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                                        <div className="fixed inset-0 bg-gray-600 bg-opacity-75"/>
                                     </motion.div>
 
                                     <div className="fixed inset-0 flex z-40 ">
                                         <motion.div
-                                            initial={{ opacity: 0, x: -200 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -300 }}
+                                            initial={{opacity: 0, x: -200}}
+                                            animate={{opacity: 1, x: 0}}
+                                            exit={{opacity: 0, x: -300}}
                                         >
-                                            <Dialog.Panel className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
+                                            <Dialog.Panel
+                                                className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
                                                 <motion.div
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: 1 }}
-                                                    exit={{ opacity: 0 }}
-                                                    transition={{ delay: 0.3 }}
+                                                    initial={{opacity: 0}}
+                                                    animate={{opacity: 1}}
+                                                    exit={{opacity: 0}}
+                                                    transition={{delay: 0.3}}
                                                 >
                                                     <div className="absolute top-0 right-0 -mr-12 pt-2">
                                                         <button
@@ -151,7 +146,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                                             <span
                                                                                 onClick={async () => {
                                                                                     await router.push(
-                                                                                        `/chat/${item.href}`
+                                                                                        `/student/${item.href}`
                                                                                     )
                                                                                 }}
                                                                                 className={classNames(
@@ -168,7 +163,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                                                         index
                                                                                             ? 'text-gray-500'
                                                                                             : 'text-gray-400 group-hover:text-gray-500',
-                                                                                        'mr-4 h-8 w-8'
+                                                                                        'mr-4 h-7 w-7'
                                                                                     )}
                                                                                     aria-hidden="true"
                                                                                 />
@@ -190,7 +185,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                         </div>
                                                     </nav>
                                                 </div>
-                                                <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
+                                                <div
+                                                    className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
                                                     <span className="flex-shrink-0 w-full group block no-underline">
                                                         <div className="grid grid-cols-3">
                                                             <div
@@ -202,7 +198,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                                         alt=""
                                                                     />
-                                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                                    <span
+                                                                        className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                                 </span>
                                                             </div>
                                                             <div className="ml-3 relative col-span-2 bottom-1 right-4">
@@ -263,7 +260,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                         <span
                                                             onClick={async () => {
                                                                 await router.push(
-                                                                    `/chat/${item.href}`
+                                                                    `/student/${item.href}`
                                                                 )
                                                             }}
                                                             className={classNames(
@@ -280,7 +277,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                                     index
                                                                         ? 'text-gray-500'
                                                                         : 'text-gray-400 group-hover:text-gray-500',
-                                                                    'mr-4 h-8 w-8'
+                                                                    'mr-4 h-7 w-7'
                                                                 )}
                                                                 aria-hidden="true"
                                                             />
@@ -308,7 +305,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                         alt=""
                                                     />
-                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                    <span
+                                                        className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                 </span>
                                             </div>
                                             <div className="ml-3 relative col-span-2 bottom-1 right-2">
@@ -323,6 +321,36 @@ const StudentSideBarWrapper = ({children, selectedPageIndex, selectedType, dataI
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
+                        <div className="lg:hidden">
+                            <div
+                                className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+                                <div>
+                                    <Image
+                                        src={
+                                            'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF%20Square.png?alt=media&token=b6185e5e-7e8c-4771-93e9-813c3b7e1d8b'
+                                        }
+                                        width={80}
+                                        height={80}
+                                        alt="logo"
+                                    />
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex-1 relative z-0 flex  ">
+                            <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+                                {/* Start main area*/}
+                                <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 ">
+                                    <div className="min-h-max border-2 border-gray-200 border-dashed rounded-lg w-full">
+                                        {children}
+                                    </div>
+                                </div>
+                                {/* End main area */}
+                            </main>
                         </div>
                     </div>
                 </div>
