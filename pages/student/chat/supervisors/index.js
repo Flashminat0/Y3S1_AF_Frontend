@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
+import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
 import {useDebouncedValue, useDocumentTitle} from '@mantine/hooks'
-import SupervisorChatListSideBar from '../../../components/lists/chatlists/SupervisorChatListSideBar'
-import SupervisorApproval from '../../../components/approvals/SupervisorApproval'
+import SupervisorChatListSideBar from '../../../../components/lists/chatlists/SupervisorChatListSideBar'
+import SupervisorApproval from '../../../../components/approvals/SupervisorApproval'
 import {AnimatePresence} from 'framer-motion'
-import Confetti from '../../../components/approvals/Confetti'
+import Confetti from '../../../../components/approvals/Confetti'
+import {NavigationOnStudentChat} from '../../../../components/common/navigation'
 
 const supervisorsStaticData = [
     {
@@ -54,6 +55,7 @@ const Supervisors = () => {
 
     return (
         <BaseChatWrapper
+            navigation={NavigationOnStudentChat}
             selectedPageIndex={0}
             hoveringUserId={debouncedHoveringUsrId}
         >

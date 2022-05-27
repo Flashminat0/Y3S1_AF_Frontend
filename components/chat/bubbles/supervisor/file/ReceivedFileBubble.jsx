@@ -15,7 +15,14 @@ import {
 } from '../../../../assets/fileicons'
 import {useClipboard} from '@mantine/hooks'
 
-const ReceivedFileBubble = ({file}) => {
+const ReceivedFileBubble = ({
+    id,
+    file,
+    approvedState,
+    approveMessageHandler,
+    disapproveMessageHandler,
+    requestingForApproval,
+}) => {
     const fileTypes = [
         'pdf',
         'docx',
@@ -53,6 +60,7 @@ const ReceivedFileBubble = ({file}) => {
         'mp3',
         'txt',
     ]
+
     const clipboard = useClipboard({timeout: 800})
 
     return (
@@ -236,6 +244,57 @@ const ReceivedFileBubble = ({file}) => {
                                             ? 'Copied !'
                                             : 'Copy URL'}
                                     </Button>
+                                    {requestingForApproval && (
+                                        <>
+                                            {approvedState === null ? (
+                                                <>
+                                                    <Button
+                                                        className={`col-span-1`}
+                                                        fullWidth={true}
+                                                        color={'success'}
+                                                        variant={'outlined'}
+                                                        onClick={() =>
+                                                            approveMessageHandler(
+                                                                id
+                                                            )
+                                                        }
+                                                    >
+                                                        Approve
+                                                    </Button>
+                                                    <Button
+                                                        className={`col-span-1`}
+                                                        fullWidth={true}
+                                                        color={'error'}
+                                                        variant={'outlined'}
+                                                        onClick={() =>
+                                                            disapproveMessageHandler(
+                                                                id
+                                                            )
+                                                        }
+                                                    >
+                                                        Reject
+                                                    </Button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Button
+                                                        className={`col-span-2`}
+                                                        fullWidth={true}
+                                                        color={
+                                                            approvedState
+                                                                ? 'success'
+                                                                : 'error'
+                                                        }
+                                                        variant={'contained'}
+                                                    >
+                                                        {approvedState
+                                                            ? 'Approved'
+                                                            : 'Rejected'}
+                                                    </Button>
+                                                </>
+                                            )}
+                                        </>
+                                    )}
                                 </Disclosure.Panel>
                             </>
                         )}

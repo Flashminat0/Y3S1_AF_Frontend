@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
-import {useDocumentTitle} from '@mantine/hooks'
-import CoSupervisorChatListSideBar from '../../../components/lists/chatlists/CoSupervisorChatListSideBar'
-import CoSuperVisorApproval from '../../../components/approvals/CoSuperVisorApproval'
+import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
+import {useDocumentTitle, useDebouncedValue} from '@mantine/hooks'
+import CoSupervisorChatListSideBar from '../../../../components/lists/chatlists/CoSupervisorChatListSideBar'
+import CoSuperVisorApproval from '../../../../components/approvals/CoSuperVisorApproval'
 import {AnimatePresence} from 'framer-motion'
-import {useDebouncedValue} from '@mantine/hooks'
-import Confetti from '../../../components/approvals/Confetti'
+import Confetti from '../../../../components/approvals/Confetti'
+import {NavigationOnStudentChat} from '../../../../components/common/navigation'
 
 const static_co_supervisors = [
     {
@@ -43,6 +43,7 @@ const CoSupervisors = () => {
 
     return (
         <BaseChatWrapper
+            navigation={NavigationOnStudentChat}
             selectedPageIndex={1}
             hoveringUserId={debouncedHoveringUsrId}
         >

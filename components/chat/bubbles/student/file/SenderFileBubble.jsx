@@ -24,17 +24,41 @@ const SenderFileBubble = ({
     deleteFileMessage,
 }) => {
     const fileTypes = [
-        'docx',
-        'pptx',
-        'xlsx',
-        'txt',
         'pdf',
+        'docx',
+        'doc',
+        'rtf',
+        'odt',
+        'pptx',
+        'xls',
+        'xls',
+        '.xlsx',
+        'mp4',
+        'mkv',
+        'mov',
+        'avi',
+        'wmv',
+        'flv',
+        'm4v',
+        'm4a',
+        'm4b',
+        'm4p',
+        'm4r',
+        'm4v',
         'jpg',
         'png',
-        'mp4',
-        'docx',
-        'mov',
+        'jpg',
+        'jpeg',
+        'gif',
+        'bmp',
+        'tiff',
+        'tif',
+        'psd',
+        'raw',
+        'webp',
+        'svg',
         'mp3',
+        'txt',
     ]
     const clipboard = useClipboard({timeout: 800})
 
@@ -67,64 +91,107 @@ const SenderFileBubble = ({
                                                             )
                                                     ) ? (
                                                         <>
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.pdf'
-                                                                ) && (
-                                                                <PDFIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.docx'
-                                                                ) && (
-                                                                <DOCXIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.pptx'
-                                                                ) && (
-                                                                <PPTXIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.xlsx'
-                                                                ) && (
-                                                                <XLSXIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.mp4' ||
-                                                                        'mkv' ||
-                                                                        'mov'
-                                                                ) && (
-                                                                <VideoIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.png'
-                                                                ) && (
-                                                                <ImageIcon />
-                                                            )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.mp3'
-                                                                ) && (
+                                                            {['pdf'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <PDFIcon />}
+                                                            {[
+                                                                'docx',
+                                                                'doc',
+                                                                'rtf',
+                                                                'odt',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <DOCXIcon />}
+                                                            {['pptx'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <PPTXIcon />}
+                                                            {[
+                                                                'xls',
+                                                                'xls',
+                                                                '.xlsx',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <XLSXIcon />}
+                                                            {[
+                                                                'mp4',
+                                                                'mkv',
+                                                                'mov',
+                                                                'avi',
+                                                                'wmv',
+                                                                'flv',
+                                                                'm4v',
+                                                                'm4a',
+                                                                'm4b',
+                                                                'm4p',
+                                                                'm4r',
+                                                                'm4v',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <VideoIcon />}
+                                                            {[
+                                                                'jpg',
+                                                                'png',
+                                                                'jpg',
+                                                                'jpeg',
+                                                                'gif',
+                                                                'bmp',
+                                                                'tiff',
+                                                                'tif',
+                                                                'psd',
+                                                                'raw',
+                                                                'webp',
+                                                                'svg',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <ImageIcon />}
+                                                            {['mp3'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && (
                                                                 <AudioFileIcon />
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.txt'
-                                                                ) && (
-                                                                <TXTIcon />
-                                                            )}
+                                                            {['txt'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <TXTIcon />}
                                                         </>
                                                     ) : (
                                                         <>

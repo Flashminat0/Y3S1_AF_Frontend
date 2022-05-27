@@ -19,7 +19,6 @@ import {
     getDownloadURL,
     getStorage,
     ref,
-    uploadBytes,
     uploadBytesResumable,
 } from 'firebase/storage'
 
@@ -180,13 +179,26 @@ const BasicConversationWindow = ({receiver, status}) => {
         })
     }
 
-    const requestForApproval = (id) => {
+    const approveMessage = (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
-                if (message.id === id) {
-                    return {...message, requestingForApproval: true}
+                if (message.id === id && message.requestingForApproval) {
+                    return {...message, approvedState: true}
+                } else {
+                    return message
                 }
-                return message
+            })
+        })
+    }
+
+    const disapproveMessage = (id) => {
+        setMessageArray(() => {
+            return messageArray.map((message) => {
+                if (message.id === id && message.requestingForApproval) {
+                    return {...message, approvedState: false}
+                } else {
+                    return message
+                }
             })
         })
     }
@@ -272,16 +284,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         <SenderTextBubble
                                             id={singleMessage.id}
                                             message={singleMessage.message}
-                                            requestingForApproval={
-                                                singleMessage.requestingForApproval
-                                            }
-                                            approvedState={
-                                                singleMessage.approvedState
-                                            }
                                             deleteMessage={deleteMessage}
-                                            requestForApprovalHandler={
-                                                requestForApproval
-                                            }
                                             editMessageHandler={
                                                 editMessageModalOpenHandler
                                             }
@@ -290,15 +293,6 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         <SenderFileBubble
                                             id={singleMessage.id}
                                             file={singleMessage.message}
-                                            requestingForApproval={
-                                                singleMessage.requestingForApproval
-                                            }
-                                            approvedState={
-                                                singleMessage.approvedState
-                                            }
-                                            requestForApprovalHandler={
-                                                requestForApproval
-                                            }
                                             deleteFileMessage={
                                                 deleteFileMessage
                                             }
@@ -311,24 +305,37 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         <ReceivedBubble
                                             id={singleMessage.id}
                                             message={singleMessage.message}
+                                            sender={singleMessage.sender}
                                             requestingForApproval={
                                                 singleMessage.requestingForApproval
                                             }
                                             approvedState={
                                                 singleMessage.approvedState
                                             }
-                                            sender={singleMessage.sender}
+                                            approveMessageHandler={
+                                                approveMessage
+                                            }
+                                            disapproveMessageHandler={
+                                                disapproveMessage
+                                            }
                                         />
                                     ) : (
                                         <>
                                             <ReceivedFileBubble
                                                 id={singleMessage.id}
                                                 file={singleMessage.message}
+                                                sender={singleMessage.sender}
                                                 requestingForApproval={
                                                     singleMessage.requestingForApproval
                                                 }
                                                 approvedState={
                                                     singleMessage.approvedState
+                                                }
+                                                approveMessageHandler={
+                                                    approveMessage
+                                                }
+                                                disapproveMessageHandler={
+                                                    disapproveMessage
                                                 }
                                             />
                                         </>
@@ -411,7 +418,7 @@ const fakeMessages = [
     },
     {
         id: 4,
-        sender: 'Me',
+        sender: 'NotMe',
         message: {
             file: '1212121212-abc.pdf',
             url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
@@ -419,16 +426,16 @@ const fakeMessages = [
         type: 'file',
         time: new Date(),
         requestingForApproval: true,
-        approvedState: true,
+        approvedState: null,
     },
     {
         id: 5,
-        sender: 'Me',
+        sender: 'NotMe',
         message: 'even 9c760f50-798d-4119-9a5e-b0694af64e27 straight away',
         type: 'text',
         time: new Date(),
         requestingForApproval: false,
-        approvedState: false,
+        approvedState: null,
     },
     {
         id: 6,
@@ -449,7 +456,7 @@ const fakeMessages = [
         type: 'file',
         time: new Date(),
         requestingForApproval: true,
-        approvedState: false,
+        approvedState: null,
     },
     {
         id: 8,
@@ -475,7 +482,7 @@ const fakeMessages = [
         message: '👍',
         type: 'text',
         time: new Date(),
-        requestingForApproval: false,
-        approvedState: true,
+        requestingForApproval: true,
+        approvedState: null,
     },
 ]

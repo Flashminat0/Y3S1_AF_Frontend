@@ -21,7 +21,7 @@ const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
                         onMouseEnter={() => onUserHover(singleSupervisor._id)}
                         onClick={async () => {
                             await router.push(
-                                `/chat/supervisors/${singleSupervisor._id}`
+                                `/student/chat/supervisors/${singleSupervisor._id}`
                             )
                         }}
                         // href={SingleSupervisor.href}

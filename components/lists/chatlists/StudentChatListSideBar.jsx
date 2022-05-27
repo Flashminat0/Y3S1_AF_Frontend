@@ -3,13 +3,14 @@ import {useRouter} from 'next/router'
 import {motion} from 'framer-motion'
 import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideBarWrapper'
 
-const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
-    const [co_supervisors, setCo_supervisors] = useState(coSupervisorsList)
+const StudentChatListSideBar = ({studentTeamList, onUserHover}) => {
+    const [teams, setTeams] = useState(studentTeamList)
 
     const router = useRouter()
+
     return (
         <CommonChatListSideBarWrapper>
-            {co_supervisors.map((SingleCoSupervisor, index) => (
+            {teams.map((singleTeam, index) => (
                 <motion.div
                     key={index}
                     whileHover={{scale: 1.1}}
@@ -17,10 +18,10 @@ const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
                 >
                     <span
                         onMouseLeave={() => onUserHover('')}
-                        onMouseEnter={() => onUserHover(SingleCoSupervisor._id)}
+                        onMouseEnter={() => onUserHover(singleTeam._id)}
                         onClick={async () => {
                             await router.push(
-                                `/student/chat/co-supervisors/${SingleCoSupervisor._id}`
+                                `/supervisor/chat/teams/${singleTeam._id}`
                             )
                         }}
                         // href={SingleSupervisor.href}
@@ -29,7 +30,7 @@ const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
                         <span className="inline-block relative">
                             <img
                                 className="h-12 w-12 rounded-md"
-                                src={SingleCoSupervisor.imageUrl}
+                                src={singleTeam.imageUrl}
                                 alt=""
                             />
                             <span className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 block border-2 border-white rounded-full">
@@ -43,4 +44,4 @@ const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
     )
 }
 
-export default CoSupervisorChatListSideBar
+export default StudentChatListSideBar
