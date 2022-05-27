@@ -13,8 +13,15 @@ import {
     OkAnimation,
 } from '../../../assets/animations'
 import EditTextMessageModal from './EditTextMessageModal'
-import {firebaseApp} from "../../../../firebase/base";
-import {deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable} from "firebase/storage";
+import {firebaseApp} from '../../../../firebase/base'
+import {
+    deleteObject,
+    getDownloadURL,
+    getStorage,
+    ref,
+    uploadBytes,
+    uploadBytesResumable,
+} from 'firebase/storage'
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -34,8 +41,7 @@ const BasicConversationWindow = ({receiver, status}) => {
     const AttachmentsIcon = () => {
         return (
             <InputAdornment position={'start'}>
-                <label
-                    htmlFor="file-upload" className="cursor-pointer">
+                <label htmlFor="file-upload" className="cursor-pointer">
                     <FiPaperclip
                         className={`text-indigo-500 text-xl hover:shadow-lg`}
                     />
@@ -100,8 +106,8 @@ const BasicConversationWindow = ({receiver, status}) => {
         setNowMessage('')
     }
 
-    const [uploading, setUploading] = useState(false);
-    const [uploadingProgress, setUploadingProgress] = useState(0);
+    const [uploading, setUploading] = useState(false)
+    const [uploadingProgress, setUploadingProgress] = useState(0)
     const sendNewFileAsMessage = (e) => {
         const file = e.target.files[0]
         const storageRef = getStorage(firebaseApp)
@@ -110,26 +116,26 @@ const BasicConversationWindow = ({receiver, status}) => {
 
         const fileRef = ref(storageRef, `files/${fileName}`)
 
-        const uploadTask = uploadBytesResumable(fileRef, file);
+        const uploadTask = uploadBytesResumable(fileRef, file)
 
-        setUploading(true);
+        setUploading(true)
 
-        uploadTask.on('state_changed',
+        uploadTask.on(
+            'state_changed',
             (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                setUploadingProgress(progress);
+                const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                setUploadingProgress(progress)
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused');
-                        break;
+                        console.log('Upload is paused')
+                        break
                     case 'running':
-                        console.log('Upload is running');
-                        break;
+                        console.log('Upload is running')
+                        break
                 }
             },
-            (error) => {
-
-            },
+            (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then((url) => {
@@ -149,22 +155,21 @@ const BasicConversationWindow = ({receiver, status}) => {
                                 },
                             ])
                         })
-                    }).then((x) => {
-                    scrollToDown()
-                    setUploading(false);
-                    setUploadingProgress(0)
-                })
+                    })
+                    .then((x) => {
+                        scrollToDown()
+                        setUploading(false)
+                        setUploadingProgress(0)
+                    })
             }
-        );
+        )
     }
-
 
     const deleteMessage = (id) => {
         setMessageArray(() => {
             return messageArray.filter((message) => message.id !== id)
         })
     }
-
 
     const deleteFileMessage = (id, filename) => {
         const storageRef = getStorage(firebaseApp)
@@ -174,7 +179,6 @@ const BasicConversationWindow = ({receiver, status}) => {
             deleteMessage(id)
         })
     }
-
 
     const requestForApproval = (id) => {
         setMessageArray(() => {
@@ -186,7 +190,6 @@ const BasicConversationWindow = ({receiver, status}) => {
             })
         })
     }
-
 
     const [elevateEditState, setElevateEditState] = useState(false)
     const [editMessage, setEditMessage] = useState('')
@@ -241,19 +244,19 @@ const BasicConversationWindow = ({receiver, status}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation/>
+                                <LoadingAnimation />
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation/>
+                                <OkAnimation />
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation/>
+                                <NotOkAnimation />
                             </>
                         )}
                     </div>
@@ -296,7 +299,9 @@ const BasicConversationWindow = ({receiver, status}) => {
                                             requestForApprovalHandler={
                                                 requestForApproval
                                             }
-                                            deleteFileMessage={deleteFileMessage}
+                                            deleteFileMessage={
+                                                deleteFileMessage
+                                            }
                                         />
                                     )}
                                 </>
@@ -343,16 +348,20 @@ const BasicConversationWindow = ({receiver, status}) => {
                     editMessageValueHandler={editMessageValueHandler}
                 />
             </div>
-            {uploading && <>
-                <LinearProgress variant="determinate" color={"success"} value={uploadingProgress}/>
-            </>
-            }
-
+            {uploading && (
+                <>
+                    <LinearProgress
+                        variant="determinate"
+                        color={'success'}
+                        value={uploadingProgress}
+                    />
+                </>
+            )}
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon/>}
-                endAdornment={<SendIcon/>}
+                startAdornment={<AttachmentsIcon />}
+                endAdornment={<SendIcon />}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
