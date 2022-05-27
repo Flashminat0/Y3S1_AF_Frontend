@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import BaseChatWrapper from "../../../../components/layouts/chat/BaseChatWrapper";
 import {NavigationOnSupervisorChat} from "../../../../components/common/navigation";
 import {AnimatePresence} from "framer-motion";
-import SupervisorChatListSideBar from "../../../../components/lists/chatlists/SupervisorChatListSideBar";
 import {useDebouncedValue} from "@mantine/hooks";
 import StudentChatListSideBar from "../../../../components/lists/chatlists/StudentChatListSideBar";
 
