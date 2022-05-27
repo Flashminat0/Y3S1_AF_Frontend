@@ -1,9 +1,9 @@
 import React from 'react'
-import StudentSideBarWrapper from '../../../components/layouts/student/StudentSideBarWrapper'
-import RequestList from '../../../components/boxes/lists/requests/student/RequestList'
+import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
+import RequestList from '../../components/boxes/lists/requests/student/RequestList'
 import {useRouter} from 'next/router'
 
-const Index = () => {
+const FinalizeGroup = () => {
     const router = useRouter()
 
     const openGroupListPage = async () => {
@@ -17,4 +17,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default FinalizeGroup
