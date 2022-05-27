@@ -180,13 +180,26 @@ const BasicConversationWindow = ({receiver, status}) => {
         })
     }
 
-    const requestForApproval = (id) => {
+    const approveMessage = (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
-                if (message.id === id) {
-                    return {...message, requestingForApproval: true}
+                if (message.id === id && !message.requestingForApproval) {
+                    return {...message, approvedState: true}
+                } else {
+                    return message
                 }
-                return message
+            })
+        })
+    }
+
+    const disapproveMessage = (id) => {
+        setMessageArray(() => {
+            return messageArray.map((message) => {
+                if (message.id === id && !message.requestingForApproval) {
+                    return {...message, approvedState: false}
+                } else {
+                    return message
+                }
             })
         })
     }
@@ -293,13 +306,11 @@ const BasicConversationWindow = ({receiver, status}) => {
                                         <ReceivedBubble
                                             id={singleMessage.id}
                                             message={singleMessage.message}
-                                            requestingForApproval={
-                                                singleMessage.requestingForApproval
-                                            }
-                                            approvedState={
-                                                singleMessage.approvedState
-                                            }
+                                            requestingForApproval={singleMessage.requestingForApproval}
+                                            approvedState={singleMessage.approvedState}
                                             sender={singleMessage.sender}
+                                            approveMessageHandler={approveMessage}
+                                            disapproveMessageHandler={disapproveMessage}
                                         />
                                     ) : (
                                         <>
@@ -405,12 +416,12 @@ const fakeMessages = [
     },
     {
         id: 5,
-        sender: 'Me',
+        sender: 'NotMe',
         message: 'even 9c760f50-798d-4119-9a5e-b0694af64e27 straight away',
         type: 'text',
         time: new Date(),
         requestingForApproval: false,
-        approvedState: false,
+        approvedState: null,
     },
     {
         id: 6,
