@@ -3,7 +3,7 @@ import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const CommonModal = ({view , deleteTopic , tid , setDeleteView}) => {
+const CommonModal = ({view, deleteTopic, tid, setDeleteView}) => {
     const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {
@@ -53,14 +53,14 @@ const CommonModal = ({view , deleteTopic , tid , setDeleteView}) => {
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false);
+                                                setOpenModal(false)
                                             }}
                                         >
                                             <Button
                                                 color={'error'}
                                                 onClick={() => {
-                                                    setOpenModal(false);
-                                                    setDeleteView(false);
+                                                    setOpenModal(false)
+                                                    setDeleteView(false)
                                                 }}
                                                 variant="text"
                                             >
@@ -73,23 +73,24 @@ const CommonModal = ({view , deleteTopic , tid , setDeleteView}) => {
                                                 'flex justify-center text-lg font-thin mt-5 pt-2'
                                             }
                                         >
-                                            Are you sure want to Delete this Topic?
+                                            Are you sure want to Delete this
+                                            Topic?
                                         </p>
                                     </Dialog.Title>
                                     <div>
                                         <div className="mb-4">
                                             <div className="text-lg leading-6 font-medium text-gray-900">
-                                            <Button
-                                                color={'error'}
-                                                onClick={() => {
-                                                    setOpenModal(false);
-                                                    deleteTopic(tid);
-                                                    setDeleteView(false);
-                                                }}
-                                                variant="text"
-                                            >
-                                                Delete
-                                            </Button>
+                                                <Button
+                                                    color={'error'}
+                                                    onClick={() => {
+                                                        setOpenModal(false)
+                                                        deleteTopic(tid)
+                                                        setDeleteView(false)
+                                                    }}
+                                                    variant="text"
+                                                >
+                                                    Delete
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>
