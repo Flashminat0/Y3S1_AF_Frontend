@@ -1,29 +1,42 @@
 import React, {useState} from 'react'
-import AdminModalButtonWrapper from "../../../../layouts/admin/AdminModalButtonWrapper";
-import GroupListWrapper from "../../../../layouts/user/group/GroupListWrapper";
-import SearchBar from "../../../../searchbar/SearchBar";
-import SingleTopicBox from "./SingleTopicBox";
+import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
+import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
+import SearchBar from '../../../../searchbar/SearchBar'
+import SingleTopicBox from './SingleTopicBox'
 
-const tagsStaticData = [{id: 1, tagsArray: ["Julia", "Matlab", "Python", "R"]}, {
-    id: 2,
-    tagsArray: ["Java", "Perl", "Python", "SQL", "C"]
-}, {id: 3, tagsArray: ["C++", "PHP", "Python", "R"]}, {
-    id: 4,
-    tagsArray: ["Javascript", "C#", "Python", "SQL", "nextJS"]
-}, {id: 5, tagsArray: ["Maple", "Visual Basic", "Fortran"]}]
+const tagsStaticData = [
+    {id: 1, tagsArray: ['Julia', 'Matlab', 'Python', 'R']},
+    {
+        id: 2,
+        tagsArray: ['Java', 'Perl', 'Python', 'SQL', 'C'],
+    },
+    {id: 3, tagsArray: ['C++', 'PHP', 'Python', 'R']},
+    {
+        id: 4,
+        tagsArray: ['Javascript', 'C#', 'Python', 'SQL', 'nextJS'],
+    },
+    {id: 5, tagsArray: ['Maple', 'Visual Basic', 'Fortran']},
+]
 
 const placeholder = 'Tags Search'
 
 const TopicInfoList = ({navigateFunc}) => {
-    const [tagsSet, setTagsSet] = useState(tagsStaticData);
+    const [tagsSet, setTagsSet] = useState(tagsStaticData)
 
     return (
-        <AdminModalButtonWrapper btnName={"Check Group List"} btnFunction={navigateFunc}>
+        <AdminModalButtonWrapper
+            btnName={'Check Group List'}
+            btnFunction={navigateFunc}
+        >
             <GroupListWrapper>
-                <SearchBar placeholder={placeholder}/>
+                <SearchBar placeholder={placeholder} />
                 <div>
-                    {tagsSet.map((tag)=>(
-                        <SingleTopicBox key={tag.id} tagsArray={tag.tagsArray} pageId={tag.id}/>
+                    {tagsSet.map((tag) => (
+                        <SingleTopicBox
+                            key={tag.id}
+                            tagsArray={tag.tagsArray}
+                            pageId={tag.id}
+                        />
                     ))}
                 </div>
             </GroupListWrapper>

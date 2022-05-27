@@ -1,9 +1,21 @@
 import React from 'react'
-import {DOCXIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon} from "../../../assets/fileicons";
-import {MdDownload} from "react-icons/md";
-import RedShortButton from "../../../buttons/short-button/RedShortButton";
+import {
+    DOCXIcon,
+    PDFIcon,
+    PPTXIcon,
+    TXTIcon,
+    VideoIcon,
+    XLSXIcon,
+} from '../../../assets/fileicons'
+import {MdDownload} from 'react-icons/md'
+import RedShortButton from '../../../buttons/short-button/RedShortButton'
 
-const UploadProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => {
+const UploadProjectTemplateBox = ({
+    fileName,
+    fileSize,
+    updatedAt,
+    fileType,
+}) => {
     return (
         <div className={'grid grid-cols-10 lg:grid-cols-7 gap-2 lg:gap-5'}>
             <div
@@ -54,7 +66,9 @@ const UploadProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => 
                         >
                             {fileName}
                         </div>
-                        <MdDownload className={'col-start-8 col-end-9 w-5 h-5'} />
+                        <MdDownload
+                            className={'col-start-8 col-end-9 w-5 h-5'}
+                        />
                     </div>
                     <div className={'grid grid-cols-8 items-center'}>
                         <div
@@ -74,7 +88,7 @@ const UploadProjectTemplateBox = ({fileName, fileSize, updatedAt, fileType}) => 
                     </div>
                 </div>
             </div>
-            <RedShortButton className={'col-span-1'} btnName={'Remove'}/>
+            <RedShortButton className={'col-span-1'} btnName={'Remove'} />
         </div>
     )
 }

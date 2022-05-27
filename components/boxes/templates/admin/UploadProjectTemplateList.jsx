@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import StudentModalButtonWrapper from '../../../layouts/student/StudentModalButtonWrapper'
-import AdminModalButtonWrapper from "../../../layouts/admin/AdminModalButtonWrapper";
-import UploadTemplatesWrapper from "../../../layouts/upload-template/UploadTemplatesWrapper";
-import UploadProjectTemplateBox from "./UploadProjectTemplateBox";
+import AdminModalButtonWrapper from '../../../layouts/admin/AdminModalButtonWrapper'
+import UploadTemplatesWrapper from '../../../layouts/upload-template/UploadTemplatesWrapper'
+import UploadProjectTemplateBox from './UploadProjectTemplateBox'
 
 const templateFileStaticList = [
     {
@@ -90,12 +90,19 @@ const UploadProjectTemplateList = ({navigateFunc}) => {
     )
 
     return (
-        <AdminModalButtonWrapper btnName={'Check Topic List'} btnFunction={navigateFunc}>
+        <AdminModalButtonWrapper
+            btnName={'Check Topic List'}
+            btnFunction={navigateFunc}
+        >
             <UploadTemplatesWrapper>
                 <div className={'flex flex-col gap-3'}>
                     {templateFileList.map((file) => (
-                        <UploadProjectTemplateBox fileName={file.fileName} fileSize={file.fileSize}
-                                                  updatedAt={file.updatedAt} fileType={file.fileType}/>
+                        <UploadProjectTemplateBox
+                            fileName={file.fileName}
+                            fileSize={file.fileSize}
+                            updatedAt={file.updatedAt}
+                            fileType={file.fileType}
+                        />
                     ))}
                 </div>
             </UploadTemplatesWrapper>

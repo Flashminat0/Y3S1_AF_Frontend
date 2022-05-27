@@ -1,15 +1,11 @@
-import React from 'react';
-import {useRouter} from "next/router";
+import React from 'react'
+import {useRouter} from 'next/router'
 
 const TopicTag = () => {
     const router = useRouter()
     const {topic_tag} = router.query
 
-    return (
-        <div>
-            {topic_tag}
-        </div>
-    );
-};
+    return <div>{topic_tag}</div>
+}
 
-export default TopicTag;
+export default TopicTag
