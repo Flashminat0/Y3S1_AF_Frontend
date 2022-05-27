@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Divider, Input, InputAdornment} from '@mui/material'
+import {Input, InputAdornment, LinearProgress} from '@mui/material'
 import SenderTextBubble from './text/SenderTextBubble'
 import ReceivedBubble from './text/ReceivedTextBubble'
 import {FiPaperclip} from 'react-icons/fi'
@@ -13,6 +13,15 @@ import {
     OkAnimation,
 } from '../../../assets/animations'
 import EditTextMessageModal from './EditTextMessageModal'
+import {firebaseApp} from '../../../../firebase/base'
+import {
+    deleteObject,
+    getDownloadURL,
+    getStorage,
+    ref,
+    uploadBytes,
+    uploadBytesResumable,
+} from 'firebase/storage'
 
 const BasicConversationWindow = ({receiver, status}) => {
     const myRef = useRef(null)
@@ -41,6 +50,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                         name="file-upload"
                         type="file"
                         className="sr-only"
+                        onChange={sendNewFileAsMessage}
                     />
                 </label>
             </InputAdornment>
@@ -96,11 +106,77 @@ const BasicConversationWindow = ({receiver, status}) => {
         setNowMessage('')
     }
 
-    const sendNewFileAsMessage = (file) => {}
+    const [uploading, setUploading] = useState(false)
+    const [uploadingProgress, setUploadingProgress] = useState(0)
+    const sendNewFileAsMessage = (e) => {
+        const file = e.target.files[0]
+        const storageRef = getStorage(firebaseApp)
+
+        const fileName = `${Date.now()}-${file.name}`
+
+        const fileRef = ref(storageRef, `files/${fileName}`)
+
+        const uploadTask = uploadBytesResumable(fileRef, file)
+
+        setUploading(true)
+
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+                const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                setUploadingProgress(progress)
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused')
+                        break
+                    case 'running':
+                        console.log('Upload is running')
+                        break
+                }
+            },
+            (error) => {},
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then((url) => {
+                        setMessageArray(() => {
+                            return messageArray.concat([
+                                {
+                                    id: randomId().toString().split('-')[1],
+                                    sender: 'Me',
+                                    message: {
+                                        file: fileName,
+                                        url: url,
+                                    },
+                                    type: 'file',
+                                    time: new Date().toLocaleTimeString(),
+                                    requestingForApproval: false,
+                                    approvedState: null,
+                                },
+                            ])
+                        })
+                    })
+                    .then((x) => {
+                        scrollToDown()
+                        setUploading(false)
+                        setUploadingProgress(0)
+                    })
+            }
+        )
+    }
 
     const deleteMessage = (id) => {
         setMessageArray(() => {
             return messageArray.filter((message) => message.id !== id)
+        })
+    }
+
+    const deleteFileMessage = (id, filename) => {
+        const storageRef = getStorage(firebaseApp)
+        const fileRef = ref(storageRef, `files/${filename}`)
+
+        deleteObject(fileRef).then(() => {
+            deleteMessage(id)
         })
     }
 
@@ -220,9 +296,11 @@ const BasicConversationWindow = ({receiver, status}) => {
                                             approvedState={
                                                 singleMessage.approvedState
                                             }
-                                            deleteMessage={deleteMessage}
                                             requestForApprovalHandler={
                                                 requestForApproval
+                                            }
+                                            deleteFileMessage={
+                                                deleteFileMessage
                                             }
                                         />
                                     )}
@@ -270,6 +348,16 @@ const BasicConversationWindow = ({receiver, status}) => {
                     editMessageValueHandler={editMessageValueHandler}
                 />
             </div>
+            {uploading && (
+                <>
+                    <LinearProgress
+                        variant="determinate"
+                        color={'success'}
+                        value={uploadingProgress}
+                    />
+                </>
+            )}
+
             <Input
                 value={nowMessage}
                 startAdornment={<AttachmentsIcon />}
@@ -324,7 +412,7 @@ const fakeMessages = [
         id: 4,
         sender: 'Me',
         message: {
-            file: 'abc.pdf',
+            file: '1212121212-abc.pdf',
             url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
         },
         type: 'file',
@@ -354,7 +442,7 @@ const fakeMessages = [
         id: 7,
         sender: 'NotMe',
         message: {
-            file: 'File_for_y4s11_project_4_this_is_a_test.mp3',
+            file: '32323232-File_for_y4s11_project_4_this_is_a_test.mp3',
             url: 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce',
         },
         type: 'file',

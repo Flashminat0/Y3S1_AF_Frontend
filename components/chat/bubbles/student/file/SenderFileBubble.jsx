@@ -18,10 +18,10 @@ import {useClipboard} from '@mantine/hooks'
 const SenderFileBubble = ({
     id,
     file,
-    deleteMessage,
     requestingForApproval,
     approvedState,
     requestForApprovalHandler,
+    deleteFileMessage,
 }) => {
     const fileTypes = [
         'docx',
@@ -134,9 +134,17 @@ const SenderFileBubble = ({
                                                 </>
                                             </div>
                                             <div
-                                                className={`col-span-7 my-auto`}
+                                                className={`col-span-7 my-auto truncate`}
                                             >
-                                                {file.file.substring(0, 20)}
+                                                {file.file
+                                                    .toString()
+                                                    .slice(
+                                                        file.file
+                                                            .toString()
+                                                            .indexOf('-') + 1,
+                                                        file.file.toString()
+                                                            .length
+                                                    )}
                                             </div>
                                         </div>
                                     </span>
@@ -166,7 +174,7 @@ const SenderFileBubble = ({
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            deleteMessage(id)
+                                            deleteFileMessage(id, file.file)
                                         }}
                                         color={'error'}
                                         variant={'outlined'}

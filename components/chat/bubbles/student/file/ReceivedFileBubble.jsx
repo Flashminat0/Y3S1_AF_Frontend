@@ -127,9 +127,17 @@ const ReceivedFileBubble = ({file}) => {
                                                 </>
                                             </div>
                                             <div
-                                                className={`col-span-7 my-auto`}
+                                                className={`col-span-7 my-auto truncate `}
                                             >
-                                                {file.file.substring(0, 20)}
+                                                {file.file
+                                                    .toString()
+                                                    .slice(
+                                                        file.file
+                                                            .toString()
+                                                            .indexOf('-') + 1,
+                                                        file.file.toString()
+                                                            .length
+                                                    )}
                                             </div>
                                         </div>
                                     </span>
