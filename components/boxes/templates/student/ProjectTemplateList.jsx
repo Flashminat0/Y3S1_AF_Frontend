@@ -89,33 +89,31 @@ const ProjectTemplateList = ({navigateFunc}) => {
     )
 
     return (
-        <div>
-            <StudentModalButtonWrapper
-                btnName={'Check Marking Schema'}
-                btnFunction={navigateFunc}
+        <StudentModalButtonWrapper
+            btnName={'Check Marking Schema'}
+            btnFunction={navigateFunc}
+        >
+            <DownloadFileWrapper
+                topicName={'Project Templates'}
+                btnName={'Download Templates'}
             >
-                <DownloadFileWrapper
-                    topicName={'Project Templates'}
-                    btnName={'Download Templates'}
+                <div
+                    className={
+                        'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
+                    }
                 >
-                    <div
-                        className={
-                            'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
-                        }
-                    >
-                        {templateFileList.map((projectTemp, index) => (
-                            <ProjectTemplateBox
-                                key={index}
-                                fileName={projectTemp.fileName}
-                                fileSize={projectTemp.fileSize}
-                                updatedAt={projectTemp.updatedAt}
-                                fileType={projectTemp.fileType}
-                            />
-                        ))}
-                    </div>
-                </DownloadFileWrapper>
-            </StudentModalButtonWrapper>
-        </div>
+                    {templateFileList.map((projectTemp) => (
+                        <ProjectTemplateBox
+                            key={projectTemp.id}
+                            fileName={projectTemp.fileName}
+                            fileSize={projectTemp.fileSize}
+                            updatedAt={projectTemp.updatedAt}
+                            fileType={projectTemp.fileType}
+                        />
+                    ))}
+                </div>
+            </DownloadFileWrapper>
+        </StudentModalButtonWrapper>
     )
 }
 
