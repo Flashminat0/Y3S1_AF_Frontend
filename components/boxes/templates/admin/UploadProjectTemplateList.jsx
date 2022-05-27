@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import StudentModalButtonWrapper from '../../../layouts/student/StudentModalButtonWrapper'
+import AdminModalButtonWrapper from "../../../layouts/admin/AdminModalButtonWrapper";
+import UploadTemplatesWrapper from "../../../layouts/upload-template/UploadTemplatesWrapper";
 
 const templateFileStaticList = [
     {
@@ -81,18 +83,17 @@ const templateFileStaticList = [
     },
 ]
 
-const UploadProjectTemplateList = () => {
+const UploadProjectTemplateList = ({navigateFunc}) => {
     const [templateFileList, setTemplateFileList] = useState(
         templateFileStaticList
     )
 
     return (
-        <div>
-            <StudentModalButtonWrapper
-                btnName={''}
-                btnFunction={''}
-            ></StudentModalButtonWrapper>
-        </div>
+        <AdminModalButtonWrapper btnName={'Check Topic List'} btnFunction={navigateFunc}>
+          <UploadTemplatesWrapper btnFunction={}>
+
+          </UploadTemplatesWrapper>
+        </AdminModalButtonWrapper>
     )
 }
 
