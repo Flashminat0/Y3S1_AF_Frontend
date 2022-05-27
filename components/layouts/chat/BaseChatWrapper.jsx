@@ -6,29 +6,7 @@ import {Divider} from '@mui/material'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 
-const navigation = [
-    {
-        name: 'Supervisors',
-        href: 'supervisors',
-        icon: 'https://img.icons8.com/ios/500/000000/futurama-professor-farnsworth.png',
-        approved: false,
-        selected: false,
-    },
-    {
-        name: 'Co-Supervisors',
-        href: 'co-supervisors',
-        icon: 'https://img.icons8.com/ios/500/000000/futurama-hermes-conrad.png',
-        approved: true,
-        selected: false,
-    },
-    {
-        name: 'Team',
-        href: 'team',
-        icon: 'https://img.icons8.com/ios/500/000000/futurama-fry.png',
-        approved: false,
-        selected: false,
-    },
-]
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,6 +18,7 @@ const BaseChatWrapper = ({
     selectedType,
     dataID,
     hoveringUserId,
+    navigation
 }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -142,7 +121,7 @@ const BaseChatWrapper = ({
                                                                             <span
                                                                                 onClick={async () => {
                                                                                     await router.push(
-                                                                                        `/chat/${item.href}`
+                                                                                        `${item.href}`
                                                                                     )
                                                                                 }}
                                                                                 className={classNames(
@@ -261,7 +240,7 @@ const BaseChatWrapper = ({
                                                         <span
                                                             onClick={async () => {
                                                                 await router.push(
-                                                                    `/chat/${item.href}`
+                                                                    `${item.href}`
                                                                 )
                                                             }}
                                                             className={classNames(

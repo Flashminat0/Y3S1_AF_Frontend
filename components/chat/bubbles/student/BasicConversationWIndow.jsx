@@ -338,6 +338,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                         </div>
                     )
                 })}
+
                 <div ref={myRef}></div>
                 <EditTextMessageModal
                     view={elevateEditState}
