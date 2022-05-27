@@ -3,13 +3,13 @@ import GreenFullButton from "../../buttons/full-button/GreenFullButton";
 import YellowFullButton from "../../buttons/full-button/YellowFullButton";
 import {BsFillTagsFill} from 'react-icons/bs';
 
-const UploadTemplatesWrapper = ({children, btnFunction}) => {
+const UploadTemplatesWrapper = ({children}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
-            <div className="flex text-sm text-gray-600">
+            <div className="text-sm max-w-full">
                 <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                    className="cursor-pointer px-[4.5rem] sm:px-[10rem] md:px-[21.25rem] lg:px-[23.25rem] py-1.5 text-xl max-w-fit bg-white hover:bg-green-50 uppercase rounded-sm font-medium text-green-700 outline outline-1 outline-green-500 focus-within:ring-1 focus-within:ring-offset-2 focus-within:ring-green-500"
                 >
                     <span>Upload Templates</span>
                     <input id="file-upload"
@@ -18,7 +18,6 @@ const UploadTemplatesWrapper = ({children, btnFunction}) => {
                            accept="image/*"
                            className="sr-only"/>
                 </label>
-                <p className="pl-1">that clearly represents the content</p>
             </div>
             <div className={'px-3 py-3 my-5 bg-gray-100 shadow rounded-lg'}>
                 <div className={'flex flex-row justify-between items-center'}>
