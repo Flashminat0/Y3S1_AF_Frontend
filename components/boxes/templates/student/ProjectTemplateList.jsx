@@ -102,9 +102,9 @@ const ProjectTemplateList = ({navigateFunc}) => {
                         'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-5'
                     }
                 >
-                    {templateFileList.map((projectTemp, index) => (
+                    {templateFileList.map((projectTemp) => (
                         <ProjectTemplateBox
-                            key={index}
+                            key={projectTemp.id}
                             fileName={projectTemp.fileName}
                             fileSize={projectTemp.fileSize}
                             updatedAt={projectTemp.updatedAt}
