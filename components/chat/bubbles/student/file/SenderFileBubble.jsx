@@ -16,26 +16,14 @@ import {
 import {useClipboard} from '@mantine/hooks'
 
 const SenderFileBubble = ({
-    id,
-    file,
-    requestingForApproval,
-    approvedState,
-    requestForApprovalHandler,
-    deleteFileMessage,
-}) => {
-    const fileTypes = [
-        'docx',
-        'pptx',
-        'xlsx',
-        'txt',
-        'pdf',
-        'jpg',
-        'png',
-        'mp4',
-        'docx',
-        'mov',
-        'mp3',
-    ]
+                              id,
+                              file,
+                              requestingForApproval,
+                              approvedState,
+                              requestForApprovalHandler,
+                              deleteFileMessage,
+                          }) => {
+    const fileTypes = ['pdf','docx', 'doc', 'rtf', 'odt','pptx','xls', 'xls', '.xlsx','mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v','jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg','mp3','txt']
     const clipboard = useClipboard({timeout: 800})
 
     return (
@@ -45,7 +33,8 @@ const SenderFileBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75">
+                                <Disclosure.Button
+                                    className="flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}
@@ -67,68 +56,42 @@ const SenderFileBubble = ({
                                                             )
                                                     ) ? (
                                                         <>
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.pdf'
-                                                                ) && (
-                                                                <PDFIcon />
+                                                            {['pdf']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <PDFIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.docx'
-                                                                ) && (
-                                                                <DOCXIcon />
+                                                            {['docx', 'doc', 'rtf', 'odt']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <DOCXIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.pptx'
-                                                                ) && (
-                                                                <PPTXIcon />
+                                                            {['pptx']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <PPTXIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.xlsx'
-                                                                ) && (
-                                                                <XLSXIcon />
+                                                            {['xls', 'xls', '.xlsx']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <XLSXIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.mp4' ||
-                                                                        'mkv' ||
-                                                                        'mov'
-                                                                ) && (
-                                                                <VideoIcon />
+                                                            {['mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v',]
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <VideoIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.png'
-                                                                ) && (
-                                                                <ImageIcon />
+                                                            {['jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg',]
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <ImageIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.mp3'
-                                                                ) && (
-                                                                <AudioFileIcon />
+                                                            {['mp3']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <AudioFileIcon/>
                                                             )}
-                                                            {file.file
-                                                                .toString()
-                                                                .includes(
-                                                                    '.txt'
-                                                                ) && (
-                                                                <TXTIcon />
+                                                            {['txt']
+                                                                .some(extension => file.file.toString().includes(extension)) && (
+                                                                <TXTIcon/>
                                                             )}
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <OtherFileIcon />
+                                                            <OtherFileIcon/>
                                                         </>
                                                     )}
                                                 </>
@@ -158,7 +121,8 @@ const SenderFileBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel
+                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         color={'primary'}
                                         variant={
