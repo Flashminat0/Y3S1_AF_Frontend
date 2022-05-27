@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Button} from '@mui/material'
 
 const CreateTopicWrapper = ({children}) => {
+const [name, setName] = useState("");
+const [grpID, setGrpID] = useState("");
+
+
+const inputTopic = async() =>{
+    try {
+        const body = {name, grpID}
+        console.log(body)
+        const response = fetch('http://localhost:8000/API/input-topic',
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        })
+        console.log(response)
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
     return (
         <div>
             <div className="mb-5 flex justify-center text-3xl font-semibold uppercase">
@@ -13,13 +33,13 @@ const CreateTopicWrapper = ({children}) => {
                         <div className="mb-6">
                             <input
                                 className="focus:shadow-outline w-4/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none "
-                                placeholder="Add your topic here"
+                                placeholder="Add your topic here" value={name} onChange={e=>setName(e.target.value)}
                             />
                         </div>
                         <div className="mb-6">
                             <input
                                 className="focus:shadow-outline w-4/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none "
-                                placeholder="Group registration number"
+                                placeholder="Group registration number" value={grpID} onChange={e=>setGrpID(e.target.value)}
                             />
                         </div>
                         <div className="">
@@ -27,7 +47,7 @@ const CreateTopicWrapper = ({children}) => {
                                 className={
                                     'h-10 rounded-lg bg-indigo-500 text-center  text-xl font-semibold'
                                 }
-                            >
+                                onClick={()=>inputTopic()} >
                                 +
                             </Button>
                         </div>
