@@ -38,7 +38,8 @@ const ReceivedFileBubble = ({file}) => {
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
+                                <Disclosure.Button
+                                    className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}
@@ -65,63 +66,63 @@ const ReceivedFileBubble = ({file}) => {
                                                                 .includes(
                                                                     '.pdf'
                                                                 ) && (
-                                                                <PDFIcon />
+                                                                <PDFIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.docx'
                                                                 ) && (
-                                                                <DOCXIcon />
+                                                                <DOCXIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.pptx'
                                                                 ) && (
-                                                                <PPTXIcon />
+                                                                <PPTXIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.xlsx'
                                                                 ) && (
-                                                                <XLSXIcon />
+                                                                <XLSXIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.mp4' ||
-                                                                        'mkv' ||
-                                                                        'mov'
+                                                                    'mkv' ||
+                                                                    'mov'
                                                                 ) && (
-                                                                <VideoIcon />
+                                                                <VideoIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.png'
                                                                 ) && (
-                                                                <ImageIcon />
+                                                                <ImageIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.mp3'
                                                                 ) && (
-                                                                <AudioFileIcon />
+                                                                <AudioFileIcon/>
                                                             )}
                                                             {file.file
                                                                 .toString()
                                                                 .includes(
                                                                     '.txt'
                                                                 ) && (
-                                                                <TXTIcon />
+                                                                <TXTIcon/>
                                                             )}
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <OtherFileIcon />
+                                                            <OtherFileIcon/>
                                                         </>
                                                     )}
                                                 </>
@@ -151,7 +152,8 @@ const ReceivedFileBubble = ({file}) => {
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel
+                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         className={'col-span-2'}
                                         fullWidth={true}
