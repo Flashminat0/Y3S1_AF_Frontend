@@ -86,7 +86,7 @@ const UploadProjectTemplateList = () => {
 
     return (
         <div>
-            <StudentModalButtonWrapper btnName={""} btnFunction={}>
+            <StudentModalButtonWrapper btnName={""} btnFunction={""}>
 
             </StudentModalButtonWrapper>
         </div>
