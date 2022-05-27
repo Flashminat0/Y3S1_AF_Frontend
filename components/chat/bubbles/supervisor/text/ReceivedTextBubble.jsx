@@ -4,7 +4,15 @@ import {Disclosure} from '@headlessui/react'
 import {Button} from '@mui/material'
 import {useClipboard} from '@mantine/hooks'
 
-const ReceivedBubble = ({id, message, sender, approvedState, approveMessageHandler, disapproveMessageHandler}) => {
+const ReceivedBubble = ({
+                            id,
+                            message,
+                            sender,
+                            approvedState,
+                            approveMessageHandler,
+                            disapproveMessageHandler,
+                            requestingForApproval
+                        }) => {
     const clipboard = useClipboard({timeout: 800})
 
     return (
@@ -50,34 +58,36 @@ const ReceivedBubble = ({id, message, sender, approvedState, approveMessageHandl
                                             ? 'Copied !'
                                             : 'Copy Quote'}
                                     </Button>
-                                    {approvedState === null ? <>
-                                        <Button
-                                            className={`col-span-1`}
-                                            fullWidth={true}
-                                            color={'success'}
-                                            variant={'outlined'}
-                                            onClick={() => approveMessageHandler(id)}
-                                        >
-                                            Approve
-                                        </Button>
-                                        <Button
-                                            className={`col-span-1`}
-                                            fullWidth={true}
-                                            color={'error'}
-                                            variant={'outlined'}
-                                            onClick={() => disapproveMessageHandler(id)}
-                                        >
-                                            Reject
-                                        </Button>
-                                    </> : <>
-                                        <Button
-                                            className={`col-span-2`}
-                                            fullWidth={true}
-                                            color={approvedState ? 'success' : 'error'}
-                                            variant={'contained'}
-                                        >
-                                            {approvedState ? 'Approved' : 'Rejected'}
-                                        </Button>
+                                    {requestingForApproval && <>
+                                        {approvedState === null ? <>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'success'}
+                                                variant={'outlined'}
+                                                onClick={() => approveMessageHandler(id)}
+                                            >
+                                                Approve
+                                            </Button>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'error'}
+                                                variant={'outlined'}
+                                                onClick={() => disapproveMessageHandler(id)}
+                                            >
+                                                Reject
+                                            </Button>
+                                        </> : <>
+                                            <Button
+                                                className={`col-span-2`}
+                                                fullWidth={true}
+                                                color={approvedState ? 'success' : 'error'}
+                                                variant={'contained'}
+                                            >
+                                                {approvedState ? 'Approved' : 'Rejected'}
+                                            </Button>
+                                        </>}
                                     </>}
 
                                 </Disclosure.Panel>

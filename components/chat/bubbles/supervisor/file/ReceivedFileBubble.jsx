@@ -15,8 +15,15 @@ import {
 } from '../../../../assets/fileicons'
 import {useClipboard} from '@mantine/hooks'
 
-const ReceivedFileBubble = ({file}) => {
-    const fileTypes = ['pdf','docx', 'doc', 'rtf', 'odt','pptx','xls', 'xls', '.xlsx','mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v','jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg','mp3','txt']
+const ReceivedFileBubble = ({
+                                id,
+                                file,
+                                approvedState,
+                                approveMessageHandler,
+                                disapproveMessageHandler,
+                                requestingForApproval
+                            }) => {
+    const fileTypes = ['pdf', 'docx', 'doc', 'rtf', 'odt', 'pptx', 'xls', 'xls', '.xlsx', 'mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v', 'jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg', 'mp3', 'txt']
 
     const clipboard = useClipboard({timeout: 800})
 
@@ -134,6 +141,38 @@ const ReceivedFileBubble = ({file}) => {
                                             ? 'Copied !'
                                             : 'Copy URL'}
                                     </Button>
+                                    {requestingForApproval && <>
+                                        {approvedState === null ? <>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'success'}
+                                                variant={'outlined'}
+                                                onClick={() => approveMessageHandler(id)}
+                                            >
+                                                Approve
+                                            </Button>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'error'}
+                                                variant={'outlined'}
+                                                onClick={() => disapproveMessageHandler(id)}
+                                            >
+                                                Reject
+                                            </Button>
+                                        </> : <>
+                                            <Button
+                                                className={`col-span-2`}
+                                                fullWidth={true}
+                                                color={approvedState ? 'success' : 'error'}
+                                                variant={'contained'}
+                                            >
+                                                {approvedState ? 'Approved' : 'Rejected'}
+                                            </Button>
+                                        </>}
+
+                                    </>}
                                 </Disclosure.Panel>
                             </>
                         )}
