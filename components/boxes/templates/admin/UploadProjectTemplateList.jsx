@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import StudentModalButtonWrapper from "../../../layouts/student/StudentModalButtonWrapper";
+import React, {useState} from 'react'
+import StudentModalButtonWrapper from '../../../layouts/student/StudentModalButtonWrapper'
 
 const templateFileStaticList = [
     {
@@ -82,15 +82,18 @@ const templateFileStaticList = [
 ]
 
 const UploadProjectTemplateList = () => {
-    const [templateFileList, setTemplateFileList] = useState(templateFileStaticList);
+    const [templateFileList, setTemplateFileList] = useState(
+        templateFileStaticList
+    )
 
     return (
         <div>
-            <StudentModalButtonWrapper btnName={""} btnFunction={""}>
-
-            </StudentModalButtonWrapper>
+            <StudentModalButtonWrapper
+                btnName={''}
+                btnFunction={''}
+            ></StudentModalButtonWrapper>
         </div>
-    );
-};
+    )
+}
 
-export default UploadProjectTemplateList;
+export default UploadProjectTemplateList

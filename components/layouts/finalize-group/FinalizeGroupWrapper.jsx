@@ -5,7 +5,10 @@ import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 const FinalizeGroupWrapper = ({children, btnFunction}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
-            <GreenFullButton btnName={'Finalize Group'} btnFunction={btnFunction}/>
+            <GreenFullButton
+                btnName={'Finalize Group'}
+                btnFunction={btnFunction}
+            />
             <div className={'px-3 py-2 mt-5 bg-gray-100 shadow rounded-lg'}>
                 <div className={'flex flex-row justify-between items-center'}>
                     <div className={'flex flex-col gap-1'}>

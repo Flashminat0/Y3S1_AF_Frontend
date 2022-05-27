@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const UploadProjectTemplateBox = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+    return <div></div>
+}
 
-export default UploadProjectTemplateBox;
+export default UploadProjectTemplateBox

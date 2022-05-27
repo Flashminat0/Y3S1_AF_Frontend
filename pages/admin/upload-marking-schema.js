@@ -1,12 +1,8 @@
-import React from 'react';
-import AdminSideBarWrapper from "../../components/layouts/admin/AdminSideBarWrapper";
+import React from 'react'
+import AdminSideBarWrapper from '../../components/layouts/admin/AdminSideBarWrapper'
 
 const UploadMarkingSchema = () => {
-    return (
-        <AdminSideBarWrapper selectedPageIndex={4}>
+    return <AdminSideBarWrapper selectedPageIndex={4}></AdminSideBarWrapper>
+}
 
-        </AdminSideBarWrapper>
-    );
-};
-
-export default UploadMarkingSchema;
+export default UploadMarkingSchema

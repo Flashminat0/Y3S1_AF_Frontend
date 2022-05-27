@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const TopicInfoList = () => {
-    return (
-        <div>
+    return <div></div>
+}
 
-        </div>
-    );
-};
-
-export default TopicInfoList;
+export default TopicInfoList

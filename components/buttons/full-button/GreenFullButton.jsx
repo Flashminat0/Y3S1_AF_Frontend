@@ -15,7 +15,7 @@ const GreenFullButton = ({btnName, btnFunction}) => {
             >
                 {btnName}
             </Button>
-            <hr/>
+            <hr />
         </div>
     )
 }

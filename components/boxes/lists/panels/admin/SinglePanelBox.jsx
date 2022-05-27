@@ -5,7 +5,9 @@ import RedShortButton from '../../../../buttons/short-button/RedShortButton'
 const SinglePanelBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
         <div
-            className={'mx-0 lg:mx-10 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'}
+            className={
+                'mx-0 lg:mx-10 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
+            }
         >
             <div className={'flex flex-row justify-between items-center'}>
                 <div className={'flex flex-col gap-2'}>

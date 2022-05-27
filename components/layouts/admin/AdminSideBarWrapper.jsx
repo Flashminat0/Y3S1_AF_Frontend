@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {RiGroup2Fill} from "react-icons/ri";
-import {MdAssignmentInd, MdTopic} from "react-icons/md";
-import {CgTemplate, CgUserList} from "react-icons/cg";
-import {IoIosPaper} from "react-icons/io";
-import {useRouter} from "next/router";
-import {AnimatePresence, motion} from "framer-motion";
-import {Dialog} from "@headlessui/react";
-import {HiMenu, HiX} from "react-icons/hi";
-import Image from "next/image";
-import {Divider} from "@mui/material";
+import React, {useState} from 'react'
+import {RiGroup2Fill} from 'react-icons/ri'
+import {MdAssignmentInd, MdTopic} from 'react-icons/md'
+import {CgTemplate, CgUserList} from 'react-icons/cg'
+import {IoIosPaper} from 'react-icons/io'
+import {useRouter} from 'next/router'
+import {AnimatePresence, motion} from 'framer-motion'
+import {Dialog} from '@headlessui/react'
+import {HiMenu, HiX} from 'react-icons/hi'
+import Image from 'next/image'
+import {Divider} from '@mui/material'
 
 const navigation = [
     {
@@ -91,7 +91,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                         initial={{opacity: 0}}
                                                         animate={{opacity: 1}}
                                                         exit={{opacity: 0}}
-                                                        transition={{delay: 0.3}}
+                                                        transition={{
+                                                            delay: 0.3,
+                                                        }}
                                                     >
                                                         <div className="absolute top-0 right-0 -mr-12 pt-2">
                                                             <button
@@ -103,9 +105,10 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                     )
                                                                 }
                                                             >
-                                                            <span className="sr-only">
-                                                                Close sidebar
-                                                            </span>
+                                                                <span className="sr-only">
+                                                                    Close
+                                                                    sidebar
+                                                                </span>
                                                                 <HiX
                                                                     className="h-6 w-6 text-white"
                                                                     aria-hidden="true"
@@ -147,41 +150,41 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                     scale: 0.95,
                                                                                 }}
                                                                             >
-                                                                            <span
-                                                                                onClick={async () => {
-                                                                                    await router.push(
-                                                                                        `/admin/${item.href}`
-                                                                                    )
-                                                                                }}
-                                                                                className={classNames(
-                                                                                    selectedPageIndex ===
-                                                                                    index
-                                                                                        ? 'bg-gray-100 text-gray-900 font-normal '
-                                                                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                                                    'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
-                                                                                )}
-                                                                            >
-                                                                                <item.icon
+                                                                                <span
+                                                                                    onClick={async () => {
+                                                                                        await router.push(
+                                                                                            `/admin/${item.href}`
+                                                                                        )
+                                                                                    }}
                                                                                     className={classNames(
                                                                                         selectedPageIndex ===
-                                                                                        index
-                                                                                            ? 'text-gray-500'
-                                                                                            : 'text-gray-400 group-hover:text-gray-500',
-                                                                                        'mr-4 h-7 w-7'
+                                                                                            index
+                                                                                            ? 'bg-gray-100 text-gray-900 font-normal '
+                                                                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
                                                                                     )}
-                                                                                    aria-hidden="true"
-                                                                                />
-                                                                                {
-                                                                                    item.name
-                                                                                }
-                                                                            </span>
+                                                                                >
+                                                                                    <item.icon
+                                                                                        className={classNames(
+                                                                                            selectedPageIndex ===
+                                                                                                index
+                                                                                                ? 'text-gray-500'
+                                                                                                : 'text-gray-400 group-hover:text-gray-500',
+                                                                                            'mr-4 h-7 w-7'
+                                                                                        )}
+                                                                                        aria-hidden="true"
+                                                                                    />
+                                                                                    {
+                                                                                        item.name
+                                                                                    }
+                                                                                </span>
                                                                                 {index ===
                                                                                     1 && (
-                                                                                        <Divider
-                                                                                            className={`pt-2`}
-                                                                                            variant="fullWidth"
-                                                                                        />
-                                                                                    )}
+                                                                                    <Divider
+                                                                                        className={`pt-2`}
+                                                                                        variant="fullWidth"
+                                                                                    />
+                                                                                )}
                                                                             </motion.div>
                                                                         </div>
                                                                     )
@@ -190,30 +193,31 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                         </nav>
                                                     </div>
                                                     <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
-                                                    <span className="flex-shrink-0 w-full group block no-underline">
-                                                        <div className="grid grid-cols-3">
-                                                            <div
-                                                                className={`relative left-4`}
-                                                            >
-                                                                <span className="inline-block relative">
-                                                                    <img
-                                                                        className="h-12 w-12 rounded-full"
-                                                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                                        alt=""
-                                                                    />
-                                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
-                                                                </span>
+                                                        <span className="flex-shrink-0 w-full group block no-underline">
+                                                            <div className="grid grid-cols-3">
+                                                                <div
+                                                                    className={`relative left-4`}
+                                                                >
+                                                                    <span className="inline-block relative">
+                                                                        <img
+                                                                            className="h-12 w-12 rounded-full"
+                                                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                                            alt=""
+                                                                        />
+                                                                        <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                                    </span>
+                                                                </div>
+                                                                <div className="ml-3 relative col-span-2 bottom-1 right-4">
+                                                                    <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
+                                                                        Tom Cook
+                                                                    </p>
+                                                                    <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
+                                                                        View
+                                                                        profile
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                            <div className="ml-3 relative col-span-2 bottom-1 right-4">
-                                                                <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
-                                                                    Tom Cook
-                                                                </p>
-                                                                <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
-                                                                    View profile
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </span>
+                                                        </span>
                                                     </div>
                                                 </Dialog.Panel>
                                             </motion.div>
@@ -249,77 +253,82 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                             aria-label="Sidebar"
                                         >
                                             <div className="px-2 space-y-1">
-                                                {navigation.map((item, index) => (
-                                                    <div key={index}>
-                                                        <motion.div
-                                                            whileHover={{
-                                                                scale: 1.03,
-                                                            }}
-                                                            whileTap={{
-                                                                scale: 0.97,
-                                                            }}
-                                                        >
-                                                        <span
-                                                            onClick={async () => {
-                                                                await router.push(
-                                                                    `/admin/${item.href}`
-                                                                )
-                                                            }}
-                                                            className={classNames(
-                                                                selectedPageIndex ===
-                                                                index
-                                                                    ? 'bg-gray-100 text-gray-900 font-normal'
-                                                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                                'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
-                                                            )}
-                                                        >
-                                                            <item.icon
-                                                                className={classNames(
-                                                                    selectedPageIndex ===
-                                                                    index
-                                                                        ? 'text-gray-500'
-                                                                        : 'text-gray-400 group-hover:text-gray-500',
-                                                                    'mr-4 h-7 w-7'
+                                                {navigation.map(
+                                                    (item, index) => (
+                                                        <div key={index}>
+                                                            <motion.div
+                                                                whileHover={{
+                                                                    scale: 1.03,
+                                                                }}
+                                                                whileTap={{
+                                                                    scale: 0.97,
+                                                                }}
+                                                            >
+                                                                <span
+                                                                    onClick={async () => {
+                                                                        await router.push(
+                                                                            `/admin/${item.href}`
+                                                                        )
+                                                                    }}
+                                                                    className={classNames(
+                                                                        selectedPageIndex ===
+                                                                            index
+                                                                            ? 'bg-gray-100 text-gray-900 font-normal'
+                                                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
+                                                                    )}
+                                                                >
+                                                                    <item.icon
+                                                                        className={classNames(
+                                                                            selectedPageIndex ===
+                                                                                index
+                                                                                ? 'text-gray-500'
+                                                                                : 'text-gray-400 group-hover:text-gray-500',
+                                                                            'mr-4 h-7 w-7'
+                                                                        )}
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                    {item.name}
+                                                                </span>
+                                                                {index ===
+                                                                    1 && (
+                                                                    <Divider
+                                                                        variant="fullWidth"
+                                                                        className={`pt-2`}
+                                                                    />
                                                                 )}
-                                                                aria-hidden="true"
-                                                            />
-                                                            {item.name}
-                                                        </span>
-                                                            {index === 1 && (
-                                                                <Divider
-                                                                    variant="fullWidth"
-                                                                    className={`pt-2`}
-                                                                />
-                                                            )}
-                                                        </motion.div>
-                                                    </div>
-                                                ))}
+                                                            </motion.div>
+                                                        </div>
+                                                    )
+                                                )}
                                             </div>
                                         </nav>
                                     </div>
                                     <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
-                                    <span className="flex-shrink-0 w-full group block no-underline">
-                                        <div className="grid grid-cols-3">
-                                            <div className={`relative left-2`}>
-                                                <span className="inline-block relative">
-                                                    <img
-                                                        className="h-12 w-12 rounded-full"
-                                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                        alt=""
-                                                    />
-                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
-                                                </span>
+                                        <span className="flex-shrink-0 w-full group block no-underline">
+                                            <div className="grid grid-cols-3">
+                                                <div
+                                                    className={`relative left-2`}
+                                                >
+                                                    <span className="inline-block relative">
+                                                        <img
+                                                            className="h-12 w-12 rounded-full"
+                                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                            alt=""
+                                                        />
+                                                        <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                    </span>
+                                                </div>
+                                                <div className="ml-3 relative col-span-2 bottom-1 right-2">
+                                                    <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
+                                                        Tom Cook
+                                                    </p>
+                                                    <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
+                                                        View profile
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div className="ml-3 relative col-span-2 bottom-1 right-2">
-                                                <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
-                                                    Tom Cook
-                                                </p>
-                                                <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700 absolute top-5 w-max ">
-                                                    View profile
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -343,9 +352,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                             className="border-none h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900"
                                             onClick={() => setSidebarOpen(true)}
                                         >
-                                        <span className="sr-only">
-                                            Open sidebar
-                                        </span>
+                                            <span className="sr-only">
+                                                Open sidebar
+                                            </span>
                                             <HiMenu
                                                 className="h-6 w-6"
                                                 aria-hidden="true"
@@ -370,7 +379,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                 </>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default AdminSideBarWrapper;
+export default AdminSideBarWrapper

@@ -56,7 +56,7 @@ const GroupsList = () => {
                 setOpenModal={setOpenModal}
             />
             <GroupListWrapper>
-                <SearchBar placeholder={placeholder}/>
+                <SearchBar placeholder={placeholder} />
                 <div>
                     {studentGroups.map((studentGroup) => (
                         <SingleGroupBox

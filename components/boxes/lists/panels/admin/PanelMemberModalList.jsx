@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import SinglePanelMemberModalBox from "./SinglePanelMemberModalBox";
+import React, {useState} from 'react'
+import SinglePanelMemberModalBox from './SinglePanelMemberModalBox'
 
 const panelMemberStaticData = [
     {
@@ -25,18 +25,22 @@ const panelMemberStaticData = [
 ]
 
 const PanelMemberModalList = () => {
-    const [panelMemberList, setPanelMemberList] = useState(panelMemberStaticData);
+    const [panelMemberList, setPanelMemberList] = useState(
+        panelMemberStaticData
+    )
 
     return (
         <div>
             {panelMemberList.map((panelMember) => (
                 <div key={panelMember.id}>
-                    <SinglePanelMemberModalBox panelMemberName={panelMember.panelMemberName}
-                                               panelMemberRegNo={panelMember.panelMemberRegNo}/>
+                    <SinglePanelMemberModalBox
+                        panelMemberName={panelMember.panelMemberName}
+                        panelMemberRegNo={panelMember.panelMemberRegNo}
+                    />
                 </div>
             ))}
         </div>
-    );
-};
+    )
+}
 
-export default PanelMemberModalList;
+export default PanelMemberModalList

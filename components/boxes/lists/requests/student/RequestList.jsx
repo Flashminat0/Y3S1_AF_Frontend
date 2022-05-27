@@ -46,9 +46,7 @@ const requestUsersStaticData = [
 const RequestList = ({navigateFunc}) => {
     const [requestList, setRequestList] = useState(requestUsersStaticData)
 
-    const submitGroupData = ()=>{
-
-    }
+    const submitGroupData = () => {}
 
     return (
         <div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import BlueShortButton from "../../buttons/short-button/BlueShortButton";
+import React from 'react'
+import BlueShortButton from '../../buttons/short-button/BlueShortButton'
 
 const AdminModalButtonWrapper = ({children, btnName, btnFunction}) => {
     return (
@@ -9,7 +9,7 @@ const AdminModalButtonWrapper = ({children, btnName, btnFunction}) => {
             </div>
             {children}
         </div>
-    );
-};
+    )
+}
 
-export default AdminModalButtonWrapper;
+export default AdminModalButtonWrapper

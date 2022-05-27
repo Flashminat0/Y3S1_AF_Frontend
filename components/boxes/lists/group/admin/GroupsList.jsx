@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
-import AdminModalButtonWrapper from "../../../../layouts/admin/AdminModalButtonWrapper";
+import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
 
 const studentGroupsStaticData = [
     {
@@ -41,7 +41,10 @@ const GroupsList = ({navigateFunc}) => {
     const [studentGroups, setStudentGroups] = useState(studentGroupsStaticData)
 
     return (
-        <AdminModalButtonWrapper btnName={"Check User List"} btnFunction={navigateFunc}>
+        <AdminModalButtonWrapper
+            btnName={'Check User List'}
+            btnFunction={navigateFunc}
+        >
             <GroupListWrapper>
                 <SearchBar placeholder={placeholder} />
                 <div>

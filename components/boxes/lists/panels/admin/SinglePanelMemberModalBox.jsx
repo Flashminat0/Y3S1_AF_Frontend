@@ -1,9 +1,9 @@
-import React from 'react';
-import {BsFileEarmarkPerson} from "react-icons/bs";
-import {Popover} from "@headlessui/react";
-import {FiChevronDown} from "react-icons/fi";
-import {AnimatePresence, motion} from "framer-motion";
-import {FaAddressCard} from "react-icons/fa";
+import React from 'react'
+import {BsFileEarmarkPerson} from 'react-icons/bs'
+import {Popover} from '@headlessui/react'
+import {FiChevronDown} from 'react-icons/fi'
+import {AnimatePresence, motion} from 'framer-motion'
+import {FaAddressCard} from 'react-icons/fa'
 
 const abilities = [
     {id: 1, name: 'Add this member to the panel', icon: FaAddressCard},
@@ -15,7 +15,11 @@ function classNames(...classes) {
 
 const SinglePanelMemberModalBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
-        <div className={'mx-0 lg:mx-4 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'}>
+        <div
+            className={
+                'mx-0 lg:mx-4 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
+            }
+        >
             <div className={'flex flex-row justify-between items-center'}>
                 <div className={'flex flex-col gap-2'}>
                     <div className={'flex flex-row gap-2 items-center'}>
@@ -90,7 +94,7 @@ const SinglePanelMemberModalBox = ({panelMemberName, panelMemberRegNo}) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default SinglePanelMemberModalBox;
+export default SinglePanelMemberModalBox
