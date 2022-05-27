@@ -15,7 +15,7 @@ function classNames(...classes) {
 
 const SinglePanelMemberModalBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
-        <div className={'mx-0 lg:mx-10 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'}>
+        <div className={'mx-0 lg:mx-4 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'}>
             <div className={'flex flex-row justify-between items-center'}>
                 <div className={'flex flex-col gap-2'}>
                     <div className={'flex flex-row gap-2 items-center'}>
@@ -53,7 +53,7 @@ const SinglePanelMemberModalBox = ({panelMemberName, panelMemberRegNo}) => {
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 top-[2rem] -right-[7rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}

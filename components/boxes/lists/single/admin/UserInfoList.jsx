@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import SingleUserBox from './SingleUserBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
+import AdminModalButtonWrapper from "../../../../layouts/admin/AdminModalButtonWrapper";
 
 const userStaticData = [
     {
@@ -42,28 +43,27 @@ const userStaticData = [
     },
 ]
 
-const placeholder = 'User Search'
 
-const UserList = () => {
+const UserInfoList = ({navigateFunc}) => {
     const [userSets, setUserSets] = useState(userStaticData)
 
+
     return (
-        <div>
+        <AdminModalButtonWrapper btnName={'Check Group List'} btnFunction={navigateFunc}>
             <GroupListWrapper>
-                <SearchBar placeholder={placeholder} />
+                <SearchBar placeholder={'User Search'}/>
                 <div>
-                    {userSets.map((user, index) => (
+                    {userSets.map((user) =>
                         <SingleUserBox
-                            key={index}
+                            key={user.id}
                             userName={user.userName}
                             userRegNo={user.userRegNo}
                             userRole={user.userRole}
-                        />
-                    ))}
+                        />)}
                 </div>
             </GroupListWrapper>
-        </div>
+        </AdminModalButtonWrapper>
     )
 }
 
-export default UserList
+export default UserInfoList

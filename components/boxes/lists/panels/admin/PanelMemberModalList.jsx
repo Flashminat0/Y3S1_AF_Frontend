@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import SinglePanelMemberModalBox from "./SinglePanelMemberModalBox";
-import AllocatePanelModal from "../../../../modals/admin/AllocatePanelModal";
 
 const panelMemberStaticData = [
     {
@@ -29,13 +28,14 @@ const PanelMemberModalList = () => {
     const [panelMemberList, setPanelMemberList] = useState(panelMemberStaticData);
 
     return (
-        <AllocatePanelModal>
-            {panelMemberList.map((panelMember)=>(
+        <div>
+            {panelMemberList.map((panelMember) => (
                 <div key={panelMember.id}>
-                    <SinglePanelMemberModalBox panelMemberName={panelMember.panelMemberName} panelMemberRegNo={panelMember.panelMemberRegNo}/>
+                    <SinglePanelMemberModalBox panelMemberName={panelMember.panelMemberName}
+                                               panelMemberRegNo={panelMember.panelMemberRegNo}/>
                 </div>
             ))}
-        </AllocatePanelModal>
+        </div>
     );
 };
 

@@ -52,7 +52,7 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel className="absolute z-10 right-1/2 transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}

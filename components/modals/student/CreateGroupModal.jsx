@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import ModalWrapper from '../../layouts/modal-layout/ModalWrapper'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
 
-const CreateGroupModal = ({openModal, setOpenModal, modalTitle}) => {
+const CreateGroupModal = ({openModal, setOpenModal}) => {
     const [groupName, setGroupName] = useState('')
 
     return (
