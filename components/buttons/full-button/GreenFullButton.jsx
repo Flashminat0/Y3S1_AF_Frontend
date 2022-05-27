@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from '@mui/material'
 
-const GreenFullButton = ({btnName}) => {
+const GreenFullButton = ({btnName, btnFunction}) => {
     return (
         <div>
             <Button
@@ -9,6 +9,9 @@ const GreenFullButton = ({btnName}) => {
                 fullWidth={true}
                 color={'success'}
                 variant="outlined"
+                onClick={() => {
+                    btnFunction()
+                }}
             >
                 {btnName}
             </Button>

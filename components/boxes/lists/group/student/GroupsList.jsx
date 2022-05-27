@@ -47,31 +47,29 @@ const GroupsList = () => {
     }
 
     return (
-        <div>
-            <StudentModalButtonWrapper
-                btnName={'Create Group'}
-                btnFunction={openCreateGroupModal}
-            >
-                <CreateGroupModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
-                />
-                <GroupListWrapper>
-                    <SearchBar placeholder={placeholder} />
-                    <div>
-                        {studentGroups.map((studentGroup) => (
-                            <SingleGroupBox
-                                key={studentGroup.id}
-                                groupName={studentGroup.groupName}
-                                groupLeader={studentGroup.groupLeader}
-                                groupLeaderRegNo={studentGroup.groupLeaderRegNo}
-                                currentNo={studentGroup.currentNo}
-                            />
-                        ))}
-                    </div>
-                </GroupListWrapper>
-            </StudentModalButtonWrapper>
-        </div>
+        <StudentModalButtonWrapper
+            btnName={'Create Group'}
+            btnFunction={openCreateGroupModal}
+        >
+            <CreateGroupModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            />
+            <GroupListWrapper>
+                <SearchBar placeholder={placeholder} />
+                <div>
+                    {studentGroups.map((studentGroup) => (
+                        <SingleGroupBox
+                            key={studentGroup.id}
+                            groupName={studentGroup.groupName}
+                            groupLeader={studentGroup.groupLeader}
+                            groupLeaderRegNo={studentGroup.groupLeaderRegNo}
+                            currentNo={studentGroup.currentNo}
+                        />
+                    ))}
+                </div>
+            </GroupListWrapper>
+        </StudentModalButtonWrapper>
     )
 }
 

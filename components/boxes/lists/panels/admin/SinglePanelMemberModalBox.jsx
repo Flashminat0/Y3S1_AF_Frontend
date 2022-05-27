@@ -1,38 +1,43 @@
 import React from 'react'
-import {MdGroup} from 'react-icons/md'
-import {Popover, Transition} from '@headlessui/react'
+import {BsFileEarmarkPerson} from 'react-icons/bs'
+import {Popover} from '@headlessui/react'
 import {FiChevronDown} from 'react-icons/fi'
-import {Fragment} from 'react'
-import {BsFillEyeFill} from 'react-icons/bs'
-import {AiFillDelete} from 'react-icons/ai'
 import {AnimatePresence, motion} from 'framer-motion'
+import {FaAddressCard} from 'react-icons/fa'
 
 const abilities = [
-    {id: 1, name: 'View User Profile', icon: BsFillEyeFill},
-    {
-        id: 2,
-        name: 'Delete User',
-        icon: AiFillDelete,
-    },
+    {id: 1, name: 'Add this member to the panel', icon: FaAddressCard},
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const SingleUserBox = ({userName, userRegNo, userRole}) => {
+const SinglePanelMemberModalBox = ({panelMemberName, panelMemberRegNo}) => {
     return (
         <div
             className={
-                'mx-2 lg:mx-10 my-4 px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
+                'mx-0 lg:mx-4 my-4 px-2 lg:px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
             }
         >
-            <div className={'flex flex-row justify-between'}>
-                <div className={'flex flex-row gap-3 items-center'}>
-                    <div className={'text-xl font-semibold uppercase'}>
-                        {userName}
+            <div className={'flex flex-row justify-between items-center'}>
+                <div className={'flex flex-col gap-2'}>
+                    <div className={'flex flex-row gap-2 items-center'}>
+                        <div className={'text-blue-900 uppercase'}>
+                            Panel Member Info:
+                        </div>
+                        <BsFileEarmarkPerson
+                            className={'w-5 h-5 text-blue-900'}
+                        />
                     </div>
-                    <MdGroup className={'w-5 h-5'} />
+                    <div className={'flex flex-row gap-1 items-center'}>
+                        <div className={'text-sm text-gray-800'}>
+                            {panelMemberName}
+                        </div>
+                        <div className={'text-sm text-gray-500'}>
+                            - {panelMemberRegNo}
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <Popover className="relative">
@@ -52,7 +57,7 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 top-[2rem] -right-[7rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}
@@ -63,7 +68,7 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                                         (ability, index) => (
                                                             <div
                                                                 key={index}
-                                                                className="flex flex-row gap-5 justify-between items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
+                                                                className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
                                                             >
                                                                 <div>
                                                                     {
@@ -88,56 +93,8 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                     </Popover>
                 </div>
             </div>
-            <div className={'flex flex-row gap-2 items-center'}>
-                <div className={'font-medium text-blue-900'}>User Details:</div>
-                <div className={'text-sm text-gray-500'}>{userRegNo}</div>
-                {userRole === 'student' && (
-                    <>
-                        <div
-                            className={
-                                'text-xs text-blue-500 px-3 py-1 rounded-lg bg-blue-200'
-                            }
-                        >
-                            {userRole}
-                        </div>
-                    </>
-                )}{' '}
-                {userRole === 'supervisor' && (
-                    <>
-                        <div
-                            className={
-                                'text-xs text-red-500 px-3 py-1 rounded-lg bg-red-200'
-                            }
-                        >
-                            {userRole}
-                        </div>
-                    </>
-                )}
-                {userRole === 'co-supervisor' && (
-                    <>
-                        <div
-                            className={
-                                'text-xs text-green-500 px-3 py-1 rounded-lg bg-green-200'
-                            }
-                        >
-                            {userRole}
-                        </div>
-                    </>
-                )}
-                {userRole === 'panel-member' && (
-                    <>
-                        <div
-                            className={
-                                'text-xs text-orange-500 px-3 py-1 rounded-lg bg-orange-200'
-                            }
-                        >
-                            {userRole}
-                        </div>
-                    </>
-                )}
-            </div>
         </div>
     )
 }
 
-export default SingleUserBox
+export default SinglePanelMemberModalBox

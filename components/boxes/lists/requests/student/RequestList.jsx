@@ -46,17 +46,19 @@ const requestUsersStaticData = [
 const RequestList = ({navigateFunc}) => {
     const [requestList, setRequestList] = useState(requestUsersStaticData)
 
+    const submitGroupData = () => {}
+
     return (
         <div>
             <StudentModalButtonWrapper
                 btnName={'Check Group List'}
                 btnFunction={navigateFunc}
             >
-                <FinalizeGroupWrapper>
+                <FinalizeGroupWrapper btnFunction={submitGroupData}>
                     <div>
-                        {requestList.map((request, index) => (
+                        {requestList.map((request) => (
                             <SingleRequestBox
-                                key={index}
+                                key={request.id}
                                 userName={request.userName}
                                 userRegNo={request.userRegNo}
                                 acceptedStatus={request.acceptedStatus}

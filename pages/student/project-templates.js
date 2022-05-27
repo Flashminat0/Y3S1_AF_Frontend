@@ -1,9 +1,9 @@
 import React from 'react'
-import StudentSideBarWrapper from '../../../components/layouts/student/StudentSideBarWrapper'
-import ProjectTemplateList from '../../../components/boxes/templates/student/ProjectTemplateList'
+import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
+import ProjectTemplateList from '../../components/boxes/templates/student/ProjectTemplateList'
 import {useRouter} from 'next/router'
 
-const Index = () => {
+const ProjectTemplates = () => {
     const router = useRouter()
 
     const openProjectTemplatesPage = async () => {
@@ -17,4 +17,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default ProjectTemplates

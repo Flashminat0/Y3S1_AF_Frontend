@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import AllocatePanelWrapper from '../../../../layouts/allocate-panel/AllocatePanelWrapper'
 import SinglePanelBox from './SinglePanelBox'
+import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
+import AllocatePanelModal from '../../../../modals/admin/AllocatePanelModal'
 
 const panelMemberStaticData = [
     {
@@ -25,23 +27,35 @@ const panelMemberStaticData = [
     },
 ]
 
-const PanelList = () => {
+const PanelList = ({navigateFunc}) => {
     const [panelList, setPanelList] = useState(panelMemberStaticData)
+    const [openModal, setOpenModal] = useState(false)
+
+    const openAllocatePanelModal = () => {
+        setOpenModal(true)
+    }
 
     return (
-        <div>
-            <AllocatePanelWrapper>
+        <AdminModalButtonWrapper
+            btnName={'Check Topic List'}
+            btnFunction={navigateFunc}
+        >
+            <AllocatePanelModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            />
+            <AllocatePanelWrapper btnFunction={openAllocatePanelModal}>
                 <div>
-                    {panelList.map((panel, index) => (
+                    {panelList.map((panel) => (
                         <SinglePanelBox
-                            key={index}
+                            key={panel.id}
                             panelMemberName={panel.panelMemberName}
                             panelMemberRegNo={panel.panelMemberRegNo}
                         />
                     ))}
                 </div>
             </AllocatePanelWrapper>
-        </div>
+        </AdminModalButtonWrapper>
     )
 }
 
