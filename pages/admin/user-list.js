@@ -13,6 +13,7 @@ const UserList = () => {
     return (
         <AdminSideBarWrapper selectedPageIndex={5}>
             <UserInfoList navigateFunc={openGroupListPage}/>
+
         </AdminSideBarWrapper>
     );
 };
