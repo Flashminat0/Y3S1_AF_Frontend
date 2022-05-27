@@ -1,32 +1,22 @@
 import React from 'react'
 import CreateTopicWrapper from './createTopicWrapper'
 import AddedTopicBox from './addedTopicBox'
-import {useState} from 'react'
-
-//static data list
-const TopicListData = [
-    {
-        Tname: 'Hotel Management System',
-        GroupID: '1',
-    },
-    {
-        Tname: 'Taxi Mnagement system',
-        GroupID: '2',
-    },
-]
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 
 const TopicList = () => {
-    const [TopicName, setTopicName] = useState(TopicListData)
-    const [GrpID, setGrpID] = useState(TopicListData)
+    const [topics, setTopics] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/display-topic').then((result) => {
+            setTopics(result.data)
+        })
+    }, [topics])
+
     return (
         <div>
             <CreateTopicWrapper>
-                {TopicListData.map((topic) => (
-                    <AddedTopicBox
-                        TopicName={topic.Tname}
-                        GrpID={topic.GroupID}
-                    />
-                ))}
+                <AddedTopicBox topicData={topics} />
             </CreateTopicWrapper>
         </div>
     )
