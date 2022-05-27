@@ -6,8 +6,6 @@ import {Divider} from '@mui/material'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 
-
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -18,7 +16,7 @@ const BaseChatWrapper = ({
     selectedType,
     dataID,
     hoveringUserId,
-    navigation
+    navigation,
 }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 

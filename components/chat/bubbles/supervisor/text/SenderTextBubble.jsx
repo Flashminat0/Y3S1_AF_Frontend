@@ -4,12 +4,7 @@ import {RiArrowDropDownLine} from 'react-icons/ri'
 import {Button} from '@mui/material'
 
 //we are sending this message
-const SenderTextBubble = ({
-    id,
-    message,
-    deleteMessage,
-    editMessageHandler,
-}) => {
+const SenderTextBubble = ({id, message, deleteMessage, editMessageHandler}) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">

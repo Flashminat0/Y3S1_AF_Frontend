@@ -16,14 +16,50 @@ import {
 import {useClipboard} from '@mantine/hooks'
 
 const ReceivedFileBubble = ({
-                                id,
-                                file,
-                                approvedState,
-                                approveMessageHandler,
-                                disapproveMessageHandler,
-                                requestingForApproval
-                            }) => {
-    const fileTypes = ['pdf', 'docx', 'doc', 'rtf', 'odt', 'pptx', 'xls', 'xls', '.xlsx', 'mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v', 'jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg', 'mp3', 'txt']
+    id,
+    file,
+    approvedState,
+    approveMessageHandler,
+    disapproveMessageHandler,
+    requestingForApproval,
+}) => {
+    const fileTypes = [
+        'pdf',
+        'docx',
+        'doc',
+        'rtf',
+        'odt',
+        'pptx',
+        'xls',
+        'xls',
+        '.xlsx',
+        'mp4',
+        'mkv',
+        'mov',
+        'avi',
+        'wmv',
+        'flv',
+        'm4v',
+        'm4a',
+        'm4b',
+        'm4p',
+        'm4r',
+        'm4v',
+        'jpg',
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
+        'bmp',
+        'tiff',
+        'tif',
+        'psd',
+        'raw',
+        'webp',
+        'svg',
+        'mp3',
+        'txt',
+    ]
 
     const clipboard = useClipboard({timeout: 800})
 
@@ -34,8 +70,7 @@ const ReceivedFileBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button
-                                    className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}
@@ -57,42 +92,111 @@ const ReceivedFileBubble = ({
                                                             )
                                                     ) ? (
                                                         <>
-                                                            {['pdf']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <PDFIcon/>
+                                                            {['pdf'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <PDFIcon />}
+                                                            {[
+                                                                'docx',
+                                                                'doc',
+                                                                'rtf',
+                                                                'odt',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <DOCXIcon />}
+                                                            {['pptx'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <PPTXIcon />}
+                                                            {[
+                                                                'xls',
+                                                                'xls',
+                                                                '.xlsx',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <XLSXIcon />}
+                                                            {[
+                                                                'mp4',
+                                                                'mkv',
+                                                                'mov',
+                                                                'avi',
+                                                                'wmv',
+                                                                'flv',
+                                                                'm4v',
+                                                                'm4a',
+                                                                'm4b',
+                                                                'm4p',
+                                                                'm4r',
+                                                                'm4v',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <VideoIcon />}
+                                                            {[
+                                                                'jpg',
+                                                                'png',
+                                                                'jpg',
+                                                                'jpeg',
+                                                                'gif',
+                                                                'bmp',
+                                                                'tiff',
+                                                                'tif',
+                                                                'psd',
+                                                                'raw',
+                                                                'webp',
+                                                                'svg',
+                                                            ].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <ImageIcon />}
+                                                            {['mp3'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && (
+                                                                <AudioFileIcon />
                                                             )}
-                                                            {['docx', 'doc', 'rtf', 'odt']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <DOCXIcon/>
-                                                            )}
-                                                            {['pptx']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <PPTXIcon/>
-                                                            )}
-                                                            {['xls', 'xls', '.xlsx']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <XLSXIcon/>
-                                                            )}
-                                                            {['mp4', 'mkv', 'mov', 'avi', 'wmv', 'flv', 'm4v', 'm4a', 'm4b', 'm4p', 'm4r', 'm4v',]
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <VideoIcon/>
-                                                            )}
-                                                            {['jpg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'psd', 'raw', 'webp', 'svg',]
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <ImageIcon/>
-                                                            )}
-                                                            {['mp3']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <AudioFileIcon/>
-                                                            )}
-                                                            {['txt']
-                                                                .some(extension => file.file.toString().includes(extension)) && (
-                                                                <TXTIcon/>
-                                                            )}
+                                                            {['txt'].some(
+                                                                (extension) =>
+                                                                    file.file
+                                                                        .toString()
+                                                                        .includes(
+                                                                            extension
+                                                                        )
+                                                            ) && <TXTIcon />}
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <OtherFileIcon/>
+                                                            <OtherFileIcon />
                                                         </>
                                                     )}
                                                 </>
@@ -122,8 +226,7 @@ const ReceivedFileBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         className={'col-span-2'}
                                         fullWidth={true}
@@ -141,38 +244,57 @@ const ReceivedFileBubble = ({
                                             ? 'Copied !'
                                             : 'Copy URL'}
                                     </Button>
-                                    {requestingForApproval && <>
-                                        {approvedState === null ? <>
-                                            <Button
-                                                className={`col-span-1`}
-                                                fullWidth={true}
-                                                color={'success'}
-                                                variant={'outlined'}
-                                                onClick={() => approveMessageHandler(id)}
-                                            >
-                                                Approve
-                                            </Button>
-                                            <Button
-                                                className={`col-span-1`}
-                                                fullWidth={true}
-                                                color={'error'}
-                                                variant={'outlined'}
-                                                onClick={() => disapproveMessageHandler(id)}
-                                            >
-                                                Reject
-                                            </Button>
-                                        </> : <>
-                                            <Button
-                                                className={`col-span-2`}
-                                                fullWidth={true}
-                                                color={approvedState ? 'success' : 'error'}
-                                                variant={'contained'}
-                                            >
-                                                {approvedState ? 'Approved' : 'Rejected'}
-                                            </Button>
-                                        </>}
-
-                                    </>}
+                                    {requestingForApproval && (
+                                        <>
+                                            {approvedState === null ? (
+                                                <>
+                                                    <Button
+                                                        className={`col-span-1`}
+                                                        fullWidth={true}
+                                                        color={'success'}
+                                                        variant={'outlined'}
+                                                        onClick={() =>
+                                                            approveMessageHandler(
+                                                                id
+                                                            )
+                                                        }
+                                                    >
+                                                        Approve
+                                                    </Button>
+                                                    <Button
+                                                        className={`col-span-1`}
+                                                        fullWidth={true}
+                                                        color={'error'}
+                                                        variant={'outlined'}
+                                                        onClick={() =>
+                                                            disapproveMessageHandler(
+                                                                id
+                                                            )
+                                                        }
+                                                    >
+                                                        Reject
+                                                    </Button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Button
+                                                        className={`col-span-2`}
+                                                        fullWidth={true}
+                                                        color={
+                                                            approvedState
+                                                                ? 'success'
+                                                                : 'error'
+                                                        }
+                                                        variant={'contained'}
+                                                    >
+                                                        {approvedState
+                                                            ? 'Approved'
+                                                            : 'Rejected'}
+                                                    </Button>
+                                                </>
+                                            )}
+                                        </>
+                                    )}
                                 </Disclosure.Panel>
                             </>
                         )}

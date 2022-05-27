@@ -5,7 +5,7 @@ import SupervisorChatListSideBar from '../../../../components/lists/chatlists/Su
 import SupervisorApproval from '../../../../components/approvals/SupervisorApproval'
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
-import {NavigationOnStudentChat} from "../../../../components/common/navigation";
+import {NavigationOnStudentChat} from '../../../../components/common/navigation'
 
 const supervisorsStaticData = [
     {
@@ -52,7 +52,6 @@ const Supervisors = () => {
     const onUserHover = (id) => {
         setHoveringUsrId(id)
     }
-
 
     return (
         <BaseChatWrapper

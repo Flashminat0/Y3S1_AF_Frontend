@@ -5,7 +5,7 @@ import CoSupervisorChatListSideBar from '../../../../components/lists/chatlists/
 import CoSuperVisorApproval from '../../../../components/approvals/CoSuperVisorApproval'
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
-import {NavigationOnStudentChat} from "../../../../components/common/navigation";
+import {NavigationOnStudentChat} from '../../../../components/common/navigation'
 
 const static_co_supervisors = [
     {
@@ -41,7 +41,6 @@ const CoSupervisors = () => {
         setHoveringUsrId(id)
     }
 
-
     return (
         <BaseChatWrapper
             navigation={NavigationOnStudentChat}
@@ -56,8 +55,8 @@ const CoSupervisors = () => {
                     />
                 </AnimatePresence>
             </div>
-            <CoSuperVisorApproval status={status}/>
-            {status === 'approved' && <Confetti/>}
+            <CoSuperVisorApproval status={status} />
+            {status === 'approved' && <Confetti />}
         </BaseChatWrapper>
     )
 }

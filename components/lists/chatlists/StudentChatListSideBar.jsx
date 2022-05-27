@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {useRouter} from "next/router";
-import {motion} from "framer-motion";
-import CommonChatListSideBarWrapper from "../../layouts/chat/CommonChatListSideBarWrapper";
+import React, {useState} from 'react'
+import {useRouter} from 'next/router'
+import {motion} from 'framer-motion'
+import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideBarWrapper'
 
-const StudentChatListSideBar = ({studentTeamList , onUserHover}) => {
+const StudentChatListSideBar = ({studentTeamList, onUserHover}) => {
     const [teams, setTeams] = useState(studentTeamList)
 
     const router = useRouter()
@@ -41,7 +41,7 @@ const StudentChatListSideBar = ({studentTeamList , onUserHover}) => {
                 </motion.div>
             ))}
         </CommonChatListSideBarWrapper>
-    );
-};
+    )
+}
 
-export default StudentChatListSideBar;
+export default StudentChatListSideBar

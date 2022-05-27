@@ -1,11 +1,13 @@
-import React from 'react';
-import BaseChatWrapper from "../../../components/layouts/chat/BaseChatWrapper";
-import {NavigationOnSupervisorChat} from "../../../components/common/navigation";
+import React from 'react'
+import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
+import {NavigationOnSupervisorChat} from '../../../components/common/navigation'
 
 const Index = () => {
     return (
-        <BaseChatWrapper navigation={NavigationOnSupervisorChat}>select a chat to type</BaseChatWrapper>
-    );
-};
+        <BaseChatWrapper navigation={NavigationOnSupervisorChat}>
+            select a chat to type
+        </BaseChatWrapper>
+    )
+}
 
-export default Index;
+export default Index

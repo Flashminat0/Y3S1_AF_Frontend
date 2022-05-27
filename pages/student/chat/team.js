@@ -3,14 +3,12 @@ import BaseChatWrapper from '../../../components/layouts/chat/BaseChatWrapper'
 import {useDocumentTitle} from '@mantine/hooks'
 import TeamMembersList from '../../../components/panels/chat/TeamMembersList'
 import BasicConversationWindow from '../../../components/chat/bubbles/student/BasicConversationWIndow'
-import {NavigationOnStudentChat} from "../../../components/common/navigation";
+import {NavigationOnStudentChat} from '../../../components/common/navigation'
 
 const Team = () => {
     useDocumentTitle('Team Chat Screen')
 
     const [memberList, setMemberList] = useState(static_member_list)
-
-
 
     return (
         <BaseChatWrapper

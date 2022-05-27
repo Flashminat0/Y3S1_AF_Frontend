@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import BaseChatWrapper from "../../../../components/layouts/chat/BaseChatWrapper";
-import {NavigationOnSupervisorChat} from "../../../../components/common/navigation";
-import {AnimatePresence} from "framer-motion";
-import {useDebouncedValue} from "@mantine/hooks";
-import StudentChatListSideBar from "../../../../components/lists/chatlists/StudentChatListSideBar";
+import React, {useState} from 'react'
+import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
+import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
+import {AnimatePresence} from 'framer-motion'
+import {useDebouncedValue} from '@mantine/hooks'
+import StudentChatListSideBar from '../../../../components/lists/chatlists/StudentChatListSideBar'
 
 const Index = () => {
     // pending , approved, rejected
@@ -20,19 +20,21 @@ const Index = () => {
         <BaseChatWrapper
             selectedPageIndex={0}
             navigation={NavigationOnSupervisorChat}
-            hoveringUserId={debouncedHoveringUsrId}>
+            hoveringUserId={debouncedHoveringUsrId}
+        >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    <StudentChatListSideBar onUserHover={onUserHover}
-                                            studentTeamList={studentTeamStaticData}/>
+                    <StudentChatListSideBar
+                        onUserHover={onUserHover}
+                        studentTeamList={studentTeamStaticData}
+                    />
                 </AnimatePresence>
             </div>
         </BaseChatWrapper>
-    );
-};
+    )
+}
 
-export default Index;
-
+export default Index
 
 const studentTeamStaticData = [
     {

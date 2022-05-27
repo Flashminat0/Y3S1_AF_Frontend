@@ -134,8 +134,7 @@ const BasicConversationWindow = ({receiver, status}) => {
                         break
                 }
             },
-            (error) => {
-            },
+            (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then((url) => {
@@ -257,19 +256,19 @@ const BasicConversationWindow = ({receiver, status}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation/>
+                                <LoadingAnimation />
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation/>
+                                <OkAnimation />
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation/>
+                                <NotOkAnimation />
                             </>
                         )}
                     </div>
@@ -307,10 +306,18 @@ const BasicConversationWindow = ({receiver, status}) => {
                                             id={singleMessage.id}
                                             message={singleMessage.message}
                                             sender={singleMessage.sender}
-                                            requestingForApproval={singleMessage.requestingForApproval}
-                                            approvedState={singleMessage.approvedState}
-                                            approveMessageHandler={approveMessage}
-                                            disapproveMessageHandler={disapproveMessage}
+                                            requestingForApproval={
+                                                singleMessage.requestingForApproval
+                                            }
+                                            approvedState={
+                                                singleMessage.approvedState
+                                            }
+                                            approveMessageHandler={
+                                                approveMessage
+                                            }
+                                            disapproveMessageHandler={
+                                                disapproveMessage
+                                            }
                                         />
                                     ) : (
                                         <>
@@ -318,10 +325,18 @@ const BasicConversationWindow = ({receiver, status}) => {
                                                 id={singleMessage.id}
                                                 file={singleMessage.message}
                                                 sender={singleMessage.sender}
-                                                requestingForApproval={singleMessage.requestingForApproval}
-                                                approvedState={singleMessage.approvedState}
-                                                approveMessageHandler={approveMessage}
-                                                disapproveMessageHandler={disapproveMessage}
+                                                requestingForApproval={
+                                                    singleMessage.requestingForApproval
+                                                }
+                                                approvedState={
+                                                    singleMessage.approvedState
+                                                }
+                                                approveMessageHandler={
+                                                    approveMessage
+                                                }
+                                                disapproveMessageHandler={
+                                                    disapproveMessage
+                                                }
                                             />
                                         </>
                                     )}
@@ -353,8 +368,8 @@ const BasicConversationWindow = ({receiver, status}) => {
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon/>}
-                endAdornment={<SendIcon/>}
+                startAdornment={<AttachmentsIcon />}
+                endAdornment={<SendIcon />}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
