@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TopicList = () => {
+const TopicInfoList = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const TopicList = () => {
     );
 };
 
-export default TopicList;
+export default TopicInfoList;
