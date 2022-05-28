@@ -32,7 +32,7 @@ const ReceivedFileBubble = ({
         'pptx',
         'xls',
         'xls',
-        '.xlsx',
+        'xlsx',
         'mp4',
         'mkv',
         'mov',
