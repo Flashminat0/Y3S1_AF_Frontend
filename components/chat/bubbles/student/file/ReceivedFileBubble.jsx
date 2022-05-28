@@ -25,7 +25,7 @@ const ReceivedFileBubble = ({file}) => {
         'pptx',
         'xls',
         'xls',
-        '.xlsx',
+        'xlsx',
         'mp4',
         'mkv',
         'mov',
@@ -116,7 +116,7 @@ const ReceivedFileBubble = ({file}) => {
                                                             {[
                                                                 'xls',
                                                                 'xls',
-                                                                '.xlsx',
+                                                                'xlsx',
                                                             ].some(
                                                                 (extension) =>
                                                                     file.file

@@ -25,7 +25,7 @@ const SenderFileBubble = ({id, file, deleteFileMessage}) => {
         'pptx',
         'xls',
         'xls',
-        '.xlsx',
+        'xlsx',
         'mp4',
         'mkv',
         'mov',
@@ -117,7 +117,7 @@ const SenderFileBubble = ({id, file, deleteFileMessage}) => {
                                                             {[
                                                                 'xls',
                                                                 'xls',
-                                                                '.xlsx',
+                                                                'xlsx',
                                                             ].some(
                                                                 (extension) =>
                                                                     file.file
