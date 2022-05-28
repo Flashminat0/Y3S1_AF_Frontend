@@ -9,34 +9,41 @@ function classNames(...classes) {
 }
 
 function generateStylesOnReceiver(approvedState, requestingForApproval) {
-
-    let baseStyles = ' flex w-full justify-between rounded-lg rounded-bl-none text-gray-600 px-4 py-2 text-left text-sm font-medium text-white border-none focus:outline-none focus-visible:ring focus-visible:ring-opacity-75'
+    let baseStyles =
+        ' flex w-full justify-between rounded-lg rounded-bl-none text-gray-600 px-4 py-2 text-left text-sm font-medium text-white border-none focus:outline-none focus-visible:ring focus-visible:ring-opacity-75'
 
     if (approvedState === null) {
         if (requestingForApproval === true) {
-            baseStyles = baseStyles + ' bg-blue-200 hover:bg-blue-300 focus-visible:ring-blue-200'
+            baseStyles =
+                baseStyles +
+                ' bg-blue-200 hover:bg-blue-300 focus-visible:ring-blue-200'
         } else if (requestingForApproval === false) {
-            baseStyles = baseStyles + ' bg-gray-300 hover:bg-gray-400 focus-visible:ring-gray-300'
+            baseStyles =
+                baseStyles +
+                ' bg-gray-300 hover:bg-gray-400 focus-visible:ring-gray-300'
         }
     } else if (approvedState === true) {
-        baseStyles = baseStyles + ' bg-green-200 hover:bg-green-300 focus-visible:ring-green-200'
+        baseStyles =
+            baseStyles +
+            ' bg-green-200 hover:bg-green-300 focus-visible:ring-green-200'
     } else if (approvedState === false) {
-        baseStyles = baseStyles + ' bg-red-200 hover:bg-red-300 focus-visible:ring-red-200'
+        baseStyles =
+            baseStyles +
+            ' bg-red-200 hover:bg-red-300 focus-visible:ring-red-200'
     }
 
     return baseStyles
-
 }
 
 const ReceivedBubble = ({
-                            id,
-                            message,
-                            sender,
-                            approvedState,
-                            approveMessageHandler,
-                            disapproveMessageHandler,
-                            requestingForApproval,
-                        }) => {
+    id,
+    message,
+    sender,
+    approvedState,
+    approveMessageHandler,
+    disapproveMessageHandler,
+    requestingForApproval,
+}) => {
     const clipboard = useClipboard({timeout: 800})
 
     return (
@@ -47,7 +54,10 @@ const ReceivedBubble = ({
                         {({open}) => (
                             <>
                                 <Disclosure.Button
-                                    className={generateStylesOnReceiver(approvedState, requestingForApproval)}
+                                    className={generateStylesOnReceiver(
+                                        approvedState,
+                                        requestingForApproval
+                                    )}
                                 >
                                     <span className={`text-base`}>
                                         {message}
@@ -62,8 +72,7 @@ const ReceivedBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         className={`col-span-2`}
                                         fullWidth={true}

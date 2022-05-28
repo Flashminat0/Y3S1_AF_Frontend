@@ -36,7 +36,8 @@ const fakeMessages = [
     {
         id: 1,
         sender: 'Me',
-        message: 'praise social those trouble week 137aadb8-6234-4a82-a7c3-2c81f31d530a peculiar spirit mine ',
+        message:
+            'praise social those trouble week 137aadb8-6234-4a82-a7c3-2c81f31d530a peculiar spirit mine ',
         type: 'text',
         time: new Date(),
         requestingForApproval: true,

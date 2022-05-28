@@ -8,34 +8,41 @@ function classNames(...classes) {
 }
 
 function generateStylesOnSender(approvedState, requestingForApproval) {
-
-    let baseStyles = 'flex w-full justify-between rounded-lg rounded-br-none px-4 py-2 text-left text-sm font-medium text-white border-none focus:outline-none focus-visible:ring focus-visible:ring-opacity-75 '
+    let baseStyles =
+        'flex w-full justify-between rounded-lg rounded-br-none px-4 py-2 text-left text-sm font-medium text-white border-none focus:outline-none focus-visible:ring focus-visible:ring-opacity-75 '
 
     if (approvedState === null) {
         if (requestingForApproval === true) {
-            baseStyles = baseStyles + 'bg-purple-600 hover:bg-purple-700 focus-visible:ring-purple-600'
+            baseStyles =
+                baseStyles +
+                'bg-purple-600 hover:bg-purple-700 focus-visible:ring-purple-600'
         } else if (requestingForApproval === false) {
-            baseStyles = baseStyles + 'bg-indigo-500 hover:bg-indigo-700 focus-visible:ring-indigo-600'
+            baseStyles =
+                baseStyles +
+                'bg-indigo-500 hover:bg-indigo-700 focus-visible:ring-indigo-600'
         }
     } else if (approvedState === true) {
-        baseStyles = baseStyles + 'bg-green-500 hover:bg-green-600 focus-visible:ring-green-600'
+        baseStyles =
+            baseStyles +
+            'bg-green-500 hover:bg-green-600 focus-visible:ring-green-600'
     } else if (approvedState === false) {
-        baseStyles = baseStyles + 'bg-red-600 hover:bg-red-700 focus-visible:ring-red-600'
+        baseStyles =
+            baseStyles +
+            'bg-red-600 hover:bg-red-700 focus-visible:ring-red-600'
     }
 
     return baseStyles
-
 }
 
 const SenderTextBubble = ({
-                              id,
-                              message,
-                              approvedState,
-                              requestingForApproval,
-                              deleteMessage,
-                              requestForApprovalHandler,
-                              editMessageHandler,
-                          }) => {
+    id,
+    message,
+    approvedState,
+    requestingForApproval,
+    deleteMessage,
+    requestForApprovalHandler,
+    editMessageHandler,
+}) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -44,7 +51,10 @@ const SenderTextBubble = ({
                         {({open}) => (
                             <>
                                 <Disclosure.Button
-                                    className={generateStylesOnSender(approvedState, requestingForApproval)}
+                                    className={generateStylesOnSender(
+                                        approvedState,
+                                        requestingForApproval
+                                    )}
                                 >
                                     <span className={`text-base`}>
                                         {message}
@@ -68,8 +78,7 @@ const SenderTextBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         color={'primary'}
                                         variant={'outlined'}
