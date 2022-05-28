@@ -13,13 +13,6 @@ export const NavigationOnStudentChat = [
         approved: true,
         selected: false,
     },
-    {
-        name: 'Team',
-        href: '/student/chat/team',
-        icon: 'https://img.icons8.com/ios/500/000000/futurama-fry.png',
-        approved: false,
-        selected: false,
-    },
 ]
 
 export const NavigationOnSupervisorChat = [

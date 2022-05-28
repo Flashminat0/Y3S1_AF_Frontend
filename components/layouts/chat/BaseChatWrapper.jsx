@@ -150,13 +150,6 @@ const BaseChatWrapper = ({
                                                                                     item.name
                                                                                 }
                                                                             </span>
-                                                                            {index ===
-                                                                                1 && (
-                                                                                <Divider
-                                                                                    className={`pt-2`}
-                                                                                    variant="fullWidth"
-                                                                                />
-                                                                            )}
                                                                         </motion.div>
                                                                     </div>
                                                                 )
@@ -263,12 +256,6 @@ const BaseChatWrapper = ({
                                                             />
                                                             {item.name}
                                                         </span>
-                                                        {index === 1 && (
-                                                            <Divider
-                                                                variant="fullWidth"
-                                                                className={`pt-2`}
-                                                            />
-                                                        )}
                                                     </motion.div>
                                                 </div>
                                             ))}
