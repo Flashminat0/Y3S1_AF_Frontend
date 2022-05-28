@@ -8,9 +8,6 @@ const dropdown = ({role, setRole}) => {
         'Co_Supervisor',
         'Panel_Member',
     ]
-    // const selectRole = (type) => {
-    //   console.log(type)
-    // }
     return (
         <div>
             <select
@@ -22,7 +19,7 @@ const dropdown = ({role, setRole}) => {
                 }}
             >
                 {type.map((values, index) => (
-                    <option key={index} value={values}>
+                    <option key={index} value={values} selected={role}>
                         {values}
                     </option>
                 ))}
