@@ -3,7 +3,7 @@ import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const adminModal = ({view,setSuccess}) => {
+const adminModal = ({view, setSuccess}) => {
     const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {
@@ -74,11 +74,13 @@ const adminModal = ({view,setSuccess}) => {
                                                 'flex justify-center text-3xl font-medium mt-5 pt-2'
                                             }
                                         >
-                                            <img src="https://ms-researchhub.com/____impro/1/onewebmedia/payment_successful.gif?etag=W%2F%2230e24-5cfa202d%22&sourceContentType=image%2Fgif&ignoreAspectRatio&resize=235%2B200&extract=0%2B16%2B224%2B184"/>
+                                            <img src="https://ms-researchhub.com/____impro/1/onewebmedia/payment_successful.gif?etag=W%2F%2230e24-5cfa202d%22&sourceContentType=image%2Fgif&ignoreAspectRatio&resize=235%2B200&extract=0%2B16%2B224%2B184" />
                                         </p>
                                     </Dialog.Title>
                                     <div>
-                                        <div className="mb-4">User Deleted Sucessfull!</div>
+                                        <div className="mb-4">
+                                            User Deleted Sucessfull!
+                                        </div>
                                     </div>
                                 </motion.div>
                             </div>

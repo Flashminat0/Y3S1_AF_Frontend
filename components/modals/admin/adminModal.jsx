@@ -3,7 +3,7 @@ import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const adminModal = ({view, id , setOpen , deleteUser}) => {
+const adminModal = ({view, id, setOpen, deleteUser}) => {
     const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {
@@ -74,17 +74,18 @@ const adminModal = ({view, id , setOpen , deleteUser}) => {
                                                 'flex justify-center items-center h-full text-xl'
                                             }
                                         >
-                                            Are you sure want to delete this user?
+                                            Are you sure want to delete this
+                                            user?
                                         </p>
                                     </Dialog.Title>
                                     <div>
                                         <div className="mb-4">
-                                        <Button
+                                            <Button
                                                 color={'error'}
                                                 onClick={() => {
                                                     setOpenModal(false)
                                                     setOpen(false)
-                                                    deleteUser(id);
+                                                    deleteUser(id)
                                                 }}
                                                 variant="contained"
                                             >

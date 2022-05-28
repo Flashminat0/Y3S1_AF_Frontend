@@ -1,18 +1,18 @@
-import { setRequestMeta } from 'next/dist/server/request-meta';
-import React, { useState } from 'react';
-import DropDown from '../../common/table/dropdown';
-import ModalDelete from '../../modals/admin/adminModal';
-import DeleteOpen from '../../modals/admin/userdeleted';
+import {setRequestMeta} from 'next/dist/server/request-meta'
+import React, {useState} from 'react'
+import DropDown from '../../common/table/dropdown'
+import ModalDelete from '../../modals/admin/adminModal'
+import DeleteOpen from '../../modals/admin/userdeleted'
 
-const userTable = ({ users, sucessDelete, setSuccess, deleteUser }) => {
-    const [userRole, setRole] = useState('');
-    const [open, setOpen] = useState(false);
-    const [id, setId] = useState();
-    const [userlist, setUsrtList] = useState('');
-    const [openDelete, setOpenDelete] = useState(false);
+const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
+    const [userRole, setRole] = useState('')
+    const [open, setOpen] = useState(false)
+    const [id, setId] = useState()
+    const [userlist, setUsrtList] = useState('')
+    const [openDelete, setOpenDelete] = useState(false)
     setTimeout(() => {
-        setUsrtList(users);
-    }, 1000);
+        setUsrtList(users)
+    }, 1000)
 
     return (
         <div>
@@ -126,26 +126,27 @@ const userTable = ({ users, sucessDelete, setSuccess, deleteUser }) => {
                                                                     className="absolute inset-0 bg-white opacity-50"
                                                                 ></span>
                                                                 <span className="relative space-y-1">
-                                                                <button
-                                                                    type="button"
-                                                                    className="p-2 rounded-md border-none bg-blue-400 hover:bg-blue-600 w-full"
-                                                                >
-                                                                    Change Role
-                                                                </button>
-                                                                <button
-                                                                    type="button"
-                                                                    className="p-2 rounded-md border-none bg-red-300 hover:bg-red-600 w-full"
-                                                                    onClick={() => {
-                                                                        setOpen(
-                                                                            true
-                                                                        );
-                                                                        setId(
-                                                                            user._id
-                                                                        );
-                                                                    }}
-                                                                >
-                                                                    Delete
-                                                                </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="p-2 rounded-md border-none bg-blue-400 hover:bg-blue-600 w-full"
+                                                                    >
+                                                                        Change
+                                                                        Role
+                                                                    </button>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="p-2 rounded-md border-none bg-red-300 hover:bg-red-600 w-full"
+                                                                        onClick={() => {
+                                                                            setOpen(
+                                                                                true
+                                                                            )
+                                                                            setId(
+                                                                                user._id
+                                                                            )
+                                                                        }}
+                                                                    >
+                                                                        Delete
+                                                                    </button>
                                                                 </span>
                                                             </span>
                                                         </td>
@@ -165,7 +166,7 @@ const userTable = ({ users, sucessDelete, setSuccess, deleteUser }) => {
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default userTable;
+export default userTable
