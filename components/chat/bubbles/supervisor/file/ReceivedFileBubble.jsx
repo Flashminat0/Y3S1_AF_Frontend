@@ -15,6 +15,10 @@ import {
 } from '../../../../assets/fileicons'
 import {useClipboard} from '@mantine/hooks'
 
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
 const ReceivedFileBubble = ({
     id,
     file,
@@ -32,7 +36,7 @@ const ReceivedFileBubble = ({
         'pptx',
         'xls',
         'xls',
-        '.xlsx',
+        'xlsx',
         'mp4',
         'mkv',
         'mov',
@@ -70,7 +74,23 @@ const ReceivedFileBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
+                                <Disclosure.Button
+                                    className={
+                                        classNames(
+                                            requestingForApproval === true &&
+                                                ' bg-blue-200 hover:bg-blue-300 '
+                                        ) +
+                                        classNames(
+                                            approvedState === true &&
+                                                'bg-emerald-200 hover:bg-emerald-300'
+                                        ) +
+                                        classNames(
+                                            approvedState === false &&
+                                                'bg-red-200 hover:bg-red-300'
+                                        ) +
+                                        ' flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75'
+                                    }
+                                >
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}
