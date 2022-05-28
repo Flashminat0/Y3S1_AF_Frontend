@@ -73,11 +73,25 @@ const SenderFileBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button className={
-                                    classNames(approvedState === null && requestingForApproval === true && 'bg-purple-600 hover:bg-purple-700') +
-                                    classNames(approvedState === true && 'bg-green-500 hover:bg-green-600') +
-                                    classNames(approvedState === false && 'bg-red-600 hover:bg-red-700') +
-                                    ' flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75'}>
+                                <Disclosure.Button
+                                    className={
+                                        classNames(
+                                            approvedState === null &&
+                                                requestingForApproval ===
+                                                    true &&
+                                                'bg-purple-600 hover:bg-purple-700'
+                                        ) +
+                                        classNames(
+                                            approvedState === true &&
+                                                'bg-green-500 hover:bg-green-600'
+                                        ) +
+                                        classNames(
+                                            approvedState === false &&
+                                                'bg-red-600 hover:bg-red-700'
+                                        ) +
+                                        ' flex w-full justify-between rounded-lg rounded-br-none bg-indigo-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-indigo-700 border-none focus:outline-none focus-visible:ring focus-visible:ring-indigo-600 focus-visible:ring-opacity-75'
+                                    }
+                                >
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}

@@ -23,12 +23,11 @@ import {
     uploadBytesResumable,
 } from 'firebase/storage'
 
-const BasicConversationWindow = ({receiver, approvalState , conversation}) => {
+const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
     const myRef = useRef(null)
 
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
-
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -378,4 +377,3 @@ const BasicConversationWindow = ({receiver, approvalState , conversation}) => {
 }
 
 export default BasicConversationWindow
-

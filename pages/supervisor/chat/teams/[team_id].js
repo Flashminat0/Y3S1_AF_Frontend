@@ -4,14 +4,12 @@ import {NavigationOnSupervisorChat} from '../../../../components/common/navigati
 import BasicConversationWindow from '../../../../components/chat/bubbles/supervisor/BasicConversationWIndow'
 import {useRouter} from 'next/router'
 
-
 const TeamId = () => {
     const router = useRouter()
     const {team_id} = router.query
 
-
     const [approvalState, setApprovalState] = useState('approved')
-    const [messages, setMessages] = useState(fakeMessages);
+    const [messages, setMessages] = useState(fakeMessages)
 
     return (
         <BaseChatWrapper
@@ -20,13 +18,16 @@ const TeamId = () => {
             dataID={team_id}
             hoveringUserId={''}
         >
-            <BasicConversationWindow receiver={team_id} conversation={messages} approvalState={approvalState}/>
+            <BasicConversationWindow
+                receiver={team_id}
+                conversation={messages}
+                approvalState={approvalState}
+            />
         </BaseChatWrapper>
     )
 }
 
 export default TeamId
-
 
 const fakeMessages = [
     {

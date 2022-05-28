@@ -133,8 +133,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         break
                 }
             },
-            (error) => {
-            },
+            (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then((url) => {
@@ -256,19 +255,19 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation/>
+                                <LoadingAnimation />
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation/>
+                                <OkAnimation />
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation/>
+                                <NotOkAnimation />
                             </>
                         )}
                     </div>
@@ -368,8 +367,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon/>}
-                endAdornment={<SendIcon/>}
+                startAdornment={<AttachmentsIcon />}
+                endAdornment={<SendIcon />}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
@@ -385,4 +384,3 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
 }
 
 export default BasicConversationWindow
-

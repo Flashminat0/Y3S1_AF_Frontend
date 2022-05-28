@@ -5,7 +5,6 @@ import BasicConversationWindow from '../../../../components/chat/bubbles/student
 import {useDocumentTitle} from '@mantine/hooks'
 import {NavigationOnStudentChat} from '../../../../components/common/navigation'
 
-
 const CoSupervisors = () => {
     const router = useRouter()
     const {co_supervisor} = router.query
@@ -13,7 +12,7 @@ const CoSupervisors = () => {
     useDocumentTitle('Co-Supervisors Chat Screen')
 
     const [approvalState, setApprovalState] = useState('pending')
-    const [messages, setMessages] = useState(fakeMessages);
+    const [messages, setMessages] = useState(fakeMessages)
 
     return (
         <BaseChatWrapper
@@ -22,7 +21,11 @@ const CoSupervisors = () => {
             selectedType={'Co-Supervisor'}
             dataID={co_supervisor}
         >
-            <BasicConversationWindow receiver={co_supervisor} conversation={messages} approvalState={approvalState}/>
+            <BasicConversationWindow
+                receiver={co_supervisor}
+                conversation={messages}
+                approvalState={approvalState}
+            />
         </BaseChatWrapper>
     )
 }

@@ -12,8 +12,7 @@ const Supervisor = () => {
     useDocumentTitle('Supervisor Chat Screen')
 
     const [approvalState, setApprovalState] = useState('pending')
-    const [messages, setMessages] = useState(fakeMessages);
-
+    const [messages, setMessages] = useState(fakeMessages)
 
     return (
         <BaseChatWrapper
@@ -22,13 +21,16 @@ const Supervisor = () => {
             selectedType={'Supervisor'}
             dataID={supervisor}
         >
-            <BasicConversationWindow receiver={supervisor} conversation={messages} approvalState={approvalState}/>
+            <BasicConversationWindow
+                receiver={supervisor}
+                conversation={messages}
+                approvalState={approvalState}
+            />
         </BaseChatWrapper>
     )
 }
 
 export default Supervisor
-
 
 const fakeMessages = [
     {
