@@ -18,6 +18,7 @@ const TeamId = () => {
             navigation={NavigationOnSupervisorChat}
             selectedType={'Team'}
             dataID={team_id}
+            hoveringUserId={''}
         >
             <BasicConversationWindow receiver={team_id} conversation={messages} approvalState={approvalState}/>
         </BaseChatWrapper>
@@ -85,7 +86,7 @@ const fakeMessages = [
         type: 'text',
         time: new Date(),
         requestingForApproval: true,
-        approvedState: true,
+        approvedState: null,
     },
     {
         id: 7,

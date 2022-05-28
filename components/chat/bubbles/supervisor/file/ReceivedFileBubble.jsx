@@ -15,14 +15,18 @@ import {
 } from '../../../../assets/fileicons'
 import {useClipboard} from '@mantine/hooks'
 
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
 const ReceivedFileBubble = ({
-    id,
-    file,
-    approvedState,
-    approveMessageHandler,
-    disapproveMessageHandler,
-    requestingForApproval,
-}) => {
+                                id,
+                                file,
+                                approvedState,
+                                approveMessageHandler,
+                                disapproveMessageHandler,
+                                requestingForApproval,
+                            }) => {
     const fileTypes = [
         'pdf',
         'docx',
@@ -70,7 +74,12 @@ const ReceivedFileBubble = ({
                     <Disclosure>
                         {({open}) => (
                             <>
-                                <Disclosure.Button className="flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75">
+                                <Disclosure.Button className={
+                                    classNames(requestingForApproval === true && ' bg-blue-200 hover:bg-blue-300 ') +
+                                    classNames(approvedState === true && 'bg-emerald-200 hover:bg-emerald-300') +
+                                    classNames(approvedState === false && 'bg-red-200 hover:bg-red-300') +
+                                    ' flex w-full justify-between rounded-lg rounded-bl-none bg-gray-300 text-gray-600 px-4 py-2 text-left text-sm font-medium text-white hover:bg-gray-400 border-none focus:outline-none focus-visible:ring focus-visible:ring-gray-400 focus-visible:ring-opacity-75'
+                                }>
                                     <span className={`text-base`}>
                                         <div
                                             className={`grid grid-cols-10 content-around`}
@@ -99,7 +108,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <PDFIcon />}
+                                                            ) && <PDFIcon/>}
                                                             {[
                                                                 'docx',
                                                                 'doc',
@@ -112,7 +121,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <DOCXIcon />}
+                                                            ) && <DOCXIcon/>}
                                                             {['pptx'].some(
                                                                 (extension) =>
                                                                     file.file
@@ -120,7 +129,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <PPTXIcon />}
+                                                            ) && <PPTXIcon/>}
                                                             {[
                                                                 'xls',
                                                                 'xls',
@@ -132,7 +141,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <XLSXIcon />}
+                                                            ) && <XLSXIcon/>}
                                                             {[
                                                                 'mp4',
                                                                 'mkv',
@@ -153,7 +162,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <VideoIcon />}
+                                                            ) && <VideoIcon/>}
                                                             {[
                                                                 'jpg',
                                                                 'png',
@@ -174,7 +183,7 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <ImageIcon />}
+                                                            ) && <ImageIcon/>}
                                                             {['mp3'].some(
                                                                 (extension) =>
                                                                     file.file
@@ -183,7 +192,7 @@ const ReceivedFileBubble = ({
                                                                             extension
                                                                         )
                                                             ) && (
-                                                                <AudioFileIcon />
+                                                                <AudioFileIcon/>
                                                             )}
                                                             {['txt'].some(
                                                                 (extension) =>
@@ -192,11 +201,11 @@ const ReceivedFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <TXTIcon />}
+                                                            ) && <TXTIcon/>}
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <OtherFileIcon />
+                                                            <OtherFileIcon/>
                                                         </>
                                                     )}
                                                 </>
@@ -226,7 +235,8 @@ const ReceivedFileBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel
+                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     <Button
                                         className={'col-span-2'}
                                         fullWidth={true}
