@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGroupWrapper'
 import SingleRequestBox from './SingleRequestBox'
 import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
 import {useRouter} from 'next/router'
+import {useDidUpdate} from "@mantine/hooks";
+import axios from "axios";
 
 const requestUsersStaticData = [
     {
@@ -43,10 +45,42 @@ const requestUsersStaticData = [
     },
 ]
 
-const RequestList = ({navigateFunc}) => {
+const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray}) => {
     const [requestList, setRequestList] = useState(requestUsersStaticData)
 
-    const submitGroupData = () => {}
+    const [groupMembersWithDetails, setGroupMembersWithDetails] = useState([]);
+
+    const submitGroupData = () => {
+
+    }
+
+    useEffect(() => {
+        axios.all(groupMemberArray.map((singleGroupMember) => {
+            if (groupLeaderID === singleGroupMember._id) {
+                console.log(singleGroupMember);
+            }
+
+
+            return axios.get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: singleGroupMember.userId
+                }
+            })
+        })).then((...res) => {
+            const groupMembersWithDetailsX = []
+
+            res[0].map((singleMember) => {
+
+
+                groupMembersWithDetailsX.push(singleMember.data)
+            })
+
+            return groupMembersWithDetailsX
+        }).then((groupMembers) => {
+            setGroupMembersWithDetails(groupMembers)
+        })
+    }, [])
+
 
     return (
         <div>
@@ -54,7 +88,10 @@ const RequestList = ({navigateFunc}) => {
                 btnName={'Check Group List'}
                 btnFunction={navigateFunc}
             >
-                <FinalizeGroupWrapper btnFunction={submitGroupData}>
+                <FinalizeGroupWrapper
+                    groupTopic={groupTopic}
+                    groupLeader={groupLeaderID}
+                    btnFunction={submitGroupData}>
                     <div>
                         {requestList.map((request) => (
                             <SingleRequestBox

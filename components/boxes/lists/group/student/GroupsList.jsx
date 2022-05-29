@@ -5,7 +5,9 @@ import SearchBar from '../../../../searchbar/SearchBar'
 import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
 import CreateGroupModal from '../../../../modals/student/CreateGroupModal'
 import axios from "axios";
-import {useDebouncedValue, useDidUpdate} from '@mantine/hooks';
+import {useDebouncedValue, useDidUpdate, useLocalStorage} from '@mantine/hooks';
+import {router} from "next/client";
+import {useRouter} from "next/router";
 
 const placeholder = 'Group Search'
 
@@ -15,6 +17,11 @@ const GroupsList = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [debounced] = useDebouncedValue(searchTerm, 200);
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     const openCreateGroupModal = () => {
         setOpenModal(true)
@@ -73,12 +80,12 @@ const GroupsList = () => {
                             userId: group.leaderId
                         }
                     }).then((res) => {
-                        const leaderName = res.data.name.toString()
+                        const leaderNameNew = res.data.name.toString()
                         const newGroup = {
                             id: groupId,
                             groupName: groupName,
-                            groupLeader: leaderName.substring(0, leaderName.lastIndexOf(' ')).toString().toUpperCase(),
-                            groupLeaderRegNo: leaderName.substring(leaderName.lastIndexOf(' ') + 1, leaderName.length).toString().toUpperCase(),
+                            groupLeader: leaderNameNew.substring(0, leaderNameNew.lastIndexOf(' ')).toString().toUpperCase(),
+                            groupLeaderRegNo: leaderNameNew.substring(leaderNameNew.lastIndexOf(' ') + 1, leaderNameNew.length).toString().toUpperCase(),
                             currentNo: memberCount,
                         }
 
@@ -95,6 +102,18 @@ const GroupsList = () => {
         }
     }, [debounced])
 
+    const router = useRouter()
+    useDidUpdate(() => {
+        axios.get('/api/users/is-in-a-group', {
+            params: {
+                userId: credentials._id
+            }
+        }).then(async (res) => {
+            if (res.data.isInAGroup) {
+                await router.push('/student/finalize-group')
+            }
+        })
+    }, [])
 
 
     const changeSearchValue = (value) => {
