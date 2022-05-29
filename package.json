@@ -9,7 +9,7 @@
   "dependencies": {
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
-    "@headlessui/react": "1.6.3",
+    "@headlessui/react": "1.6.4",
     "@mantine/hooks": "4.2.6",
     "@mantine/next": "4.2.6",
     "@mui/material": "5.8.1",
