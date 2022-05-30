@@ -5,11 +5,10 @@ import Success from './Success'
 import DeleteModal from './DeleteModal'
 import Chips from './Chips'
 
-const AddedTopicBox = ({topicData}) => {
+const AddedTopicBox = ({topicData , setTrigger , trigger}) => {
     const [view, setView] = useState(false)
     const [deleteView, setDeleteView] = useState(false)
-    const [deleteId, setDeleteId] = useState()
-    console.log(topicData)
+    const [deleteId, setDeleteId] = useState();
 
     const openDelete = (id) => {
         setDeleteView(true)
@@ -19,7 +18,10 @@ const AddedTopicBox = ({topicData}) => {
     const deleteTopic = (id) => {
         axios
             .delete('http://localhost:8000/api/removetopic', {data: {id: id}})
-            .then(setView(true))
+            .then(()=>{
+                setView(true)
+                setTrigger(trigger + 1)
+            })
     }
     return (
         <div>
@@ -32,7 +34,7 @@ const AddedTopicBox = ({topicData}) => {
             <Success view={view} setView={setView} />
             {topicData &&
                 topicData.map((topics, index) => (
-                    <div key={index}>
+                    <div key={index} className='py-3 px-3'>
                         {' '}
                         <div
                             className={
