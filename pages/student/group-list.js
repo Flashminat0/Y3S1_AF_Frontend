@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import GroupsList from '../../components/boxes/lists/group/student/GroupsList'
-import {useDidUpdate} from "@mantine/hooks";
+import {useDidUpdate} from '@mantine/hooks'
 
 const GroupList = () => {
     // const [credentials, setCredentials] = useLocalStorage({
