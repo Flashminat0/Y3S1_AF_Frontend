@@ -8,7 +8,6 @@ const AdminDashboard = () => {
     const [view, setView] = useState()
     const [userData, setUserData] = useState([{}])
 
-
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/userlist').then((result) => {
             setUserData(result.data.result)

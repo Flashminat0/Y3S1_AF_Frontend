@@ -4,11 +4,10 @@ import YellowFullButton from '../../buttons/full-button/YellowFullButton'
 import axios from 'axios'
 import {useRouter} from 'next/router'
 
-const CreateGroupModal = ({openModal, setOpenModal , credentials}) => {
+const CreateGroupModal = ({openModal, setOpenModal, credentials}) => {
     const router = useRouter()
 
     const [groupName, setGroupName] = useState('')
-
 
     const createGroup = async () => {
         await axios

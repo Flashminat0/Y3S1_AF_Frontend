@@ -18,8 +18,6 @@ const GroupsList = ({credentials}) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [debounced] = useDebouncedValue(searchTerm, 200)
 
-
-
     const openCreateGroupModal = () => {
         setOpenModal(true)
     }
