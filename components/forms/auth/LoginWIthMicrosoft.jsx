@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {OAuthProvider, getAuth, signInWithPopup, signOut} from 'firebase/auth'
 import axios from 'axios'
-import {useLocalStorage} from '@mantine/hooks'
 import {Button} from '@mui/material'
 
-const LoginWIthMicrosoft = () => {
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
+const LoginWIthMicrosoft = ({credentials}) => {
+
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {

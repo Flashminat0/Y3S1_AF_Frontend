@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react'
 import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGroupWrapper'
 import SingleRequestBox from './SingleRequestBox'
 import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
-import {useRouter} from 'next/router'
-import {useDidUpdate, useForceUpdate, useLocalStorage} from "@mantine/hooks";
 import axios from "axios";
 
 const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray, groupId , credentials}) => {

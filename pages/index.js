@@ -2,7 +2,7 @@ import Link from 'next/link'
 import FileUploadTest from '../components/forms/FileUploadTest'
 import LoginWIthMicrosoft from '../components/forms/auth/LoginWIthMicrosoft'
 import Header from '../components/common/header'
-import {useDocumentTitle} from '@mantine/hooks'
+import {useDocumentTitle, useLocalStorage} from '@mantine/hooks'
 import Button from '@mui/material/Button'
 import axios from 'axios'
 
@@ -15,6 +15,11 @@ export default function Home() {
         })
     }
 
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
+
     return (
         <div className={`font-sans`}>
             <Header />
@@ -26,7 +31,7 @@ export default function Home() {
                 Hello world!
             </h1>
             <FileUploadTest />
-            <LoginWIthMicrosoft />
+            <LoginWIthMicrosoft  credentials={credentials}/>
         </div>
     )
 }

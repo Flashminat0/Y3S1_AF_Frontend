@@ -1,18 +1,14 @@
 import React, {useState} from 'react'
 import ModalWrapper from '../../layouts/modal-layout/ModalWrapper'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
-import {useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 import {useRouter} from 'next/router'
 
-const CreateGroupModal = ({openModal, setOpenModal}) => {
+const CreateGroupModal = ({openModal, setOpenModal , credentials}) => {
     const router = useRouter()
 
     const [groupName, setGroupName] = useState('')
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
+
 
     const createGroup = async () => {
         await axios

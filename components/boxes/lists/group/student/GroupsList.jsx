@@ -5,23 +5,20 @@ import SearchBar from '../../../../searchbar/SearchBar'
 import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
 import CreateGroupModal from '../../../../modals/student/CreateGroupModal'
 import axios from 'axios'
-import {useDebouncedValue, useDidUpdate, useLocalStorage} from '@mantine/hooks'
+import {useDebouncedValue, useDidUpdate} from '@mantine/hooks'
 import {router} from 'next/client'
 import {useRouter} from 'next/router'
 
 const placeholder = 'Group Search'
 
-const GroupsList = () => {
+const GroupsList = ({credentials}) => {
     const [studentGroups, setStudentGroups] = useState([])
     const [openModal, setOpenModal] = useState(false)
 
     const [searchTerm, setSearchTerm] = useState('')
     const [debounced] = useDebouncedValue(searchTerm, 200)
 
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
+
 
     const openCreateGroupModal = () => {
         setOpenModal(true)
@@ -159,6 +156,7 @@ const GroupsList = () => {
             btnFunction={openCreateGroupModal}
         >
             <CreateGroupModal
+                credentials={credentials}
                 openModal={openModal}
                 setOpenModal={setOpenModal}
             />
