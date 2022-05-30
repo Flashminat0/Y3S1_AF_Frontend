@@ -4,8 +4,6 @@ import axios from 'axios'
 import {Button} from '@mui/material'
 
 const LoginWIthMicrosoft = ({credentials}) => {
-
-
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         if (Object.keys(credentials).length > 0) {
