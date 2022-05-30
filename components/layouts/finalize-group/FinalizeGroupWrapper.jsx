@@ -14,7 +14,7 @@ const FinalizeGroupWrapper = ({
     const [groupLeaderName, setGroupLeaderName] = useState('')
     const [groupLeaderImg, setGroupLeaderImg] = useState('')
 
-    useDidUpdate(async () => {
+    useEffect(async () => {
         if (groupLeader === '') return
         await axios
             .get('/api/users/get-user-data-from-id', {

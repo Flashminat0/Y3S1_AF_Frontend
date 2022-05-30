@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import RequestList from '../../components/boxes/lists/requests/student/RequestList'
 import {useRouter} from 'next/router'
-import {useDidUpdate, useLocalStorage} from '@mantine/hooks'
+import {useDidUpdate} from '@mantine/hooks'
 import axios from 'axios'
 
 const FinalizeGroup = () => {
@@ -12,6 +12,7 @@ const FinalizeGroup = () => {
         key: 'y3s1-af-credentials',
         defaultValue: {},
     })
+
     const [leaderID, setLeaderID] = useState('')
     const [groupTopic, setGroupTopic] = useState('')
     const [groupMemberArray, setGroupMemberArray] = useState([])
@@ -21,7 +22,7 @@ const FinalizeGroup = () => {
         await router.push('/student/group-list')
     }
 
-    useDidUpdate(() => {
+    useEffect(() => {
         axios
             .get('/api/users/is-in-a-group', {
                 params: {
@@ -48,6 +49,7 @@ const FinalizeGroup = () => {
     return (
         <StudentSideBarWrapper selectedPageIndex={1}>
             <RequestList
+                credentials={credentials}
                 groupId={groupId}
                 groupMemberArray={groupMemberArray}
                 groupTopic={groupTopic}
