@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import GroupsList from '../../components/boxes/lists/group/student/GroupsList'
-import {useDidUpdate, useLocalStorage} from "@mantine/hooks";
+import {useDidUpdate, useLocalStorage} from '@mantine/hooks'
 
 const GroupList = () => {
     const [credentials, setCredentials] = useLocalStorage({
@@ -21,7 +21,7 @@ const GroupList = () => {
 
     return (
         <StudentSideBarWrapper selectedPageIndex={0}>
-            <GroupsList credentials={credentials}/>
+            <GroupsList credentials={credentials} />
         </StudentSideBarWrapper>
     )
 }

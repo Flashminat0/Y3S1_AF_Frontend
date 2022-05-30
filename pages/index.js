@@ -15,7 +15,6 @@ export default function Home() {
         defaultValue: {},
     })
 
-
     const testAPI = () => {
         axios.get('/api/test').then((res) => {
             console.log(res)
@@ -24,7 +23,7 @@ export default function Home() {
 
     return (
         <div className={`font-sans`}>
-            <Header/>
+            <Header />
             <Button onClick={testAPI} color={'primary'}>
                 TEST
             </Button>
@@ -32,8 +31,8 @@ export default function Home() {
             <h1 className="text-3xl font-bold underline text-lg bg-red-100 text-red-500">
                 Hello world!
             </h1>
-            <FileUploadTest/>
-            <LoginWIthMicrosoft credentials={credentials}/>
+            <FileUploadTest />
+            <LoginWIthMicrosoft credentials={credentials} />
         </div>
     )
 }
