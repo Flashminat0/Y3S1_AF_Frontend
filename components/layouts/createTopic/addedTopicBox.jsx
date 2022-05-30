@@ -5,10 +5,10 @@ import Success from './Success'
 import DeleteModal from './DeleteModal'
 import Chips from './Chips'
 
-const AddedTopicBox = ({topicData , setTrigger , trigger}) => {
+const AddedTopicBox = ({topicData, setTrigger, trigger}) => {
     const [view, setView] = useState(false)
     const [deleteView, setDeleteView] = useState(false)
-    const [deleteId, setDeleteId] = useState();
+    const [deleteId, setDeleteId] = useState()
 
     const openDelete = (id) => {
         setDeleteView(true)
@@ -34,7 +34,7 @@ const AddedTopicBox = ({topicData , setTrigger , trigger}) => {
             <Success view={view} setView={setView} />
             {topicData &&
                 topicData.map((topics, index) => (
-                    <div key={index} className='py-3 px-3'>
+                    <div key={index} className="py-3 px-3">
                         {' '}
                         <div
                             className={
@@ -48,10 +48,16 @@ const AddedTopicBox = ({topicData , setTrigger , trigger}) => {
                                     }
                                 >
                                     <div className=" px-3 text-lg flex space-x-2">
-                                        <div>Topic : </div> {topics.tags.map((tags, index)=>(<div key={index}><Chips tags={tags}/></div>))}
+                                        <div>Topic : </div>{' '}
+                                        {topics.tags.map((tags, index) => (
+                                            <div key={index}>
+                                                <Chips tags={tags} />
+                                            </div>
+                                        ))}
                                     </div>
                                     <div className="rounded-lg px-3 text-lg flex">
-                                    <div className='pr-1'>Steps : </div>{topics.steps}
+                                        <div className="pr-1">Steps : </div>
+                                        {topics.steps}
                                     </div>
                                 </div>
 
