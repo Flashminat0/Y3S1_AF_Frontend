@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from '@mui/material'
 
-const YellowFullButton = ({btnName , btnFn}) => {
+const YellowFullButton = ({btnName, btnFn}) => {
     return (
         <div>
             <Button

@@ -13,20 +13,17 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-
 const SingleGroupBox = ({
-                            requestForJoinOnGroupHandler,
-                            groupId,
-                            groupName,
-                            groupLeader,
-                            groupLeaderRegNo,
-                            currentNo,
-                        }) => {
-
+    requestForJoinOnGroupHandler,
+    groupId,
+    groupName,
+    groupLeader,
+    groupLeaderRegNo,
+    currentNo,
+}) => {
     const requestForJoinOnGroup = () => {
-        requestForJoinOnGroupHandler(groupId);
+        requestForJoinOnGroupHandler(groupId)
     }
-
 
     return (
         <div
@@ -39,7 +36,7 @@ const SingleGroupBox = ({
                     <div className={'text-xl font-semibold uppercase'}>
                         {groupName}
                     </div>
-                    <MdGroup className={'w-5 h-5'}/>
+                    <MdGroup className={'w-5 h-5'} />
                 </div>
                 <div>
                     <Popover className="relative">
@@ -59,8 +56,7 @@ const SingleGroupBox = ({
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel
-                                        className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}
@@ -70,7 +66,9 @@ const SingleGroupBox = ({
                                                     {abilities.map(
                                                         (ability, index) => (
                                                             <div
-                                                                onClick={requestForJoinOnGroup}
+                                                                onClick={
+                                                                    requestForJoinOnGroup
+                                                                }
                                                                 key={index}
                                                                 className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100 cursor-pointer"
                                                             >
