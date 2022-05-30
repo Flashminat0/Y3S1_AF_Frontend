@@ -17,7 +17,11 @@ const TopicList = () => {
     return (
         <div>
             <CreateTopicWrapper setTrigger={setTrigger} trigger={trigger}>
-                <AddedTopicBox topicData={topics} setTrigger={setTrigger} trigger={trigger}/>
+                <AddedTopicBox
+                    topicData={topics}
+                    setTrigger={setTrigger}
+                    trigger={trigger}
+                />
             </CreateTopicWrapper>
         </div>
     )
