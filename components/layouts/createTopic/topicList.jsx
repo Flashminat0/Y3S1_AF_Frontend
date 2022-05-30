@@ -5,18 +5,19 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 const TopicList = () => {
+    const [trigger, setTrigger] = useState(1)
     const [topics, setTopics] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/display-topic').then((result) => {
             setTopics(result.data)
         })
-    }, [topics])
+    }, [trigger])
 
     return (
         <div>
-            <CreateTopicWrapper>
-                <AddedTopicBox topicData={topics} />
+            <CreateTopicWrapper setTrigger={setTrigger} trigger={trigger}>
+                <AddedTopicBox topicData={topics} setTrigger={setTrigger} trigger={trigger}/>
             </CreateTopicWrapper>
         </div>
     )
