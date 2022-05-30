@@ -1,10 +1,11 @@
 import React from 'react'
 import {Button} from '@mui/material'
 
-const RedShortButton = ({btnName}) => {
+const RedShortButton = ({btnName , btnFunction}) => {
     return (
         <div>
             <Button
+                onClick={btnFunction}
                 className={'h-8 text-sm lg:text-base'}
                 color={'error'}
                 variant="outlined"

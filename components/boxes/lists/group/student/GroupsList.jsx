@@ -96,7 +96,6 @@ const GroupsList = () => {
                             ])
                         })
                     })
-
                 }
             })
         }
@@ -120,6 +119,18 @@ const GroupsList = () => {
         setSearchTerm(value)
     }
 
+    const requestForJoinOnGroupHandler = async (groupId) => {
+        console.log(groupId);
+
+        //{userId, groupId}
+        await axios.post('/api/users/request-for-join-group', {
+            userId: credentials._id,
+            groupId: groupId
+        }).then((res) => {
+            console.log(res.data);
+        })
+    }
+
     return (
         <StudentModalButtonWrapper
             btnName={'Create Group'}
@@ -135,6 +146,8 @@ const GroupsList = () => {
                     {studentGroups.map((studentGroup) => (
                         <SingleGroupBox
                             key={studentGroup.id}
+                            groupId={studentGroup.id}
+                            requestForJoinOnGroupHandler={requestForJoinOnGroupHandler}
                             groupName={studentGroup.groupName}
                             groupLeader={studentGroup.groupLeader}
                             groupLeaderRegNo={studentGroup.groupLeaderRegNo}

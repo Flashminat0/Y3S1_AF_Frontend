@@ -15,6 +15,7 @@ const FinalizeGroup = () => {
     const [leaderID, setLeaderID] = useState('');
     const [groupTopic, setGroupTopic] = useState('');
     const [groupMemberArray, setGroupMemberArray] = useState([]);
+    const [groupId, setGroupId] = useState('');
 
     const openGroupListPage = async () => {
         await router.push('/student/group-list')
@@ -37,13 +38,14 @@ const FinalizeGroup = () => {
             setLeaderID(userGroupData.leaderId)
             setGroupTopic(userGroupData.name)
             setGroupMemberArray(userGroupData.members);
+            setGroupId(userGroupData._id);
         })
     }, [])
 
 
     return (
         <StudentSideBarWrapper selectedPageIndex={1}>
-            <RequestList groupMemberArray={groupMemberArray} groupTopic={groupTopic} groupLeaderID={leaderID} navigateFunc={openGroupListPage}/>
+            <RequestList groupId={groupId}  groupMemberArray={groupMemberArray} groupTopic={groupTopic} groupLeaderID={leaderID} navigateFunc={openGroupListPage}/>
         </StudentSideBarWrapper>
     )
 }

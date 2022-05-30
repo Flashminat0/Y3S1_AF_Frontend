@@ -3,64 +3,28 @@ import FinalizeGroupWrapper from '../../../../layouts/finalize-group/FinalizeGro
 import SingleRequestBox from './SingleRequestBox'
 import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalButtonWrapper'
 import {useRouter} from 'next/router'
-import {useDidUpdate} from "@mantine/hooks";
+import {useDidUpdate, useForceUpdate, useLocalStorage} from "@mantine/hooks";
 import axios from "axios";
 
-const requestUsersStaticData = [
-    {
-        id: 1,
-        userName: 'Anne Wotson',
-        userRegNo: 'IT20809745',
-        acceptedStatus: true,
-    },
-    {
-        id: 2,
-        userName: 'neha nichola',
-        userRegNo: 'IT10309416',
-        acceptedStatus: false,
-    },
-    {
-        id: 3,
-        userName: 'Mary jonson',
-        userRegNo: 'IT20809796',
-        acceptedStatus: true,
-    },
-    {
-        id: 4,
-        userName: 'Peter Pan',
-        userRegNo: 'IT10839756',
-        acceptedStatus: false,
-    },
-    {
-        id: 5,
-        userName: 'Yash Stevan',
-        userRegNo: 'IT20409778',
-        acceptedStatus: false,
-    },
-    {
-        id: 6,
-        userName: 'Bob cary',
-        userRegNo: 'IT10209796',
-        acceptedStatus: false,
-    },
-]
-
-const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray}) => {
-    const [requestList, setRequestList] = useState(requestUsersStaticData)
-
+const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray, groupId}) => {
     const [groupMembersWithDetails, setGroupMembersWithDetails] = useState([]);
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     const submitGroupData = () => {
 
     }
 
+    const [trigger, setTrigger] = useState(1);
     useEffect(() => {
+        fetchMembersOfGroup()
+    }, [groupLeaderID, trigger])
+
+    const fetchMembersOfGroup = () => {
         axios.all(groupMemberArray.map((singleGroupMember) => {
-            if (groupLeaderID === singleGroupMember._id) {
-                console.log(singleGroupMember);
-            }
-
-
             return axios.get('/api/users/get-user-data-from-id', {
                 params: {
                     userId: singleGroupMember.userId
@@ -69,18 +33,32 @@ const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray}
         })).then((...res) => {
             const groupMembersWithDetailsX = []
 
-            res[0].map((singleMember) => {
-
-
-                groupMembersWithDetailsX.push(singleMember.data)
+            res[0].map((singleMember, index) => {
+                groupMembersWithDetailsX.push({
+                    ...singleMember.data,
+                    status: groupMemberArray[index].status
+                })
             })
 
             return groupMembersWithDetailsX
         }).then((groupMembers) => {
             setGroupMembersWithDetails(groupMembers)
         })
-    }, [])
+    }
 
+
+    const approveUser = async (id) => {
+        await axios.post('/api/users/approve-to-group', {
+            groupID: groupId,
+            userId: id
+        }).then(() => {
+            setTrigger(trigger + 1)
+        })
+    }
+
+    const rejectUser = (id) => {
+        console.log(id);
+    }
 
     return (
         <div>
@@ -93,12 +71,17 @@ const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray}
                     groupLeader={groupLeaderID}
                     btnFunction={submitGroupData}>
                     <div>
-                        {requestList.map((request) => (
+                        {groupMembersWithDetails.map((singleStudent) => (
                             <SingleRequestBox
-                                key={request.id}
-                                userName={request.userName}
-                                userRegNo={request.userRegNo}
-                                acceptedStatus={request.acceptedStatus}
+                                key={singleStudent._id}
+                                userName={singleStudent.name.substring(0, singleStudent.name.lastIndexOf(' ')).toString().toUpperCase()}
+                                userRegNo={singleStudent.name.substring(singleStudent.name.lastIndexOf(' ') + 1, singleStudent.name.length).toString().toUpperCase()}
+                                acceptedStatus={singleStudent.status}
+                                accessToActions={credentials._id === groupLeaderID}
+                                userId={singleStudent._id}
+                                groupLeader={groupLeaderID}
+                                approveUser={approveUser}
+                                rejectUser={rejectUser}
                             />
                         ))}
                     </div>
