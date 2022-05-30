@@ -8,21 +8,10 @@ import axios from 'axios'
 const FinalizeGroup = () => {
     const router = useRouter()
 
-    // const [credentials, setCredentials] = useLocalStorage({
-    //     key: 'y3s1-af-credentials',
-    //     defaultValue: {},
-    // })
-
-    // const [credentials, setCredentials] = useState({})
-    // useEffect(() => {
-    //     if(typeof window !== "undefined") {
-    //         // Access localStorage
-    //         let credentialStorage = window.localStorage.getItem(
-    //             'y3s1-af-credentials'
-    //         )
-    //         setCredentials(credentialStorage)
-    //     }
-    // }, [])
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     const [leaderID, setLeaderID] = useState('')
     const [groupTopic, setGroupTopic] = useState('')

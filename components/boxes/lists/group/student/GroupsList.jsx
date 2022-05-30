@@ -6,7 +6,6 @@ import StudentModalButtonWrapper from '../../../../layouts/student/StudentModalB
 import CreateGroupModal from '../../../../modals/student/CreateGroupModal'
 import axios from 'axios'
 import {useDebouncedValue, useDidUpdate} from '@mantine/hooks'
-import {router} from 'next/client'
 import {useRouter} from 'next/router'
 
 const placeholder = 'Group Search'
