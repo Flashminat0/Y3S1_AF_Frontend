@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BsPersonBoundingBox} from 'react-icons/bs'
 import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 import {useDidUpdate} from '@mantine/hooks'
@@ -14,7 +14,7 @@ const FinalizeGroupWrapper = ({
     const [groupLeaderName, setGroupLeaderName] = useState('')
     const [groupLeaderImg, setGroupLeaderImg] = useState('')
 
-    useEffect(async () => {
+    useDidUpdate(async () => {
         if (groupLeader === '') return
         await axios
             .get('/api/users/get-user-data-from-id', {

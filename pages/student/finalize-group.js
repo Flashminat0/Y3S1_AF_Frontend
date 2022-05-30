@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import RequestList from '../../components/boxes/lists/requests/student/RequestList'
 import {useRouter} from 'next/router'
-import {useDidUpdate} from '@mantine/hooks'
+import {useDidUpdate, useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 
 const FinalizeGroup = () => {
