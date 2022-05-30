@@ -8,7 +8,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
     const [userRole, setRole] = useState('')
     const [open, setOpen] = useState(false)
     const [id, setId] = useState()
-    const [userlist, setUsrtList] = useState('')
+    const [userlist, setUsrtList] = useState();
     const [openDelete, setOpenDelete] = useState(false)
     setTimeout(() => {
         setUsrtList(users)

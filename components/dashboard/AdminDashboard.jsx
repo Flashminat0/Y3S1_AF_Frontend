@@ -6,16 +6,16 @@ import UserTable from '../common/table/userTable'
 const AdminDashboard = () => {
     const router = useRouter()
     const [view, setView] = useState()
-    const [userData, setUserData] = useState([{}])
+    const [userData, setUserData] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users/userlist').then((result) => {
+        axios.get('/api/users/userlist').then((result) => {
             setUserData(result.data.result)
         })
     }, [userData])
     const deleteUser = (userid) => {
         axios
-            .delete('http://localhost:8000/api/users/removeuser', {
+            .delete('/api/users/removeuser', {
                 data: {id: userid},
             })
             .then(setView(true))
