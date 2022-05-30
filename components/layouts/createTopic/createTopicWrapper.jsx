@@ -1,64 +1,45 @@
 import React, {useState} from 'react'
 import {Button} from '@mui/material'
+import Input from './input/input'
+import axios from 'axios'
 
-const CreateTopicWrapper = ({children}) => {
-    const [name, setName] = useState('')
-    const [grpID, setGrpID] = useState('')
+const CreateTopicWrapper = ({children, setTrigger, trigger}) => {
+    const [topicArray, setTopicArray] = useState()
 
     const inputTopic = async () => {
         try {
-            const body = {name, grpID}
-            console.log(body)
-            const response = fetch('http://localhost:8000/API/input-topic', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(body),
+            axios.post('/api/input-topic', {
+                tags: topicArray,
             })
-            console.log(response)
+            setTrigger(trigger + 1)
         } catch (error) {
             console.error(error.message)
         }
     }
 
     return (
-        <div>
+        <div className="p-10">
             <div className="mb-5 flex justify-center text-3xl font-semibold uppercase">
                 Add Topic
             </div>
-            <div className="flex w-screen justify-center">
-                <form className="mb-4 w-4/5 rounded bg-white px-8 pt-6 pb-8 shadow-md">
-                    <div className="flex flex-row justify-center">
-                        <div className="mb-6">
-                            <input
-                                className="focus:shadow-outline w-4/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none "
-                                placeholder="Add your topic here"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <input
-                                className="focus:shadow-outline w-4/5 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none "
-                                placeholder="Group registration number"
-                                value={grpID}
-                                onChange={(e) => setGrpID(e.target.value)}
-                            />
-                        </div>
-                        <div className="">
-                            <Button
-                                className={
-                                    'h-10 rounded-lg bg-indigo-500 text-center  text-xl font-semibold'
-                                }
-                                onClick={() => inputTopic()}
-                            >
-                                +
-                            </Button>
-                        </div>
-                    </div>
-                </form>
+            <div className="grid grid-cols-3">
+                <div className="col-span-2 pl-14">
+                    <Input setTopicArray={setTopicArray} />
+                </div>
+                <div className="">
+                    <Button
+                        className={
+                            'h-10 rounded-lg bg-indigo-500 text-center  text-xl font-semibold'
+                        }
+                        onClick={() => inputTopic()}
+                    >
+                        +
+                    </Button>
+                </div>
             </div>
 
             <hr />
+
             {children}
         </div>
     )
