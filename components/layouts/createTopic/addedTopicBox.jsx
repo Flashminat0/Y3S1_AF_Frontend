@@ -3,11 +3,13 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Success from './Success'
 import DeleteModal from './DeleteModal'
+import Chips from './Chips'
 
 const AddedTopicBox = ({topicData}) => {
     const [view, setView] = useState(false)
     const [deleteView, setDeleteView] = useState(false)
     const [deleteId, setDeleteId] = useState()
+    console.log(topicData)
 
     const openDelete = (id) => {
         setDeleteView(true)
@@ -29,25 +31,25 @@ const AddedTopicBox = ({topicData}) => {
             />
             <Success view={view} setView={setView} />
             {topicData &&
-                topicData.reverse().map((topics, index) => (
+                topicData.map((topics, index) => (
                     <div key={index}>
                         {' '}
                         <div
                             className={
-                                'mx-10 my-10 rounded-lg bg-gray-50 py-10 shadow-md'
+                                'mx-1 my-1 rounded-lg bg-gray-50 py-1 shadow-md'
                             }
                         >
                             <div className="grid grid-cols-2">
                                 <div
                                     className={
-                                        'ml-5 flex flex-col bg-green-100 rounded-lg p-1'
+                                        'ml-5 flex flex-col rounded-lg p-1'
                                     }
                                 >
-                                    <div className=" px-3 text-lg font-bold">
-                                        Topic : {topics.name}
+                                    <div className=" px-3 text-lg flex space-x-2">
+                                        <div>Topic : </div> {topics.tags.map((tags, index)=>(<div key={index}><Chips tags={tags}/></div>))}
                                     </div>
-                                    <div className=" rounded-lg px-3 text-lg font-bold">
-                                        Group ID: {topics.grpID}
+                                    <div className="rounded-lg px-3 text-lg flex">
+                                    <div className='pr-1'>Steps : </div>{topics.steps}
                                     </div>
                                 </div>
 
