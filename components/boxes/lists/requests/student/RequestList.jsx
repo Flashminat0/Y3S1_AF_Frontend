@@ -7,20 +7,21 @@ import {useDidUpdate, useForceUpdate, useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 
 const RequestList = ({
-    navigateFunc,
-    groupLeaderID,
-    groupTopic,
-    groupMemberArray,
-    groupId,
-}) => {
+                         navigateFunc,
+                         groupLeaderID,
+                         groupTopic,
+                         groupMemberArray,
+                         groupId,
+                     }) => {
     const [groupMembersWithDetails, setGroupMembersWithDetails] = useState([])
-
+    const [isLoaded, setIsLoaded] = useState(false);
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
         defaultValue: {},
     })
 
-    const submitGroupData = () => {}
+    const submitGroupData = () => {
+    }
 
     const [trigger, setTrigger] = useState(1)
     useEffect(() => {
@@ -52,6 +53,9 @@ const RequestList = ({
             })
             .then((groupMembers) => {
                 setGroupMembersWithDetails(groupMembers)
+
+                setIsLoaded(groupMembers.length > 0)
+
             })
     }
 
@@ -81,35 +85,38 @@ const RequestList = ({
                     groupLeader={groupLeaderID}
                     btnFunction={submitGroupData}
                 >
-                    <div>
-                        {groupMembersWithDetails.map((singleStudent) => (
-                            <SingleRequestBox
-                                key={singleStudent._id}
-                                userName={singleStudent.name
-                                    .substring(
-                                        0,
-                                        singleStudent.name.lastIndexOf(' ')
-                                    )
-                                    .toString()
-                                    .toUpperCase()}
-                                userRegNo={singleStudent.name
-                                    .substring(
-                                        singleStudent.name.lastIndexOf(' ') + 1,
-                                        singleStudent.name.length
-                                    )
-                                    .toString()
-                                    .toUpperCase()}
-                                acceptedStatus={singleStudent.status}
-                                accessToActions={
-                                    credentials._id === groupLeaderID
-                                }
-                                userId={singleStudent._id}
-                                groupLeader={groupLeaderID}
-                                approveUser={approveUser}
-                                rejectUser={rejectUser}
-                            />
-                        ))}
-                    </div>
+                    {isLoaded && <>
+                        <div>
+                            {groupMembersWithDetails.map((singleStudent) => (
+                                <SingleRequestBox
+                                    key={singleStudent._id}
+                                    userName={singleStudent.name
+                                        .substring(
+                                            0,
+                                            singleStudent.name.lastIndexOf(' ')
+                                        )
+                                        .toString()
+                                        .toUpperCase()}
+                                    userRegNo={singleStudent.name
+                                        .substring(
+                                            singleStudent.name.lastIndexOf(' ') + 1,
+                                            singleStudent.name.length
+                                        )
+                                        .toString()
+                                        .toUpperCase()}
+                                    acceptedStatus={singleStudent.status}
+                                    accessToActions={
+                                        credentials._id === groupLeaderID
+                                    }
+                                    userId={singleStudent._id}
+                                    groupLeader={groupLeaderID}
+                                    approveUser={approveUser}
+                                    rejectUser={rejectUser}
+                                />
+                            ))}
+                        </div>
+                    </>}
+
                 </FinalizeGroupWrapper>
             </StudentModalButtonWrapper>
         </div>
