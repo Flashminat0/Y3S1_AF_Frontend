@@ -6,13 +6,9 @@ import {useRouter} from 'next/router'
 import {useDidUpdate, useForceUpdate, useLocalStorage} from "@mantine/hooks";
 import axios from "axios";
 
-const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray, groupId}) => {
+const RequestList = ({navigateFunc, groupLeaderID, groupTopic, groupMemberArray, groupId , credentials}) => {
     const [groupMembersWithDetails, setGroupMembersWithDetails] = useState([]);
 
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
 
     const submitGroupData = () => {
 

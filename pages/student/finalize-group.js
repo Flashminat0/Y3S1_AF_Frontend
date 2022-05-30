@@ -45,7 +45,7 @@ const FinalizeGroup = () => {
 
     return (
         <StudentSideBarWrapper selectedPageIndex={1}>
-            <RequestList groupId={groupId}  groupMemberArray={groupMemberArray} groupTopic={groupTopic} groupLeaderID={leaderID} navigateFunc={openGroupListPage}/>
+            <RequestList credentials={credentials} groupId={groupId}  groupMemberArray={groupMemberArray} groupTopic={groupTopic} groupLeaderID={leaderID} navigateFunc={openGroupListPage}/>
         </StudentSideBarWrapper>
     )
 }
