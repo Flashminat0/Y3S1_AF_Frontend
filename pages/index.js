@@ -5,9 +5,23 @@ import Header from '../components/common/header'
 import {useDocumentTitle, useLocalStorage} from '@mantine/hooks'
 import Button from '@mui/material/Button'
 import axios from 'axios'
+import {useState , useEffect} from "react";
+
 
 export default function Home() {
     useDocumentTitle('Home')
+
+    // const [credentials, setCredentials] = useLocalStorage({
+    //     key: 'y3s1-af-credentials',
+    //     defaultValue: {},
+    // })
+
+    const [credentials, setCredentials] = useState({})
+    useEffect(() => {
+        let credentialStorage = window.localStorage.getItem('y3s1-af-credentials')
+        setCredentials(credentialStorage)
+    }, [])
+
 
     const testAPI = () => {
         axios.get('/api/test').then((res) => {
@@ -15,10 +29,6 @@ export default function Home() {
         })
     }
 
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
 
     return (
         <div className={`font-sans`}>

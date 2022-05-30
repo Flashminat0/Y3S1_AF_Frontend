@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import RequestList from '../../components/boxes/lists/requests/student/RequestList'
 import {useRouter} from 'next/router'
@@ -8,10 +8,18 @@ import axios from 'axios'
 const FinalizeGroup = () => {
     const router = useRouter()
 
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
+    // const [credentials, setCredentials] = useLocalStorage({
+    //     key: 'y3s1-af-credentials',
+    //     defaultValue: {},
+    // })
+
+
+    const [credentials, setCredentials] = useState({})
+    useEffect(() => {
+        let credentialStorage = window.localStorage.getItem('y3s1-af-credentials')
+        setCredentials(credentialStorage)
+    }, [])
+
     const [leaderID, setLeaderID] = useState('')
     const [groupTopic, setGroupTopic] = useState('')
     const [groupMemberArray, setGroupMemberArray] = useState([])
