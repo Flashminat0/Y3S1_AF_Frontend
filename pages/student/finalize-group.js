@@ -13,10 +13,11 @@ const FinalizeGroup = () => {
     //     defaultValue: {},
     // })
 
-
     const [credentials, setCredentials] = useState({})
     useEffect(() => {
-        let credentialStorage = window.localStorage.getItem('y3s1-af-credentials')
+        let credentialStorage = window.localStorage.getItem(
+            'y3s1-af-credentials'
+        )
         setCredentials(credentialStorage)
     }, [])
 

@@ -5,8 +5,7 @@ import Header from '../components/common/header'
 import {useDocumentTitle, useLocalStorage} from '@mantine/hooks'
 import Button from '@mui/material/Button'
 import axios from 'axios'
-import {useState , useEffect} from "react";
-
+import {useState, useEffect} from 'react'
 
 export default function Home() {
     useDocumentTitle('Home')
@@ -18,17 +17,17 @@ export default function Home() {
 
     const [credentials, setCredentials] = useState({})
     useEffect(() => {
-        let credentialStorage = window.localStorage.getItem('y3s1-af-credentials')
+        let credentialStorage = window.localStorage.getItem(
+            'y3s1-af-credentials'
+        )
         setCredentials(credentialStorage)
     }, [])
-
 
     const testAPI = () => {
         axios.get('/api/test').then((res) => {
             console.log(res)
         })
     }
-
 
     return (
         <div className={`font-sans`}>
