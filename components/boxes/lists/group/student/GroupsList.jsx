@@ -22,7 +22,7 @@ const GroupsList = ({credentials}) => {
         setOpenModal(true)
     }
 
-    useDidUpdate(() => {
+    useEffect(() => {
         if (debounced === '') {
             //limited to 5
             axios.get('/api/users/get-all-groups').then(async (res) => {
@@ -116,7 +116,7 @@ const GroupsList = ({credentials}) => {
     }, [debounced])
 
     const router = useRouter()
-    useDidUpdate(() => {
+    useEffect(() => {
         axios
             .get('/api/users/is-in-a-group', {
                 params: {

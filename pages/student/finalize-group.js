@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import RequestList from '../../components/boxes/lists/requests/student/RequestList'
 import {useRouter} from 'next/router'
-import {useDidUpdate, useLocalStorage} from '@mantine/hooks'
+import {useDidUpdate} from '@mantine/hooks'
 import axios from 'axios'
 
 const FinalizeGroup = () => {
@@ -13,13 +13,16 @@ const FinalizeGroup = () => {
     //     defaultValue: {},
     // })
 
-    const [credentials, setCredentials] = useState({})
-    useEffect(() => {
-        let credentialStorage = window.localStorage.getItem(
-            'y3s1-af-credentials'
-        )
-        setCredentials(credentialStorage)
-    }, [])
+    // const [credentials, setCredentials] = useState({})
+    // useEffect(() => {
+    //     if(typeof window !== "undefined") {
+    //         // Access localStorage
+    //         let credentialStorage = window.localStorage.getItem(
+    //             'y3s1-af-credentials'
+    //         )
+    //         setCredentials(credentialStorage)
+    //     }
+    // }, [])
 
     const [leaderID, setLeaderID] = useState('')
     const [groupTopic, setGroupTopic] = useState('')
@@ -30,7 +33,7 @@ const FinalizeGroup = () => {
         await router.push('/student/group-list')
     }
 
-    useDidUpdate(() => {
+    useEffect(() => {
         axios
             .get('/api/users/is-in-a-group', {
                 params: {
