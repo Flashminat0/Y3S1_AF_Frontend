@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Button} from '@mui/material'
 import Input from './input/input'
-<<<<<<< HEAD
 import axios from 'axios'
 
 const CreateTopicWrapper = ({children , setTrigger , trigger}) => {
@@ -12,19 +11,6 @@ const CreateTopicWrapper = ({children , setTrigger , trigger}) => {
             
             axios.post('/api/input-topic', {
                 tags : topicArray
-=======
-
-const CreateTopicWrapper = ({children, setTrigger, trigger}) => {
-    const [tags, setTopicArray] = useState()
-
-    const inputTopic = async () => {
-        try {
-            const body = {tags}
-            const response = fetch('http://localhost:8000/api/input-topic', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(body),
->>>>>>> 5ddb0e5bc2b110993cb891f025bdcba138b3ca2e
             })
             setTrigger(trigger + 1)
         } catch (error) {

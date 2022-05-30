@@ -17,13 +17,8 @@ const AddedTopicBox = ({topicData, setTrigger, trigger}) => {
 
     const deleteTopic = (id) => {
         axios
-<<<<<<< HEAD
             .delete('/api/removetopic', {data: {id: id}})
             .then(()=>{
-=======
-            .delete('http://localhost:8000/api/removetopic', {data: {id: id}})
-            .then(() => {
->>>>>>> 5ddb0e5bc2b110993cb891f025bdcba138b3ca2e
                 setView(true)
                 setTrigger(trigger + 1)
             })
