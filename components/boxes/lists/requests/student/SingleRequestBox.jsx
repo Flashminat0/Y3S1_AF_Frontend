@@ -2,19 +2,19 @@ import React, {useState} from 'react'
 import {BsBoxArrowInLeft} from 'react-icons/bs'
 import RedShortButton from '../../../../buttons/short-button/RedShortButton'
 import GreenShortButton from '../../../../buttons/short-button/GreenShortButton'
-import YellowFullButton from "../../../../buttons/full-button/YellowFullButton";
-import {Button} from "@mui/material";
+import YellowFullButton from '../../../../buttons/full-button/YellowFullButton'
+import {Button} from '@mui/material'
 
 const SingleRequestBox = ({
-                              userName,
-                              userRegNo,
-                              acceptedStatus,
-                              groupLeader,
-                              accessToActions,
-                              approveUser,
-                              rejectUser,
-                              userId
-                          }) => {
+    userName,
+    userRegNo,
+    acceptedStatus,
+    groupLeader,
+    accessToActions,
+    approveUser,
+    rejectUser,
+    userId,
+}) => {
     const [changeStatus, setChangeStatus] = useState(acceptedStatus)
 
     const acceptingRequest = () => {
@@ -37,7 +37,7 @@ const SingleRequestBox = ({
                         >
                             Request Info:
                         </div>
-                        <BsBoxArrowInLeft className={'w-5 h-5 text-blue-900'}/>
+                        <BsBoxArrowInLeft className={'w-5 h-5 text-blue-900'} />
                     </div>
                     <div className={'flex flex-row gap-1 items-center'}>
                         <div className={'text-sm text-gray-800'}>
@@ -49,23 +49,25 @@ const SingleRequestBox = ({
                     </div>
                 </div>
                 <>
-                    {
-                        accessToActions && <>
+                    {accessToActions && (
+                        <>
                             {changeStatus === 'approved' ? (
                                 <>
-                                    {userId === groupLeader ?
-                                        <YellowFullButton btnName={'This is you'}/>
-                                        :
-                                        <RedShortButton btnName={'Remove'}/>
-
-                                    }
-
+                                    {userId === groupLeader ? (
+                                        <YellowFullButton
+                                            btnName={'This is you'}
+                                        />
+                                    ) : (
+                                        <RedShortButton btnName={'Remove'} />
+                                    )}
                                 </>
                             ) : (
                                 <>
                                     <div className={'flex flex-row gap-2'}>
                                         <Button
-                                            className={'h-8 text-sm lg:text-base'}
+                                            className={
+                                                'h-8 text-sm lg:text-base'
+                                            }
                                             color={'success'}
                                             variant="outlined"
                                             onClick={() => {
@@ -78,20 +80,19 @@ const SingleRequestBox = ({
                                             onClick={() => {
                                                 rejectUser(userId)
                                             }}
-                                            className={'h-8 text-sm lg:text-base'}
+                                            className={
+                                                'h-8 text-sm lg:text-base'
+                                            }
                                             color={'error'}
                                             variant="outlined"
                                         >
                                             Reject
                                         </Button>
-
                                     </div>
                                 </>
                             )}
-
                         </>
-                    }
-
+                    )}
                 </>
             </div>
         </div>

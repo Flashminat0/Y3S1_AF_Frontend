@@ -1,29 +1,47 @@
 import React, {useState} from 'react'
 import {BsPersonBoundingBox} from 'react-icons/bs'
 import GreenFullButton from '../../buttons/full-button/GreenFullButton'
-import {useDidUpdate} from "@mantine/hooks";
-import axios from "axios";
+import {useDidUpdate} from '@mantine/hooks'
+import axios from 'axios'
 
-const FinalizeGroupWrapper = ({children, btnFunction, groupLeader , groupTopic}) => {
-
-    const [groupLeaderID, setGroupLeaderID] = useState('');
-    const [groupLeaderName, setGroupLeaderName] = useState('');
-    const [groupLeaderImg, setGroupLeaderImg] = useState('');
+const FinalizeGroupWrapper = ({
+    children,
+    btnFunction,
+    groupLeader,
+    groupTopic,
+}) => {
+    const [groupLeaderID, setGroupLeaderID] = useState('')
+    const [groupLeaderName, setGroupLeaderName] = useState('')
+    const [groupLeaderImg, setGroupLeaderImg] = useState('')
 
     useDidUpdate(async () => {
-        if (groupLeader === '') return;
-        await axios.get('/api/users/get-user-data-from-id', {
-            params: {
-                userId: groupLeader
-            }
-        }).then((res) => {
-            const leaderName = res.data.name
+        if (groupLeader === '') return
+        await axios
+            .get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: groupLeader,
+                },
+            })
+            .then((res) => {
+                const leaderName = res.data.name
 
-            setGroupLeaderID(leaderName.substring(leaderName.lastIndexOf(' ') + 1, leaderName.length).toString().toUpperCase())
-            setGroupLeaderName(leaderName.substring(0, leaderName.lastIndexOf(' ')).toString().toUpperCase())
-            setGroupLeaderImg(res.data.image)
-
-        })
+                setGroupLeaderID(
+                    leaderName
+                        .substring(
+                            leaderName.lastIndexOf(' ') + 1,
+                            leaderName.length
+                        )
+                        .toString()
+                        .toUpperCase()
+                )
+                setGroupLeaderName(
+                    leaderName
+                        .substring(0, leaderName.lastIndexOf(' '))
+                        .toString()
+                        .toUpperCase()
+                )
+                setGroupLeaderImg(res.data.image)
+            })
     }, [groupLeader])
 
     return (
