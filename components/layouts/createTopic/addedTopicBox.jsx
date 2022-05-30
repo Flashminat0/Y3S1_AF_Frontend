@@ -16,12 +16,10 @@ const AddedTopicBox = ({topicData, setTrigger, trigger}) => {
     }
 
     const deleteTopic = (id) => {
-        axios
-            .delete('/api/removetopic', {data: {id: id}})
-            .then(()=>{
-                setView(true)
-                setTrigger(trigger + 1)
-            })
+        axios.delete('/api/removetopic', {data: {id: id}}).then(() => {
+            setView(true)
+            setTrigger(trigger + 1)
+        })
     }
     return (
         <div>

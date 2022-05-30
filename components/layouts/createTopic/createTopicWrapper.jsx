@@ -3,14 +3,13 @@ import {Button} from '@mui/material'
 import Input from './input/input'
 import axios from 'axios'
 
-const CreateTopicWrapper = ({children , setTrigger , trigger}) => {
-    const [topicArray, setTopicArray] = useState();
+const CreateTopicWrapper = ({children, setTrigger, trigger}) => {
+    const [topicArray, setTopicArray] = useState()
 
     const inputTopic = async () => {
         try {
-            
             axios.post('/api/input-topic', {
-                tags : topicArray
+                tags: topicArray,
             })
             setTrigger(trigger + 1)
         } catch (error) {
