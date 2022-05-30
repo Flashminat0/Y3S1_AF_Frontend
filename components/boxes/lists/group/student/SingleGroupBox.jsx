@@ -14,11 +14,17 @@ function classNames(...classes) {
 }
 
 const SingleGroupBox = ({
+    requestForJoinOnGroupHandler,
+    groupId,
     groupName,
     groupLeader,
     groupLeaderRegNo,
     currentNo,
 }) => {
+    const requestForJoinOnGroup = () => {
+        requestForJoinOnGroupHandler(groupId)
+    }
+
     return (
         <div
             className={
@@ -60,8 +66,11 @@ const SingleGroupBox = ({
                                                     {abilities.map(
                                                         (ability, index) => (
                                                             <div
+                                                                onClick={
+                                                                    requestForJoinOnGroup
+                                                                }
                                                                 key={index}
-                                                                className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
+                                                                className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100 cursor-pointer"
                                                             >
                                                                 <div>
                                                                     {

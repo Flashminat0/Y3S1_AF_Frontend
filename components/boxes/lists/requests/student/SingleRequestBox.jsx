@@ -2,8 +2,19 @@ import React, {useState} from 'react'
 import {BsBoxArrowInLeft} from 'react-icons/bs'
 import RedShortButton from '../../../../buttons/short-button/RedShortButton'
 import GreenShortButton from '../../../../buttons/short-button/GreenShortButton'
+import YellowFullButton from '../../../../buttons/full-button/YellowFullButton'
+import {Button} from '@mui/material'
 
-const SingleRequestBox = ({userName, userRegNo, acceptedStatus}) => {
+const SingleRequestBox = ({
+    userName,
+    userRegNo,
+    acceptedStatus,
+    groupLeader,
+    accessToActions,
+    approveUser,
+    rejectUser,
+    userId,
+}) => {
     const [changeStatus, setChangeStatus] = useState(acceptedStatus)
 
     const acceptingRequest = () => {
@@ -37,21 +48,52 @@ const SingleRequestBox = ({userName, userRegNo, acceptedStatus}) => {
                         </div>
                     </div>
                 </div>
-                {changeStatus === true ? (
-                    <>
-                        <RedShortButton btnName={'Remove'} />
-                    </>
-                ) : (
-                    <>
-                        <div className={'flex flex-row gap-2'}>
-                            <GreenShortButton
-                                btnName={'Accept'}
-                                btnFunction={acceptingRequest}
-                            />
-                            <RedShortButton btnName={'Reject'} />
-                        </div>
-                    </>
-                )}
+                <>
+                    {accessToActions && (
+                        <>
+                            {changeStatus === 'approved' ? (
+                                <>
+                                    {userId === groupLeader ? (
+                                        <YellowFullButton
+                                            btnName={'This is you'}
+                                        />
+                                    ) : (
+                                        <RedShortButton btnName={'Remove'} />
+                                    )}
+                                </>
+                            ) : (
+                                <>
+                                    <div className={'flex flex-row gap-2'}>
+                                        <Button
+                                            className={
+                                                'h-8 text-sm lg:text-base'
+                                            }
+                                            color={'success'}
+                                            variant="outlined"
+                                            onClick={() => {
+                                                approveUser(userId)
+                                            }}
+                                        >
+                                            Accept
+                                        </Button>
+                                        <Button
+                                            onClick={() => {
+                                                rejectUser(userId)
+                                            }}
+                                            className={
+                                                'h-8 text-sm lg:text-base'
+                                            }
+                                            color={'error'}
+                                            variant="outlined"
+                                        >
+                                            Reject
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                </>
             </div>
         </div>
     )

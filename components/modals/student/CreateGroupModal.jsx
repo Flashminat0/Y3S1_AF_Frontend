@@ -1,9 +1,24 @@
 import React, {useState} from 'react'
 import ModalWrapper from '../../layouts/modal-layout/ModalWrapper'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
+import axios from 'axios'
+import {useRouter} from 'next/router'
 
-const CreateGroupModal = ({openModal, setOpenModal}) => {
+const CreateGroupModal = ({openModal, setOpenModal, credentials}) => {
+    const router = useRouter()
+
     const [groupName, setGroupName] = useState('')
+
+    const createGroup = async () => {
+        await axios
+            .post('/api/users/create-group', {
+                userId: credentials._id,
+                groupName: groupName,
+            })
+            .then(async (res) => {
+                await router.push('/student/finalize-group')
+            })
+    }
 
     return (
         <ModalWrapper
@@ -25,7 +40,7 @@ const CreateGroupModal = ({openModal, setOpenModal}) => {
                         'px-2 py-2.5 max-w-[44rem] bg-white border border-gray-300 ring-0 ring-offset-0 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-indigo-600 focus:border-indigo-600 shadow-sm rounded-md'
                     }
                 />
-                <YellowFullButton btnName={'Submit'} />
+                <YellowFullButton btnFn={createGroup} btnName={'Submit'} />
             </div>
         </ModalWrapper>
     )

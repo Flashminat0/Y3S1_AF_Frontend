@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
-import {useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 import UserTable from '../common/table/userTable'
 
@@ -8,10 +7,6 @@ const AdminDashboard = () => {
     const router = useRouter()
     const [view, setView] = useState()
     const [userData, setUserData] = useState([{}])
-    const [credentials, setCredentials] = useLocalStorage({
-        key: 'y3s1-af-credentials',
-        defaultValue: {},
-    })
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/userlist').then((result) => {
