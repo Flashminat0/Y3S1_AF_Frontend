@@ -9,7 +9,7 @@ const TopicList = () => {
     const [topics, setTopics] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/display-topic').then((result) => {
+        axios.get('/api/display-topic').then((result) => {
             setTopics(result.data)
         })
     }, [trigger])

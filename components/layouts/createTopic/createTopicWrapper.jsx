@@ -1,17 +1,16 @@
 import React, {useState} from 'react'
 import {Button} from '@mui/material'
 import Input from './input/input'
+import axios from 'axios'
 
 const CreateTopicWrapper = ({children , setTrigger , trigger}) => {
-    const [tags, setTopicArray] = useState();
+    const [topicArray, setTopicArray] = useState();
 
     const inputTopic = async () => {
         try {
-            const body = {tags}
-            const response = fetch('http://localhost:8000/api/input-topic', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(body),
+            
+            axios.post('/api/input-topic', {
+                tags : topicArray
             })
             setTrigger(trigger + 1);
             
