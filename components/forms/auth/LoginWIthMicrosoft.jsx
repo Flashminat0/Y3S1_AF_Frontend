@@ -3,7 +3,7 @@ import {OAuthProvider, getAuth, signInWithPopup, signOut} from 'firebase/auth'
 import axios from 'axios'
 import {Button} from '@mui/material'
 
-const LoginWIthMicrosoft = ({credentials}) => {
+const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         if (Object.keys(credentials).length > 0) {

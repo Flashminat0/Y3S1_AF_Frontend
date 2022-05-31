@@ -1,10 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
-import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const adminModal = ({view, id, setOpen, deleteUser, setTrigger, trigger}) => {
+import DropDown from '../../common/table/dropdown'
+
+const adminModal = ({
+    view,
+    setOpenUpdate,
+    setTrigger,
+    trigger,
+    id,
+    updateUserRole,
+    setId,
+}) => {
     const [openModal, setOpenModal] = useState(view)
+    const [type, setType] = useState('Admin')
 
     useEffect(() => {
         setOpenModal(view)
@@ -47,23 +57,21 @@ const adminModal = ({view, id, setOpen, deleteUser, setTrigger, trigger}) => {
                                         opacity: 0,
                                         duration: 0.2,
                                     }}
-                                    className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all bg-red-100"
+                                    className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                                 >
                                     <Dialog.Title as="h3" className={`mb-2`}>
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
                                                 setOpenModal(false)
-                                                setOpen(false)
-                                                setId(null)
+                                                setOpenUpdate(false)
                                             }}
                                         >
                                             <Button
                                                 color={'warning'}
                                                 onClick={() => {
                                                     setOpenModal(false)
-                                                    setOpen(false)
-                                                    setId(null)
+                                                    setOpenUpdate(false)
                                                 }}
                                                 variant="contained"
                                             >
@@ -76,26 +84,29 @@ const adminModal = ({view, id, setOpen, deleteUser, setTrigger, trigger}) => {
                                                 'flex justify-center items-center h-full text-xl'
                                             }
                                         >
-                                            Are you sure want to delete this
-                                            user?
+                                            <DropDown setRole={setType} />
                                         </p>
-                                    </Dialog.Title>
-                                    <div>
-                                        <div className="mb-4">
+                                        <div
+                                            className={
+                                                'flex items-center justify-center'
+                                            }
+                                        >
                                             <Button
-                                                color={'error'}
+                                                color={'primary'}
                                                 onClick={() => {
                                                     setOpenModal(false)
-                                                    setOpen(false)
-                                                    deleteUser(id)
-                                                    setTrigger(trigger + 1)
+                                                    setOpenUpdate(false)
+                                                    updateUserRole(id, type)
                                                     setId(null)
                                                 }}
                                                 variant="contained"
                                             >
-                                                Delete Anyway
+                                                Update!
                                             </Button>
                                         </div>
+                                    </Dialog.Title>
+                                    <div>
+                                        <div className="mb-4"></div>
                                     </div>
                                 </motion.div>
                             </div>

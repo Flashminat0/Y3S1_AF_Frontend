@@ -3,13 +3,24 @@ import React, {useState} from 'react'
 import DropDown from '../../common/table/dropdown'
 import ModalDelete from '../../modals/admin/adminModal'
 import DeleteOpen from '../../modals/admin/userdeleted'
+import UpdateUser from '../../modals/admin/adminUpdate'
 
-const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
+const userTable = ({
+    users,
+    sucessDelete,
+    setSuccess,
+    deleteUser,
+    setTrigger,
+    trigger,
+    updateUserRole,
+}) => {
     const [userRole, setRole] = useState('')
+    const [openUpdate, setOpenUpdate] = useState(false)
     const [open, setOpen] = useState(false)
     const [id, setId] = useState()
     const [userlist, setUsrtList] = useState()
     const [openDelete, setOpenDelete] = useState(false)
+
     setTimeout(() => {
         setUsrtList(users)
     }, 1000)
@@ -22,6 +33,15 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                 setOpen={setOpen}
                 id={id}
                 deleteUser={deleteUser}
+                setTrigger={setTrigger}
+                trigger={trigger}
+            />
+            <UpdateUser
+                view={openUpdate}
+                setOpenUpdate={setOpenUpdate}
+                updateUserRole={updateUserRole}
+                id={id}
+                setId={setId}
             />
             <div>
                 {userlist ? (
@@ -44,12 +64,12 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                                 >
                                                     Role
                                                 </th>
-                                                <th
+                                                {/* <th
                                                     scope="col"
                                                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                                                 >
                                                     Created at
-                                                </th>
+                                                </th> */}
                                                 <th
                                                     scope="col"
                                                     className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -59,7 +79,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {users &&
+                                            {users ? (
                                                 users.map((user, index) => (
                                                     <tr key={index}>
                                                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -104,7 +124,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                        {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                             <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                 <span
                                                                     aria-hidden="true"
@@ -118,7 +138,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                                                     />
                                                                 </span>
                                                             </span>
-                                                        </td>
+                                                        </td> */}
                                                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                             <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                 <span
@@ -127,6 +147,14 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                                                 ></span>
                                                                 <span className="relative space-y-1">
                                                                     <button
+                                                                        onClick={() => {
+                                                                            setOpenUpdate(
+                                                                                !openUpdate
+                                                                            )
+                                                                            setId(
+                                                                                user._id
+                                                                            )
+                                                                        }}
                                                                         type="button"
                                                                         className="p-2 rounded-md border-none bg-blue-400 hover:bg-blue-600 w-full"
                                                                     >
@@ -151,7 +179,13 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser}) => {
                                                             </span>
                                                         </td>
                                                     </tr>
-                                                ))}
+                                                ))
+                                            ) : (
+                                                <div className="flex items-center justify-center h-screen">
+                                                    {' '}
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" />{' '}
+                                                </div>
+                                            )}
                                         </tbody>
                                     </table>
                                 </div>
