@@ -23,7 +23,6 @@ const AdminDashboard = () => {
             .then(setView(true))
     }
     const updateUserRole = async (id , role) => {
-        console.log(id,role)
         try {
             await axios.put('/api/user/updaterole' , {
                 id : id,

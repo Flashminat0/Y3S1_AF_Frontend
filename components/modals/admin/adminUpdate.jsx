@@ -1,16 +1,24 @@
-import React, {useEffect, useState} from 'react'
-import {Dialog} from '@headlessui/react'
-import {AnimatePresence, motion} from 'framer-motion'
-import Button from '@mui/material/Button'
-import DropDown from '../../common/table/dropdown'
+import React, { useEffect, useState } from 'react';
+import { Dialog } from '@headlessui/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import Button from '@mui/material/Button';
+import DropDown from '../../common/table/dropdown';
 
-const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserRole , setId}) => {
-    const [openModal, setOpenModal] = useState(view)
-    const [type ,setType] = useState("kakka");
+const adminModal = ({
+    view,
+    setOpenUpdate,
+    setTrigger,
+    trigger,
+    id,
+    updateUserRole,
+    setId,
+}) => {
+    const [openModal, setOpenModal] = useState(view);
+    const [type, setType] = useState("Admin");
 
     useEffect(() => {
-        setOpenModal(view)
-    }, [view])
+        setOpenModal(view);
+    }, [view]);
 
     return (
         <div className={`font-sans`}>
@@ -27,7 +35,7 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                         }}
                         exit={{
                             opacity: 0,
-                            transition: {duration: 0.4},
+                            transition: { duration: 0.4 },
                         }}
                     >
                         <div
@@ -38,7 +46,7 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                             <div className="flex min-h-full items-center justify-center p-4 text-center bg-black bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{scale: 0.8, opacity: 0}}
+                                    initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
@@ -55,15 +63,15 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false)
-                                                setOpenUpdate(false)
+                                                setOpenModal(false);
+                                                setOpenUpdate(false);
                                             }}
                                         >
                                             <Button
                                                 color={'warning'}
                                                 onClick={() => {
-                                                    setOpenModal(false)
-                                                    setOpenUpdate(false)
+                                                    setOpenModal(false);
+                                                    setOpenUpdate(false);
                                                 }}
                                                 variant="contained"
                                             >
@@ -76,17 +84,20 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                                                 'flex justify-center items-center h-full text-xl'
                                             }
                                         >
-                                            <DropDown setRole={setType}/>
+                                            <DropDown setRole={setType} />
                                         </p>
-                                        <div className={'flex items-center justify-center'}>
-                                        <Button
+                                        <div
+                                            className={
+                                                'flex items-center justify-center'
+                                            }
+                                        >
+                                            <Button
                                                 color={'primary'}
                                                 onClick={() => {
-                                                    setOpenModal(false)
-                                                    setOpenUpdate(false)
-                                                    updateUserRole(id,type)
+                                                    setOpenModal(false);
+                                                    setOpenUpdate(false);
+                                                    updateUserRole(id, type);
                                                     setId(null);
-
                                                 }}
                                                 variant="contained"
                                             >
@@ -95,8 +106,7 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                                         </div>
                                     </Dialog.Title>
                                     <div>
-                                        <div className="mb-4">
-                                        </div>
+                                        <div className="mb-4"></div>
                                     </div>
                                 </motion.div>
                             </div>
@@ -105,7 +115,7 @@ const adminModal = ({view ,setOpenUpdate , setTrigger , trigger, id, updateUserR
                 )}
             </AnimatePresence>
         </div>
-    )
-}
+    );
+};
 
-export default adminModal
+export default adminModal;

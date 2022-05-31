@@ -1,20 +1,29 @@
-import {setRequestMeta} from 'next/dist/server/request-meta'
-import React, {useState} from 'react'
-import DropDown from '../../common/table/dropdown'
-import ModalDelete from '../../modals/admin/adminModal'
-import DeleteOpen from '../../modals/admin/userdeleted'
-import UpdateUser from '../../modals/admin/adminUpdate'
+import { setRequestMeta } from 'next/dist/server/request-meta';
+import React, { useState } from 'react';
+import DropDown from '../../common/table/dropdown';
+import ModalDelete from '../../modals/admin/adminModal';
+import DeleteOpen from '../../modals/admin/userdeleted';
+import UpdateUser from '../../modals/admin/adminUpdate';
 
-const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigger , updateUserRole}) => {
-    const [userRole, setRole] = useState('')
-    const [openUpdate,setOpenUpdate] = useState(false);
-    const [open, setOpen] = useState(false)
-    const [id, setId] = useState()
-    const [userlist, setUsrtList] = useState()
-    const [openDelete, setOpenDelete] = useState(false)
+const userTable = ({
+    users,
+    sucessDelete,
+    setSuccess,
+    deleteUser,
+    setTrigger,
+    trigger,
+    updateUserRole,
+}) => {
+    const [userRole, setRole] = useState('');
+    const [openUpdate, setOpenUpdate] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [id, setId] = useState();
+    const [userlist, setUsrtList] = useState();
+    const [openDelete, setOpenDelete] = useState(false);
+
     setTimeout(() => {
-        setUsrtList(users)
-    }, 1000)
+        setUsrtList(users);
+    }, 1000);
 
     return (
         <div>
@@ -27,7 +36,13 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                 setTrigger={setTrigger}
                 trigger={trigger}
             />
-            <UpdateUser view={openUpdate} setOpenUpdate={setOpenUpdate} updateUserRole={updateUserRole} id={id} setId={setId}/>
+            <UpdateUser
+                view={openUpdate}
+                setOpenUpdate={setOpenUpdate}
+                updateUserRole={updateUserRole}
+                id={id}
+                setId={setId}
+            />
             <div>
                 {userlist ? (
                     <div className="container mx-auto px-4 sm:px-8 max-w-3xl bg-slate-200 shadow-2xl">
@@ -64,7 +79,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {users &&
+                                            {users ? (
                                                 users.map((user, index) => (
                                                     <tr key={index}>
                                                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -132,8 +147,13 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                                                                 ></span>
                                                                 <span className="relative space-y-1">
                                                                     <button
-                                                                        onClick={()=>{setOpenUpdate(!openUpdate)
-                                                                            setId(user._id)
+                                                                        onClick={() => {
+                                                                            setOpenUpdate(
+                                                                                !openUpdate
+                                                                            );
+                                                                            setId(
+                                                                                user._id
+                                                                            );
                                                                         }}
                                                                         type="button"
                                                                         className="p-2 rounded-md border-none bg-blue-400 hover:bg-blue-600 w-full"
@@ -147,10 +167,10 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                                                                         onClick={() => {
                                                                             setOpen(
                                                                                 true
-                                                                            )
+                                                                            );
                                                                             setId(
                                                                                 user._id
-                                                                            )
+                                                                            );
                                                                         }}
                                                                     >
                                                                         Delete
@@ -159,7 +179,13 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                                                             </span>
                                                         </td>
                                                     </tr>
-                                                ))}
+                                                ))
+                                            ) : (
+                                                <div className="flex items-center justify-center h-screen">
+                                                    {' '}
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" />{' '}
+                                                </div>
+                                            )}
                                         </tbody>
                                     </table>
                                 </div>
@@ -174,7 +200,7 @@ const userTable = ({users, sucessDelete, setSuccess, deleteUser,setTrigger,trigg
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default userTable
+export default userTable;

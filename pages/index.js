@@ -32,7 +32,7 @@ export default function Home() {
                 Hello world!
             </h1>
             <FileUploadTest />
-            <LoginWIthMicrosoft credentials={credentials} />
+            <LoginWIthMicrosoft credentials={credentials} setCredentials={setCredentials} />
         </div>
     )
 }

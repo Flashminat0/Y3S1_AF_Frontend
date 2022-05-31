@@ -2,7 +2,7 @@ import React from 'react'
 
 const dropdown = ({setRole}) => {
     const type = [
-        'admin',
+        'Admin',
         'Studnet',
         'Supervisor',
         'Co_Supervisor',
