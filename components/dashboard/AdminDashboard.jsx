@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import axios from 'axios'
 import UserTable from '../common/table/userTable'
-import { useScrollTrigger } from '@mui/material'
+import {useScrollTrigger} from '@mui/material'
 
 const AdminDashboard = () => {
     const router = useRouter()
     const [view, setView] = useState()
     const [userData, setUserData] = useState([])
-    const [trigger, setTrigger] = useState(1);
+    const [trigger, setTrigger] = useState(1)
 
     useEffect(() => {
         axios.get('/api/users/userlist').then((result) => {
@@ -22,11 +22,11 @@ const AdminDashboard = () => {
             })
             .then(setView(true))
     }
-    const updateUserRole = async (id , role) => {
+    const updateUserRole = async (id, role) => {
         try {
-            await axios.put('/api/user/updaterole' , {
-                id : id,
-                role : role
+            await axios.put('/api/user/updaterole', {
+                id: id,
+                role: role,
             })
             setTrigger(trigger + 1)
         } catch (error) {

@@ -3,7 +3,7 @@ import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@mui/material/Button'
-const adminModal = ({view, id, setOpen, deleteUser , setTrigger ,trigger}) => {
+const adminModal = ({view, id, setOpen, deleteUser, setTrigger, trigger}) => {
     const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {

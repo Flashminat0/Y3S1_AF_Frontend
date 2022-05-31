@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
-import Button from '@mui/material/Button';
-import DropDown from '../../common/table/dropdown';
+import React, {useEffect, useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {AnimatePresence, motion} from 'framer-motion'
+import Button from '@mui/material/Button'
+import DropDown from '../../common/table/dropdown'
 
 const adminModal = ({
     view,
@@ -13,12 +13,12 @@ const adminModal = ({
     updateUserRole,
     setId,
 }) => {
-    const [openModal, setOpenModal] = useState(view);
-    const [type, setType] = useState("Admin");
+    const [openModal, setOpenModal] = useState(view)
+    const [type, setType] = useState('Admin')
 
     useEffect(() => {
-        setOpenModal(view);
-    }, [view]);
+        setOpenModal(view)
+    }, [view])
 
     return (
         <div className={`font-sans`}>
@@ -35,7 +35,7 @@ const adminModal = ({
                         }}
                         exit={{
                             opacity: 0,
-                            transition: { duration: 0.4 },
+                            transition: {duration: 0.4},
                         }}
                     >
                         <div
@@ -46,7 +46,7 @@ const adminModal = ({
                             <div className="flex min-h-full items-center justify-center p-4 text-center bg-black bg-opacity-80">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    initial={{scale: 0.8, opacity: 0}}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
@@ -63,15 +63,15 @@ const adminModal = ({
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false);
-                                                setOpenUpdate(false);
+                                                setOpenModal(false)
+                                                setOpenUpdate(false)
                                             }}
                                         >
                                             <Button
                                                 color={'warning'}
                                                 onClick={() => {
-                                                    setOpenModal(false);
-                                                    setOpenUpdate(false);
+                                                    setOpenModal(false)
+                                                    setOpenUpdate(false)
                                                 }}
                                                 variant="contained"
                                             >
@@ -94,10 +94,10 @@ const adminModal = ({
                                             <Button
                                                 color={'primary'}
                                                 onClick={() => {
-                                                    setOpenModal(false);
-                                                    setOpenUpdate(false);
-                                                    updateUserRole(id, type);
-                                                    setId(null);
+                                                    setOpenModal(false)
+                                                    setOpenUpdate(false)
+                                                    updateUserRole(id, type)
+                                                    setId(null)
                                                 }}
                                                 variant="contained"
                                             >
@@ -115,7 +115,7 @@ const adminModal = ({
                 )}
             </AnimatePresence>
         </div>
-    );
-};
+    )
+}
 
-export default adminModal;
+export default adminModal

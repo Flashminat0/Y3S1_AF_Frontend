@@ -1,9 +1,9 @@
-import { setRequestMeta } from 'next/dist/server/request-meta';
-import React, { useState } from 'react';
-import DropDown from '../../common/table/dropdown';
-import ModalDelete from '../../modals/admin/adminModal';
-import DeleteOpen from '../../modals/admin/userdeleted';
-import UpdateUser from '../../modals/admin/adminUpdate';
+import {setRequestMeta} from 'next/dist/server/request-meta'
+import React, {useState} from 'react'
+import DropDown from '../../common/table/dropdown'
+import ModalDelete from '../../modals/admin/adminModal'
+import DeleteOpen from '../../modals/admin/userdeleted'
+import UpdateUser from '../../modals/admin/adminUpdate'
 
 const userTable = ({
     users,
@@ -14,16 +14,16 @@ const userTable = ({
     trigger,
     updateUserRole,
 }) => {
-    const [userRole, setRole] = useState('');
-    const [openUpdate, setOpenUpdate] = useState(false);
-    const [open, setOpen] = useState(false);
-    const [id, setId] = useState();
-    const [userlist, setUsrtList] = useState();
-    const [openDelete, setOpenDelete] = useState(false);
+    const [userRole, setRole] = useState('')
+    const [openUpdate, setOpenUpdate] = useState(false)
+    const [open, setOpen] = useState(false)
+    const [id, setId] = useState()
+    const [userlist, setUsrtList] = useState()
+    const [openDelete, setOpenDelete] = useState(false)
 
     setTimeout(() => {
-        setUsrtList(users);
-    }, 1000);
+        setUsrtList(users)
+    }, 1000)
 
     return (
         <div>
@@ -150,10 +150,10 @@ const userTable = ({
                                                                         onClick={() => {
                                                                             setOpenUpdate(
                                                                                 !openUpdate
-                                                                            );
+                                                                            )
                                                                             setId(
                                                                                 user._id
-                                                                            );
+                                                                            )
                                                                         }}
                                                                         type="button"
                                                                         className="p-2 rounded-md border-none bg-blue-400 hover:bg-blue-600 w-full"
@@ -167,10 +167,10 @@ const userTable = ({
                                                                         onClick={() => {
                                                                             setOpen(
                                                                                 true
-                                                                            );
+                                                                            )
                                                                             setId(
                                                                                 user._id
-                                                                            );
+                                                                            )
                                                                         }}
                                                                     >
                                                                         Delete
@@ -200,7 +200,7 @@ const userTable = ({
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default userTable;
+export default userTable
