@@ -19,7 +19,7 @@ const Supervisor = () => {
             navigation={NavigationOnStudentChat}
             selectedPageIndex={0}
             selectedType={'Supervisor'}
-            dataID={supervisor}
+            activeUserID={supervisor}
         >
             <BasicConversationWindow
                 receiver={supervisor}

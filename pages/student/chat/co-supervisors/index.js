@@ -45,7 +45,8 @@ const CoSupervisors = () => {
         <BaseChatWrapper
             navigation={NavigationOnStudentChat}
             selectedPageIndex={1}
-            hoveringUserId={debouncedHoveringUsrId}
+            activeUserID={debouncedHoveringUsrId}
+            selectedType={'Co-Supervisor'}
         >
             <div className={`flex h-full w-max `}>
                 <AnimatePresence>
