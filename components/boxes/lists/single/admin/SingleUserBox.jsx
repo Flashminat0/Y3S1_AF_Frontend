@@ -1,26 +1,39 @@
-import React from 'react'
-import {MdGroup} from 'react-icons/md'
-import {Popover, Transition} from '@headlessui/react'
-import {FiChevronDown} from 'react-icons/fi'
-import {Fragment} from 'react'
-import {BsFillEyeFill} from 'react-icons/bs'
-import {AiFillDelete} from 'react-icons/ai'
-import {AnimatePresence, motion} from 'framer-motion'
+import React from 'react';
+import { MdGroup } from 'react-icons/md';
+import { Popover, Transition } from '@headlessui/react';
+import { FiChevronDown } from 'react-icons/fi';
+import { Fragment } from 'react';
+import { BsFillEyeFill } from 'react-icons/bs';
+import { AiFillDelete } from 'react-icons/ai';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const abilities = [
-    {id: 1, name: 'View User Profile', icon: BsFillEyeFill},
+    { id: 1, name: 'View User Profile', icon: BsFillEyeFill },
     {
         id: 2,
         name: 'Delete User',
         icon: AiFillDelete,
     },
-]
+    {
+        id: 3,
+        name: 'Update User Role',
+        icon: BsFillEyeFill,
+    },
+];
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
-const SingleUserBox = ({userName, userRegNo, userRole}) => {
+const SingleUserBox = ({
+    userName,
+    userRegNo,
+    userRole,
+    deleteUser,
+    mongoID,
+    trigger,
+    setTrigger,
+}) => {
     return (
         <div
             className={
@@ -36,7 +49,7 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                 </div>
                 <div>
                     <Popover className="relative">
-                        {({open}) => (
+                        {({ open }) => (
                             <>
                                 <Popover.Button
                                     className={classNames(
@@ -54,8 +67,8 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                 <AnimatePresence>
                                     <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
-                                            initial={{opacity: 0, scale: 0.7}}
-                                            animate={{opacity: 1, scale: 1}}
+                                            initial={{ opacity: 0, scale: 0.7 }}
+                                            animate={{ opacity: 1, scale: 1 }}
                                         >
                                             <div className="rounded-lg shadow-lg ring-1 ring-opacity-5 overflow-hidden">
                                                 <div className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
@@ -65,7 +78,22 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                                                 key={index}
                                                                 className="flex flex-row gap-5 justify-between items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
                                                             >
-                                                                <div>
+                                                                <div
+                                                                    onClick={() => {
+                                                                        if (
+                                                                            ability.id ==
+                                                                            2
+                                                                        ) {
+                                                                            deleteUser(
+                                                                                mongoID
+                                                                            );
+                                                                            setTrigger(
+                                                                                trigger +
+                                                                                    1
+                                                                            );
+                                                                        }
+                                                                    }}
+                                                                >
                                                                     {
                                                                         ability.name
                                                                     }
@@ -135,9 +163,20 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                         </div>
                     </>
                 )}
+                {userRole === 'Admin' && (
+                    <>
+                        <div
+                            className={
+                                'text-xs text-red-500 px-3 py-1 rounded-lg bg-orange-200'
+                            }
+                        >
+                            {userRole}
+                        </div>
+                    </>
+                )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SingleUserBox
+export default SingleUserBox;
