@@ -19,7 +19,7 @@ const CoSupervisors = () => {
             navigation={NavigationOnStudentChat}
             selectedPageIndex={1}
             selectedType={'Co-Supervisor'}
-            dataID={co_supervisor}
+            activeUserID={co_supervisor}
         >
             <BasicConversationWindow
                 receiver={co_supervisor}

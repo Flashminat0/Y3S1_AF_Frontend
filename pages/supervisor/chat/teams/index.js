@@ -1,14 +1,11 @@
 import React, {useState} from 'react'
-import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
-import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import {AnimatePresence} from 'framer-motion'
 import {useDebouncedValue} from '@mantine/hooks'
+import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
+import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import StudentChatListSideBar from '../../../../components/lists/chatlists/StudentChatListSideBar'
 
 const Index = () => {
-    // pending , approved, rejected
-    const [status, setStatus] = useState('pending')
-
     const [hoveringUsrId, setHoveringUsrId] = useState('')
     const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
 
@@ -20,7 +17,8 @@ const Index = () => {
         <BaseChatWrapper
             selectedPageIndex={0}
             navigation={NavigationOnSupervisorChat}
-            hoveringUserId={debouncedHoveringUsrId}
+            activeUserID={debouncedHoveringUsrId}
+            selectedType={'Student'}
         >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>

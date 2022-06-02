@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
+import {useRouter} from 'next/router'
 import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
 import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import BasicConversationWindow from '../../../../components/chat/bubbles/supervisor/BasicConversationWIndow'
-import {useRouter} from 'next/router'
 
 const TeamId = () => {
     const router = useRouter()
@@ -14,9 +14,8 @@ const TeamId = () => {
     return (
         <BaseChatWrapper
             navigation={NavigationOnSupervisorChat}
-            selectedType={'Team'}
-            dataID={team_id}
-            hoveringUserId={''}
+            selectedType={'Student'}
+            activeUserID={team_id}
         >
             <BasicConversationWindow
                 receiver={team_id}

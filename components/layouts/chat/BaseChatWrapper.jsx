@@ -1,26 +1,47 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {HiMenu, HiX} from 'react-icons/hi'
-import {Divider} from '@mui/material'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
+import Statusbar from "../../chat/statusbar";
+import axios from "axios";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const BaseChatWrapper = ({
-    children,
-    selectedPageIndex,
-    selectedType,
-    dataID,
-    hoveringUserId,
-    navigation,
-}) => {
+                             children,
+                             selectedPageIndex,
+                             selectedType,
+                             activeUserID,
+                             navigation,
+                         }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
+    const [activeUserState, setActiveUserState] = useState('pending')
+
     const router = useRouter()
+
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            await axios.get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: activeUserID
+                }
+            }).then((res) => {
+                setUserData(res.data);
+            })
+        }
+        if (activeUserID) {
+            fetchUserData()
+        }
+
+    }, [activeUserID])
+
 
     return (
         <div className="h-screen overflow-hidden">
@@ -46,7 +67,7 @@ const BaseChatWrapper = ({
                                         animate={{opacity: 1}}
                                         exit={{opacity: 0}}
                                     >
-                                        <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                                        <div className="fixed inset-0 bg-gray-600 bg-opacity-75"/>
                                     </motion.div>
 
                                     <div className="fixed inset-0 flex z-40 ">
@@ -55,7 +76,8 @@ const BaseChatWrapper = ({
                                             animate={{opacity: 1, x: 0}}
                                             exit={{opacity: 0, x: -300}}
                                         >
-                                            <Dialog.Panel className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
+                                            <Dialog.Panel
+                                                className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
                                                 <motion.div
                                                     initial={{opacity: 0}}
                                                     animate={{opacity: 1}}
@@ -124,7 +146,7 @@ const BaseChatWrapper = ({
                                                                                 }}
                                                                                 className={classNames(
                                                                                     selectedPageIndex ===
-                                                                                        index
+                                                                                    index
                                                                                         ? 'bg-gray-100 text-gray-900 font-normal '
                                                                                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                                     'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -136,7 +158,7 @@ const BaseChatWrapper = ({
                                                                                     }
                                                                                     className={classNames(
                                                                                         selectedPageIndex ===
-                                                                                            index
+                                                                                        index
                                                                                             ? 'text-gray-500'
                                                                                             : 'text-gray-400 group-hover:text-gray-500',
                                                                                         'mr-4 h-8 w-8'
@@ -157,7 +179,8 @@ const BaseChatWrapper = ({
                                                         </div>
                                                     </nav>
                                                 </div>
-                                                <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
+                                                <div
+                                                    className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
                                                     <span className="flex-shrink-0 w-full group block no-underline">
                                                         <div className="grid grid-cols-3">
                                                             <div
@@ -169,7 +192,8 @@ const BaseChatWrapper = ({
                                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                                         alt=""
                                                                     />
-                                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                                    <span
+                                                                        className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                                 </span>
                                                             </div>
                                                             <div className="ml-3 relative col-span-2 bottom-1 right-4">
@@ -236,7 +260,7 @@ const BaseChatWrapper = ({
                                                             }}
                                                             className={classNames(
                                                                 selectedPageIndex ===
-                                                                    index
+                                                                index
                                                                     ? 'bg-gray-100 text-gray-900 font-normal'
                                                                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                 'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -247,7 +271,7 @@ const BaseChatWrapper = ({
                                                                 alt={item.name}
                                                                 className={classNames(
                                                                     selectedPageIndex ===
-                                                                        index
+                                                                    index
                                                                         ? 'text-gray-500'
                                                                         : 'text-gray-400 group-hover:text-gray-500',
                                                                     'mr-4 h-8 w-8'
@@ -272,7 +296,8 @@ const BaseChatWrapper = ({
                                                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                         alt=""
                                                     />
-                                                    <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                    <span
+                                                        className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                 </span>
                                             </div>
                                             <div className="ml-3 relative col-span-2 bottom-1 right-2">
@@ -291,7 +316,8 @@ const BaseChatWrapper = ({
                     </div>
                     <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
                         <div className="lg:hidden">
-                            <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+                            <div
+                                className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
                                 <div>
                                     <Image
                                         src={
@@ -323,22 +349,28 @@ const BaseChatWrapper = ({
                             <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                 {/* Start main area*/}
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 overflow-y-hidden">
-                                    <div className="h-full border-2 border-gray-200 border-dashed rounded-lg w-full flex  ">
+                                    <div
+                                        className="h-full border-2 border-gray-200 border-dashed rounded-lg w-full flex  ">
                                         {children}
                                     </div>
                                 </div>
                                 {/* End main area */}
                             </main>
-                            <aside className="hidden relative xl:flex xl:flex-col flex-shrink-0 w-96 border-l border-gray-200 overflow-y-auto">
+                            <aside
+                                className="hidden relative xl:flex xl:flex-col flex-shrink-0 w-96 border-l border-gray-200 overflow-y-auto">
                                 {/* Start secondary column (hidden on smaller screens) */}
 
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
                                     <div className="h-full border-2 border-gray-200 border-dashed rounded-lg">
-                                        {selectedType}
-                                        {dataID}
-                                        {hoveringUserId && (
-                                            <div>{hoveringUserId}</div>
-                                        )}
+                                        {activeUserID && <>
+                                            {!!userData._id && <>
+                                                <Statusbar userId={activeUserID} type={selectedType}
+                                                           selectedType={selectedType}
+                                                           status={activeUserState}
+                                                           userData={userData}/>
+
+                                            </>}
+                                        </>}
                                     </div>
                                 </div>
                                 {/* End secondary column */}

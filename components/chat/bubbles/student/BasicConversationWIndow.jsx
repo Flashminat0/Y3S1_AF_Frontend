@@ -230,6 +230,11 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         editMessageModalCloseHandler()
     }
 
+    useEffect(() => {
+        console.log(messageArray);
+    }, [messageArray]);
+
+
     return (
         <div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full w-full">
             <div className="flex-none sm:items-center justify-between py-1 border-b-2 border-gray-200">
