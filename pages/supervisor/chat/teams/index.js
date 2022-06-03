@@ -19,11 +19,10 @@ const Index = () => {
     useEffect(() => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-students').then((res) => {
-                    console.log(res.data);
+                setStudentLists(res.data);
                 }
             )
         }
-
         fetchSupervisors()
     }, []);
 
