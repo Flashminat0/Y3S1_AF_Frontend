@@ -1,10 +1,10 @@
-import React, {Fragment, useState} from 'react';
-import {TbBell} from 'react-icons/tb';
-import {AiOutlineSearch, AiOutlineClose} from 'react-icons/ai';
-import {GrMenu} from 'react-icons/gr';
-import {Menu, Popover, Transition} from "@headlessui/react";
-import LoginWIthMicrosoft from "../../components/forms/auth/LoginWIthMicrosoft";
-import {useLocalStorage} from "@mantine/hooks";
+import React, {Fragment, useState} from 'react'
+import {TbBell} from 'react-icons/tb'
+import {AiOutlineSearch, AiOutlineClose} from 'react-icons/ai'
+import {GrMenu} from 'react-icons/gr'
+import {Menu, Popover, Transition} from '@headlessui/react'
+import LoginWIthMicrosoft from '../../components/forms/auth/LoginWIthMicrosoft'
+import {useLocalStorage} from '@mantine/hooks'
 
 const userStaticData = {
     name: 'Chelsea Hagon',
@@ -31,12 +31,15 @@ const Header = () => {
         key: 'y3s1-af-credentials',
         defaultValue: {},
     })
-    const [user, setUser] = useState(userStaticData);
-    const [navigation, setNavigation] = useState(navigationStaticData);
+    const [user, setUser] = useState(userStaticData)
+    const [navigation, setNavigation] = useState(navigationStaticData)
 
     return (
         <>
-            <Popover as="header" className="pb-2 bg-gradient-to-r from-sky-600 to-indigo-500">
+            <Popover
+                as="header"
+                className="pb-2 bg-gradient-to-r from-sky-600 to-indigo-500"
+            >
                 {({open}) => (
                     <>
                         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -44,14 +47,29 @@ const Header = () => {
                                 {/* Logo */}
                                 <div className="absolute left-0 py-2 flex-shrink-0 lg:static">
                                     <a href="#">
-                                        <span className="sr-only">Workflow</span>
+                                        <span className="sr-only">
+                                            Workflow
+                                        </span>
                                         {/* https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg */}
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF%20Square.png?alt=media&token=b6185e5e-7e8c-4771-93e9-813c3b7e1d8b" alt="Logo" width={"125"}
-                                             height={"100"} className={"w-16 h-16 lg:w-20 lg:h-20"}/>
+                                        <img
+                                            src="https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF%20Square.png?alt=media&token=b6185e5e-7e8c-4771-93e9-813c3b7e1d8b"
+                                            alt="Logo"
+                                            width={'125'}
+                                            height={'100'}
+                                            className={
+                                                'w-16 h-16 lg:w-20 lg:h-20'
+                                            }
+                                        />
                                     </a>
                                 </div>
                                 {/*Website Name*/}
-                                <div className={"ml-10 lg:ml-20 text-transparent bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-zinc-800 to-indigo-800 capitalize"}>Research Labs</div>
+                                <div
+                                    className={
+                                        'ml-10 lg:ml-20 text-transparent bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-zinc-800 to-indigo-800 capitalize'
+                                    }
+                                >
+                                    Research Labs
+                                </div>
 
                                 {/* Right section on desktop */}
                                 <div className="hidden lg:ml-4 lg:flex lg:items-center lg:py-2 lg:pr-0.5">
@@ -59,12 +77,20 @@ const Header = () => {
                                         type="button"
                                         className="shrink-none p-1 text-cyan-200 rounded-full hover:text-white bg-transparent focus:outline-none focus:ring-opacity-100 focus:ring-2 focus:ring-white"
                                     >
-                                        <span className="sr-only">View notifications</span>
-                                        <TbBell className="h-6 w-6" aria-hidden="true"/>
+                                        <span className="sr-only">
+                                            View notifications
+                                        </span>
+                                        <TbBell
+                                            className="h-6 w-6"
+                                            aria-hidden="true"
+                                        />
                                     </button>
 
                                     {/* Profile dropdown */}
-                                    <Menu as="div" className="ml-5 relative shrink-none">
+                                    <Menu
+                                        as="div"
+                                        className="ml-5 relative shrink-none"
+                                    >
                                         <div>
                                             <LoginWIthMicrosoft
                                                 credentials={credentials}
@@ -84,10 +110,16 @@ const Header = () => {
                                                         key={item.name}
                                                         href={item.href}
                                                         className={classNames(
-                                                            item.current ? 'text-white' : 'text-cyan-100',
+                                                            item.current
+                                                                ? 'text-white'
+                                                                : 'text-cyan-100',
                                                             'text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 no-underline hover:bg-opacity-10'
                                                         )}
-                                                        aria-current={item.current ? 'page' : undefined}
+                                                        aria-current={
+                                                            item.current
+                                                                ? 'page'
+                                                                : undefined
+                                                        }
                                                     >
                                                         {item.name}
                                                     </a>
@@ -97,13 +129,18 @@ const Header = () => {
                                         <div className="px-12 md:px-0">
                                             {/* Search */}
                                             <div className="max-w-xs mx-auto w-full md:max-w-md">
-                                                <label htmlFor="search" className="sr-only">
+                                                <label
+                                                    htmlFor="search"
+                                                    className="sr-only"
+                                                >
                                                     Search
                                                 </label>
                                                 <div className="relative text-white focus-within:text-gray-600">
-                                                    <div
-                                                        className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                                                        <AiOutlineSearch className="h-5 w-5" aria-hidden="true"/>
+                                                    <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+                                                        <AiOutlineSearch
+                                                            className="h-5 w-5"
+                                                            aria-hidden="true"
+                                                        />
                                                     </div>
                                                     <input
                                                         id="search"
@@ -122,13 +159,23 @@ const Header = () => {
                                 <div className="absolute right-0 flex-shrink-0 lg:hidden">
                                     {/* Mobile menu button */}
                                     <Popover.Button
-                                        style={{boxShadow: 'none'}} elevation={0}
-                                        className="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-cyan-200 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none ring-offset-white ring-white focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-white">
-                                        <span className="sr-only">Open main menu</span>
+                                        style={{boxShadow: 'none'}}
+                                        elevation={0}
+                                        className="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-cyan-200 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none ring-offset-white ring-white focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-white"
+                                    >
+                                        <span className="sr-only">
+                                            Open main menu
+                                        </span>
                                         {open ? (
-                                            <AiOutlineClose className="block h-6 w-6" aria-hidden="true"/>
+                                            <AiOutlineClose
+                                                className="block h-6 w-6"
+                                                aria-hidden="true"
+                                            />
                                         ) : (
-                                            <GrMenu className="block h-6 w-6" aria-hidden="true"/>
+                                            <GrMenu
+                                                className="block h-6 w-6"
+                                                aria-hidden="true"
+                                            />
                                         )}
                                     </Popover.Button>
                                 </div>
@@ -146,7 +193,7 @@ const Header = () => {
                                     leaveFrom="opacity-100"
                                     leaveTo="opacity-0"
                                 >
-                                    <Popover.Overlay className="z-20 fixed inset-0 bg-black bg-opacity-25"/>
+                                    <Popover.Overlay className="z-20 fixed inset-0 bg-black bg-opacity-25" />
                                 </Transition.Child>
 
                                 <Transition.Child
@@ -162,8 +209,7 @@ const Header = () => {
                                         focus
                                         className="z-30 absolute top-0 inset-x-0 max-w-3xl mx-auto w-full p-2 transition transform origin-top"
                                     >
-                                        <div
-                                            className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y divide-gray-200">
+                                        <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y divide-gray-200">
                                             <div className="pt-3 pb-2">
                                                 <div className="flex items-center justify-between px-4">
                                                     <div>
@@ -174,10 +220,14 @@ const Header = () => {
                                                         />
                                                     </div>
                                                     <div className="-mr-2">
-                                                        <Popover.Button
-                                                            className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
-                                                            <span className="sr-only">Close menu</span>
-                                                            <AiOutlineClose className="h-6 w-6" aria-hidden="true"/>
+                                                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
+                                                            <span className="sr-only">
+                                                                Close menu
+                                                            </span>
+                                                            <AiOutlineClose
+                                                                className="h-6 w-6"
+                                                                aria-hidden="true"
+                                                            />
                                                         </Popover.Button>
                                                     </div>
                                                 </div>
@@ -198,8 +248,12 @@ const Header = () => {
                                                     <div className="inline-flex mx-auto mt-3 px-2 space-y-1">
                                                         <div>
                                                             <LoginWIthMicrosoft
-                                                                credentials={credentials}
-                                                                setCredentials={setCredentials}
+                                                                credentials={
+                                                                    credentials
+                                                                }
+                                                                setCredentials={
+                                                                    setCredentials
+                                                                }
                                                             />
                                                         </div>
                                                     </div>
@@ -207,8 +261,13 @@ const Header = () => {
                                                         type="button"
                                                         className="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                                     >
-                                                        <span className="sr-only">View notifications</span>
-                                                        <TbBell className="h-6 w-6" aria-hidden="true"/>
+                                                        <span className="sr-only">
+                                                            View notifications
+                                                        </span>
+                                                        <TbBell
+                                                            className="h-6 w-6"
+                                                            aria-hidden="true"
+                                                        />
                                                     </button>
                                                 </div>
                                             </div>
@@ -221,7 +280,7 @@ const Header = () => {
                 )}
             </Popover>
         </>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header
