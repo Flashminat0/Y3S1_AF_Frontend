@@ -272,7 +272,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                 staffId: credentials._id,
                 messages: messageArray.map((message) => {
                     if (message.id === id && message.requestingForApproval) {
-                        return {...message, approvedState: true}
+                        return {...message, approvedState: false}
                     } else {
                         return message
                     }
