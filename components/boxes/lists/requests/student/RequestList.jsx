@@ -7,12 +7,12 @@ import {useDidUpdate, useForceUpdate, useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 
 const RequestList = ({
-    navigateFunc,
-    groupLeaderID,
-    groupTopic,
-    groupMemberArray,
-    groupId,
-}) => {
+                         navigateFunc,
+                         groupLeaderID,
+                         groupTopic,
+                         groupMemberArray,
+                         groupId,
+                     }) => {
     const [groupMembersWithDetails, setGroupMembersWithDetails] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [credentials, setCredentials] = useLocalStorage({
@@ -20,7 +20,8 @@ const RequestList = ({
         defaultValue: {},
     })
 
-    const submitGroupData = () => {}
+    const submitGroupData = () => {
+    }
 
     const [trigger, setTrigger] = useState(1)
     useEffect(() => {
@@ -68,8 +69,15 @@ const RequestList = ({
             })
     }
 
-    const rejectUser = (id) => {
-        console.log(id)
+    const rejectUser = async (id) => {
+        await axios.delete('/api/users/reject-from-group', {
+            params: {
+                groupID: groupId,
+                userId: id,
+            }
+        }).then(() => {
+                setTrigger(trigger + 1)
+            })
     }
 
     return (
@@ -129,7 +137,7 @@ const RequestList = ({
                         )}
                     </FinalizeGroupWrapper>
                 </StudentModalButtonWrapper>
-            </> }
+            </>}
         </>
     )
 }
