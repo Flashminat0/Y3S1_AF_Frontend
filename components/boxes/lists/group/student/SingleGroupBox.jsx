@@ -6,7 +6,13 @@ import {MdGroup} from 'react-icons/md'
 import {AnimatePresence, motion} from 'framer-motion'
 
 const abilities = [
-    {id: 1, name: 'Request to be a member', after: 'Requested', icon: BiArrowFromLeft, status: false},
+    {
+        id: 1,
+        name: 'Request to be a member',
+        after: 'Requested',
+        icon: BiArrowFromLeft,
+        status: false,
+    },
 ]
 
 function classNames(...classes) {
@@ -14,18 +20,18 @@ function classNames(...classes) {
 }
 
 const SingleGroupBox = ({
-                            requestForJoinOnGroupHandler,
-                            groupId,
-                            groupName,
-                            groupLeader,
-                            groupLeaderRegNo,
-                            currentNo,
-                        }) => {
-    const [status, setStatus] = useState(abilities.status);
+    requestForJoinOnGroupHandler,
+    groupId,
+    groupName,
+    groupLeader,
+    groupLeaderRegNo,
+    currentNo,
+}) => {
+    const [status, setStatus] = useState(abilities.status)
 
     const requestForJoinOnGroup = () => {
-        requestForJoinOnGroupHandler(groupId);
-        setStatus(!status);
+        requestForJoinOnGroupHandler(groupId)
+        setStatus(!status)
     }
 
     return (
@@ -39,7 +45,7 @@ const SingleGroupBox = ({
                     <div className={'text-xl font-semibold uppercase'}>
                         {groupName}
                     </div>
-                    <MdGroup className={'w-5 h-5'}/>
+                    <MdGroup className={'w-5 h-5'} />
                 </div>
                 <div>
                     <Popover className="relative">
@@ -59,8 +65,7 @@ const SingleGroupBox = ({
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel
-                                        className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}
@@ -77,15 +82,20 @@ const SingleGroupBox = ({
                                                                 className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100 cursor-pointer"
                                                             >
                                                                 <div>
-                                                                    {status === true ? <>
-                                                                        {
-                                                                            ability.after
-                                                                        }
-                                                                    </> : <>
-                                                                        {
-                                                                            ability.name
-                                                                        }
-                                                                    </>}
+                                                                    {status ===
+                                                                    true ? (
+                                                                        <>
+                                                                            {
+                                                                                ability.after
+                                                                            }
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            {
+                                                                                ability.name
+                                                                            }
+                                                                        </>
+                                                                    )}
                                                                 </div>
                                                                 <ability.icon
                                                                     className={

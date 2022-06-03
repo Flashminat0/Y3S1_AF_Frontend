@@ -7,12 +7,12 @@ import {useDidUpdate, useForceUpdate, useLocalStorage} from '@mantine/hooks'
 import axios from 'axios'
 
 const RequestList = ({
-                         navigateFunc,
-                         groupLeaderID,
-                         groupTopic,
-                         groupMemberArray,
-                         groupId,
-                     }) => {
+    navigateFunc,
+    groupLeaderID,
+    groupTopic,
+    groupMemberArray,
+    groupId,
+}) => {
     const [groupMembersWithDetails, setGroupMembersWithDetails] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [credentials, setCredentials] = useLocalStorage({
@@ -20,8 +20,7 @@ const RequestList = ({
         defaultValue: {},
     })
 
-    const submitGroupData = () => {
-    }
+    const submitGroupData = () => {}
 
     const [trigger, setTrigger] = useState(1)
     useEffect(() => {
@@ -70,74 +69,79 @@ const RequestList = ({
     }
 
     const rejectUser = async (id) => {
-        await axios.delete('/api/users/reject-from-group', {
-            params: {
-                groupID: groupId,
-                userId: id,
-            }
-        }).then(() => {
+        await axios
+            .delete('/api/users/reject-from-group', {
+                params: {
+                    groupID: groupId,
+                    userId: id,
+                },
+            })
+            .then(() => {
                 setTrigger(trigger + 1)
             })
     }
 
     return (
         <>
-            {groupMembersWithDetails && <>
-                <StudentModalButtonWrapper
-                    btnName={'Go to topic submission '}
-                    btnFunction={navigateFunc}
-                    groupId={groupId}
-                >
-                    <FinalizeGroupWrapper
-                        groupTopic={groupTopic}
-                        groupLeader={groupLeaderID}
-                        btnFunction={submitGroupData}
+            {groupMembersWithDetails && (
+                <>
+                    <StudentModalButtonWrapper
+                        btnName={'Go to topic submission '}
+                        btnFunction={navigateFunc}
+                        groupId={groupId}
                     >
-                        {isLoaded && (
-                            <>
-                                <div>
-                                    {groupMembersWithDetails.map(
-                                        (singleStudent) => (
-                                            <SingleRequestBox
-                                                key={singleStudent._id}
-                                                userName={singleStudent.name
-                                                    .substring(
-                                                        0,
-                                                        singleStudent.name.lastIndexOf(
-                                                            ' '
+                        <FinalizeGroupWrapper
+                            groupTopic={groupTopic}
+                            groupLeader={groupLeaderID}
+                            btnFunction={submitGroupData}
+                        >
+                            {isLoaded && (
+                                <>
+                                    <div>
+                                        {groupMembersWithDetails.map(
+                                            (singleStudent) => (
+                                                <SingleRequestBox
+                                                    key={singleStudent._id}
+                                                    userName={singleStudent.name
+                                                        .substring(
+                                                            0,
+                                                            singleStudent.name.lastIndexOf(
+                                                                ' '
+                                                            )
                                                         )
-                                                    )
-                                                    .toString()
-                                                    .toUpperCase()}
-                                                userRegNo={singleStudent.name
-                                                    .substring(
-                                                        singleStudent.name.lastIndexOf(
-                                                            ' '
-                                                        ) + 1,
-                                                        singleStudent.name.length
-                                                    )
-                                                    .toString()
-                                                    .toUpperCase()}
-                                                acceptedStatus={
-                                                    singleStudent.status
-                                                }
-                                                accessToActions={
-                                                    credentials._id ===
-                                                    groupLeaderID
-                                                }
-                                                userId={singleStudent._id}
-                                                groupLeader={groupLeaderID}
-                                                approveUser={approveUser}
-                                                rejectUser={rejectUser}
-                                            />
-                                        )
-                                    )}
-                                </div>
-                            </>
-                        )}
-                    </FinalizeGroupWrapper>
-                </StudentModalButtonWrapper>
-            </>}
+                                                        .toString()
+                                                        .toUpperCase()}
+                                                    userRegNo={singleStudent.name
+                                                        .substring(
+                                                            singleStudent.name.lastIndexOf(
+                                                                ' '
+                                                            ) + 1,
+                                                            singleStudent.name
+                                                                .length
+                                                        )
+                                                        .toString()
+                                                        .toUpperCase()}
+                                                    acceptedStatus={
+                                                        singleStudent.status
+                                                    }
+                                                    accessToActions={
+                                                        credentials._id ===
+                                                        groupLeaderID
+                                                    }
+                                                    userId={singleStudent._id}
+                                                    groupLeader={groupLeaderID}
+                                                    approveUser={approveUser}
+                                                    rejectUser={rejectUser}
+                                                />
+                                            )
+                                        )}
+                                    </div>
+                                </>
+                            )}
+                        </FinalizeGroupWrapper>
+                    </StudentModalButtonWrapper>
+                </>
+            )}
         </>
     )
 }
