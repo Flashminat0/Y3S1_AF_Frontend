@@ -7,8 +7,17 @@ import StudentSideBarWrapper from "../../components/layouts/student/StudentSideB
 const Profile = () => {
     const router = useRouter()
 
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
+
+    const openProfile = async () => {
+        await router.push('/common/profile')
+    }
+
     return (
-        <StudentSideBarWrapper selectedPageIndex={99}>
+        <StudentSideBarWrapper selectedPageIndex={99} profileNav={openProfile}>
             <StudentProfile/>
         </StudentSideBarWrapper>
     );

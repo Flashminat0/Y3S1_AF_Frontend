@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {OAuthProvider, getAuth, signInWithPopup, signOut} from 'firebase/auth'
 import axios from 'axios'
 import {Button} from '@mui/material'
-import {firebaseApp} from "../../../firebase/base";
+import {firebaseApp} from '../../../firebase/base'
 
 const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -115,7 +115,6 @@ const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
             />
         </svg>
     )
-
 
     return (
         <div className={`grid place-content-center`}>
