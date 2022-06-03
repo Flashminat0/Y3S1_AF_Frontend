@@ -53,7 +53,6 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
     })
 
     useEffect(() => {
-        console.log(userDetails);
         fetchUserData();
     }, []);
 

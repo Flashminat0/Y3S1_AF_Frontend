@@ -1,43 +1,56 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import UserProfileWrapper from '../../../layouts/user/user-profile/common/UserProfileWrapper'
+import {useLocalStorage} from "@mantine/hooks";
+import axios from "axios";
 
-const userDetails = [
-    {
-        id: 1,
-        url: 'https://www.bobbin.lk/wp-content/uploads/2019/02/person2.jpg',
-        alt: 'profile pic',
-        username: 'Esther Felicies',
-        userRegNo: 'IT20796734',
-        userRole: 'student',
-    },
-]
+const StudentProfile = () => {
+    const [userDetails, setUserDetails] = useState(null);
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
-const StudentProfile = ({navigateFunc}) => {
+    useEffect(() => {
+        fetchUserData();
+    }, [])
+
+    const fetchUserData = () => {
+        axios.get('/api/users/get-user-data-from-id',
+            {params: {userId: credentials._id}})
+            .then(res => setUserDetails(res.data))
+    }
+
     return (
         <div className={'px-4 py-3 bg-gray-50'}>
-            <UserProfileWrapper>
-                {userDetails.map((user, index) => (
-                    <div key={index} className={'flex flex-col'}>
+            {userDetails && <>
+                <UserProfileWrapper role={userDetails.role}>
+                    <div className={'flex flex-col'}>
                         <div
                             className={
                                 'flex flex-row justify-between items-baseline'
                             }
                         >
                             <img
-                                src={user.url}
-                                alt={user.alt}
+                                src={userDetails.image.url}
+                                alt={userDetails.image.name}
                                 width={'250px'}
                                 height={'250px'}
                                 className={
-                                    'ml-20 rounded-full shadow-lg outline outline-gray-200'
+                                    'w-[10rem] h-[10rem] lg:w-[20rem] lg:h-[20rem] ml-10 sm:ml-20 rounded-full shadow-lg outline outline-gray-400'
                                 }
                             />
                             <div
                                 className={
-                                    'px-3 py-2 shadow-md text-3xl font-semibold text-blue-800 mr-40 bg-blue-50'
+                                    'px-3 py-2 shadow-md text-lg sm:text-xl lg:text-3xl font-semibold text-blue-800 mr-2 sm:mr-10 lg:mr-40 bg-blue-50'
                                 }
                             >
-                                {user.username}
+                                {userDetails.name.substring(
+                                    0,
+                                    userDetails.name.lastIndexOf(
+                                        ' '
+                                    )
+                                )
+                                    .toString()}
                             </div>
                         </div>
                         <div
@@ -60,10 +73,16 @@ const StudentProfile = ({navigateFunc}) => {
                                     </div>
                                     <div
                                         className={
-                                            'text-lg font-semibold capitalize'
+                                            'text-lg font-semibold'
                                         }
                                     >
-                                        {user.userRegNo}
+                                        {userDetails.name.substring(
+                                            userDetails.name.lastIndexOf(
+                                                ' '
+                                            ) + 1,
+                                            userDetails.name.length
+                                        )
+                                            .toString()}
                                     </div>
                                 </div>
                                 <div
@@ -79,14 +98,14 @@ const StudentProfile = ({navigateFunc}) => {
                                             'text-lg font-semibold capitalize'
                                         }
                                     >
-                                        {user.userRole}
+                                        {userDetails.role}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                ))}
-            </UserProfileWrapper>
+                </UserProfileWrapper>
+            </>}
         </div>
     )
 }

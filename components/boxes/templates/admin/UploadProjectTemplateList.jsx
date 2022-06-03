@@ -1,112 +1,105 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import StudentModalButtonWrapper from '../../../layouts/student/StudentModalButtonWrapper'
 import AdminModalButtonWrapper from '../../../layouts/admin/AdminModalButtonWrapper'
 import UploadTemplatesWrapper from '../../../layouts/upload-template/UploadTemplatesWrapper'
 import UploadProjectTemplateBox from './UploadProjectTemplateBox'
+import {firebaseApp} from "../../../../firebase/base";
+import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject,
+} from 'firebase/storage'
+import axios from "axios";
 
-const templateFileStaticList = [
-    {
-        id: 1,
-        fileName: 'nut',
-        fileSize: '31KB',
-        updatedAt: '2022-03-31',
-        fileType: 'pdf',
-    },
-    {
-        id: 2,
-        fileName: 'nzmDR',
-        fileSize: '377KB',
-        updatedAt: '2022-04-01',
-        fileType: 'xls',
-    },
-    {
-        id: 3,
-        fileName: 'rise',
-        fileSize: '720KB',
-        updatedAt: '2022-04-01',
-        fileType: 'txt',
-    },
-    {
-        id: 4,
-        fileName: 'cruel',
-        fileSize: '995KB',
-        updatedAt: '2022-04-02',
-        fileType: 'pptx',
-    },
-    {
-        id: 5,
-        fileName: 'punish',
-        fileSize: '966KB',
-        updatedAt: '2022-04-10',
-        fileType: 'pdf',
-    },
-    {
-        id: 6,
-        fileName: 'choice',
-        fileSize: '441KB',
-        updatedAt: '2022-04-17',
-        fileType: 'pdf',
-    },
-    {
-        id: 7,
-        fileName: 'oil',
-        fileSize: '49KB',
-        updatedAt: '2022-04-21',
-        fileType: 'pdf',
-    },
-    {
-        id: 8,
-        fileName: 'once',
-        fileSize: '383KB',
-        updatedAt: '2022-05-01',
-        fileType: 'doc',
-    },
-    {
-        id: 9,
-        fileName: 'pattern',
-        fileSize: '120MB',
-        updatedAt: '2022-05-13',
-        fileType: 'mp4',
-    },
-    {
-        id: 10,
-        fileName: 'flame',
-        fileSize: '927KB',
-        updatedAt: '2022-05-01',
-        fileType: 'xlsx',
-    },
-    {
-        id: 11,
-        fileName: 'afraid',
-        fileSize: '363KB',
-        updatedAt: '2022-06-15',
-        fileType: 'docx',
-    },
-]
+const UploadProjectTemplateList = ({navigateFunc, id}) => {
+    const [templateFileList, setTemplateFileList] = useState([])
 
-const UploadProjectTemplateList = ({navigateFunc}) => {
-    const [templateFileList, setTemplateFileList] = useState(
-        templateFileStaticList
-    )
+    const [topicTags, setTopicTags] = useState([]);
+
+    const [topicData, setTopicData] = useState(null);
+
+    const [refreshTrigger, setRefreshTrigger] = useState(1);
+
+    useEffect(() => {
+        const fetchTopicDetails = async () => {
+            await axios.get('/api/topic/get-topic-data', {
+                params: {
+                    topicTag: id
+                }
+            }).then((res) => {
+                setTopicData(res.data.topic)
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+        fetchTopicDetails()
+
+    }, [refreshTrigger])
+
+
+    useEffect(() => {
+        if (topicData === null) {
+            return;
+        }
+        setTopicTags(topicData.tags);
+        setTemplateFileList(topicData.projectTemplates)
+
+    }, [topicData])
+
+    const uploadFile = (e) => {
+        const file = e.target.files[0]
+        const storageRef = getStorage(firebaseApp)
+
+        const fileName = `${Date.now()}-${file.name}`
+
+        const fileRef = ref(storageRef, `projectTemplates/${fileName}`)
+
+        uploadBytes(fileRef, file).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then(async (url) => {
+                const fileList = [...topicData.projectTemplates, {
+                    id: `${fileName}`,
+                    fileName: file.name,
+                    fileType: file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length),
+                    fileSize: file.size,
+                    updatedAt: Date.now(),
+                    url: url
+                }];
+
+                await axios.post('/api/topic/update-project-templates', {
+                    id: id,
+                    projectTemplates: fileList
+                }).then((res) => {
+                    setRefreshTrigger(refreshTrigger + 1)
+                })
+            })
+        })
+    }
 
     return (
-        <AdminModalButtonWrapper
-            btnName={'Check Topic List'}
-            btnFunction={navigateFunc}
-        >
-            <UploadTemplatesWrapper>
-                <div className={'flex flex-col gap-3'}>
-                    {templateFileList.map((file) => (
-                        <UploadProjectTemplateBox
-                            fileName={file.fileName}
-                            fileSize={file.fileSize}
-                            updatedAt={file.updatedAt}
-                            fileType={file.fileType}
-                        />
-                    ))}
-                </div>
-            </UploadTemplatesWrapper>
-        </AdminModalButtonWrapper>
+        <>
+            {topicData && <>
+                <AdminModalButtonWrapper
+                    btnName={'Check Topic List'}
+                    btnFunction={navigateFunc}
+                >
+                    <UploadTemplatesWrapper uploadHandler={uploadFile} topicTags={topicTags}>
+                        <div className={'flex flex-col gap-3'}>
+                            {templateFileList.map((file) => (
+                                <UploadProjectTemplateBox
+                                    fileName={file.fileName}
+                                    fileSize={file.fileSize}
+                                    updatedAt={file.updatedAt}
+                                    fileType={file.fileType}
+                                />
+                            ))}
+                        </div>
+                    </UploadTemplatesWrapper>
+                </AdminModalButtonWrapper>
+
+            </>}
+        </>
     )
 }
 

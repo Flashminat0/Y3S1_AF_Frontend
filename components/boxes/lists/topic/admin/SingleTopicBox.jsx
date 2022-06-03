@@ -62,7 +62,7 @@ const SingleTopicBox = ({tagsArray, pageId}) => {
                                                                     )
                                                                 }}
                                                                 key={index}
-                                                                className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
+                                                                className="cursor-pointer flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
                                                             >
                                                                 <div>
                                                                     {
@@ -88,8 +88,9 @@ const SingleTopicBox = ({tagsArray, pageId}) => {
                 </div>
             </div>
             <div className={'flex flex-row gap-2'}>
-                {tagsArray.map((tag) => (
+                {tagsArray.map((tag , index) => (
                     <div
+                        key={index}
                         className={
                             'px-3 py-1.5 bg-blue-500 text-white font-semibold text-xs rounded-xl shadow-md'
                         }

@@ -76,8 +76,9 @@ const RequestList = ({
         <>
             {groupMembersWithDetails && <>
                 <StudentModalButtonWrapper
-                    btnName={'Check Group List'}
+                    btnName={'Go to topic submission '}
                     btnFunction={navigateFunc}
+                    groupId={groupId}
                 >
                     <FinalizeGroupWrapper
                         groupTopic={groupTopic}

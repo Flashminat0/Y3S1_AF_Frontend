@@ -162,6 +162,7 @@ const GroupsList = () => {
                     <CreateGroupModal
                         openModal={openModal}
                         setOpenModal={setOpenModal}
+                        credentials={credentials}
                     />
                     <GroupListWrapper>
                         <SearchBar
