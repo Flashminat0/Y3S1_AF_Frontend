@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {AnimatePresence} from 'framer-motion'
 import {useDebouncedValue} from '@mantine/hooks'
 import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
 import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import StudentChatListSideBar from '../../../../components/lists/chatlists/StudentChatListSideBar'
+import axios from "axios";
 
 const Index = () => {
     const [hoveringUsrId, setHoveringUsrId] = useState('')
@@ -12,6 +13,20 @@ const Index = () => {
     const onUserHover = (id) => {
         setHoveringUsrId(id)
     }
+
+
+    const [studentLists, setStudentLists] = useState([]);
+    useEffect(() => {
+        const fetchSupervisors = async () => {
+            await axios.get('/api/users/get-students').then((res) => {
+                    console.log(res.data);
+                }
+            )
+        }
+
+        fetchSupervisors()
+    }, []);
+
 
     return (
         <BaseChatWrapper
@@ -22,10 +37,13 @@ const Index = () => {
         >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    <StudentChatListSideBar
-                        onUserHover={onUserHover}
-                        studentTeamList={studentTeamStaticData}
-                    />
+                    {setStudentLists && setStudentLists.length > 0 &&
+                        <>
+                            <StudentChatListSideBar
+                                onUserHover={onUserHover}
+                                studentTeamList={studentLists}
+                            />
+                        </>}
                 </AnimatePresence>
             </div>
         </BaseChatWrapper>
