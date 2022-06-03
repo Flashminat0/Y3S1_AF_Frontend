@@ -14,13 +14,26 @@ const abilities = [
         name: 'Delete User',
         icon: AiFillDelete,
     },
+    {
+        id: 3,
+        name: 'Update User Role',
+        icon: BsFillEyeFill,
+    },
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const SingleUserBox = ({userName, userRegNo, userRole}) => {
+const SingleUserBox = ({
+    userName,
+    userRegNo,
+    userRole,
+    deleteUser,
+    mongoID,
+    trigger,
+    setTrigger,
+}) => {
     return (
         <div
             className={
@@ -65,7 +78,22 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                                                                 key={index}
                                                                 className="flex flex-row gap-5 justify-between items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
                                                             >
-                                                                <div>
+                                                                <div
+                                                                    onClick={() => {
+                                                                        if (
+                                                                            ability.id ==
+                                                                            2
+                                                                        ) {
+                                                                            deleteUser(
+                                                                                mongoID
+                                                                            )
+                                                                            setTrigger(
+                                                                                trigger +
+                                                                                    1
+                                                                            )
+                                                                        }
+                                                                    }}
+                                                                >
                                                                     {
                                                                         ability.name
                                                                     }
@@ -129,6 +157,17 @@ const SingleUserBox = ({userName, userRegNo, userRole}) => {
                         <div
                             className={
                                 'text-xs text-orange-500 px-3 py-1 rounded-lg bg-orange-200'
+                            }
+                        >
+                            {userRole}
+                        </div>
+                    </>
+                )}
+                {userRole === 'Admin' && (
+                    <>
+                        <div
+                            className={
+                                'text-xs text-red-500 px-3 py-1 rounded-lg bg-orange-200'
                             }
                         >
                             {userRole}
