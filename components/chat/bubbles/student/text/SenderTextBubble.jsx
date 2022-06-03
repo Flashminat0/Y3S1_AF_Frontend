@@ -79,24 +79,31 @@ const SenderTextBubble = ({
                                     </div>
                                 </Disclosure.Button>
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
-                                    <Button
-                                        color={'primary'}
-                                        variant={'outlined'}
-                                        onClick={() =>
-                                            editMessageHandler(id, message)
-                                        }
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            deleteMessage(id)
-                                        }}
-                                        color={'error'}
-                                        variant={'outlined'}
-                                    >
-                                        Delete
-                                    </Button>
+                                    {approvedState !== true && (
+                                        <>
+                                            <Button
+                                                color={'primary'}
+                                                variant={'outlined'}
+                                                onClick={() =>
+                                                    editMessageHandler(
+                                                        id,
+                                                        message
+                                                    )
+                                                }
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                onClick={() => {
+                                                    deleteMessage(id)
+                                                }}
+                                                color={'error'}
+                                                variant={'outlined'}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </>
+                                    )}
                                     <span className={`col-span-2`}>
                                         {approvedState === null ? (
                                             <>

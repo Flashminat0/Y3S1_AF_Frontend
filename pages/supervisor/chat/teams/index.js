@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
-import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
-import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
+import React, {useEffect, useState} from 'react'
 import {AnimatePresence} from 'framer-motion'
 import {useDebouncedValue} from '@mantine/hooks'
+import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
+import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import StudentChatListSideBar from '../../../../components/lists/chatlists/StudentChatListSideBar'
+import axios from 'axios'
 
 const Index = () => {
-    // pending , approved, rejected
-    const [status, setStatus] = useState('pending')
-
     const [hoveringUsrId, setHoveringUsrId] = useState('')
     const [debouncedHoveringUsrId] = useDebouncedValue(hoveringUsrId, 200)
 
@@ -16,18 +14,33 @@ const Index = () => {
         setHoveringUsrId(id)
     }
 
+    const [studentLists, setStudentLists] = useState([])
+    useEffect(() => {
+        const fetchSupervisors = async () => {
+            await axios.get('/api/users/get-students').then((res) => {
+                setStudentLists(res.data)
+            })
+        }
+        fetchSupervisors()
+    }, [])
+
     return (
         <BaseChatWrapper
             selectedPageIndex={0}
             navigation={NavigationOnSupervisorChat}
-            hoveringUserId={debouncedHoveringUsrId}
+            activeUserID={debouncedHoveringUsrId}
+            selectedType={'Student'}
         >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    <StudentChatListSideBar
-                        onUserHover={onUserHover}
-                        studentTeamList={studentTeamStaticData}
-                    />
+                    {setStudentLists && setStudentLists.length > 0 && (
+                        <>
+                            <StudentChatListSideBar
+                                onUserHover={onUserHover}
+                                studentTeamList={studentLists}
+                            />
+                        </>
+                    )}
                 </AnimatePresence>
             </div>
         </BaseChatWrapper>

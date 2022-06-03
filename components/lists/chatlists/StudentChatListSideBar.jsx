@@ -4,13 +4,11 @@ import {motion} from 'framer-motion'
 import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideBarWrapper'
 
 const StudentChatListSideBar = ({studentTeamList, onUserHover}) => {
-    const [teams, setTeams] = useState(studentTeamList)
-
     const router = useRouter()
 
     return (
         <CommonChatListSideBarWrapper>
-            {teams.map((singleTeam, index) => (
+            {studentTeamList.map((singleTeam, index) => (
                 <motion.div
                     key={index}
                     whileHover={{scale: 1.1}}
@@ -30,7 +28,7 @@ const StudentChatListSideBar = ({studentTeamList, onUserHover}) => {
                         <span className="inline-block relative">
                             <img
                                 className="h-12 w-12 rounded-md"
-                                src={singleTeam.imageUrl}
+                                src={singleTeam.image.url}
                                 alt=""
                             />
                             <span className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 block border-2 border-white rounded-full">

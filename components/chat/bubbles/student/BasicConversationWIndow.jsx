@@ -6,7 +6,7 @@ import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from './file/ReceivedFileBubble'
-import {randomId} from '@mantine/hooks'
+import {randomId, useLocalStorage} from '@mantine/hooks'
 import {
     LoadingAnimation,
     NotOkAnimation,
@@ -19,15 +19,21 @@ import {
     getDownloadURL,
     getStorage,
     ref,
-    uploadBytes,
     uploadBytesResumable,
 } from 'firebase/storage'
+import axios from 'axios'
 
-const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
+const BasicConversationWindow = ({receiver, approvalState}) => {
     const myRef = useRef(null)
 
+    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -72,33 +78,55 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
     }
 
     useEffect(() => {
-        setMessageArray(() => {
-            return conversation.map((message) => {
-                return {...message, isOpened: false}
-            })
-        })
-        scrollToDown()
-    }, [])
+        const fetchMessages = async () => {
+            await axios
+                .post('/api/chat/fetch-message', {
+                    studentId: credentials._id,
+                    staffId: receiver,
+                })
+                .then((res) => {
+                    setMessageArray(res.data.chat.messages)
+                })
+        }
+        fetchMessages()
+        setTimeout(() => {
+            scrollToDown()
+        }, 500)
+    }, [fetchMessageTrigger])
 
     const [nowMessage, setNowMessage] = useState('')
-    const sendNewMessage = () => {
+    const sendNewMessage = async () => {
         if (!nowMessage.toString().trim().length > 0) {
             return
         }
 
-        setMessageArray(() => {
-            return messageArray.concat([
-                {
-                    id: randomId().toString().split('-')[1],
-                    sender: 'Me',
-                    message: nowMessage,
-                    type: 'text',
-                    time: new Date().toLocaleTimeString(),
-                    requestingForApproval: false,
-                    approvedState: null,
-                },
-            ])
-        })
+        await axios
+            .post('/api/chat/send-message', {
+                studentId: credentials._id,
+                staffId: receiver,
+                messages: [
+                    ...messageArray,
+                    {
+                        id: randomId().toString().split('-')[1],
+                        sender: credentials._id,
+                        message: nowMessage,
+                        type: 'text',
+                        time: new Date().toLocaleTimeString(),
+                        requestingForApproval: false,
+                        approvedState: null,
+                    },
+                ],
+                approvedState: approvalState,
+            })
+            .then((res) => {
+                setFetchMessageTrigger(fetchMessageTrigger + 1)
+                scrollToDown()
+            })
+            .then((x) => {
+                setTimeout(() => {
+                    scrollToDown()
+                }, 500)
+            })
 
         // Cleanup
         scrollToDown()
@@ -137,37 +165,60 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
             (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
-                    .then((url) => {
-                        setMessageArray(() => {
-                            return messageArray.concat([
-                                {
-                                    id: randomId().toString().split('-')[1],
-                                    sender: 'Me',
-                                    message: {
-                                        file: fileName,
-                                        url: url,
+                    .then(async (url) => {
+                        await axios
+                            .post('/api/chat/send-message', {
+                                studentId: credentials._id,
+                                staffId: receiver,
+                                messages: [
+                                    ...messageArray,
+                                    {
+                                        id: randomId().toString().split('-')[1],
+                                        sender: credentials._id,
+                                        message: {
+                                            file: fileName,
+                                            url: url,
+                                        },
+                                        type: 'file',
+                                        time: new Date().toLocaleTimeString(),
+                                        requestingForApproval: false,
+                                        approvedState: null,
                                     },
-                                    type: 'file',
-                                    time: new Date().toLocaleTimeString(),
-                                    requestingForApproval: false,
-                                    approvedState: null,
-                                },
-                            ])
-                        })
+                                ],
+                                approvedState: approvalState,
+                            })
+                            .then((res) => {
+                                setFetchMessageTrigger(fetchMessageTrigger + 1)
+                            })
                     })
                     .then((x) => {
                         scrollToDown()
+
                         setUploading(false)
                         setUploadingProgress(0)
+                        setTimeout(() => {
+                            scrollToDown()
+                        }, 500)
                     })
             }
         )
     }
 
-    const deleteMessage = (id) => {
+    const deleteMessage = async (id) => {
         setMessageArray(() => {
             return messageArray.filter((message) => message.id !== id)
         })
+
+        await axios
+            .post('/api/chat/send-message', {
+                studentId: credentials._id,
+                staffId: receiver,
+                messages: messageArray.filter((message) => message.id !== id),
+                approvedState: approvalState,
+            })
+            .then((res) => {
+                setFetchMessageTrigger(fetchMessageTrigger + 1)
+            })
     }
 
     const deleteFileMessage = (id, filename) => {
@@ -179,7 +230,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         })
     }
 
-    const requestForApproval = (id) => {
+    const requestForApproval = async (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
                 if (message.id === id) {
@@ -188,6 +239,22 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 return message
             })
         })
+
+        await axios
+            .post('/api/chat/send-message', {
+                studentId: credentials._id,
+                staffId: receiver,
+                messages: messageArray.map((message) => {
+                    if (message.id === id) {
+                        return {...message, requestingForApproval: true}
+                    }
+                    return message
+                }),
+                approvedState: approvalState,
+            })
+            .then((res) => {
+                setFetchMessageTrigger(fetchMessageTrigger + 1)
+            })
     }
 
     const [elevateEditState, setElevateEditState] = useState(false)
@@ -210,7 +277,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         setEditMessageId('')
     }
 
-    const editMessageHandler = (id) => {
+    const editMessageHandler = async (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
                 if (message.id === id) {
@@ -227,6 +294,30 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 return message
             })
         })
+        await axios
+            .post('/api/chat/send-message', {
+                studentId: credentials._id,
+                staffId: receiver,
+                messages: messageArray.map((message) => {
+                    if (message.id === id) {
+                        if (message.id.toString().includes('-edited')) {
+                            return {...message, message: editMessage}
+                        } else {
+                            return {
+                                ...message,
+                                id: id + '-edited',
+                                message: editMessage,
+                            }
+                        }
+                    }
+                    return message
+                }),
+                approvedState: approvalState,
+            })
+            .then((res) => {
+                setFetchMessageTrigger(fetchMessageTrigger + 1)
+            })
+
         editMessageModalCloseHandler()
     }
 
@@ -265,7 +356,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 {messageArray.map((singleMessage, index) => {
                     return (
                         <div key={singleMessage.id}>
-                            {singleMessage.sender === 'Me' ? (
+                            {singleMessage.sender === credentials._id ? (
                                 <>
                                     {singleMessage.type === 'text' ? (
                                         <SenderTextBubble

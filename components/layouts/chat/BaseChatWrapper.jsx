@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {HiMenu, HiX} from 'react-icons/hi'
-import {Divider} from '@mui/material'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
+import Statusbar from '../../chat/statusbar'
+import axios from 'axios'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -14,13 +15,33 @@ const BaseChatWrapper = ({
     children,
     selectedPageIndex,
     selectedType,
-    dataID,
-    hoveringUserId,
+    activeUserID,
     navigation,
 }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
+    const [activeUserState, setActiveUserState] = useState('pending')
+
     const router = useRouter()
+
+    const [userData, setUserData] = useState({})
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            await axios
+                .get('/api/users/get-user-data-from-id', {
+                    params: {
+                        userId: activeUserID,
+                    },
+                })
+                .then((res) => {
+                    setUserData(res.data)
+                })
+        }
+        if (activeUserID) {
+            fetchUserData()
+        }
+    }, [activeUserID])
 
     return (
         <div className="h-screen overflow-hidden">
@@ -334,10 +355,26 @@ const BaseChatWrapper = ({
 
                                 <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
                                     <div className="h-full border-2 border-gray-200 border-dashed rounded-lg">
-                                        {selectedType}
-                                        {dataID}
-                                        {hoveringUserId && (
-                                            <div>{hoveringUserId}</div>
+                                        {activeUserID && (
+                                            <>
+                                                {!!userData._id && (
+                                                    <>
+                                                        <Statusbar
+                                                            userId={
+                                                                activeUserID
+                                                            }
+                                                            type={selectedType}
+                                                            selectedType={
+                                                                selectedType
+                                                            }
+                                                            status={
+                                                                activeUserState
+                                                            }
+                                                            userData={userData}
+                                                        />
+                                                    </>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                 </div>

@@ -262,28 +262,37 @@ const SenderFileBubble = ({
                                     </div>
                                 </Disclosure.Button>
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
-                                    <Button
-                                        color={'primary'}
-                                        variant={
-                                            clipboard.copied
-                                                ? 'contained'
-                                                : 'outlined'
-                                        }
-                                        onClick={() =>
-                                            clipboard.copy(`${file.url}`)
-                                        }
-                                    >
-                                        Copy URL
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            deleteFileMessage(id, file.file)
-                                        }}
-                                        color={'error'}
-                                        variant={'outlined'}
-                                    >
-                                        Delete
-                                    </Button>
+                                    {approvedState !== true && (
+                                        <>
+                                            <Button
+                                                color={'primary'}
+                                                variant={
+                                                    clipboard.copied
+                                                        ? 'contained'
+                                                        : 'outlined'
+                                                }
+                                                onClick={() =>
+                                                    clipboard.copy(
+                                                        `${file.url}`
+                                                    )
+                                                }
+                                            >
+                                                Copy URL
+                                            </Button>
+                                            <Button
+                                                onClick={() => {
+                                                    deleteFileMessage(
+                                                        id,
+                                                        file.file
+                                                    )
+                                                }}
+                                                color={'error'}
+                                                variant={'outlined'}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </>
+                                    )}
                                     <span className={`col-span-2`}>
                                         {approvedState === null ? (
                                             <>
