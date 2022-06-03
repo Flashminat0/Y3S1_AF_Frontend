@@ -6,28 +6,23 @@ import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from './file/ReceivedFileBubble'
-import {randomId} from '@mantine/hooks'
-import {
-    LoadingAnimation,
-    NotOkAnimation,
-    OkAnimation,
-} from '../../../assets/animations'
+import {randomId, useLocalStorage} from '@mantine/hooks'
+import {LoadingAnimation, NotOkAnimation, OkAnimation,} from '../../../assets/animations'
 import EditTextMessageModal from './EditTextMessageModal'
 import {firebaseApp} from '../../../../firebase/base'
-import {
-    deleteObject,
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytes,
-    uploadBytesResumable,
-} from 'firebase/storage'
+import {deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable,} from 'firebase/storage'
+import axios from "axios";
 
 const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
     const myRef = useRef(null)
 
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -90,7 +85,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
             return messageArray.concat([
                 {
                     id: randomId().toString().split('-')[1],
-                    sender: 'Me',
+                    sender: credentials._id,
                     message: nowMessage,
                     type: 'text',
                     time: new Date().toLocaleTimeString(),
@@ -134,25 +129,34 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                         break
                 }
             },
-            (error) => {},
+            (error) => {
+            },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then((url) => {
+                        const newMessage = {
+                            id: randomId().toString().split('-')[1],
+                            sender: credentials._id,
+                            message: {
+                                file: fileName,
+                                url: url,
+                            },
+                            type: 'file',
+                            time: new Date().toLocaleTimeString(),
+                            requestingForApproval: false,
+                            approvedState: null,
+                        }
                         setMessageArray(() => {
-                            return messageArray.concat([
-                                {
-                                    id: randomId().toString().split('-')[1],
-                                    sender: 'Me',
-                                    message: {
-                                        file: fileName,
-                                        url: url,
-                                    },
-                                    type: 'file',
-                                    time: new Date().toLocaleTimeString(),
-                                    requestingForApproval: false,
-                                    approvedState: null,
-                                },
-                            ])
+                            return messageArray.concat([newMessage])
+                        })
+
+                        return newMessage
+                    })
+                    .then(async (newMessage) => {
+                        await axios.post('/api/chat/send-message', {
+                            senderId: credentials._id,
+                            receiverId: receiver,
+                            message : newMessage
                         })
                     })
                     .then((x) => {
@@ -230,9 +234,12 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         editMessageModalCloseHandler()
     }
 
-    useEffect(() => {
-        console.log(messageArray);
-    }, [messageArray]);
+    // useEffect(() => {
+    //     axios.post('/api/chat/send-message', {
+    //         senderId: credentials._id,
+    //         receiverId: receiver,
+    //     })
+    // }, [messageArray]);
 
 
     return (
@@ -248,19 +255,19 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation />
+                                <LoadingAnimation/>
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation />
+                                <OkAnimation/>
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation />
+                                <NotOkAnimation/>
                             </>
                         )}
                     </div>
@@ -270,7 +277,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 {messageArray.map((singleMessage, index) => {
                     return (
                         <div key={singleMessage.id}>
-                            {singleMessage.sender === 'Me' ? (
+                            {singleMessage.sender === credentials._id ? (
                                 <>
                                     {singleMessage.type === 'text' ? (
                                         <SenderTextBubble
@@ -365,8 +372,8 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon />}
-                endAdornment={<SendIcon />}
+                startAdornment={<AttachmentsIcon/>}
+                endAdornment={<SendIcon/>}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
