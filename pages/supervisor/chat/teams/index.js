@@ -4,7 +4,7 @@ import {useDebouncedValue} from '@mantine/hooks'
 import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
 import {NavigationOnSupervisorChat} from '../../../../components/common/navigation'
 import StudentChatListSideBar from '../../../../components/lists/chatlists/StudentChatListSideBar'
-import axios from "axios";
+import axios from 'axios'
 
 const Index = () => {
     const [hoveringUsrId, setHoveringUsrId] = useState('')
@@ -14,18 +14,15 @@ const Index = () => {
         setHoveringUsrId(id)
     }
 
-
-    const [studentLists, setStudentLists] = useState([]);
+    const [studentLists, setStudentLists] = useState([])
     useEffect(() => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-students').then((res) => {
-                setStudentLists(res.data);
-                }
-            )
+                setStudentLists(res.data)
+            })
         }
         fetchSupervisors()
-    }, []);
-
+    }, [])
 
     return (
         <BaseChatWrapper
@@ -36,13 +33,14 @@ const Index = () => {
         >
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    {setStudentLists && setStudentLists.length > 0 &&
+                    {setStudentLists && setStudentLists.length > 0 && (
                         <>
                             <StudentChatListSideBar
                                 onUserHover={onUserHover}
                                 studentTeamList={studentLists}
                             />
-                        </>}
+                        </>
+                    )}
                 </AnimatePresence>
             </div>
         </BaseChatWrapper>

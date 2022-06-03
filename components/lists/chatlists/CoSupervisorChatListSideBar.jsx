@@ -4,7 +4,6 @@ import {motion} from 'framer-motion'
 import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideBarWrapper'
 
 const CoSupervisorChatListSideBar = ({coSupervisorsList, onUserHover}) => {
-
     const router = useRouter()
     return (
         <CommonChatListSideBarWrapper>

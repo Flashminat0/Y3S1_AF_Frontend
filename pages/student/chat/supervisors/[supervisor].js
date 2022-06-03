@@ -29,4 +29,3 @@ const Supervisor = () => {
 }
 
 export default Supervisor
-

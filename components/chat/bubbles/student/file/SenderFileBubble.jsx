@@ -47,13 +47,13 @@ function generateStylesOnSender(approvedState, requestingForApproval) {
 }
 
 const SenderFileBubble = ({
-                              id,
-                              file,
-                              requestingForApproval,
-                              approvedState,
-                              requestForApprovalHandler,
-                              deleteFileMessage,
-                          }) => {
+    id,
+    file,
+    requestingForApproval,
+    approvedState,
+    requestForApprovalHandler,
+    deleteFileMessage,
+}) => {
     const fileTypes = [
         'pdf',
         'docx',
@@ -134,7 +134,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <PDFIcon/>}
+                                                            ) && <PDFIcon />}
                                                             {[
                                                                 'docx',
                                                                 'rtf',
@@ -147,7 +147,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <DOCXIcon/>}
+                                                            ) && <DOCXIcon />}
                                                             {['pptx'].some(
                                                                 (extension) =>
                                                                     file.file
@@ -155,7 +155,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <PPTXIcon/>}
+                                                            ) && <PPTXIcon />}
                                                             {[
                                                                 'xls',
                                                                 'xls',
@@ -167,7 +167,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <XLSXIcon/>}
+                                                            ) && <XLSXIcon />}
                                                             {[
                                                                 'mp4',
                                                                 'mkv',
@@ -188,7 +188,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <VideoIcon/>}
+                                                            ) && <VideoIcon />}
                                                             {[
                                                                 'jpg',
                                                                 'png',
@@ -209,7 +209,7 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <ImageIcon/>}
+                                                            ) && <ImageIcon />}
                                                             {['mp3'].some(
                                                                 (extension) =>
                                                                     file.file
@@ -218,7 +218,7 @@ const SenderFileBubble = ({
                                                                             extension
                                                                         )
                                                             ) && (
-                                                                <AudioFileIcon/>
+                                                                <AudioFileIcon />
                                                             )}
                                                             {['txt'].some(
                                                                 (extension) =>
@@ -227,11 +227,11 @@ const SenderFileBubble = ({
                                                                         .includes(
                                                                             extension
                                                                         )
-                                                            ) && <TXTIcon/>}
+                                                            ) && <TXTIcon />}
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <OtherFileIcon/>
+                                                            <OtherFileIcon />
                                                         </>
                                                     )}
                                                 </>
@@ -261,8 +261,7 @@ const SenderFileBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     {approvedState !== true && (
                                         <>
                                             <Button
@@ -273,14 +272,19 @@ const SenderFileBubble = ({
                                                         : 'outlined'
                                                 }
                                                 onClick={() =>
-                                                    clipboard.copy(`${file.url}`)
+                                                    clipboard.copy(
+                                                        `${file.url}`
+                                                    )
                                                 }
                                             >
                                                 Copy URL
                                             </Button>
                                             <Button
                                                 onClick={() => {
-                                                    deleteFileMessage(id, file.file)
+                                                    deleteFileMessage(
+                                                        id,
+                                                        file.file
+                                                    )
                                                 }}
                                                 color={'error'}
                                                 variant={'outlined'}

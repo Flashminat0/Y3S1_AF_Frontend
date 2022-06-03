@@ -6,7 +6,7 @@ import SupervisorApproval from '../../../../components/approvals/SupervisorAppro
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
 import {NavigationOnStudentChat} from '../../../../components/common/navigation'
-import axios from "axios";
+import axios from 'axios'
 
 const Supervisors = () => {
     useDocumentTitle('Supervisors Chat Screen')
@@ -21,18 +21,16 @@ const Supervisors = () => {
         setHoveringUsrId(id)
     }
 
-    const [supervisorsList, setSupervisorsList] = useState([]);
+    const [supervisorsList, setSupervisorsList] = useState([])
     useEffect(() => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-supervisors').then((res) => {
-                    setSupervisorsList(res.data)
-                }
-            )
+                setSupervisorsList(res.data)
+            })
         }
 
         fetchSupervisors()
-    }, []);
-
+    }, [])
 
     return (
         <BaseChatWrapper
@@ -41,20 +39,20 @@ const Supervisors = () => {
             activeUserID={debouncedHoveringUsrId}
             selectedType={'Supervisor'}
         >
-
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    {setSupervisorsList && setSupervisorsList.length > 0 &&
+                    {setSupervisorsList && setSupervisorsList.length > 0 && (
                         <>
                             <SupervisorChatListSideBar
                                 onUserHover={onUserHover}
                                 supervisorsList={supervisorsList}
                             />
-                        </>}
+                        </>
+                    )}
                 </AnimatePresence>
             </div>
-            <SupervisorApproval status={status}/>
-            {status === 'approved' && <Confetti/>}
+            <SupervisorApproval status={status} />
+            {status === 'approved' && <Confetti />}
         </BaseChatWrapper>
     )
 }

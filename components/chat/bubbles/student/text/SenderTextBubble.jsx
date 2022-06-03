@@ -35,14 +35,14 @@ function generateStylesOnSender(approvedState, requestingForApproval) {
 }
 
 const SenderTextBubble = ({
-                              id,
-                              message,
-                              approvedState,
-                              requestingForApproval,
-                              deleteMessage,
-                              requestForApprovalHandler,
-                              editMessageHandler,
-                          }) => {
+    id,
+    message,
+    approvedState,
+    requestingForApproval,
+    deleteMessage,
+    requestForApprovalHandler,
+    editMessageHandler,
+}) => {
     return (
         <div className="flex items-end justify-end group">
             <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -78,15 +78,17 @@ const SenderTextBubble = ({
                                         />
                                     </div>
                                 </Disclosure.Button>
-                                <Disclosure.Panel
-                                    className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 grid gap-2 grid-cols-2 bg-gray-100 rounded-b-md">
                                     {approvedState !== true && (
                                         <>
                                             <Button
                                                 color={'primary'}
                                                 variant={'outlined'}
                                                 onClick={() =>
-                                                    editMessageHandler(id, message)
+                                                    editMessageHandler(
+                                                        id,
+                                                        message
+                                                    )
                                                 }
                                             >
                                                 Edit

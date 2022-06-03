@@ -5,8 +5,8 @@ import CoSuperVisorApproval from '../../../../components/approvals/CoSuperVisorA
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
 import {NavigationOnStudentChat} from '../../../../components/common/navigation'
-import axios from "axios";
-import CoSupervisorChatListSideBar from "../../../../components/lists/chatlists/CoSupervisorChatListSideBar";
+import axios from 'axios'
+import CoSupervisorChatListSideBar from '../../../../components/lists/chatlists/CoSupervisorChatListSideBar'
 
 const CoSupervisors = () => {
     useDocumentTitle('Co-Supervisors Chat Screen')
@@ -21,19 +21,16 @@ const CoSupervisors = () => {
         setHoveringUsrId(id)
     }
 
-
-    const [coSupervisorsList, setCoSupervisorsList] = useState([]);
+    const [coSupervisorsList, setCoSupervisorsList] = useState([])
     useEffect(() => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-co-supervisors').then((res) => {
-                    setCoSupervisorsList(res.data)
-                }
-            )
+                setCoSupervisorsList(res.data)
+            })
         }
 
         fetchSupervisors()
-    }, []);
-
+    }, [])
 
     return (
         <BaseChatWrapper
@@ -44,18 +41,18 @@ const CoSupervisors = () => {
         >
             <div className={`flex h-full w-max `}>
                 <AnimatePresence>
-                    {setCoSupervisorsList && setCoSupervisorsList.length > 0 &&
+                    {setCoSupervisorsList && setCoSupervisorsList.length > 0 && (
                         <>
                             <CoSupervisorChatListSideBar
                                 onUserHover={onUserHover}
                                 coSupervisorsList={coSupervisorsList}
                             />
                         </>
-                    }
+                    )}
                 </AnimatePresence>
             </div>
-            <CoSuperVisorApproval status={status}/>
-            {status === 'approved' && <Confetti/>}
+            <CoSuperVisorApproval status={status} />
+            {status === 'approved' && <Confetti />}
         </BaseChatWrapper>
     )
 }
