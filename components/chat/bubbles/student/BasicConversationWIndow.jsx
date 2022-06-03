@@ -77,7 +77,9 @@ const BasicConversationWindow = ({receiver, approvalState}) => {
             })
         }
         fetchMessages()
-        scrollToDown()
+        setTimeout(() => {
+            scrollToDown()
+        }, 500)
     }, [fetchMessageTrigger])
 
 
@@ -102,6 +104,12 @@ const BasicConversationWindow = ({receiver, approvalState}) => {
             approvedState: approvalState,
         }).then((res) => {
             setFetchMessageTrigger(fetchMessageTrigger + 1)
+            scrollToDown()
+
+        }).then((x) => {
+            setTimeout(() => {
+                scrollToDown()
+            }, 500)
         })
 
 
@@ -168,8 +176,12 @@ const BasicConversationWindow = ({receiver, approvalState}) => {
                     })
                     .then((x) => {
                         scrollToDown()
+
                         setUploading(false)
                         setUploadingProgress(0)
+                        setTimeout(() => {
+                            scrollToDown()
+                        }, 500)
                     })
             }
         )
