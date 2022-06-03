@@ -1,32 +1,12 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
-import {useDocumentTitle, useDebouncedValue} from '@mantine/hooks'
-import CoSupervisorChatListSideBar from '../../../../components/lists/chatlists/CoSupervisorChatListSideBar'
+import {useDebouncedValue, useDocumentTitle} from '@mantine/hooks'
 import CoSuperVisorApproval from '../../../../components/approvals/CoSuperVisorApproval'
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
 import {NavigationOnStudentChat} from '../../../../components/common/navigation'
-
-const static_co_supervisors = [
-    {
-        _id: '1a6b3ab9-604c-4229-adfa-8af8fbd7559e',
-        name: 'slide first',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        _id: '7a80dd42-13a2-465f-a176-345bd87a91d9',
-        name: 'look deepen',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        _id: 'a6256bcc-72d3-40eb-ad84-852d754a3525',
-        name: 'body scent',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-]
+import axios from "axios";
+import CoSupervisorChatListSideBar from "../../../../components/lists/chatlists/CoSupervisorChatListSideBar";
 
 const CoSupervisors = () => {
     useDocumentTitle('Co-Supervisors Chat Screen')
@@ -41,6 +21,21 @@ const CoSupervisors = () => {
         setHoveringUsrId(id)
     }
 
+
+    const [coSupervisorsList, setCoSupervisorsList] = useState([]);
+    useEffect(() => {
+        const fetchSupervisors = async () => {
+            await axios.get('/api/users/get-co-supervisors').then((res) => {
+                    setCoSupervisorsList(res.data)
+                    console.log(res.data);
+                }
+            )
+        }
+
+        fetchSupervisors()
+    }, []);
+
+
     return (
         <BaseChatWrapper
             navigation={NavigationOnStudentChat}
@@ -50,14 +45,18 @@ const CoSupervisors = () => {
         >
             <div className={`flex h-full w-max `}>
                 <AnimatePresence>
-                    <CoSupervisorChatListSideBar
-                        onUserHover={onUserHover}
-                        coSupervisorsList={static_co_supervisors}
-                    />
+                    {setCoSupervisorsList && setCoSupervisorsList.length > 0 &&
+                        <>
+                            <CoSupervisorChatListSideBar
+                                onUserHover={onUserHover}
+                                coSupervisorsList={coSupervisorsList}
+                            />
+                        </>
+                    }
                 </AnimatePresence>
             </div>
-            <CoSuperVisorApproval status={status} />
-            {status === 'approved' && <Confetti />}
+            <CoSuperVisorApproval status={status}/>
+            {status === 'approved' && <Confetti/>}
         </BaseChatWrapper>
     )
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import BaseChatWrapper from '../../../../components/layouts/chat/BaseChatWrapper'
 import {useDebouncedValue, useDocumentTitle} from '@mantine/hooks'
 import SupervisorChatListSideBar from '../../../../components/lists/chatlists/SupervisorChatListSideBar'
@@ -6,34 +6,7 @@ import SupervisorApproval from '../../../../components/approvals/SupervisorAppro
 import {AnimatePresence} from 'framer-motion'
 import Confetti from '../../../../components/approvals/Confetti'
 import {NavigationOnStudentChat} from '../../../../components/common/navigation'
-
-const supervisorsStaticData = [
-    {
-        _id: '6293915a8596b2707981b5d7',
-        name: 'slide first',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        _id: '6293a857a6f920faf64488a6',
-        name: 'look deepen',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        _id: '62947bac92946530da8f76e1',
-        name: 'rock ear',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        _id: '6295e1b04e90dda28b9b03f8',
-        name: 'dinner shorten',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-
-]
+import axios from "axios";
 
 const Supervisors = () => {
     useDocumentTitle('Supervisors Chat Screen')
@@ -48,6 +21,20 @@ const Supervisors = () => {
         setHoveringUsrId(id)
     }
 
+    const [supervisorsList, setSupervisorsList] = useState([]);
+    useEffect(() => {
+        const fetchSupervisors = async () => {
+            await axios.get('/api/users/get-supervisors').then((res) => {
+                    setSupervisorsList(res.data)
+                    console.log(res.data);
+                }
+            )
+        }
+
+        fetchSupervisors()
+    }, []);
+
+
     return (
         <BaseChatWrapper
             navigation={NavigationOnStudentChat}
@@ -58,14 +45,17 @@ const Supervisors = () => {
 
             <div className={`flex h-full w-max`}>
                 <AnimatePresence>
-                    <SupervisorChatListSideBar
-                        onUserHover={onUserHover}
-                        supervisorsList={supervisorsStaticData}
-                    />
+                    {setSupervisorsList && setSupervisorsList.length > 0 &&
+                        <>
+                            <SupervisorChatListSideBar
+                                onUserHover={onUserHover}
+                                supervisorsList={supervisorsList}
+                            />
+                        </>}
                 </AnimatePresence>
             </div>
-            <SupervisorApproval status={status} />
-            {status === 'approved' && <Confetti />}
+            <SupervisorApproval status={status}/>
+            {status === 'approved' && <Confetti/>}
         </BaseChatWrapper>
     )
 }

@@ -4,13 +4,12 @@ import CommonChatListSideBarWrapper from '../../layouts/chat/CommonChatListSideB
 import {motion} from 'framer-motion'
 
 const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
-    const [supervisors, setSupervisors] = useState(supervisorsList)
 
     const router = useRouter()
 
     return (
         <CommonChatListSideBarWrapper>
-            {supervisors.map((singleSupervisor, index) => (
+            {supervisorsList.map((singleSupervisor, index) => (
                 <motion.div
                     key={index}
                     whileHover={{scale: 1.1}}
@@ -30,7 +29,7 @@ const SupervisorChatListSideBar = ({supervisorsList, onUserHover}) => {
                         <span className="inline-block relative">
                             <img
                                 className="h-12 w-12 rounded-md"
-                                src={singleSupervisor.imageUrl}
+                                src={singleSupervisor.image.url}
                                 alt=""
                             />
                             <span className="absolute bottom-0 right-0 transform translate-y-1/2 translate-x-1/2 block border-2 border-white rounded-full">
