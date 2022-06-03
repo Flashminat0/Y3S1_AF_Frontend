@@ -4,10 +4,13 @@ import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
 import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
 import axios from 'axios'
+import UpdateUser from '../../../../modals/admin/adminUpdate'
 
 const UserInfoList = ({navigateFunc}) => {
+    const [openUpdate, setOpenUpdate] = useState(false)
     const [userData, setUserData] = useState()
     const [trigger, setTrigger] = useState(1)
+    const [id, setId] = useState()
     useEffect(() => {
         axios.get('/api/users/userlist').then((result) => {
             setUserData(result.data.result)
@@ -20,6 +23,17 @@ const UserInfoList = ({navigateFunc}) => {
         })
     }
 
+    const updateUserRole = async (id, role) => {
+        try {
+            await axios.put('/api/user/updaterole', {
+                id: id,
+                role: role,
+            })
+            setTrigger(trigger + 1)
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
     const regnumber = (name) => {
         const arr = name.split('')
         const revarr = arr.reverse()
@@ -45,6 +59,15 @@ const UserInfoList = ({navigateFunc}) => {
             <GroupListWrapper>
                 <SearchBar placeholder={'User Search'} />
                 <div>
+                    <UpdateUser
+                        view={openUpdate}
+                        setOpenUpdate={setOpenUpdate}
+                        updateUserRole={updateUserRole}
+                        id={id}
+                        setId={setId}
+                        setTrigger={setTrigger}
+                        trigger={trigger}
+                    />
                     {userData &&
                         userData.map((user) => (
                             <SingleUserBox
@@ -56,6 +79,9 @@ const UserInfoList = ({navigateFunc}) => {
                                 mongoID={user._id}
                                 setTrigger={setTrigger}
                                 trigger={trigger}
+                                updateUserRole={updateUserRole}
+                                setOpenUpdate={setOpenUpdate}
+                                setId={setId}
                             />
                         ))}
                 </div>
