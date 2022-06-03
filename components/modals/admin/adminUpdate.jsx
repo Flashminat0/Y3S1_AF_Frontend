@@ -14,7 +14,7 @@ const adminModal = ({
     setId,
 }) => {
     const [openModal, setOpenModal] = useState(view)
-    const [type, setType] = useState('Admin')
+    const [type, setType] = useState('admin')
 
     useEffect(() => {
         setOpenModal(view)

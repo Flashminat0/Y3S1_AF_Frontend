@@ -1,14 +1,14 @@
-import React from 'react'
-import {MdGroup} from 'react-icons/md'
-import {Popover, Transition} from '@headlessui/react'
-import {FiChevronDown} from 'react-icons/fi'
-import {Fragment} from 'react'
-import {BsFillEyeFill} from 'react-icons/bs'
-import {AiFillDelete} from 'react-icons/ai'
-import {AnimatePresence, motion} from 'framer-motion'
+import React from 'react';
+import { MdGroup } from 'react-icons/md';
+import { Popover, Transition } from '@headlessui/react';
+import { FiChevronDown } from 'react-icons/fi';
+import { Fragment } from 'react';
+import { BsFillEyeFill } from 'react-icons/bs';
+import { AiFillDelete } from 'react-icons/ai';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const abilities = [
-    {id: 1, name: 'View User Profile', icon: BsFillEyeFill},
+    { id: 1, name: 'View User Profile', icon: BsFillEyeFill },
     {
         id: 2,
         name: 'Delete User',
@@ -19,10 +19,10 @@ const abilities = [
         name: 'Update User Role',
         icon: BsFillEyeFill,
     },
-]
+];
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
 const SingleUserBox = ({
@@ -33,50 +33,52 @@ const SingleUserBox = ({
     mongoID,
     trigger,
     setTrigger,
+    setOpenUpdate,
+    setId,
 }) => {
     return (
         <div
             className={
-                'mx-2 lg:mx-10 my-4 px-4 py-1.5 rounded-lg shadow-md bg-gray-50'
+                'mx-2 my-4 rounded-lg bg-gray-50 px-4 py-1.5 shadow-md lg:mx-10'
             }
         >
             <div className={'flex flex-row justify-between'}>
-                <div className={'flex flex-row gap-3 items-center'}>
+                <div className={'flex flex-row items-center gap-3'}>
                     <div className={'text-xl font-semibold uppercase'}>
                         {userName}
                     </div>
-                    <MdGroup className={'w-5 h-5'} />
+                    <MdGroup className={'h-5 w-5'} />
                 </div>
                 <div>
                     <Popover className="relative">
-                        {({open}) => (
+                        {({ open }) => (
                             <>
                                 <Popover.Button
                                     className={classNames(
                                         open
-                                            ? 'outline-none border-none bg-transparent'
-                                            : 'outline-none border-none bg-transparent'
+                                            ? 'border-none bg-transparent outline-none'
+                                            : 'border-none bg-transparent outline-none'
                                     )}
                                 >
                                     <FiChevronDown
                                         className={
-                                            'w-12 h-12 hover:text-gray-500'
+                                            'h-12 w-12 hover:text-gray-500'
                                         }
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute -right-[5rem] z-10 mt-1 w-screen max-w-max -translate-x-1/2 transform px-2 sm:px-0">
                                         <motion.div
-                                            initial={{opacity: 0, scale: 0.7}}
-                                            animate={{opacity: 1, scale: 1}}
+                                            initial={{ opacity: 0, scale: 0.7 }}
+                                            animate={{ opacity: 1, scale: 1 }}
                                         >
-                                            <div className="rounded-lg shadow-lg ring-1 ring-opacity-5 overflow-hidden">
+                                            <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-opacity-5">
                                                 <div className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
                                                     {abilities.map(
                                                         (ability, index) => (
                                                             <div
                                                                 key={index}
-                                                                className="flex flex-row gap-5 justify-between items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100"
+                                                                className="flex w-full flex-row items-center justify-between gap-5 bg-white px-2 py-2 text-base text-gray-900 hover:bg-green-100 hover:font-medium"
                                                             >
                                                                 <div
                                                                     onClick={() => {
@@ -86,11 +88,21 @@ const SingleUserBox = ({
                                                                         ) {
                                                                             deleteUser(
                                                                                 mongoID
-                                                                            )
+                                                                            );
                                                                             setTrigger(
                                                                                 trigger +
                                                                                     1
-                                                                            )
+                                                                            );
+                                                                        } else if (
+                                                                            ability.id ==
+                                                                            3
+                                                                        ) {
+                                                                            setOpenUpdate(
+                                                                                true
+                                                                            );
+                                                                            setId(
+                                                                                mongoID
+                                                                            );
                                                                         }
                                                                     }}
                                                                 >
@@ -100,7 +112,7 @@ const SingleUserBox = ({
                                                                 </div>
                                                                 <ability.icon
                                                                     className={
-                                                                        'w-5 h-5'
+                                                                        'h-5 w-5'
                                                                     }
                                                                 />
                                                             </div>
@@ -116,14 +128,14 @@ const SingleUserBox = ({
                     </Popover>
                 </div>
             </div>
-            <div className={'flex flex-row gap-2 items-center'}>
+            <div className={'flex flex-row items-center gap-2'}>
                 <div className={'font-medium text-blue-900'}>User Details:</div>
                 <div className={'text-sm text-gray-500'}>{userRegNo}</div>
                 {userRole === 'student' && (
                     <>
                         <div
                             className={
-                                'text-xs text-blue-500 px-3 py-1 rounded-lg bg-blue-200'
+                                'rounded-lg bg-blue-200 px-3 py-1 text-xs text-blue-500'
                             }
                         >
                             {userRole}
@@ -134,7 +146,7 @@ const SingleUserBox = ({
                     <>
                         <div
                             className={
-                                'text-xs text-red-500 px-3 py-1 rounded-lg bg-red-200'
+                                'rounded-lg bg-red-200 px-3 py-1 text-xs text-red-500'
                             }
                         >
                             {userRole}
@@ -145,7 +157,7 @@ const SingleUserBox = ({
                     <>
                         <div
                             className={
-                                'text-xs text-green-500 px-3 py-1 rounded-lg bg-green-200'
+                                'rounded-lg bg-green-200 px-3 py-1 text-xs text-green-500'
                             }
                         >
                             {userRole}
@@ -156,18 +168,18 @@ const SingleUserBox = ({
                     <>
                         <div
                             className={
-                                'text-xs text-orange-500 px-3 py-1 rounded-lg bg-orange-200'
+                                'rounded-lg bg-orange-200 px-3 py-1 text-xs text-orange-500'
                             }
                         >
                             {userRole}
                         </div>
                     </>
                 )}
-                {userRole === 'Admin' && (
+                {userRole === 'admin' && (
                     <>
                         <div
                             className={
-                                'text-xs text-red-500 px-3 py-1 rounded-lg bg-orange-200'
+                                'rounded-lg bg-orange-200 px-3 py-1 text-xs text-red-500'
                             }
                         >
                             {userRole}
@@ -176,7 +188,7 @@ const SingleUserBox = ({
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SingleUserBox
+export default SingleUserBox;
