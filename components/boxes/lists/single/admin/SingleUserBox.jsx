@@ -1,14 +1,14 @@
-import React from 'react';
-import { MdGroup } from 'react-icons/md';
-import { Popover, Transition } from '@headlessui/react';
-import { FiChevronDown } from 'react-icons/fi';
-import { Fragment } from 'react';
-import { BsFillEyeFill } from 'react-icons/bs';
-import { AiFillDelete } from 'react-icons/ai';
-import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react'
+import {MdGroup} from 'react-icons/md'
+import {Popover, Transition} from '@headlessui/react'
+import {FiChevronDown} from 'react-icons/fi'
+import {Fragment} from 'react'
+import {BsFillEyeFill} from 'react-icons/bs'
+import {AiFillDelete} from 'react-icons/ai'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const abilities = [
-    { id: 1, name: 'View User Profile', icon: BsFillEyeFill },
+    {id: 1, name: 'View User Profile', icon: BsFillEyeFill},
     {
         id: 2,
         name: 'Delete User',
@@ -19,10 +19,10 @@ const abilities = [
         name: 'Update User Role',
         icon: BsFillEyeFill,
     },
-];
+]
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
+    return classes.filter(Boolean).join(' ')
 }
 
 const SingleUserBox = ({
@@ -51,7 +51,7 @@ const SingleUserBox = ({
                 </div>
                 <div>
                     <Popover className="relative">
-                        {({ open }) => (
+                        {({open}) => (
                             <>
                                 <Popover.Button
                                     className={classNames(
@@ -69,8 +69,8 @@ const SingleUserBox = ({
                                 <AnimatePresence>
                                     <Popover.Panel className="absolute -right-[5rem] z-10 mt-1 w-screen max-w-max -translate-x-1/2 transform px-2 sm:px-0">
                                         <motion.div
-                                            initial={{ opacity: 0, scale: 0.7 }}
-                                            animate={{ opacity: 1, scale: 1 }}
+                                            initial={{opacity: 0, scale: 0.7}}
+                                            animate={{opacity: 1, scale: 1}}
                                         >
                                             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-opacity-5">
                                                 <div className="relative bg-gray-200 py-3 sm:gap-8 sm:p-4">
@@ -88,21 +88,21 @@ const SingleUserBox = ({
                                                                         ) {
                                                                             deleteUser(
                                                                                 mongoID
-                                                                            );
+                                                                            )
                                                                             setTrigger(
                                                                                 trigger +
                                                                                     1
-                                                                            );
+                                                                            )
                                                                         } else if (
                                                                             ability.id ==
                                                                             3
                                                                         ) {
                                                                             setOpenUpdate(
                                                                                 true
-                                                                            );
+                                                                            )
                                                                             setId(
                                                                                 mongoID
-                                                                            );
+                                                                            )
                                                                         }
                                                                     }}
                                                                 >
@@ -188,7 +188,7 @@ const SingleUserBox = ({
                 )}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default SingleUserBox;
+export default SingleUserBox
