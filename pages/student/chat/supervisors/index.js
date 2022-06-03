@@ -26,7 +26,6 @@ const Supervisors = () => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-supervisors').then((res) => {
                     setSupervisorsList(res.data)
-                    console.log(res.data);
                 }
             )
         }

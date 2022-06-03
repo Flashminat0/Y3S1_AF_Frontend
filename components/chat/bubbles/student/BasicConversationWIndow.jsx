@@ -13,9 +13,10 @@ import {firebaseApp} from '../../../../firebase/base'
 import {deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable,} from 'firebase/storage'
 import axios from "axios";
 
-const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
+const BasicConversationWindow = ({receiver, approvalState}) => {
     const myRef = useRef(null)
 
+    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1);
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
 
@@ -67,38 +68,48 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
     }
 
     useEffect(() => {
-        setMessageArray(() => {
-            return conversation.map((message) => {
-                return {...message, isOpened: false}
+        const fetchMessages = async () => {
+            await axios.post('/api/chat/fetch-message', {
+                studentId: credentials._id,
+                staffId: receiver,
+            }).then((res) => {
+                setMessageArray(res.data.chat.messages);
             })
-        })
+        }
+        fetchMessages()
         scrollToDown()
-    }, [])
+    }, [fetchMessageTrigger])
+
 
     const [nowMessage, setNowMessage] = useState('')
-    const sendNewMessage = () => {
+    const sendNewMessage = async () => {
         if (!nowMessage.toString().trim().length > 0) {
             return
         }
 
-        setMessageArray(() => {
-            return messageArray.concat([
-                {
-                    id: randomId().toString().split('-')[1],
-                    sender: credentials._id,
-                    message: nowMessage,
-                    type: 'text',
-                    time: new Date().toLocaleTimeString(),
-                    requestingForApproval: false,
-                    approvedState: null,
-                },
-            ])
+        await axios.post('/api/chat/send-message', {
+            studentId: credentials._id,
+            staffId: receiver,
+            messages: [...messageArray, {
+                id: randomId().toString().split('-')[1],
+                sender: credentials._id,
+                message: nowMessage,
+                type: 'text',
+                time: new Date().toLocaleTimeString(),
+                requestingForApproval: false,
+                approvedState: null,
+            }],
+            approvedState: approvalState,
+        }).then((res) => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
         })
+
 
         // Cleanup
         scrollToDown()
         setNowMessage('')
     }
+
 
     const [uploading, setUploading] = useState(false)
     const [uploadingProgress, setUploadingProgress] = useState(0)
@@ -133,31 +144,27 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
-                    .then((url) => {
-                        const newMessage = {
-                            id: randomId().toString().split('-')[1],
-                            sender: credentials._id,
-                            message: {
-                                file: fileName,
-                                url: url,
-                            },
-                            type: 'file',
-                            time: new Date().toLocaleTimeString(),
-                            requestingForApproval: false,
-                            approvedState: null,
-                        }
-                        setMessageArray(() => {
-                            return messageArray.concat([newMessage])
+                    .then(async (url) => {
+                        await axios.post('/api/chat/send-message', {
+                            studentId: credentials._id,
+                            staffId: receiver,
+                            messages: [...messageArray, {
+                                id: randomId().toString().split('-')[1],
+                                sender: credentials._id,
+                                message: {
+                                    file: fileName,
+                                    url: url,
+                                },
+                                type: 'file',
+                                time: new Date().toLocaleTimeString(),
+                                requestingForApproval: false,
+                                approvedState: null,
+                            }],
+                            approvedState: approvalState,
+                        }).then((res) => {
+                            setFetchMessageTrigger(fetchMessageTrigger + 1)
                         })
 
-                        return newMessage
-                    })
-                    .then(async (newMessage) => {
-                        await axios.post('/api/chat/send-message', {
-                            senderId: credentials._id,
-                            receiverId: receiver,
-                            message : newMessage
-                        })
                     })
                     .then((x) => {
                         scrollToDown()
@@ -168,9 +175,19 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         )
     }
 
-    const deleteMessage = (id) => {
+    const deleteMessage = async (id) => {
         setMessageArray(() => {
             return messageArray.filter((message) => message.id !== id)
+        })
+
+
+        await axios.post('/api/chat/send-message', {
+            studentId: credentials._id,
+            staffId: receiver,
+            messages: messageArray.filter((message) => message.id !== id),
+            approvedState: approvalState,
+        }).then((res) => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
         })
     }
 
@@ -183,7 +200,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         })
     }
 
-    const requestForApproval = (id) => {
+    const requestForApproval = async (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
                 if (message.id === id) {
@@ -191,6 +208,20 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 }
                 return message
             })
+        })
+
+        await axios.post('/api/chat/send-message', {
+            studentId: credentials._id,
+            staffId: receiver,
+            messages: messageArray.map((message) => {
+                if (message.id === id) {
+                    return {...message, requestingForApproval: true}
+                }
+                return message
+            }),
+            approvedState: approvalState,
+        }).then((res) => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
         })
     }
 
@@ -214,7 +245,7 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
         setEditMessageId('')
     }
 
-    const editMessageHandler = (id) => {
+    const editMessageHandler = async (id) => {
         setMessageArray(() => {
             return messageArray.map((message) => {
                 if (message.id === id) {
@@ -231,15 +262,30 @@ const BasicConversationWindow = ({receiver, approvalState, conversation}) => {
                 return message
             })
         })
+        await axios.post('/api/chat/send-message', {
+            studentId: credentials._id,
+            staffId: receiver,
+            messages: messageArray.map((message) => {
+                if (message.id === id) {
+                    if (message.id.toString().includes('-edited')) {
+                        return {...message, message: editMessage}
+                    } else {
+                        return {
+                            ...message,
+                            id: id + '-edited',
+                            message: editMessage,
+                        }
+                    }
+                }
+                return message
+            }),
+            approvedState: approvalState,
+        }).then((res) => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
+        })
+
         editMessageModalCloseHandler()
     }
-
-    // useEffect(() => {
-    //     axios.post('/api/chat/send-message', {
-    //         senderId: credentials._id,
-    //         receiverId: receiver,
-    //     })
-    // }, [messageArray]);
 
 
     return (

@@ -27,7 +27,6 @@ const CoSupervisors = () => {
         const fetchSupervisors = async () => {
             await axios.get('/api/users/get-co-supervisors').then((res) => {
                     setCoSupervisorsList(res.data)
-                    console.log(res.data);
                 }
             )
         }

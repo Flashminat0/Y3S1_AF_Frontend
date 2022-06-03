@@ -6,21 +6,11 @@ import {FiPaperclip} from 'react-icons/fi'
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from './file/ReceivedFileBubble'
-import {randomId} from '@mantine/hooks'
-import {
-    LoadingAnimation,
-    NotOkAnimation,
-    OkAnimation,
-} from '../../../assets/animations'
+import {randomId, useLocalStorage} from '@mantine/hooks'
+import {LoadingAnimation, NotOkAnimation, OkAnimation,} from '../../../assets/animations'
 import EditTextMessageModal from './EditTextMessageModal'
 import {firebaseApp} from '../../../../firebase/base'
-import {
-    deleteObject,
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytesResumable,
-} from 'firebase/storage'
+import {deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable,} from 'firebase/storage'
 
 const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
     const myRef = useRef(null)
@@ -35,6 +25,11 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
     const scrollToDown = () => {
         setScrollToDownTrigger(scrollToDownTrigger + 1)
     }
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
 
     const AttachmentsIcon = () => {
         return (
@@ -89,7 +84,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
             return messageArray.concat([
                 {
                     id: randomId().toString().split('-')[1],
-                    sender: 'Me',
+                    sender: credentials._id,
                     message: nowMessage,
                     type: 'text',
                     time: new Date().toLocaleTimeString(),
@@ -133,7 +128,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         break
                 }
             },
-            (error) => {},
+            (error) => {
+            },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then((url) => {
@@ -141,7 +137,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                             return messageArray.concat([
                                 {
                                     id: randomId().toString().split('-')[1],
-                                    sender: 'Me',
+                                    sender: credentials._id,
                                     message: {
                                         file: fileName,
                                         url: url,
@@ -255,19 +251,19 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation />
+                                <LoadingAnimation/>
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation />
+                                <OkAnimation/>
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation />
+                                <NotOkAnimation/>
                             </>
                         )}
                     </div>
@@ -277,7 +273,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                 {messageArray.map((singleMessage, index) => {
                     return (
                         <div key={singleMessage.id}>
-                            {singleMessage.sender === 'Me' ? (
+                            {singleMessage.sender === credentials._id ? (
                                 <>
                                     {singleMessage.type === 'text' ? (
                                         <SenderTextBubble
@@ -367,8 +363,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon />}
-                endAdornment={<SendIcon />}
+                startAdornment={<AttachmentsIcon/>}
+                endAdornment={<SendIcon/>}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}
