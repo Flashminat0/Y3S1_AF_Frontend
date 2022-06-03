@@ -13,7 +13,7 @@ const RequestList = ({
     groupMemberArray,
     groupId,
 }) => {
-    const [groupMembersWithDetails, setGroupMembersWithDetails] = useState([])
+    const [groupMembersWithDetails, setGroupMembersWithDetails] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
@@ -73,61 +73,63 @@ const RequestList = ({
     }
 
     return (
-        <div>
-            <StudentModalButtonWrapper
-                btnName={'Check Group List'}
-                btnFunction={navigateFunc}
-            >
-                <FinalizeGroupWrapper
-                    groupTopic={groupTopic}
-                    groupLeader={groupLeaderID}
-                    btnFunction={submitGroupData}
+        <>
+            {groupMembersWithDetails && <>
+                <StudentModalButtonWrapper
+                    btnName={'Check Group List'}
+                    btnFunction={navigateFunc}
                 >
-                    {isLoaded && (
-                        <>
-                            <div>
-                                {groupMembersWithDetails.map(
-                                    (singleStudent) => (
-                                        <SingleRequestBox
-                                            key={singleStudent._id}
-                                            userName={singleStudent.name
-                                                .substring(
-                                                    0,
-                                                    singleStudent.name.lastIndexOf(
-                                                        ' '
+                    <FinalizeGroupWrapper
+                        groupTopic={groupTopic}
+                        groupLeader={groupLeaderID}
+                        btnFunction={submitGroupData}
+                    >
+                        {isLoaded && (
+                            <>
+                                <div>
+                                    {groupMembersWithDetails.map(
+                                        (singleStudent) => (
+                                            <SingleRequestBox
+                                                key={singleStudent._id}
+                                                userName={singleStudent.name
+                                                    .substring(
+                                                        0,
+                                                        singleStudent.name.lastIndexOf(
+                                                            ' '
+                                                        )
                                                     )
-                                                )
-                                                .toString()
-                                                .toUpperCase()}
-                                            userRegNo={singleStudent.name
-                                                .substring(
-                                                    singleStudent.name.lastIndexOf(
-                                                        ' '
-                                                    ) + 1,
-                                                    singleStudent.name.length
-                                                )
-                                                .toString()
-                                                .toUpperCase()}
-                                            acceptedStatus={
-                                                singleStudent.status
-                                            }
-                                            accessToActions={
-                                                credentials._id ===
-                                                groupLeaderID
-                                            }
-                                            userId={singleStudent._id}
-                                            groupLeader={groupLeaderID}
-                                            approveUser={approveUser}
-                                            rejectUser={rejectUser}
-                                        />
-                                    )
-                                )}
-                            </div>
-                        </>
-                    )}
-                </FinalizeGroupWrapper>
-            </StudentModalButtonWrapper>
-        </div>
+                                                    .toString()
+                                                    .toUpperCase()}
+                                                userRegNo={singleStudent.name
+                                                    .substring(
+                                                        singleStudent.name.lastIndexOf(
+                                                            ' '
+                                                        ) + 1,
+                                                        singleStudent.name.length
+                                                    )
+                                                    .toString()
+                                                    .toUpperCase()}
+                                                acceptedStatus={
+                                                    singleStudent.status
+                                                }
+                                                accessToActions={
+                                                    credentials._id ===
+                                                    groupLeaderID
+                                                }
+                                                userId={singleStudent._id}
+                                                groupLeader={groupLeaderID}
+                                                approveUser={approveUser}
+                                                rejectUser={rejectUser}
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            </>
+                        )}
+                    </FinalizeGroupWrapper>
+                </StudentModalButtonWrapper>
+            </> }
+        </>
     )
 }
 
