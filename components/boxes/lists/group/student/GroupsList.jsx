@@ -11,7 +11,7 @@ import {useRouter} from 'next/router'
 const placeholder = 'Group Search'
 
 const GroupsList = () => {
-    const [studentGroups, setStudentGroups] = useState([])
+    const [studentGroups, setStudentGroups] = useState(null)
     const [openModal, setOpenModal] = useState(false)
 
     const [searchTerm, setSearchTerm] = useState('')
@@ -153,37 +153,46 @@ const GroupsList = () => {
     }
 
     return (
-        <StudentModalButtonWrapper
-            btnName={'Create Group'}
-            btnFunction={openCreateGroupModal}
-        >
-            <CreateGroupModal
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-            />
-            <GroupListWrapper>
-                <SearchBar
-                    value={searchTerm}
-                    changeSearchValue={changeSearchValue}
-                    placeholder={placeholder}
-                />
-                <div>
-                    {studentGroups.map((studentGroup) => (
-                        <SingleGroupBox
-                            key={studentGroup.id}
-                            groupId={studentGroup.id}
-                            requestForJoinOnGroupHandler={
-                                requestForJoinOnGroupHandler
-                            }
-                            groupName={studentGroup.groupName}
-                            groupLeader={studentGroup.groupLeader}
-                            groupLeaderRegNo={studentGroup.groupLeaderRegNo}
-                            currentNo={studentGroup.currentNo}
+        <>
+            {studentGroups && (
+                <>
+                    <StudentModalButtonWrapper
+                        btnName={'Create Group'}
+                        btnFunction={openCreateGroupModal}
+                    >
+                        <CreateGroupModal
+                            openModal={openModal}
+                            setOpenModal={setOpenModal}
+                            credentials={credentials}
                         />
-                    ))}
-                </div>
-            </GroupListWrapper>
-        </StudentModalButtonWrapper>
+                        <GroupListWrapper>
+                            <SearchBar
+                                value={searchTerm}
+                                changeSearchValue={changeSearchValue}
+                                placeholder={placeholder}
+                            />
+                            <div>
+                                {studentGroups.map((studentGroup) => (
+                                    <SingleGroupBox
+                                        key={studentGroup.id}
+                                        groupId={studentGroup.id}
+                                        requestForJoinOnGroupHandler={
+                                            requestForJoinOnGroupHandler
+                                        }
+                                        groupName={studentGroup.groupName}
+                                        groupLeader={studentGroup.groupLeader}
+                                        groupLeaderRegNo={
+                                            studentGroup.groupLeaderRegNo
+                                        }
+                                        currentNo={studentGroup.currentNo}
+                                    />
+                                ))}
+                            </div>
+                        </GroupListWrapper>
+                    </StudentModalButtonWrapper>
+                </>
+            )}
+        </>
     )
 }
 

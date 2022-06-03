@@ -18,8 +18,8 @@ const FinalizeGroup = () => {
     const [groupMemberArray, setGroupMemberArray] = useState([])
     const [groupId, setGroupId] = useState('')
 
-    const openGroupListPage = async () => {
-        await router.push('/student/group-list')
+    const openTopicSubmissionPage = async () => {
+        await router.push('/student/topic-submission/')
     }
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const FinalizeGroup = () => {
                 groupMemberArray={groupMemberArray}
                 groupTopic={groupTopic}
                 groupLeaderID={leaderID}
-                navigateFunc={openGroupListPage}
+                navigateFunc={openTopicSubmissionPage}
             />
         </StudentSideBarWrapper>
     )

@@ -61,7 +61,7 @@ const UploadProjectTemplateBox = ({
                     <div className={'grid grid-cols-8 items-center'}>
                         <div
                             className={
-                                'col-start-1 col-end-8 capitalize text-lg font-semibold'
+                                'col-start-1 col-end-8 text-lg font-semibold'
                             }
                         >
                             {fileName}
@@ -76,14 +76,19 @@ const UploadProjectTemplateBox = ({
                                 'col-start-1 col-end-8 text-sm text-gray-500'
                             }
                         >
-                            {updatedAt}
+                            {Date(updatedAt)
+                                .toString()
+                                .substring(
+                                    0,
+                                    Date(updatedAt).toString().indexOf('2022')
+                                )}
                         </div>
                         <div
                             className={
                                 'col-start-8 col-end-9 justify-start text-xs text-gray-500'
                             }
                         >
-                            {fileSize}
+                            {Math.floor(parseInt(fileSize) / 1024)} kb
                         </div>
                     </div>
                 </div>

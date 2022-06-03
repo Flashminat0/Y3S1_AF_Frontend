@@ -3,7 +3,7 @@ import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
 import {BsFillTagsFill} from 'react-icons/bs'
 
-const UploadTemplatesWrapper = ({children}) => {
+const UploadTemplatesWrapper = ({children, topicTags, uploadHandler}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
             <div className="text-sm max-w-full">
@@ -13,10 +13,10 @@ const UploadTemplatesWrapper = ({children}) => {
                 >
                     <span>Upload Templates</span>
                     <input
+                        onChange={uploadHandler}
                         id="file-upload"
                         name="file-upload"
                         type="file"
-                        accept="image/*"
                         className="sr-only"
                     />
                 </label>
@@ -32,34 +32,17 @@ const UploadTemplatesWrapper = ({children}) => {
                             Tag Set
                         </div>
                         <div className={'flex flex-row gap-2'}>
-                            <span
-                                className={
-                                    'px-2 py-1 text-sm bg-blue-400 rounded-xl'
-                                }
-                            >
-                                Python
-                            </span>
-                            <span
-                                className={
-                                    'px-2 py-1 text-sm bg-blue-400 rounded-xl'
-                                }
-                            >
-                                Julia
-                            </span>
-                            <span
-                                className={
-                                    'px-2 py-1 text-sm bg-blue-400 rounded-xl'
-                                }
-                            >
-                                C++
-                            </span>
-                            <span
-                                className={
-                                    'px-2 py-1 text-sm bg-blue-400 rounded-xl'
-                                }
-                            >
-                                R
-                            </span>
+                            {topicTags.map((tag, index) => {
+                                return (
+                                    <span
+                                        className={
+                                            'px-2 py-1 text-sm bg-blue-400 rounded-xl'
+                                        }
+                                    >
+                                        {tag}
+                                    </span>
+                                )
+                            })}
                         </div>
                     </div>
                     <div className={'pr-2 sm:pr-8'}>

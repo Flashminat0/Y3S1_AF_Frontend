@@ -1,11 +1,25 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import AdminSideBarWrapper from '../../../components/layouts/admin/AdminSideBarWrapper'
+import UploadProjectTemplateList from '../../../components/boxes/templates/admin/UploadProjectTemplateList'
 import {useRouter} from 'next/router'
+import axios from 'axios'
 
-const TopicTag = () => {
+const UploadTemplates = () => {
     const router = useRouter()
     const {topic_tag} = router.query
 
-    return <div>{topic_tag}</div>
+    const openTopicListPage = async () => {
+        await router.push('/admin/topic-list')
+    }
+
+    return (
+        <AdminSideBarWrapper selectedPageIndex={3}>
+            <UploadProjectTemplateList
+                id={topic_tag}
+                navigateFunc={openTopicListPage}
+            />
+        </AdminSideBarWrapper>
+    )
 }
 
-export default TopicTag
+export default UploadTemplates

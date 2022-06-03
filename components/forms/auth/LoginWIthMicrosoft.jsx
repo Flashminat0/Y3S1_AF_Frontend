@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {OAuthProvider, getAuth, signInWithPopup, signOut} from 'firebase/auth'
 import axios from 'axios'
 import {Button} from '@mui/material'
+import {firebaseApp} from '../../../firebase/base'
 
 const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -23,7 +24,7 @@ const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
     provider.addScope('profile')
 
     //auth object
-    const auth = getAuth()
+    const auth = getAuth(firebaseApp)
 
     // sign in with popup
     const signInWithMicrosoft = () => {
@@ -119,7 +120,7 @@ const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
         <div className={`grid place-content-center`}>
             {!isLoggedIn ? (
                 <Button
-                    color={'secondary'}
+                    className="bg-white hover:bg-indigo-100"
                     variant="outlined"
                     onClick={signInWithMicrosoft}
                     startIcon={microsoftIcon}
@@ -128,7 +129,7 @@ const LoginWIthMicrosoft = ({credentials, setCredentials}) => {
                 </Button>
             ) : (
                 <Button
-                    color={'primary'}
+                    className="bg-white hover:bg-indigo-100"
                     variant="outlined"
                     onClick={signOutWithMicrosoft}
                 >

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FiChevronDown} from 'react-icons/fi'
 import {Popover, Transition} from '@headlessui/react'
 import {BiArrowFromLeft} from 'react-icons/bi'
@@ -6,7 +6,13 @@ import {MdGroup} from 'react-icons/md'
 import {AnimatePresence, motion} from 'framer-motion'
 
 const abilities = [
-    {id: 1, name: 'Request to be a member', icon: BiArrowFromLeft},
+    {
+        id: 1,
+        name: 'Request to be a member',
+        after: 'Requested',
+        icon: BiArrowFromLeft,
+        status: false,
+    },
 ]
 
 function classNames(...classes) {
@@ -21,8 +27,11 @@ const SingleGroupBox = ({
     groupLeaderRegNo,
     currentNo,
 }) => {
+    const [status, setStatus] = useState(abilities.status)
+
     const requestForJoinOnGroup = () => {
         requestForJoinOnGroupHandler(groupId)
+        setStatus(!status)
     }
 
     return (
@@ -73,9 +82,20 @@ const SingleGroupBox = ({
                                                                 className="flex flex-row gap-5 justify-between gap-2 items-center w-full px-2 py-2 text-base hover:font-medium text-gray-900 bg-white hover:bg-green-100 cursor-pointer"
                                                             >
                                                                 <div>
-                                                                    {
-                                                                        ability.name
-                                                                    }
+                                                                    {status ===
+                                                                    true ? (
+                                                                        <>
+                                                                            {
+                                                                                ability.after
+                                                                            }
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            {
+                                                                                ability.name
+                                                                            }
+                                                                        </>
+                                                                    )}
                                                                 </div>
                                                                 <ability.icon
                                                                     className={

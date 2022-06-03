@@ -20,7 +20,7 @@ const tagsStaticData = [
 
 const placeholder = 'Tags Search'
 
-const TopicInfoList = ({navigateFunc}) => {
+const TopicInfoList = ({navigateFunc, topicTagsList}) => {
     const [tagsSet, setTagsSet] = useState(tagsStaticData)
 
     return (
@@ -31,11 +31,11 @@ const TopicInfoList = ({navigateFunc}) => {
             <GroupListWrapper>
                 <SearchBar placeholder={placeholder} />
                 <div>
-                    {tagsSet.map((tag) => (
+                    {topicTagsList.map((tag) => (
                         <SingleTopicBox
-                            key={tag.id}
-                            tagsArray={tag.tagsArray}
-                            pageId={tag.id}
+                            key={tag._id}
+                            tagsArray={tag.tags}
+                            pageId={tag._id}
                         />
                     ))}
                 </div>

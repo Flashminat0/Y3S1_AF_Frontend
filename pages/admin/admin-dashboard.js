@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminDashboard from '../../components/dashboard/AdminDashboard'
 
-const admindashboard = () => {
+const adminDashboard = () => {
     return (
         <div>
             <AdminDashboard />
@@ -9,4 +9,4 @@ const admindashboard = () => {
     )
 }
 
-export default admindashboard
+export default adminDashboard
