@@ -5,7 +5,7 @@ import {useRouter} from 'next/router'
 
 const Topic_tag = () => {
     const router = useRouter()
-    const {topic_tag} = router.query;
+    const {topic_tag} = router.query
 
     const openProjectTemplatesPage = async () => {
         await router.push('/student/marking-schema')
@@ -13,7 +13,10 @@ const Topic_tag = () => {
 
     return (
         <StudentSideBarWrapper selectedPageIndex={3}>
-            <ProjectTemplateList id={topic_tag} navigateFunc={openProjectTemplatesPage} />
+            <ProjectTemplateList
+                id={topic_tag}
+                navigateFunc={openProjectTemplatesPage}
+            />
         </StudentSideBarWrapper>
     )
 }

@@ -3,7 +3,7 @@ import GreenFullButton from '../../buttons/full-button/GreenFullButton'
 import YellowFullButton from '../../buttons/full-button/YellowFullButton'
 import {BsFillTagsFill} from 'react-icons/bs'
 
-const UploadTemplatesWrapper = ({children, topicTags , uploadHandler}) => {
+const UploadTemplatesWrapper = ({children, topicTags, uploadHandler}) => {
     return (
         <div className={'px-6 py-6 grid grid-cols-1 gap-3'}>
             <div className="text-sm max-w-full">
@@ -55,7 +55,7 @@ const UploadTemplatesWrapper = ({children, topicTags , uploadHandler}) => {
                 </div>
             </div>
             {children}
-            <YellowFullButton btnName={'Download Templates'}/>
+            <YellowFullButton btnName={'Download Templates'} />
         </div>
     )
 }

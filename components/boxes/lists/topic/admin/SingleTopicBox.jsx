@@ -88,7 +88,7 @@ const SingleTopicBox = ({tagsArray, pageId}) => {
                 </div>
             </div>
             <div className={'flex flex-row gap-2'}>
-                {tagsArray.map((tag , index) => (
+                {tagsArray.map((tag, index) => (
                     <div
                         key={index}
                         className={
