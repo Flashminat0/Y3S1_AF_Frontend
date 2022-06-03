@@ -168,8 +168,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                     .then(async (url) => {
                         await axios
                             .post('/api/chat/send-message', {
-                                studentId: credentials._id,
-                                staffId: receiver,
+                                studentId: receiver,
+                                staffId: credentials._id,
                                 messages: [
                                     ...messageArray,
                                     {
@@ -185,7 +185,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                                         approvedState: null,
                                     },
                                 ],
-                                approvedState: approvalState,
+                                approvedState: 'pending',
                             })
                             .then((res) => {
                                 setFetchMessageTrigger(fetchMessageTrigger + 1)
