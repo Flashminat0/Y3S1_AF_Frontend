@@ -20,7 +20,7 @@ const tagsStaticData = [
 
 const placeholder = 'Tags Search'
 
-const TopicInfoList = ({navigateFunc ,topicTagsList}) => {
+const TopicInfoList = ({navigateFunc, topicTagsList}) => {
     const [tagsSet, setTagsSet] = useState(tagsStaticData)
 
     return (

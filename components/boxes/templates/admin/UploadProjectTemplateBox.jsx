@@ -76,14 +76,19 @@ const UploadProjectTemplateBox = ({
                                 'col-start-1 col-end-8 text-sm text-gray-500'
                             }
                         >
-                            {Date(updatedAt).toString().substring(0,Date(updatedAt).toString().indexOf('2022'))}
+                            {Date(updatedAt)
+                                .toString()
+                                .substring(
+                                    0,
+                                    Date(updatedAt).toString().indexOf('2022')
+                                )}
                         </div>
                         <div
                             className={
                                 'col-start-8 col-end-9 justify-start text-xs text-gray-500'
                             }
                         >
-                            {Math.floor(parseInt(fileSize)/1024)} kb
+                            {Math.floor(parseInt(fileSize) / 1024)} kb
                         </div>
                     </div>
                 </div>
