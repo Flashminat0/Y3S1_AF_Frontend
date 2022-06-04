@@ -16,6 +16,7 @@ function classNames(...classes) {
 }
 
 const SingleGroupBox = ({
+    groupId,
     groupName,
     groupLeader,
     groupLeaderRegNo,
