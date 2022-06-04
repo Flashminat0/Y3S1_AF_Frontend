@@ -48,7 +48,7 @@ const Header = () => {
                                 <div className="absolute left-0 py-2 flex-shrink-0 lg:static">
                                     <a href="#">
                                         <span className="sr-only">
-                                            Workflow
+                                            Research Labs icon
                                         </span>
                                         {/* https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg */}
                                         <img
