@@ -1,21 +1,22 @@
-import React from 'react'
-import CreateTopicWrapper from './createTopicWrapper'
-import AddedTopicBox from './addedTopicBox'
-import {useState, useEffect} from 'react'
-import axios from 'axios'
-import {Button} from '@mui/material'
-import {useRouter} from 'next/router'
+import React from 'react';
+import CreateTopicWrapper from './createTopicWrapper';
+import AddedTopicBox from './addedTopicBox';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/router';
 
-const TopicList = ({navigateFunc}) => {
-    const [trigger, setTrigger] = useState(1)
-    const [topics, setTopics] = useState([])
-    const router = useRouter()
+//topic list
+const TopicList = ({ navigateFunc }) => {
+    const [trigger, setTrigger] = useState(1);
+    const [topics, setTopics] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         axios.get('/api/display-topic').then((result) => {
-            setTopics(result.data)
-        })
-    }, [trigger])
+            setTopics(result.data);
+        });
+    }, [trigger]);
 
     return (
         <div>
@@ -24,7 +25,7 @@ const TopicList = ({navigateFunc}) => {
                 color={'primary'}
                 variant="outlined"
                 onClick={() => {
-                    router.push('/topic/topic')
+                    router.push('/topic/topic');
                 }}
             >
                 Submit Topic
@@ -37,7 +38,7 @@ const TopicList = ({navigateFunc}) => {
                 />
             </CreateTopicWrapper>
         </div>
-    )
-}
+    );
+};
 
-export default TopicList
+export default TopicList;

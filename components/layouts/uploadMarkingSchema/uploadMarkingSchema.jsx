@@ -1,13 +1,14 @@
-import React from 'react'
-import {Button} from '@mui/material'
-import AdminModalButtonWrapper from '../../layouts/admin/AdminModalButtonWrapper'
+import React from 'react';
+import { Button } from '@mui/material';
+import AdminModalButtonWrapper from '../../layouts/admin/AdminModalButtonWrapper';
 
+//upload marking schema
 const topicList = [
     'Hotel Managemnt System',
     'Student Management System',
     'Vehicle Rental System',
-]
-const UploadMarkingSchema = ({navigateFunc}) => {
+];
+const UploadMarkingSchema = ({ navigateFunc }) => {
     return (
         <>
             <AdminModalButtonWrapper
@@ -41,7 +42,7 @@ const UploadMarkingSchema = ({navigateFunc}) => {
                 {/* <CommonModal view={modal} /> */}
             </AdminModalButtonWrapper>
         </>
-    )
-}
+    );
+};
 
-export default UploadMarkingSchema
+export default UploadMarkingSchema;
