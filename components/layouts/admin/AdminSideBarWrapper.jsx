@@ -47,7 +47,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
+const AdminSideBarWrapper = ({children, selectedPageIndex, navigateHome}) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const router = useRouter()
@@ -119,6 +119,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                     <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                                                         <div className="flex-shrink-0 grid place-items-center ">
                                                             <Image
+                                                                onClick={() => {
+                                                                    navigateHome()
+                                                                }}
                                                                 src={
                                                                     'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                                 }
@@ -240,6 +243,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                     <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                                         <div className="flex items-center flex-shrink-0 px-4">
                                             <Image
+                                                onClick={() => {
+                                                    navigateHome()
+                                                }}
                                                 src={
                                                     'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                 }
@@ -338,6 +344,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                 <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
                                     <div>
                                         <Image
+                                            onClick={() => {
+                                                navigateHome()
+                                            }}
                                             src={
                                                 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF%20Square.png?alt=media&token=b6185e5e-7e8c-4771-93e9-813c3b7e1d8b'
                                             }

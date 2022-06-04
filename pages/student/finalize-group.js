@@ -18,6 +18,10 @@ const FinalizeGroup = () => {
     const [groupMemberArray, setGroupMemberArray] = useState([])
     const [groupId, setGroupId] = useState('')
 
+    const openHomePage = async () => {
+        await router.push('/')
+    }
+
     const openTopicSubmissionPage = async () => {
         await router.push('/student/topic-submission/')
     }
@@ -47,7 +51,10 @@ const FinalizeGroup = () => {
     }, [])
 
     return (
-        <StudentSideBarWrapper selectedPageIndex={1}>
+        <StudentSideBarWrapper
+            selectedPageIndex={1}
+            navigateHome={openHomePage}
+        >
             <RequestList
                 credentials={credentials}
                 groupId={groupId}

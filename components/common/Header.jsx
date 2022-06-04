@@ -19,7 +19,8 @@ const navigationStaticData = [
     {name: 'Profile', href: '/common/profile', current: false},
     {name: 'Group List', href: '/student/group-list', current: false},
     {name: 'Chat', href: '/student/chat/', current: false},
-    {name: 'User List', href: '/admin/user-list', current: false},
+    {name: 'User List for Admin', href: '/admin/user-list', current: false},
+    {name: 'Group List for Admin', href: '/admin/group-list', current: false},
 ]
 
 function classNames(...classes) {

@@ -34,18 +34,6 @@ export default function Home() {
             <SliitObjective />
             <FAQ />
             <Footer />
-            <Button onClick={testAPI} color={'primary'}>
-                TEST
-            </Button>
-
-            <h1 className="text-3xl font-bold underline text-lg bg-red-100 text-red-500">
-                Hello world!
-            </h1>
-            <FileUploadTest />
-            <LoginWIthMicrosoft
-                credentials={credentials}
-                setCredentials={setCredentials}
-            />
         </div>
     )
 }

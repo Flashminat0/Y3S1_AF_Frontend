@@ -5,8 +5,16 @@ import {Popover} from '@headlessui/react'
 import {FiChevronDown} from 'react-icons/fi'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useRouter} from 'next/router'
+import {IoIosPaper} from 'react-icons/io'
 
-const abilities = [{id: 1, name: 'Upload Project Template', icon: CgTemplate}]
+const abilities = [
+    {id: 1, name: 'Upload Project Template', icon: CgTemplate},
+    {
+        id: 2,
+        name: 'Upload Marking Schema',
+        icon: IoIosPaper,
+    },
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
