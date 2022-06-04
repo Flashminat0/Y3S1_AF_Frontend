@@ -113,17 +113,6 @@ const GroupsList = ({navigateFunc}) => {
     }, [debounced])
 
     const router = useRouter()
-    useDidUpdate(() => {
-        axios
-            .get('/api/users/is-in-a-group', {
-                params: {
-                    userId: credentials._id,
-                },
-            })
-            .then(async (res) => {
-                await router.push('/admin/group-list')
-            })
-    }, [])
 
     return (
         <>
