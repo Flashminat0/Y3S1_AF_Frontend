@@ -26,7 +26,6 @@ const navigation = [
         href: 'topic-list',
         icon: MdTopic,
     },
-    ,
     {
         name: 'Upload Templates',
         href: 'upload-templates',
