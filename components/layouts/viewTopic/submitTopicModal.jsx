@@ -1,18 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {AnimatePresence, motion} from 'framer-motion'
-import {AiOutlineClose} from 'react-icons/ai'
-import Button from '@mui/material/Button'
-const CommonModal = ({view}) => {
-    const [openModal, setOpenModal] = useState(view)
-    const [topic, setTopic] = useState()
 
-    const submitHndler = () => {
-        console.log(topic)
-    }
+import Button from '@mui/material/Button'
+const CommonModal = ({view, deleteTopic, tid, setDeleteView}) => {
+    const [openModal, setOpenModal] = useState(view)
+
     useEffect(() => {
         setOpenModal(view)
     }, [view])
+
+    const submitTopic = async () => {
+        try {
+            axios.post('/api/input-topic', {
+                tags: topicArray,
+            })
+            setTrigger(trigger + 1)
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
 
     return (
         <div className={`font-sans`}>
@@ -64,30 +71,23 @@ const CommonModal = ({view}) => {
                                                 color={'error'}
                                                 onClick={() => {
                                                     setOpenModal(false)
+                                                    setDeleteView(false)
+                                                    submitTopic()
                                                 }}
                                                 variant="text"
                                             >
                                                 Close
                                             </Button>
                                         </span>
-                                        <div>
-                                            <label>Topic</label>
-                                            <input
-                                                onChange={(e) => {
-                                                    setTopic(e.target.value)
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="pt-2">
-                                            <Button
-                                                color="warning"
-                                                variant="outlined"
-                                                type="submit"
-                                                onClick={submitHndler}
-                                            >
-                                                Submit
-                                            </Button>
-                                        </div>
+
+                                        <p
+                                            className={
+                                                'mt-5 flex justify-center pt-2 text-lg font-thin'
+                                            }
+                                        >
+                                            Are you sure want to Delete this
+                                            Topic?
+                                        </p>
                                     </Dialog.Title>
                                     <div>
                                         <div className="mb-4">
@@ -96,6 +96,8 @@ const CommonModal = ({view}) => {
                                                     color={'error'}
                                                     onClick={() => {
                                                         setOpenModal(false)
+                                                        deleteTopic(tid)
+                                                        setDeleteView(false)
                                                     }}
                                                     variant="text"
                                                 >
