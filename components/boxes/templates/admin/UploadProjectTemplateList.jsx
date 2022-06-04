@@ -85,6 +85,18 @@ const UploadProjectTemplateList = ({navigateFunc, id}) => {
         })
     }
 
+    const removeTemplate = async (id) => {
+        await axios.delete('/api/topic/remove-project-templates',
+            {
+                params: {
+                    templateId: id,
+                },
+            })
+            .then((res) => {
+            setRefreshTrigger(refreshTrigger + 1)
+        })
+    }
+
     return (
         <>
             {topicData && (
@@ -104,6 +116,8 @@ const UploadProjectTemplateList = ({navigateFunc, id}) => {
                                         fileSize={file.fileSize}
                                         updatedAt={file.updatedAt}
                                         fileType={file.fileType}
+                                        removeTemplate={removeTemplate}
+                                        templateId={file._id}
                                     />
                                 ))}
                             </div>

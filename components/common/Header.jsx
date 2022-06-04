@@ -38,7 +38,7 @@ const Header = () => {
         <>
             <Popover
                 as="header"
-                className="pb-2 bg-gradient-to-r from-sky-600 to-indigo-500"
+                className="pb-2 bg-gradient-to-r from-gray-600 to-indigo-600"
             >
                 {({open}) => (
                     <>
@@ -57,7 +57,7 @@ const Header = () => {
                                             width={'125'}
                                             height={'100'}
                                             className={
-                                                'w-16 h-16 lg:w-20 lg:h-20'
+                                                'w-16 h-16'
                                             }
                                         />
                                     </a>
@@ -65,7 +65,7 @@ const Header = () => {
                                 {/*Website Name*/}
                                 <div
                                     className={
-                                        'ml-10 lg:ml-20 text-transparent bg-clip-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-zinc-800 to-indigo-800 capitalize'
+                                        'ml-10 lg:ml-20 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-indigo-100 capitalize'
                                     }
                                 >
                                     Research Labs

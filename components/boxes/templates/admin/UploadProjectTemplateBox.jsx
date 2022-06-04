@@ -14,7 +14,7 @@ const UploadProjectTemplateBox = ({
     fileName,
     fileSize,
     updatedAt,
-    fileType,
+    fileType, removeTemplate, templateId
 }) => {
     return (
         <div className={'grid grid-cols-10 lg:grid-cols-7 gap-2 lg:gap-5'}>
@@ -93,7 +93,9 @@ const UploadProjectTemplateBox = ({
                     </div>
                 </div>
             </div>
-            <RedShortButton className={'col-span-1'} btnName={'Remove'} />
+            <RedShortButton onClick={()=>{
+                removeTemplate(templateId)
+            }} className={'col-span-1'} btnName={'Remove'} />
         </div>
     )
 }

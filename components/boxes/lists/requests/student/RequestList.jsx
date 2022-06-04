@@ -63,7 +63,7 @@ const RequestList = ({
                 groupID: groupId,
                 userId: id,
             })
-            .then(() => {
+            .then((res) => {
                 setTrigger(trigger + 1)
             })
     }
@@ -76,7 +76,7 @@ const RequestList = ({
                     userId: id,
                 },
             })
-            .then(() => {
+            .then((res) => {
                 setTrigger(trigger + 1)
             })
     }
