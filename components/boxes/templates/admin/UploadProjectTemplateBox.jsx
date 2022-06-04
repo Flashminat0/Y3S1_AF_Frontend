@@ -9,12 +9,15 @@ import {
 } from '../../../assets/fileicons'
 import {MdDownload} from 'react-icons/md'
 import RedShortButton from '../../../buttons/short-button/RedShortButton'
+import {Button} from '@mui/material'
 
 const UploadProjectTemplateBox = ({
+    id,
     fileName,
     fileSize,
     updatedAt,
     fileType,
+    deleteFile,
 }) => {
     return (
         <div className={'grid grid-cols-10 lg:grid-cols-7 gap-2 lg:gap-5'}>
@@ -93,7 +96,16 @@ const UploadProjectTemplateBox = ({
                     </div>
                 </div>
             </div>
-            <RedShortButton className={'col-span-1'} btnName={'Remove'} />
+            <Button
+                onClick={(x) => {
+                    deleteFile(id)
+                }}
+                className={'h-8 text-sm lg:text-base'}
+                color={'error'}
+                variant="outlined"
+            >
+                Remove
+            </Button>
         </div>
     )
 }
