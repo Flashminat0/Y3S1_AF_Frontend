@@ -3,7 +3,7 @@ import ModalWrapper from '../../layouts/modal-layout/ModalWrapper'
 import SearchBar from '../../searchbar/SearchBar'
 import PanelMemberModalList from '../../boxes/lists/panels/admin/PanelMemberModalList'
 
-const AllocatePanelModal = ({openModal, setOpenModal}) => {
+const AllocatePanelModal = ({openModal, setOpenModal, panelMembers}) => {
     return (
         <ModalWrapper
             openModal={openModal}
@@ -11,7 +11,7 @@ const AllocatePanelModal = ({openModal, setOpenModal}) => {
             modalTitle={'Allocate Panel'}
         >
             <SearchBar placeholder={'Panel Search'} />
-            <PanelMemberModalList />
+            <PanelMemberModalList panelMembers={panelMembers} />
         </ModalWrapper>
     )
 }
