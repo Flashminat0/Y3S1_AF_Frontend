@@ -46,17 +46,17 @@ const PanelMemberModalList = ({panelMembers}) => {
         return stringName
     }
 
-
     return (
         <div>
-            {panelMembers && panelMembers.result.map((panelMember) => (
-                <div key={panelMember._id}>
-                    <SinglePanelMemberModalBox
-                        panelMemberName={name(panelMember.name)}
-                        panelMemberRegNo={regnumber(panelMember.name)}
-                    />
-                </div>
-            ))}
+            {panelMembers &&
+                panelMembers.result.map((panelMember) => (
+                    <div key={panelMember._id}>
+                        <SinglePanelMemberModalBox
+                            panelMemberName={name(panelMember.name)}
+                            panelMemberRegNo={regnumber(panelMember.name)}
+                        />
+                    </div>
+                ))}
         </div>
     )
 }

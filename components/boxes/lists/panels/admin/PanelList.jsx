@@ -27,9 +27,9 @@ const panelMemberStaticData = [
     },
 ]
 
-const PanelList = ({navigateFunc , panelMembers}) => {
+const PanelList = ({navigateFunc, panelMembers}) => {
     const [panelList, setPanelList] = useState(panelMemberStaticData)
-    const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
 
     const openAllocatePanelModal = () => {
         setOpenModal(true)
@@ -47,13 +47,14 @@ const PanelList = ({navigateFunc , panelMembers}) => {
             />
             <AllocatePanelWrapper btnFunction={openAllocatePanelModal}>
                 <div>
-                    {panelMemberStaticData && panelMemberStaticData.map((panel) => (
-                        <SinglePanelBox
-                            key={panel._id}
-                            panelMemberName={panel._name}
-                            panelMemberRegNo={panel.panelMemberRegNo}
-                        />
-                    ))}
+                    {panelMemberStaticData &&
+                        panelMemberStaticData.map((panel) => (
+                            <SinglePanelBox
+                                key={panel._id}
+                                panelMemberName={panel._name}
+                                panelMemberRegNo={panel.panelMemberRegNo}
+                            />
+                        ))}
                 </div>
             </AllocatePanelWrapper>
         </AdminModalButtonWrapper>
