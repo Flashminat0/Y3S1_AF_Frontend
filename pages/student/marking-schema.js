@@ -1,6 +1,6 @@
 import React from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
-import {useRouter} from "next/router";
+import {useRouter} from 'next/router'
 
 const MarkingSchema = () => {
     const router = useRouter()
@@ -9,7 +9,12 @@ const MarkingSchema = () => {
         await router.push('/')
     }
 
-    return <StudentSideBarWrapper selectedPageIndex={4} navigateHome={openHomePage}></StudentSideBarWrapper>
+    return (
+        <StudentSideBarWrapper
+            selectedPageIndex={4}
+            navigateHome={openHomePage}
+        ></StudentSideBarWrapper>
+    )
 }
 
 export default MarkingSchema

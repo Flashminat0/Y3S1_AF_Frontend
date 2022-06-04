@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import GroupsList from '../../components/boxes/lists/group/student/GroupsList'
 import {useDidUpdate, useLocalStorage} from '@mantine/hooks'
-import {useRouter} from "next/router";
+import {useRouter} from 'next/router'
 
 const GroupList = () => {
     const router = useRouter()
@@ -16,9 +16,11 @@ const GroupList = () => {
         await router.push('/')
     }
 
-
     return (
-        <StudentSideBarWrapper selectedPageIndex={0} navigateHome={openHomePage}>
+        <StudentSideBarWrapper
+            selectedPageIndex={0}
+            navigateHome={openHomePage}
+        >
             <GroupsList credentials={credentials} />
         </StudentSideBarWrapper>
     )

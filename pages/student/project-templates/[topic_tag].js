@@ -16,7 +16,10 @@ const Topic_tag = () => {
     }
 
     return (
-        <StudentSideBarWrapper selectedPageIndex={3} navigateHome={openHomePage}>
+        <StudentSideBarWrapper
+            selectedPageIndex={3}
+            navigateHome={openHomePage}
+        >
             <ProjectTemplateList
                 id={topic_tag}
                 navigateFunc={openProjectTemplatesPage}

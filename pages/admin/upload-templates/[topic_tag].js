@@ -9,7 +9,7 @@ const UploadTemplates = () => {
     const {topic_tag} = router.query
 
     const openHomePage = async () => {
-      await router.push('/')
+        await router.push('/')
     }
 
     const openTopicListPage = async () => {

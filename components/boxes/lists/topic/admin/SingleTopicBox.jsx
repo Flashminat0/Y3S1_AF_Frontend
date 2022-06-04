@@ -5,13 +5,16 @@ import {Popover} from '@headlessui/react'
 import {FiChevronDown} from 'react-icons/fi'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useRouter} from 'next/router'
-import {IoIosPaper} from "react-icons/io";
+import {IoIosPaper} from 'react-icons/io'
 
-const abilities = [{id: 1, name: 'Upload Project Template', icon: CgTemplate}, {
-    id: 2,
-    name: 'Upload Marking Schema',
-    icon: IoIosPaper
-}]
+const abilities = [
+    {id: 1, name: 'Upload Project Template', icon: CgTemplate},
+    {
+        id: 2,
+        name: 'Upload Marking Schema',
+        icon: IoIosPaper,
+    },
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -31,7 +34,7 @@ const SingleTopicBox = ({tagsArray, pageId}) => {
                     <div className={'text-lg font-semibold uppercase'}>
                         Tag List
                     </div>
-                    <BsTagsFill className={'w-5 h-5'}/>
+                    <BsTagsFill className={'w-5 h-5'} />
                 </div>
                 <div>
                     <Popover className="relative">
@@ -51,8 +54,7 @@ const SingleTopicBox = ({tagsArray, pageId}) => {
                                     />
                                 </Popover.Button>
                                 <AnimatePresence>
-                                    <Popover.Panel
-                                        className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
+                                    <Popover.Panel className="absolute z-10 -right-[5rem] transform -translate-x-1/2 mt-1 px-2 w-screen max-w-max sm:px-0">
                                         <motion.div
                                             initial={{opacity: 0, scale: 0.7}}
                                             animate={{opacity: 1, scale: 1}}

@@ -51,7 +51,10 @@ const FinalizeGroup = () => {
     }, [])
 
     return (
-        <StudentSideBarWrapper selectedPageIndex={1} navigateHome={openHomePage}>
+        <StudentSideBarWrapper
+            selectedPageIndex={1}
+            navigateHome={openHomePage}
+        >
             <RequestList
                 credentials={credentials}
                 groupId={groupId}
