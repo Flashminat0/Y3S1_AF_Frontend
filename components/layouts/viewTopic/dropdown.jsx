@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-const Dropdown = ({ setType }) => {
-    const type = ['PDF', 'Docx', 'pptx'];
+const Dropdown = ({setType}) => {
+    const type = ['PDF', 'Docx', 'pptx']
     return (
         <div>
             <select
@@ -9,7 +9,7 @@ const Dropdown = ({ setType }) => {
                 name="type"
                 id="type"
                 onChange={(e) => {
-                    setType(e.target.value);
+                    setType(e.target.value)
                 }}
             >
                 {type.map((values, index) => (
@@ -19,7 +19,7 @@ const Dropdown = ({ setType }) => {
                 ))}
             </select>
         </div>
-    );
-};
+    )
+}
 
-export default Dropdown;
+export default Dropdown

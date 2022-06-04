@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { AiOutlineClose } from 'react-icons/ai';
-import Button from '@mui/material/Button';
-const CommonModal = ({ view }) => {
-    const [openModal, setOpenModal] = useState(view);
-    const [topic, setTopic] = useState();
+import React, {useEffect, useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {AnimatePresence, motion} from 'framer-motion'
+import {AiOutlineClose} from 'react-icons/ai'
+import Button from '@mui/material/Button'
+const CommonModal = ({view}) => {
+    const [openModal, setOpenModal] = useState(view)
+    const [topic, setTopic] = useState()
 
     const submitHndler = () => {
-        console.log(topic);
-    };
+        console.log(topic)
+    }
     useEffect(() => {
-        setOpenModal(view);
-    }, [view]);
+        setOpenModal(view)
+    }, [view])
 
     return (
         <div className={`font-sans`}>
@@ -29,7 +29,7 @@ const CommonModal = ({ view }) => {
                         }}
                         exit={{
                             opacity: 0,
-                            transition: { duration: 0.4 },
+                            transition: {duration: 0.4},
                         }}
                     >
                         <div
@@ -40,7 +40,7 @@ const CommonModal = ({ view }) => {
                             <div className="flex min-h-full items-center justify-center bg-gray-700 bg-opacity-80 p-4 text-center">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    initial={{scale: 0.8, opacity: 0}}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
@@ -57,13 +57,13 @@ const CommonModal = ({ view }) => {
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false);
+                                                setOpenModal(false)
                                             }}
                                         >
                                             <Button
                                                 color={'error'}
                                                 onClick={() => {
-                                                    setOpenModal(false);
+                                                    setOpenModal(false)
                                                 }}
                                                 variant="text"
                                             >
@@ -74,7 +74,7 @@ const CommonModal = ({ view }) => {
                                             <label>Topic</label>
                                             <input
                                                 onChange={(e) => {
-                                                    setTopic(e.target.value);
+                                                    setTopic(e.target.value)
                                                 }}
                                             />
                                         </div>
@@ -95,7 +95,7 @@ const CommonModal = ({ view }) => {
                                                 <Button
                                                     color={'error'}
                                                     onClick={() => {
-                                                        setOpenModal(false);
+                                                        setOpenModal(false)
                                                     }}
                                                     variant="text"
                                                 >
@@ -111,7 +111,7 @@ const CommonModal = ({ view }) => {
                 )}
             </AnimatePresence>
         </div>
-    );
-};
+    )
+}
 
-export default CommonModal;
+export default CommonModal

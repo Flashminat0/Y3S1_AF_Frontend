@@ -2,9 +2,7 @@ import React from 'react'
 import ViewTopicBox from '../../components/layouts/viewTopic/viewTopicBox'
 
 const panel = () => {
-  return (
-    <ViewTopicBox/>
-  )
+    return <ViewTopicBox />
 }
 
 export default panel

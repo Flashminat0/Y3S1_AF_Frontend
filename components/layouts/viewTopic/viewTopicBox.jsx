@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Chips from '../createTopic/Chips';
-import Dropdown from './dropdown';
-import { Button } from '@mui/material';
-import CommonModal from '../createTopic/DeleteModal';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import Chips from '../createTopic/Chips'
+import Dropdown from './dropdown'
+import {Button} from '@mui/material'
+import CommonModal from '../createTopic/DeleteModal'
 
 const ViewTopicBox = () => {
-    const [topics, setTopics] = useState([]);
-    const [type, setType] = useState();
-    const [modal, setModal] = useState(false);
+    const [topics, setTopics] = useState([])
+    const [type, setType] = useState()
+    const [modal, setModal] = useState(false)
 
     useEffect(() => {
         axios.get('/api/display-topic').then((result) => {
-            setTopics(result.data);
-        });
-    }, []);
+            setTopics(result.data)
+        })
+    }, [])
 
     const submitTopicHandler = () => {
-        setModal(!modal);
-    };
+        setModal(!modal)
+    }
 
     return (
         <div>
@@ -69,7 +69,7 @@ const ViewTopicBox = () => {
                 ))}
             <CommonModal view={modal} />
         </div>
-    );
-};
+    )
+}
 
-export default ViewTopicBox;
+export default ViewTopicBox

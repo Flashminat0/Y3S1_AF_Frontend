@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, {useEffect, useState} from 'react'
+import {Dialog} from '@headlessui/react'
+import {AnimatePresence, motion} from 'framer-motion'
 
-import Button from '@mui/material/Button';
-const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
-    const [openModal, setOpenModal] = useState(view);
+import Button from '@mui/material/Button'
+const CommonModal = ({view, deleteTopic, tid, setDeleteView}) => {
+    const [openModal, setOpenModal] = useState(view)
 
     useEffect(() => {
-        setOpenModal(view);
-    }, [view]);
+        setOpenModal(view)
+    }, [view])
 
     const submitTopic = async () => {
         try {
             axios.post('/api/input-topic', {
                 tags: topicArray,
-            });
-            setTrigger(trigger + 1);
+            })
+            setTrigger(trigger + 1)
         } catch (error) {
-            console.error(error.message);
+            console.error(error.message)
         }
-    };
+    }
 
     return (
         <div className={`font-sans`}>
@@ -36,7 +36,7 @@ const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
                         }}
                         exit={{
                             opacity: 0,
-                            transition: { duration: 0.4 },
+                            transition: {duration: 0.4},
                         }}
                     >
                         <div
@@ -47,7 +47,7 @@ const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
                             <div className="flex min-h-full items-center justify-center bg-gray-700 bg-opacity-80 p-4 text-center">
                                 <motion.div
                                     key={`modal-for-common-modals`}
-                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    initial={{scale: 0.8, opacity: 0}}
                                     animate={{
                                         scale: 1,
                                         opacity: 1,
@@ -64,15 +64,15 @@ const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
                                         <span
                                             className="flex justify-end"
                                             onClick={() => {
-                                                setOpenModal(false);
+                                                setOpenModal(false)
                                             }}
                                         >
                                             <Button
                                                 color={'error'}
                                                 onClick={() => {
-                                                    setOpenModal(false);
-                                                    setDeleteView(false);
-                                                    submitTopic();
+                                                    setOpenModal(false)
+                                                    setDeleteView(false)
+                                                    submitTopic()
                                                 }}
                                                 variant="text"
                                             >
@@ -95,9 +95,9 @@ const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
                                                 <Button
                                                     color={'error'}
                                                     onClick={() => {
-                                                        setOpenModal(false);
-                                                        deleteTopic(tid);
-                                                        setDeleteView(false);
+                                                        setOpenModal(false)
+                                                        deleteTopic(tid)
+                                                        setDeleteView(false)
                                                     }}
                                                     variant="text"
                                                 >
@@ -113,7 +113,7 @@ const CommonModal = ({ view, deleteTopic, tid, setDeleteView }) => {
                 )}
             </AnimatePresence>
         </div>
-    );
-};
+    )
+}
 
-export default CommonModal;
+export default CommonModal
