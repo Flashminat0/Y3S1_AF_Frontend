@@ -30,6 +30,22 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
             })
     }
 
+    const rejectProject = async () => {
+        await axios
+            .get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: credentials._id,
+                },
+            })
+            .then(async (res) => {
+                await axios.post('/api/chat/reject-project', {
+                    studentId: userData._id,
+                    staffId: credentials._id,
+                    role: res.data.role,
+                })
+            })
+    }
+
     return (
         <div
             className={`grid place-items-center grid place-items-center mt-20 `}
