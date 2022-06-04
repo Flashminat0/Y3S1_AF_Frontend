@@ -45,7 +45,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
+const StudentSideBarWrapper = ({children, selectedPageIndex, navigateHome}) => {
     const [userDetails, setUserDetails] = useState(null)
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
@@ -96,7 +96,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                 animate={{opacity: 1}}
                                                 exit={{opacity: 0}}
                                             >
-                                                <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                                                <div className="fixed inset-0 bg-gray-600 bg-opacity-75"/>
                                             </motion.div>
 
                                             <div className="fixed inset-0 flex z-40 ">
@@ -108,7 +108,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                     animate={{opacity: 1, x: 0}}
                                                     exit={{opacity: 0, x: -300}}
                                                 >
-                                                    <Dialog.Panel className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
+                                                    <Dialog.Panel
+                                                        className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
                                                         <motion.div
                                                             initial={{
                                                                 opacity: 0,
@@ -145,6 +146,9 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                         <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                                                             <div className="flex-shrink-0 grid place-items-center ">
                                                                 <Image
+                                                                    onClick={() => {
+                                                                        navigateHome()
+                                                                    }}
                                                                     src={
                                                                         'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                                     }
@@ -184,7 +188,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                         }}
                                                                                         className={classNames(
                                                                                             selectedPageIndex ===
-                                                                                                index
+                                                                                            index
                                                                                                 ? 'bg-gray-100 text-gray-900 font-normal '
                                                                                                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                                             'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -193,7 +197,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                         <item.icon
                                                                                             className={classNames(
                                                                                                 selectedPageIndex ===
-                                                                                                    index
+                                                                                                index
                                                                                                     ? 'text-gray-500'
                                                                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                                                                 'mr-4 h-7 w-7'
@@ -206,11 +210,11 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                     </span>
                                                                                     {index ===
                                                                                         1 && (
-                                                                                        <Divider
-                                                                                            className={`pt-2`}
-                                                                                            variant="fullWidth"
-                                                                                        />
-                                                                                    )}
+                                                                                            <Divider
+                                                                                                className={`pt-2`}
+                                                                                                variant="fullWidth"
+                                                                                            />
+                                                                                        )}
                                                                                 </motion.div>
                                                                             </div>
                                                                         )
@@ -226,7 +230,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                             }}
                                                             className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200"
                                                         >
-                                                            <span className="flex-shrink-0 w-full group block no-underline">
+                                                            <span
+                                                                className="flex-shrink-0 w-full group block no-underline">
                                                                 <div className="grid grid-cols-3">
                                                                     <div
                                                                         className={`relative left-4`}
@@ -245,10 +250,12 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                         .name
                                                                                 }
                                                                             />
-                                                                            <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                                            <span
+                                                                                className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                                         </span>
                                                                     </div>
-                                                                    <div className="ml-3 relative col-span-2 bottom-1 right-4">
+                                                                    <div
+                                                                        className="ml-3 relative col-span-2 bottom-1 right-4">
                                                                         <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
                                                                             {userDetails.name
                                                                                 .substring(
@@ -265,7 +272,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                     userDetails.name.lastIndexOf(
                                                                                         ' '
                                                                                     ) +
-                                                                                        1,
+                                                                                    1,
                                                                                     userDetails
                                                                                         .name
                                                                                         .length
@@ -297,6 +304,9 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                         <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                                             <div className="flex items-center flex-shrink-0 px-4">
                                                 <Image
+                                                    onClick={() => {
+                                                        navigateHome()
+                                                    }}
                                                     src={
                                                         'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                     }
@@ -329,7 +339,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                         }}
                                                                         className={classNames(
                                                                             selectedPageIndex ===
-                                                                                index
+                                                                            index
                                                                                 ? 'bg-gray-100 text-gray-900 font-normal'
                                                                                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                             'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -338,7 +348,7 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                         <item.icon
                                                                             className={classNames(
                                                                                 selectedPageIndex ===
-                                                                                    index
+                                                                                index
                                                                                     ? 'text-gray-500'
                                                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                                                 'mr-4 h-7 w-7'
@@ -351,11 +361,11 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                     </span>
                                                                     {index ===
                                                                         1 && (
-                                                                        <Divider
-                                                                            variant="fullWidth"
-                                                                            className={`pt-2`}
-                                                                        />
-                                                                    )}
+                                                                            <Divider
+                                                                                variant="fullWidth"
+                                                                                className={`pt-2`}
+                                                                            />
+                                                                        )}
                                                                 </motion.div>
                                                             </div>
                                                         )
@@ -390,7 +400,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                         .name
                                                                 }
                                                             />
-                                                            <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                            <span
+                                                                className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                         </span>
                                                     </div>
                                                     <div className="ml-3 relative col-span-2 bottom-1 right-2">
@@ -425,7 +436,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                             </div>
                             <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
                                 <div className="lg:hidden">
-                                    <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+                                    <div
+                                        className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
                                         <div>
                                             <Image
                                                 src={
@@ -459,7 +471,8 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                     <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                         {/* Start main area*/}
                                         <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 ">
-                                            <div className="min-h-max border-2 border-gray-200 border-dashed rounded-lg w-full">
+                                            <div
+                                                className="min-h-max border-2 border-gray-200 border-dashed rounded-lg w-full">
                                                 {children}
                                             </div>
                                         </div>

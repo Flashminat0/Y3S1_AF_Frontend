@@ -27,16 +27,6 @@ const navigation = [
         icon: MdTopic,
     },
     {
-        name: 'Upload Templates',
-        href: 'upload-templates',
-        icon: CgTemplate,
-    },
-    {
-        name: 'Upload Marking Schema',
-        href: 'upload-marking-schema',
-        icon: IoIosPaper,
-    },
-    {
         name: 'User List',
         href: 'user-list',
         icon: CgUserList,
@@ -47,7 +37,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
+const AdminSideBarWrapper = ({children, selectedPageIndex, navigateHome}) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     const router = useRouter()
@@ -77,7 +67,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                             animate={{opacity: 1}}
                                             exit={{opacity: 0}}
                                         >
-                                            <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                                            <div className="fixed inset-0 bg-gray-600 bg-opacity-75"/>
                                         </motion.div>
 
                                         <div className="fixed inset-0 flex z-40 ">
@@ -86,7 +76,8 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                 animate={{opacity: 1, x: 0}}
                                                 exit={{opacity: 0, x: -300}}
                                             >
-                                                <Dialog.Panel className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
+                                                <Dialog.Panel
+                                                    className="relative flex-1 flex flex-col w-screen max-w-xs bg-white focus:outline-none h-screen ">
                                                     <motion.div
                                                         initial={{opacity: 0}}
                                                         animate={{opacity: 1}}
@@ -119,6 +110,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                     <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                                                         <div className="flex-shrink-0 grid place-items-center ">
                                                             <Image
+                                                                onClick={() => {
+                                                                    navigateHome()
+                                                                }}
                                                                 src={
                                                                     'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                                 }
@@ -158,7 +152,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                     }}
                                                                                     className={classNames(
                                                                                         selectedPageIndex ===
-                                                                                            index
+                                                                                        index
                                                                                             ? 'bg-gray-100 text-gray-900 font-normal '
                                                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                                         'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -167,7 +161,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                     <item.icon
                                                                                         className={classNames(
                                                                                             selectedPageIndex ===
-                                                                                                index
+                                                                                            index
                                                                                                 ? 'text-gray-500'
                                                                                                 : 'text-gray-400 group-hover:text-gray-500',
                                                                                             'mr-4 h-7 w-7'
@@ -180,11 +174,11 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                                 </span>
                                                                                 {index ===
                                                                                     1 && (
-                                                                                    <Divider
-                                                                                        className={`pt-2`}
-                                                                                        variant="fullWidth"
-                                                                                    />
-                                                                                )}
+                                                                                        <Divider
+                                                                                            className={`pt-2`}
+                                                                                            variant="fullWidth"
+                                                                                        />
+                                                                                    )}
                                                                             </motion.div>
                                                                         </div>
                                                                     )
@@ -192,7 +186,8 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                             </div>
                                                         </nav>
                                                     </div>
-                                                    <div className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
+                                                    <div
+                                                        className="flex-shrink-0 flex border-t border-gray-200 p-4 bg-gray-200">
                                                         <span className="flex-shrink-0 w-full group block no-underline">
                                                             <div className="grid grid-cols-3">
                                                                 <div
@@ -204,10 +199,12 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                                             alt=""
                                                                         />
-                                                                        <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                                        <span
+                                                                            className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                                     </span>
                                                                 </div>
-                                                                <div className="ml-3 relative col-span-2 bottom-1 right-4">
+                                                                <div
+                                                                    className="ml-3 relative col-span-2 bottom-1 right-4">
                                                                     <p className="text-md font-medium text-gray-700 group-hover:text-gray-900 relative bottom-2">
                                                                         Tom Cook
                                                                     </p>
@@ -240,6 +237,9 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                     <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                                         <div className="flex items-center flex-shrink-0 px-4">
                                             <Image
+                                                onClick={() => {
+                                                    navigateHome()
+                                                }}
                                                 src={
                                                     'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                 }
@@ -272,7 +272,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                     }}
                                                                     className={classNames(
                                                                         selectedPageIndex ===
-                                                                            index
+                                                                        index
                                                                             ? 'bg-gray-100 text-gray-900 font-normal'
                                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                                         'group flex items-center px-2 py-2 text-base font-medium rounded-md no-underline cursor-pointer'
@@ -281,7 +281,7 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                     <item.icon
                                                                         className={classNames(
                                                                             selectedPageIndex ===
-                                                                                index
+                                                                            index
                                                                                 ? 'text-gray-500'
                                                                                 : 'text-gray-400 group-hover:text-gray-500',
                                                                             'mr-4 h-7 w-7'
@@ -292,11 +292,11 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                                 </span>
                                                                 {index ===
                                                                     1 && (
-                                                                    <Divider
-                                                                        variant="fullWidth"
-                                                                        className={`pt-2`}
-                                                                    />
-                                                                )}
+                                                                        <Divider
+                                                                            variant="fullWidth"
+                                                                            className={`pt-2`}
+                                                                        />
+                                                                    )}
                                                             </motion.div>
                                                         </div>
                                                     )
@@ -316,7 +316,8 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                             alt=""
                                                         />
-                                                        <span className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400" />
+                                                        <span
+                                                            className="absolute bottom-1 right-1 block h-3 w-3 rounded-full ring-2 ring-white bg-green-400"/>
                                                     </span>
                                                 </div>
                                                 <div className="ml-3 relative col-span-2 bottom-1 right-2">
@@ -335,9 +336,13 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                         </div>
                         <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
                             <div className="lg:hidden">
-                                <div className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
+                                <div
+                                    className="flex items-center justify-between bg-gray-50 border-b border-gray-200 px-4 py-1.5">
                                     <div>
                                         <Image
+                                            onClick={() => {
+                                                navigateHome()
+                                            }}
                                             src={
                                                 'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF%20Square.png?alt=media&token=b6185e5e-7e8c-4771-93e9-813c3b7e1d8b'
                                             }
@@ -367,7 +372,8 @@ const AdminSideBarWrapper = ({children, selectedPageIndex}) => {
                                 <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
                                     {/* Start main area*/}
                                     <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8 ">
-                                        <div className="min-h-max border-2 border-gray-200 border-dashed rounded-lg w-full">
+                                        <div
+                                            className="min-h-max border-2 border-gray-200 border-dashed rounded-lg w-full">
                                             {children}
                                         </div>
                                     </div>

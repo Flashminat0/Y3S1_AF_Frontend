@@ -7,6 +7,10 @@ import axios from 'axios'
 const TopicList = () => {
     const router = useRouter()
 
+    const openHomePage = async () => {
+        await router.push('/')
+    }
+
     const openGroupListPage = async () => {
         await router.push('/admin/group-list')
     }
@@ -20,7 +24,7 @@ const TopicList = () => {
     }, [])
 
     return (
-        <AdminSideBarWrapper selectedPageIndex={2}>
+        <AdminSideBarWrapper selectedPageIndex={2} navigateHome={openHomePage}>
             <TopicInfoList
                 topicTagsList={topicTagsList}
                 navigateFunc={openGroupListPage}
