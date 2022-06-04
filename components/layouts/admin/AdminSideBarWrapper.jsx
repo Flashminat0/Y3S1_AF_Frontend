@@ -26,6 +26,17 @@ const navigation = [
         href: 'topic-list',
         icon: MdTopic,
     },
+    ,
+    {
+        name: 'Upload Templates',
+        href: 'upload-templates',
+        icon: CgTemplate,
+    },
+    {
+        name: 'Upload Marking Schema',
+        href: 'upload-marking-schema',
+        icon: IoIosPaper,
+    },
     {
         name: 'User List',
         href: 'user-list',
