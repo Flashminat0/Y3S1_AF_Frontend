@@ -1,11 +1,14 @@
 import React from 'react'
-import {LoadingAnimation, NotOkAnimation, OkAnimation,} from '../assets/animations'
-import {Button} from "@mui/material";
-import axios from "axios";
-import {useLocalStorage} from "@mantine/hooks";
+import {
+    LoadingAnimation,
+    NotOkAnimation,
+    OkAnimation,
+} from '../assets/animations'
+import {Button} from '@mui/material'
+import axios from 'axios'
+import {useLocalStorage} from '@mantine/hooks'
 
 const Statusbar = ({userId, type, status, selectedType, userData}) => {
-
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
         defaultValue: {},
@@ -17,7 +20,8 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                 params: {
                     userId: credentials._id,
                 },
-            }).then(async (res) => {
+            })
+            .then(async (res) => {
                 await axios.post('/api/chat/approve-project', {
                     studentId: userData._id,
                     staffId: credentials._id,
@@ -25,7 +29,6 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                 })
             })
     }
-
 
     return (
         <div
@@ -48,19 +51,19 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                                 {status === 'pending' && (
                                     <>
                                         Pending Approval &nbsp;&nbsp;
-                                        <LoadingAnimation/>
+                                        <LoadingAnimation />
                                     </>
                                 )}
                                 {status === 'approved' && (
                                     <>
                                         Topic Approved &nbsp;&nbsp;
-                                        <OkAnimation/>
+                                        <OkAnimation />
                                     </>
                                 )}
                                 {status === 'rejected' && (
                                     <>
                                         Topic Rejected &nbsp;&nbsp;
-                                        <NotOkAnimation/>
+                                        <NotOkAnimation />
                                     </>
                                 )}
                             </div>
@@ -72,7 +75,6 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                                     color={'success'}
                                     variant={'outlined'}
                                     onClick={approveProject}
-
                                 >
                                     Approve
                                 </Button>
@@ -81,7 +83,6 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                                     fullWidth={true}
                                     color={'error'}
                                     variant={'outlined'}
-
                                 >
                                     Reject
                                 </Button>
@@ -91,8 +92,7 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                         <p className={`flex gap-2   `}>
                             {userData.tags.map((singleTag) => {
                                 return (
-                                    <span
-                                        className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
                                         {singleTag}
                                     </span>
                                 )

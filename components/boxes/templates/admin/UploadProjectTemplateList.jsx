@@ -3,7 +3,7 @@ import AdminModalButtonWrapper from '../../../layouts/admin/AdminModalButtonWrap
 import UploadTemplatesWrapper from '../../../layouts/upload-template/UploadTemplatesWrapper'
 import UploadProjectTemplateBox from './UploadProjectTemplateBox'
 import {firebaseApp} from '../../../../firebase/base'
-import {getDownloadURL, getStorage, ref, uploadBytes,} from 'firebase/storage'
+import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage'
 import axios from 'axios'
 
 const UploadProjectTemplateList = ({navigateFunc, id}) => {
@@ -90,7 +90,6 @@ const UploadProjectTemplateList = ({navigateFunc, id}) => {
             .then((res) => {
                 setRefreshTrigger(refreshTrigger + 1)
             })
-
     }
 
     return (

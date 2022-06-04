@@ -1,17 +1,24 @@
 import React from 'react'
-import {DOCXIcon, PDFIcon, PPTXIcon, TXTIcon, VideoIcon, XLSXIcon,} from '../../../assets/fileicons'
+import {
+    DOCXIcon,
+    PDFIcon,
+    PPTXIcon,
+    TXTIcon,
+    VideoIcon,
+    XLSXIcon,
+} from '../../../assets/fileicons'
 import {MdDownload} from 'react-icons/md'
 import RedShortButton from '../../../buttons/short-button/RedShortButton'
-import {Button} from "@mui/material";
+import {Button} from '@mui/material'
 
 const UploadProjectTemplateBox = ({
-                                      id,
-                                      fileName,
-                                      fileSize,
-                                      updatedAt,
-                                      fileType,
-                                      deleteFile
-                                  }) => {
+    id,
+    fileName,
+    fileSize,
+    updatedAt,
+    fileType,
+    deleteFile,
+}) => {
     return (
         <div className={'grid grid-cols-10 lg:grid-cols-7 gap-2 lg:gap-5'}>
             <div
@@ -21,32 +28,32 @@ const UploadProjectTemplateBox = ({
             >
                 {fileType === 'pdf' && (
                     <>
-                        <PDFIcon/>
+                        <PDFIcon />
                     </>
                 )}
                 {(fileType === 'docx' || fileType === 'doc') && (
                     <>
-                        <DOCXIcon/>
+                        <DOCXIcon />
                     </>
                 )}
                 {fileType === 'mp4' && (
                     <>
-                        <VideoIcon/>
+                        <VideoIcon />
                     </>
                 )}
                 {fileType === 'txt' && (
                     <>
-                        <TXTIcon/>
+                        <TXTIcon />
                     </>
                 )}
                 {(fileType === 'pptx' || fileType === 'ppt') && (
                     <>
-                        <PPTXIcon/>
+                        <PPTXIcon />
                     </>
                 )}
                 {(fileType === 'xlsx' || fileType === 'xls') && (
                     <>
-                        <XLSXIcon/>
+                        <XLSXIcon />
                     </>
                 )}
                 <div
@@ -99,7 +106,6 @@ const UploadProjectTemplateBox = ({
             >
                 Remove
             </Button>
-
         </div>
     )
 }
