@@ -45,7 +45,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
+const StudentSideBarWrapper = ({children, selectedPageIndex, navigateHome}) => {
     const [userDetails, setUserDetails] = useState(null)
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
@@ -145,6 +145,9 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                                         <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                                                             <div className="flex-shrink-0 grid place-items-center ">
                                                                 <Image
+                                                                    onClick={() => {
+                                                                        navigateHome()
+                                                                    }}
                                                                     src={
                                                                         'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                                     }
@@ -297,6 +300,9 @@ const StudentSideBarWrapper = ({children, selectedPageIndex}) => {
                                         <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                                             <div className="flex items-center flex-shrink-0 px-4">
                                                 <Image
+                                                    onClick={() => {
+                                                        navigateHome()
+                                                    }}
                                                     src={
                                                         'https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=128d14ab-d90c-4aa2-b021-4c46859ce9aa'
                                                     }

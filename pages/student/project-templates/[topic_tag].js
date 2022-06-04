@@ -7,12 +7,19 @@ const Topic_tag = () => {
     const router = useRouter()
     const {topic_tag} = router.query
 
+    const openHomePage = async () => {
+        await router.push('/')
+    }
+
     const openProjectTemplatesPage = async () => {
         await router.push('/student/marking-schema')
     }
 
     return (
-        <StudentSideBarWrapper selectedPageIndex={3}>
+        <StudentSideBarWrapper
+            selectedPageIndex={3}
+            navigateHome={openHomePage}
+        >
             <ProjectTemplateList
                 id={topic_tag}
                 navigateFunc={openProjectTemplatesPage}

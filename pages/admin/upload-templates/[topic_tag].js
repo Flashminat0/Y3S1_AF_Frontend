@@ -8,12 +8,16 @@ const UploadTemplates = () => {
     const router = useRouter()
     const {topic_tag} = router.query
 
+    const openHomePage = async () => {
+        await router.push('/')
+    }
+
     const openTopicListPage = async () => {
         await router.push('/admin/topic-list')
     }
 
     return (
-        <AdminSideBarWrapper selectedPageIndex={3}>
+        <AdminSideBarWrapper selectedPageIndex={3} navigateHome={openHomePage}>
             <UploadProjectTemplateList
                 id={topic_tag}
                 navigateFunc={openTopicListPage}
