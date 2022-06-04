@@ -56,9 +56,7 @@ const Header = () => {
                                             alt="Logo"
                                             width={'125'}
                                             height={'100'}
-                                            className={
-                                                'w-16 h-16'
-                                            }
+                                            className={'w-16 h-16'}
                                         />
                                     </a>
                                 </div>

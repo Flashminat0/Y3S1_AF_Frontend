@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
 const navigationStaticData = {
     explore: [
@@ -55,8 +55,7 @@ const navigationStaticData = {
             href: '#',
             icon: (props) => (
                 <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-                    <path
-                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                 </svg>
             ),
         },
@@ -72,12 +71,12 @@ const navigationStaticData = {
                     />
                 </svg>
             ),
-        }
+        },
     ],
 }
 
 const Footer = () => {
-    const [navigation, setNavigation] = useState(navigationStaticData);
+    const [navigation, setNavigation] = useState(navigationStaticData)
 
     return (
         <footer className="bg-gray-800" aria-labelledby="footer-heading">
@@ -90,31 +89,39 @@ const Footer = () => {
                         {/* Logo */}
                         <div className="relative left-0 py-2 flex-shrink-0 lg:static">
                             <a href="#">
-                                        <span className="sr-only">
-                                            Research Labs icon
-                                        </span>
+                                <span className="sr-only">
+                                    Research Labs icon
+                                </span>
                                 {/* https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg */}
                                 <img
                                     src="https://firebasestorage.googleapis.com/v0/b/y3s1-sliit-af.appspot.com/o/Logo%20AF.png?alt=media&token=2abbb496-a605-40b9-8266-4fc5b4ae1cce"
                                     alt="Logo"
                                     width={'260'}
                                     height={'175'}
-                                    className={
-                                        'w-32 h-20 lg:w-40 lg:h-24'
-                                    }
+                                    className={'w-32 h-20 lg:w-40 lg:h-24'}
                                 />
                             </a>
                         </div>
-                        <div className={'text-gray-300 leading-relaxed'}>We evaluate your knowledge and best practices through by final year researches at university.</div>
+                        <div className={'text-gray-300 leading-relaxed'}>
+                            We evaluate your knowledge and best practices
+                            through by final year researches at university.
+                        </div>
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-8">
                         <div>
-                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Explore</h3>
-                            <ul role="list" className="pl-0 mt-4 space-y-4 list-none">
+                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                                Explore
+                            </h3>
+                            <ul
+                                role="list"
+                                className="pl-0 mt-4 space-y-4 list-none"
+                            >
                                 {navigation.explore.map((item) => (
                                     <li key={item.name}>
-                                        <a href={item.href}
-                                           className="text-base text-gray-300 hover:text-white no-underline">
+                                        <a
+                                            href={item.href}
+                                            className="text-base text-gray-300 hover:text-white no-underline"
+                                        >
                                             {item.name}
                                         </a>
                                     </li>
@@ -122,12 +129,19 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="mt-12 md:mt-0">
-                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Help</h3>
-                            <ul role="list" className="pl-0 mt-4 space-y-4 list-none">
+                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                                Help
+                            </h3>
+                            <ul
+                                role="list"
+                                className="pl-0 mt-4 space-y-4 list-none"
+                            >
                                 {navigation.help.map((item) => (
                                     <li key={item.name}>
-                                        <a href={item.href}
-                                           className="text-base text-gray-300 hover:text-white no-underline">
+                                        <a
+                                            href={item.href}
+                                            className="text-base text-gray-300 hover:text-white no-underline"
+                                        >
                                             {item.name}
                                         </a>
                                     </li>
@@ -137,12 +151,19 @@ const Footer = () => {
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-8">
                         <div>
-                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Campus</h3>
-                            <ul role="list" className="pl-0 mt-4 space-y-4 list-none">
+                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                                Campus
+                            </h3>
+                            <ul
+                                role="list"
+                                className="pl-0 mt-4 space-y-4 list-none"
+                            >
                                 {navigation.campus.map((item) => (
                                     <li key={item.name}>
-                                        <a href={item.href}
-                                           className="text-base text-gray-300 hover:text-white no-underline">
+                                        <a
+                                            href={item.href}
+                                            className="text-base text-gray-300 hover:text-white no-underline"
+                                        >
                                             {item.name}
                                         </a>
                                     </li>
@@ -150,12 +171,19 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="mt-12 md:mt-0">
-                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
-                            <ul role="list" className="pl-0 mt-4 space-y-4 list-none">
+                            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                                Legal
+                            </h3>
+                            <ul
+                                role="list"
+                                className="pl-0 mt-4 space-y-4 list-none"
+                            >
                                 {navigation.legal.map((item) => (
                                     <li key={item.name}>
-                                        <a href={item.href}
-                                           className="text-base text-gray-300 hover:text-white no-underline">
+                                        <a
+                                            href={item.href}
+                                            className="text-base text-gray-300 hover:text-white no-underline"
+                                        >
                                             {item.name}
                                         </a>
                                     </li>
@@ -167,9 +195,16 @@ const Footer = () => {
                 <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
                     <div className="flex space-x-6 md:order-2">
                         {navigation.social.map((item) => (
-                            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-300">
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                className="text-gray-400 hover:text-gray-300"
+                            >
                                 <span className="sr-only">{item.name}</span>
-                                <item.icon className="h-6 w-6" aria-hidden="true"/>
+                                <item.icon
+                                    className="h-6 w-6"
+                                    aria-hidden="true"
+                                />
                             </a>
                         ))}
                     </div>
@@ -179,7 +214,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

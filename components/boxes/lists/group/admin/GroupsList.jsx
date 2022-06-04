@@ -3,9 +3,9 @@ import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
 import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
-import {useDebouncedValue, useDidUpdate, useLocalStorage} from "@mantine/hooks";
-import axios from "axios";
-import {useRouter} from "next/router";
+import {useDebouncedValue, useDidUpdate, useLocalStorage} from '@mantine/hooks'
+import axios from 'axios'
+import {useRouter} from 'next/router'
 const placeholder = 'Group Search'
 
 const GroupsList = ({navigateFunc}) => {
@@ -127,29 +127,32 @@ const GroupsList = ({navigateFunc}) => {
 
     return (
         <>
-            {studentGroups && <>
-
-                <AdminModalButtonWrapper
-                    btnName={'Check User List'}
-                    btnFunction={navigateFunc}
-                >
-                    <GroupListWrapper>
-                        <SearchBar placeholder={placeholder}/>
-                        <div>
-                            {studentGroups.map((studentGroup) => (
-                                <SingleGroupBox
-                                    key={studentGroup.id}
-                                    groupId={studentGroup.id}
-                                    groupName={studentGroup.groupName}
-                                    groupLeader={studentGroup.groupLeader}
-                                    groupLeaderRegNo={studentGroup.groupLeaderRegNo}
-                                    currentNo={studentGroup.currentNo}
-                                />
-                            ))}
-                        </div>
-                    </GroupListWrapper>
-                </AdminModalButtonWrapper>
-            </>}
+            {studentGroups && (
+                <>
+                    <AdminModalButtonWrapper
+                        btnName={'Check User List'}
+                        btnFunction={navigateFunc}
+                    >
+                        <GroupListWrapper>
+                            <SearchBar placeholder={placeholder} />
+                            <div>
+                                {studentGroups.map((studentGroup) => (
+                                    <SingleGroupBox
+                                        key={studentGroup.id}
+                                        groupId={studentGroup.id}
+                                        groupName={studentGroup.groupName}
+                                        groupLeader={studentGroup.groupLeader}
+                                        groupLeaderRegNo={
+                                            studentGroup.groupLeaderRegNo
+                                        }
+                                        currentNo={studentGroup.currentNo}
+                                    />
+                                ))}
+                            </div>
+                        </GroupListWrapper>
+                    </AdminModalButtonWrapper>
+                </>
+            )}
         </>
     )
 }
