@@ -7,28 +7,43 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 import SenderFileBubble from './file/SenderFileBubble'
 import ReceivedFileBubble from './file/ReceivedFileBubble'
 import {randomId, useLocalStorage} from '@mantine/hooks'
-import {
-    LoadingAnimation,
-    NotOkAnimation,
-    OkAnimation,
-} from '../../../assets/animations'
+import {LoadingAnimation, NotOkAnimation, OkAnimation,} from '../../../assets/animations'
 import EditTextMessageModal from './EditTextMessageModal'
 import {firebaseApp} from '../../../../firebase/base'
-import {
-    deleteObject,
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytesResumable,
-} from 'firebase/storage'
+import {deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable,} from 'firebase/storage'
 import axios from 'axios'
 
-const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
+const BasicConversationWindow = ({receiver}) => {
     const myRef = useRef(null)
 
-    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
+
+    const [approvalState, setApprovalState] = useState('pending');
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
+    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1);
+        }, 7000);
+
+        return () => clearInterval(interval);
+    }, [])
+
+
+    useEffect(() => {
+        const getUserDataFromID = async () => {
+            await axios.get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: receiver
+                }
+            }).then(res => {
+                console.log(res.data);
+            })
+        }
+        getUserDataFromID()
+    }, []);
+
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -86,6 +101,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                 })
                 .then((res) => {
                     setMessageArray(res.data.chat.messages)
+                    setApprovalState(res.data.chat.approvedState);
                 })
         }
         fetchMessages()
@@ -162,7 +178,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         break
                 }
             },
-            (error) => {},
+            (error) => {
+            },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(async (url) => {
@@ -362,19 +379,19 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                         {approvalState === 'pending' && (
                             <>
                                 Pending Approval &nbsp;&nbsp;
-                                <LoadingAnimation />
+                                <LoadingAnimation/>
                             </>
                         )}
                         {approvalState === 'approved' && (
                             <>
                                 Topic Approved &nbsp;&nbsp;
-                                <OkAnimation />
+                                <OkAnimation/>
                             </>
                         )}
                         {approvalState === 'rejected' && (
                             <>
                                 Topic Rejected &nbsp;&nbsp;
-                                <NotOkAnimation />
+                                <NotOkAnimation/>
                             </>
                         )}
                     </div>
@@ -474,8 +491,8 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
 
             <Input
                 value={nowMessage}
-                startAdornment={<AttachmentsIcon />}
-                endAdornment={<SendIcon />}
+                startAdornment={<AttachmentsIcon/>}
+                endAdornment={<SendIcon/>}
                 className="flex-none w-[95%] p-3 m-3 lg:m-0"
                 placeholder="Type a message..."
                 autoFocus={true}

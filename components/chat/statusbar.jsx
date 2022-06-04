@@ -19,7 +19,7 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                 <div className="space-y-2">
                     <div className="text-xs font-medium lg:text-sm">
                         <h3>{userData.name}</h3>
-                        <p className="text-indigo-600">
+                        <p className="text-indigo-600 capitalize">
                             {userData.role.split('_').join(' ')}
                         </p>
                         {selectedType !== 'Student' && (
@@ -44,6 +44,16 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                                 )}
                             </div>
                         )}
+
+
+                        <p className={`flex gap-2   `}>{userData.tags.map((singleTag)=>{
+                            return (
+                                <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                    {singleTag}
+                                </span>
+                            )
+                        })}</p>
+
                     </div>
                 </div>
             </div>
