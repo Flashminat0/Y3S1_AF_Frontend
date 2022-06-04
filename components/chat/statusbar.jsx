@@ -45,15 +45,15 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                             </div>
                         )}
 
-
-                        <p className={`flex gap-2   `}>{userData.tags.map((singleTag)=>{
-                            return (
-                                <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-                                    {singleTag}
-                                </span>
-                            )
-                        })}</p>
-
+                        <p className={`flex gap-2   `}>
+                            {userData.tags.map((singleTag) => {
+                                return (
+                                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                        {singleTag}
+                                    </span>
+                                )
+                            })}
+                        </p>
                     </div>
                 </div>
             </div>
