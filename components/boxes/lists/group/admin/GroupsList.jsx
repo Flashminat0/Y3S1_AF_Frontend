@@ -3,63 +3,154 @@ import SingleGroupBox from './SingleGroupBox'
 import GroupListWrapper from '../../../../layouts/user/group/GroupListWrapper'
 import SearchBar from '../../../../searchbar/SearchBar'
 import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
-
-const studentGroupsStaticData = [
-    {
-        id: 1,
-        groupName: 'Noobcooders',
-        groupLeader: 'John Smith',
-        groupLeaderRegNo: 'IT14256789',
-        currentNo: 3,
-    },
-    {
-        id: 2,
-        groupName: 'thorn',
-        groupLeader: 'Mary Snatiya',
-        groupLeaderRegNo: 'IT20256749',
-        currentNo: 1,
-    },
-    {
-        id: 3,
-        groupName: 'BugFixers',
-        groupLeader: 'Jonas Smith',
-        groupLeaderRegNo: 'IT24156785',
-        currentNo: 3,
-    },
-    {
-        id: 4,
-        groupName: 'darkcodes',
-        groupLeader: 'Leo Max',
-        groupLeaderRegNo: 'IT10256350',
-        currentNo: 3,
-    },
-]
-
+import {useDebouncedValue, useDidUpdate, useLocalStorage} from "@mantine/hooks";
+import axios from "axios";
+import {useRouter} from "next/router";
 const placeholder = 'Group Search'
 
 const GroupsList = ({navigateFunc}) => {
-    const [studentGroups, setStudentGroups] = useState(studentGroupsStaticData)
+    const [studentGroups, setStudentGroups] = useState(null)
+
+    const [searchTerm, setSearchTerm] = useState('')
+    const [debounced] = useDebouncedValue(searchTerm, 200)
+
+    const [credentials, setCredentials] = useLocalStorage({
+        key: 'y3s1-af-credentials',
+        defaultValue: {},
+    })
+
+    useDidUpdate(() => {
+        if (debounced === '') {
+            //limited to 5
+            axios.get('/api/users/get-all-groups').then(async (res) => {
+                setStudentGroups([])
+
+                for (const group of res.data.groups) {
+                    const groupId = group._id
+                    const groupName = group.name
+                    const memberCount = group.members.length
+
+                    await axios
+                        .get('/api/users/get-user-data-from-id', {
+                            params: {
+                                userId: group.leaderId,
+                            },
+                        })
+                        .then((res) => {
+                            const leaderName = res.data.name.toString()
+                            const newGroup = {
+                                id: groupId,
+                                groupName: groupName,
+                                groupLeader: leaderName
+                                    .substring(0, leaderName.lastIndexOf(' '))
+                                    .toString()
+                                    .toUpperCase(),
+                                groupLeaderRegNo: leaderName
+                                    .substring(
+                                        leaderName.lastIndexOf(' ') + 1,
+                                        leaderName.length
+                                    )
+                                    .toString()
+                                    .toUpperCase(),
+                                currentNo: memberCount,
+                            }
+
+                            setStudentGroups((prev) => {
+                                return [...prev, newGroup]
+                            })
+                        })
+                }
+            })
+        } else {
+            setStudentGroups([])
+            axios
+                .get('/api/users/find-group', {
+                    params: {
+                        searchName: debounced,
+                    },
+                })
+                .then(async (res) => {
+                    for (const group of res.data) {
+                        const groupId = group._id
+                        const groupName = group.name
+                        const memberCount = group.members.length
+
+                        await axios
+                            .get('/api/users/get-user-data-from-id', {
+                                params: {
+                                    userId: group.leaderId,
+                                },
+                            })
+                            .then((res) => {
+                                const leaderNameNew = res.data.name.toString()
+                                const newGroup = {
+                                    id: groupId,
+                                    groupName: groupName,
+                                    groupLeader: leaderNameNew
+                                        .substring(
+                                            0,
+                                            leaderNameNew.lastIndexOf(' ')
+                                        )
+                                        .toString()
+                                        .toUpperCase(),
+                                    groupLeaderRegNo: leaderNameNew
+                                        .substring(
+                                            leaderNameNew.lastIndexOf(' ') + 1,
+                                            leaderNameNew.length
+                                        )
+                                        .toString()
+                                        .toUpperCase(),
+                                    currentNo: memberCount,
+                                }
+
+                                setStudentGroups((prev) => {
+                                    return [...prev, newGroup]
+                                })
+                            })
+                    }
+                })
+        }
+    }, [debounced])
+
+    const router = useRouter()
+    useDidUpdate(() => {
+        axios
+            .get('/api/users/is-in-a-group', {
+                params: {
+                    userId: credentials._id,
+                },
+            })
+            .then(async (res) => {
+                await router.push('/admin/group-list')
+            })
+    }, [])
 
     return (
-        <AdminModalButtonWrapper
-            btnName={'Check User List'}
-            btnFunction={navigateFunc}
-        >
-            <GroupListWrapper>
-                <SearchBar placeholder={placeholder} />
-                <div>
-                    {studentGroups.map((studentGroup, index) => (
-                        <SingleGroupBox
-                            key={index}
-                            groupName={studentGroup.groupName}
-                            groupLeader={studentGroup.groupLeader}
-                            groupLeaderRegNo={studentGroup.groupLeaderRegNo}
-                            currentNo={studentGroup.currentNo}
-                        />
-                    ))}
-                </div>
-            </GroupListWrapper>
-        </AdminModalButtonWrapper>
+        <>
+            {studentGroups && <>
+
+                <AdminModalButtonWrapper
+                    btnName={'Check User List'}
+                    btnFunction={navigateFunc}
+                >
+                    <GroupListWrapper>
+                        <SearchBar placeholder={placeholder}/>
+                        <div>
+                            {studentGroups.map((studentGroup) => (
+                                <SingleGroupBox
+                                    key={studentGroup.id}
+                                    groupId={studentGroup.id}
+                                    groupName={studentGroup.groupName}
+                                    groupLeader={studentGroup.groupLeader}
+                                    groupLeaderRegNo={studentGroup.groupLeaderRegNo}
+                                    currentNo={studentGroup.currentNo}
+                                />
+                            ))}
+                        </div>
+                    </GroupListWrapper>
+                </AdminModalButtonWrapper>
+            </>}
+        </>
     )
 }
 

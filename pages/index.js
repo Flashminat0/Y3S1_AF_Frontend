@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import FileUploadTest from '../components/forms/FileUploadTest'
 import LoginWIthMicrosoft from '../components/forms/auth/LoginWIthMicrosoft'
-import Header from '../components/common/header'
+import Header from '../components/common/Header'
 import {useDocumentTitle, useLocalStorage} from '@mantine/hooks'
 import Button from '@mui/material/Button'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import MainPanel from "../components/common/MainPanel";
 
 export default function Home() {
     useDocumentTitle('Home')
@@ -24,6 +25,7 @@ export default function Home() {
     return (
         <div className={`font-sans`}>
             <Header />
+            <MainPanel/>
             <Button onClick={testAPI} color={'primary'}>
                 TEST
             </Button>
