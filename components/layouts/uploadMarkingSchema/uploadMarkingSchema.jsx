@@ -1,16 +1,16 @@
-import React from 'react'
-import {Button} from '@mui/material'
-import StudentModalButtonWrapper from '../../layouts/student/StudentModalButtonWrapper'
+import React from 'react';
+import { Button } from '@mui/material';
+import AdminModalButtonWrapper from '../../layouts/admin/AdminModalButtonWrapper';
 
 const topicList = [
     'Hotel Managemnt System',
     'Student Management System',
     'Vehicle Rental System',
-]
-const UploadMarkingSchema = ({navigateFunc}) => {
+];
+const UploadMarkingSchema = ({ navigateFunc }) => {
     return (
         <>
-            <StudentModalButtonWrapper
+            <AdminModalButtonWrapper
                 btnName={'Check Project Template List'}
                 btnFunction={navigateFunc}
             >
@@ -39,9 +39,9 @@ const UploadMarkingSchema = ({navigateFunc}) => {
                         </div>
                     ))}
                 {/* <CommonModal view={modal} /> */}
-            </StudentModalButtonWrapper>
+            </AdminModalButtonWrapper>
         </>
-    )
-}
+    );
+};
 
-export default UploadMarkingSchema
+export default UploadMarkingSchema;
