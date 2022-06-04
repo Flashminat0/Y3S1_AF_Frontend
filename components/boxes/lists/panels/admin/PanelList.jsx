@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AllocatePanelWrapper from '../../../../layouts/allocate-panel/AllocatePanelWrapper'
 import SinglePanelBox from './SinglePanelBox'
 import AdminModalButtonWrapper from '../../../../layouts/admin/AdminModalButtonWrapper'
@@ -27,7 +27,7 @@ const panelMemberStaticData = [
     },
 ]
 
-const PanelList = ({navigateFunc}) => {
+const PanelList = ({navigateFunc, panelMembers}) => {
     const [panelList, setPanelList] = useState(panelMemberStaticData)
     const [openModal, setOpenModal] = useState(false)
 
@@ -43,16 +43,18 @@ const PanelList = ({navigateFunc}) => {
             <AllocatePanelModal
                 openModal={openModal}
                 setOpenModal={setOpenModal}
+                panelMembers={panelMembers}
             />
             <AllocatePanelWrapper btnFunction={openAllocatePanelModal}>
                 <div>
-                    {panelList.map((panel) => (
-                        <SinglePanelBox
-                            key={panel.id}
-                            panelMemberName={panel.panelMemberName}
-                            panelMemberRegNo={panel.panelMemberRegNo}
-                        />
-                    ))}
+                    {panelMemberStaticData &&
+                        panelMemberStaticData.map((panel) => (
+                            <SinglePanelBox
+                                key={panel._id}
+                                panelMemberName={panel._name}
+                                panelMemberRegNo={panel.panelMemberRegNo}
+                            />
+                        ))}
                 </div>
             </AllocatePanelWrapper>
         </AdminModalButtonWrapper>

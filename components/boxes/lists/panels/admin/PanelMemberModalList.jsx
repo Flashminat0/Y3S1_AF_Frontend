@@ -24,21 +24,39 @@ const panelMemberStaticData = [
     },
 ]
 
-const PanelMemberModalList = () => {
+const PanelMemberModalList = ({panelMembers}) => {
     const [panelMemberList, setPanelMemberList] = useState(
         panelMemberStaticData
     )
 
+    const regnumber = (name) => {
+        const arr = name.split('')
+        const revarr = arr.reverse()
+        const it = revarr.splice(0, 10)
+        const reg = it.reverse()
+        const RegNum = reg.join('')
+        return RegNum
+    }
+    const name = (name) => {
+        const arr = name.split('')
+        const revarr = arr.reverse()
+        const fname = revarr.splice(11)
+        const getname = fname.reverse()
+        const stringName = getname.join('')
+        return stringName
+    }
+
     return (
         <div>
-            {panelMemberList.map((panelMember) => (
-                <div key={panelMember.id}>
-                    <SinglePanelMemberModalBox
-                        panelMemberName={panelMember.panelMemberName}
-                        panelMemberRegNo={panelMember.panelMemberRegNo}
-                    />
-                </div>
-            ))}
+            {panelMembers &&
+                panelMembers.result.map((panelMember) => (
+                    <div key={panelMember._id}>
+                        <SinglePanelMemberModalBox
+                            panelMemberName={name(panelMember.name)}
+                            panelMemberRegNo={regnumber(panelMember.name)}
+                        />
+                    </div>
+                ))}
         </div>
     )
 }
