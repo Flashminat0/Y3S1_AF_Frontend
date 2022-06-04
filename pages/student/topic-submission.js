@@ -1,6 +1,7 @@
 import React from 'react'
 import StudentSideBarWrapper from '../../components/layouts/student/StudentSideBarWrapper'
 import {useRouter} from 'next/router'
+import TopicList from '../../components/layouts/createTopic/topicList'
 
 const TopicSubmission = () => {
     const router = useRouter()
@@ -13,7 +14,9 @@ const TopicSubmission = () => {
         <StudentSideBarWrapper
             selectedPageIndex={2}
             navigateHome={openHomePage}
-        ></StudentSideBarWrapper>
+        >
+            <TopicList />
+        </StudentSideBarWrapper>
     )
 }
 
