@@ -16,7 +16,7 @@ const UploadMarkingSchema = ({ navigateFunc }) => {
             >
                 {topicList &&
                     topicList.map((topics, index) => (
-                        <div key={index} className="py-3 px-3">
+                        <div key={index} className="py-3 px-3 ">
                             {' '}
                             <div className="flex">
                                 <div
