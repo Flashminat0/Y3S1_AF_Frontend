@@ -1,16 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import StudentModalButtonWrapper from '../../../layouts/student/StudentModalButtonWrapper'
 import AdminModalButtonWrapper from '../../../layouts/admin/AdminModalButtonWrapper'
 import UploadTemplatesWrapper from '../../../layouts/upload-template/UploadTemplatesWrapper'
 import UploadProjectTemplateBox from './UploadProjectTemplateBox'
 import {firebaseApp} from '../../../../firebase/base'
-import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL,
-    deleteObject,
-} from 'firebase/storage'
+import {getDownloadURL, getStorage, ref, uploadBytes,} from 'firebase/storage'
 import axios from 'axios'
 
 const UploadProjectTemplateList = ({navigateFunc, id}) => {
@@ -85,6 +78,21 @@ const UploadProjectTemplateList = ({navigateFunc, id}) => {
         })
     }
 
+    const deleteFile = (fileName) => {
+        const fileList = topicData.projectTemplates.filter(
+            (file) => file.id !== fileName
+        )
+        axios
+            .post('/api/topic/update-project-templates', {
+                id: id,
+                projectTemplates: fileList,
+            })
+            .then((res) => {
+                setRefreshTrigger(refreshTrigger + 1)
+            })
+
+    }
+
     return (
         <>
             {topicData && (
@@ -100,10 +108,12 @@ const UploadProjectTemplateList = ({navigateFunc, id}) => {
                             <div className={'flex flex-col gap-3'}>
                                 {templateFileList.map((file) => (
                                     <UploadProjectTemplateBox
+                                        id={file.id}
                                         fileName={file.fileName}
                                         fileSize={file.fileSize}
                                         updatedAt={file.updatedAt}
                                         fileType={file.fileType}
+                                        deleteFile={deleteFile}
                                     />
                                 ))}
                             </div>
