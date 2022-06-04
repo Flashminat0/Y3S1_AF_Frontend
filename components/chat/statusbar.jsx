@@ -1,18 +1,30 @@
-import React from 'react'
-import {
-    LoadingAnimation,
-    NotOkAnimation,
-    OkAnimation,
-} from '../assets/animations'
+import React, {useEffect, useState} from 'react'
+import {LoadingAnimation, NotOkAnimation, OkAnimation,} from '../assets/animations'
 import {Button} from '@mui/material'
 import axios from 'axios'
 import {useLocalStorage} from '@mantine/hooks'
 
-const Statusbar = ({userId, type, status, selectedType, userData}) => {
+const Statusbar = ({userId, type, selectedType, userData}) => {
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
         defaultValue: {},
     })
+
+
+    const [status, setStatus] = useState('pending');
+    useEffect(() => {
+        const getApprovalStatus = async () => {
+            await axios.post('/api/chat/fetch-message', {
+                studentId: credentials._id,
+                staffId: userData._id,
+            }).then(res => {
+                setStatus(res.data.chat.approvedState);
+            })
+        }
+
+        getApprovalStatus()
+    }, []);
+
 
     const approveProject = async () => {
         await axios
@@ -46,6 +58,22 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
             })
     }
 
+    const retractDecision = async () => {
+        await axios
+            .get('/api/users/get-user-data-from-id', {
+                params: {
+                    userId: credentials._id,
+                },
+            })
+            .then(async (res) => {
+                await axios.post('/api/chat/retract-project', {
+                    studentId: userData._id,
+                    staffId: credentials._id,
+                    role: res.data.role,
+                })
+            })
+    }
+
     return (
         <div
             className={`grid place-items-center grid place-items-center mt-20 `}
@@ -67,48 +95,69 @@ const Statusbar = ({userId, type, status, selectedType, userData}) => {
                                 {status === 'pending' && (
                                     <>
                                         Pending Approval &nbsp;&nbsp;
-                                        <LoadingAnimation />
+                                        <LoadingAnimation/>
                                     </>
                                 )}
                                 {status === 'approved' && (
                                     <>
                                         Topic Approved &nbsp;&nbsp;
-                                        <OkAnimation />
+                                        <OkAnimation/>
                                     </>
                                 )}
                                 {status === 'rejected' && (
                                     <>
                                         Topic Rejected &nbsp;&nbsp;
-                                        <NotOkAnimation />
+                                        <NotOkAnimation/>
                                     </>
                                 )}
                             </div>
                         ) : (
-                            <div className={`grid gap-3`}>
-                                <Button
-                                    className={`col-span-1`}
-                                    fullWidth={true}
-                                    color={'success'}
-                                    variant={'outlined'}
-                                    onClick={approveProject}
-                                >
-                                    Approve
-                                </Button>
-                                <Button
-                                    className={`col-span-1`}
-                                    fullWidth={true}
-                                    color={'error'}
-                                    variant={'outlined'}
-                                >
-                                    Reject
-                                </Button>
-                            </div>
+                            <>
+                                {status === 'pending' ? (
+                                    <>
+                                        <div className={`grid gap-3`}>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'success'}
+                                                variant={'outlined'}
+                                                onClick={approveProject}
+                                            >
+                                                Approve
+                                            </Button>
+                                            <Button
+                                                className={`col-span-1`}
+                                                fullWidth={true}
+                                                color={'error'}
+                                                variant={'outlined'}
+                                                onClick={rejectProject}
+                                            >
+                                                Reject
+                                            </Button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button
+                                            className={`col-span-1`}
+                                            fullWidth={true}
+                                            color={'info'}
+                                            variant={'outlined'}
+                                            onClick={retractDecision}
+                                        >
+                                            Retract Decision
+                                        </Button></>
+                                )}
+
+                            </>
+
                         )}
 
                         <p className={`flex gap-2   `}>
                             {userData.tags.map((singleTag) => {
                                 return (
-                                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                                    <span
+                                        className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
                                         {singleTag}
                                     </span>
                                 )
