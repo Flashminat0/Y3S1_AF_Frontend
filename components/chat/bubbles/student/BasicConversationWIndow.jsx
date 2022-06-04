@@ -23,12 +23,21 @@ import {
 } from 'firebase/storage'
 import axios from 'axios'
 
-const BasicConversationWindow = ({receiver, approvalState}) => {
+const BasicConversationWindow = ({receiver}) => {
     const myRef = useRef(null)
 
+    const [approvalState, setApprovalState] = useState('pending')
+    const [messageArray, setMessageArray] = useState([])
     const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
-    const [messageArray, setMessageArray] = useState([])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
+        }, 7000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     const [credentials, setCredentials] = useLocalStorage({
         key: 'y3s1-af-credentials',
@@ -86,6 +95,7 @@ const BasicConversationWindow = ({receiver, approvalState}) => {
                 })
                 .then((res) => {
                     setMessageArray(res.data.chat.messages)
+                    setApprovalState(res.data.chat.approvedState)
                 })
         }
         fetchMessages()

@@ -23,12 +23,36 @@ import {
 } from 'firebase/storage'
 import axios from 'axios'
 
-const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
+const BasicConversationWindow = ({receiver}) => {
     const myRef = useRef(null)
 
-    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
+    const [approvalState, setApprovalState] = useState('pending')
     const [scrollToDownTrigger, setScrollToDownTrigger] = useState(1)
+    const [fetchMessageTrigger, setFetchMessageTrigger] = useState(1)
     const [messageArray, setMessageArray] = useState([])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setFetchMessageTrigger(fetchMessageTrigger + 1)
+        }, 7000)
+
+        return () => clearInterval(interval)
+    }, [])
+
+    useEffect(() => {
+        const getUserDataFromID = async () => {
+            await axios
+                .get('/api/users/get-user-data-from-id', {
+                    params: {
+                        userId: receiver,
+                    },
+                })
+                .then((res) => {
+                    console.log(res.data)
+                })
+        }
+        getUserDataFromID()
+    }, [])
 
     useEffect(() => {
         myRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})
@@ -86,6 +110,7 @@ const BasicConversationWindow = ({receiver, conversation, approvalState}) => {
                 })
                 .then((res) => {
                     setMessageArray(res.data.chat.messages)
+                    setApprovalState(res.data.chat.approvedState)
                 })
         }
         fetchMessages()
